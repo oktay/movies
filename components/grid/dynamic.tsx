@@ -1,46 +1,26 @@
-"use client";
-
-import { fetchApi } from "@/lib/api";
-import { useEffect } from "react";
-import useSWRInfinite from "swr/infinite";
+import { getQuery } from "@/lib/api";
 import MediaCard from "../media/card";
 import MediaGrid from "./_base";
-import Spinner from "../spinner";
-import { useInView } from "react-intersection-observer";
+import Link from "next/link";
+import Pagination from "../pagination";
 
-export default function MediaDynamicGrid({ query }: { query: QueryItem }) {
-  const { data, setSize } = useSWRInfinite(
-    (index) => `/${query.type}/${query.query}?page=${index + 1}`,
-    (arg) => fetchApi(arg),
-    {
-      revalidateFirstPage: false,
-      revalidateOnFocus: false,
-      suspense: true,
-    }
-  );
-  const items: Media[] = data ? [].concat(...data.map((i) => i.results)) : [];
-  const isLastPage =
-    data && data[data.length - 1].page === data[data.length - 1].total_pages;
-  const [ref, inView] = useInView();
-
-  useEffect(() => {
-    if (!inView) return;
-    setSize((size) => size + 1);
-  }, [inView, setSize]);
+export default async function MediaDynamicGrid({
+  query,
+  page = "1",
+}: {
+  query: QueryItem;
+  page?: string;
+}) {
+  const data = await getQuery(query, page);
 
   return (
     <>
       <MediaGrid>
-        {items.map((item) => (
+        {data.results.map((item) => (
           <MediaCard key={item.id} media={item} />
         ))}
       </MediaGrid>
-
-      {!isLastPage && (
-        <div className="py-12 flex justify-center text-3xl" ref={ref}>
-          <Spinner />
-        </div>
-      )}
+      <Pagination page={page} totalPages={data.total_pages} />
     </>
   );
 }

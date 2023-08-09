@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { PiQuestion } from "react-icons/pi";
 
-export default function MediaCard({ media }: { media: Media }) {
+export default function PersonCard({ person }: { person: Person }) {
   return (
     <div className="relative aspect-[2/3]">
-      {media.poster_path ? (
+      {person.profile_path ? (
         <Image
           className="w-full h-full object-cover"
-          src={`https://image.tmdb.org/t/p/w500${media.poster_path}`}
+          src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
           width={500}
           height={750}
           alt=""
@@ -19,7 +19,7 @@ export default function MediaCard({ media }: { media: Media }) {
         </div>
       )}
       <div className="mt-2">
-        <h3 className="line-clamp-1">{media.name || media.title}</h3>
+        <h3 className="line-clamp-1">{person.name}</h3>
       </div>
     </div>
   );
