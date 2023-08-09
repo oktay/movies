@@ -12,6 +12,7 @@ interface Media {
   poster_path: string;
   release_date?: string;
   first_air_date?: string;
+  last_air_date?: string;
   title: string;
   name?: string;
   video: boolean;
@@ -26,6 +27,10 @@ interface Media {
   status?: string;
   genres?: Genre[];
   production_companies?: any[];
+  networks?: any[];
+  episode_run_time?: number[];
+  number_of_seasons?: number;
+  number_of_episodes?: number;
   videos?: {
     results: Video[];
   };

@@ -1,7 +1,6 @@
 import { getQuery } from "@/lib/api";
 import MediaCard from "../media/card";
 import MediaGrid from "./_base";
-import Link from "next/link";
 import Pagination from "../pagination";
 
 export default async function MediaDynamicGrid({

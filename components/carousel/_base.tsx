@@ -10,10 +10,17 @@ export default function MediaCarouselBase({
   link?: string;
 }) {
   return (
-    <div>
-      <div className="px-4 md:px-8 py-4 text-lg lg:text-xl flex items-center">
+    <div className="my-global">
+      <div className="px-global mb-5 text-lg lg:text-xl flex items-center">
         <span>{title}</span>
-        {link && <Link href={link} className="text-sm text-blue-500 font-semibold ml-4">Explore More</Link>}
+        {link && (
+          <Link
+            href={link}
+            className="text-sm text-blue-500 font-semibold ml-4"
+          >
+            Explore More
+          </Link>
+        )}
       </div>
       <div>{children}</div>
     </div>

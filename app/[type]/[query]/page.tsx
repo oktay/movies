@@ -13,8 +13,8 @@ export default function QueryPage({
   if (!item) throw new Error("This page could not be found.");
 
   return (
-    <main>
-      <h1 className="text-2xl font-bold px-4 md:px-8 py-4">{item.title}</h1>
+    <main className="my-global">
+      <h1 className="text-2xl px-global mb-5">{item.title}</h1>
       <MediaDynamicGrid query={item} page={searchParams.page} />
     </main>
   );

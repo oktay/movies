@@ -15,7 +15,7 @@ export default function MediaHero({ media }: { media: Media }) {
       />
       <div className="absolute inset-0 bg-zinc-700 mix-blend-multiply" />
       <div className="absolute inset-0 flex items-center">
-        <div className="px-8 sm:px-24">
+        <div className="px-global">
           <div>
             <h1 className="text-3xl font-extrabold text-white tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
               {media.title || media.name}

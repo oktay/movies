@@ -39,7 +39,7 @@ export const fetchApi = (url: string, params?: any) =>
 
 export const getMedia = (type: MediaType, id: string): Promise<Media> =>
   fetchApi(`/${type}/${id}`, {
-    append_to_response: "credits,images,videos,recommendations",
+    append_to_response: "credits,images,videos,recommendations,episodes",
     include_image_language: "en",
   });
 

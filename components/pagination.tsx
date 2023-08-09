@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Pagination({
   query,
-  page,
+  page = "1",
   totalPages,
 }: {
   query?: any;
