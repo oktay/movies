@@ -1,3 +1,4 @@
+import Navbar from "@/components/navbar";
 import "@/styles/globals.css";
 import type { Metadata } from "next";
 
@@ -15,8 +16,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <div className="grid grid-rows-[1fr_5rem] lg:grid-rows-1 lg:grid-cols-[5rem_1fr]">
-          <header className="lg:h-screen bg-zinc-950 border-t border-zinc-700 lg:border-r"></header>
-          <div className="-order-1 lg:order-none overflow-y-auto h-[calc(100vh-5rem)]">
+          <header className="lg:h-screen bg-zinc-950 border-t border-zinc-700 lg:border-r">
+            <Navbar />
+          </header>
+          <div className="-order-1 lg:order-none overflow-y-auto h-[calc(100vh-5rem)] lg:h-screen">
             {children}
           </div>
         </div>
