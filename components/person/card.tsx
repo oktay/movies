@@ -19,7 +19,7 @@ export default function PersonCard({ person }: { person: Person }) {
         </div>
       )}
       <div className="mt-2">
-        <h3 className="line-clamp-1">{person.name}</h3>
+        <h3 className="truncate">{person.name}</h3>
       </div>
     </div>
   );
