@@ -32,6 +32,10 @@ export function fullDate(date: string) {
   });
 }
 
+export function getYear(date: string) {
+  return new Date(date).getFullYear();
+}
+
 export function numberWithCommas(x: number) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -53,4 +57,12 @@ export function getTrailer(item: Media) {
     (video) => video.type === "Trailer"
   );
   return getVideo(trailer);
+}
+
+export function formatContent(string: string) {
+  return string
+    .split("\n")
+    .filter((section) => section !== "")
+    .map((section) => `<p>${section}</p>`)
+    .join("");
 }

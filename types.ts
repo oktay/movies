@@ -51,6 +51,17 @@ interface Media {
   character?: string;
 }
 
+interface Credit extends Media {
+  character: string;
+  job: string;
+  department: string;
+  profile_path: string;
+  credit_id: string;
+  order: number;
+  media_type: MediaType;
+  episode_count?: number;
+}
+
 interface Person {
   adult: boolean;
   gender: number;
@@ -74,8 +85,8 @@ interface Person {
   biography?: string;
   external_ids?: ExternalIds;
   combined_credits?: {
-    cast?: Media[];
-    crew?: Media[];
+    cast?: Credit[];
+    crew?: Credit[];
   };
   images?: {
     profiles: Image[];

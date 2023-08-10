@@ -55,7 +55,7 @@ export const getMediaEpisodes = (id: string, season: number): Promise<Season> =>
 
 export const getPerson = (id: string): Promise<Person> =>
   fetchApi(`/person/${id}`, {
-    append_to_response: "credits,images",
+    append_to_response: "combined_credits,images",
   });
 
 export const getSearch = (

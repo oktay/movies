@@ -31,7 +31,7 @@ export default function Photos({ media }: { media: Media }) {
         <div className="mt-12">
           <h2 className="text-xl mb-5 inline-block">Posters</h2>
           <span className="ml-2 text-white/60">
-            {media.images.backdrops.length} Images
+            {media.images.posters.length} Images
           </span>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
