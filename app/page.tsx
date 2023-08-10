@@ -14,8 +14,16 @@ export default async function Home() {
     <main>
       <MediaHero media={randomItem} />
       <div className="my-global space-y-5">
-        <MediaCarousel title="Trending Movies" items={trendingMovie.results} />
-        <MediaCarousel title="Trending TV Shows" items={trendingTv.results} />
+        <MediaCarousel
+          title="Trending Movies"
+          link="/movie/trending"
+          items={trendingMovie.results}
+        />
+        <MediaCarousel
+          title="Trending TV Shows"
+          link="/tv/trending"
+          items={trendingTv.results}
+        />
       </div>
     </main>
   );
