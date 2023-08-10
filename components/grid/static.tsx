@@ -6,16 +6,16 @@ export default function MediaGrid({
   items,
   type,
 }: {
-  items: (Media & Person)[];
+  items: Media[] | Person[];
   type?: "tv" | "movie" | "person";
 }) {
   return (
     <MediaGridBase>
       {items.map((item) =>
         item.media_type === "person" || type === "person" ? (
-          <PersonCard key={item.id} person={item} />
+          <PersonCard key={item.id} person={item as Person} />
         ) : (
-          <MediaCard key={item.id} media={item} />
+          <MediaCard key={item.id} media={item as Media} />
         )
       )}
     </MediaGridBase>

@@ -82,3 +82,16 @@ export const getQuery = (
   fetchApi(`/${query.type}/${query.query}`, {
     page,
   });
+
+export const getGenreList = (type: MediaType): Promise<GenreList> =>
+  fetchApi(`/genre/${type}/list`);
+
+export const getGenre = (
+  type: MediaType,
+  id: number,
+  page?: number | string
+): Promise<PageResult<Media>> =>
+  fetchApi(`/discover/${type}/`, {
+    page,
+    with_genres: id,
+  });

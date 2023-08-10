@@ -78,15 +78,17 @@ export default function MediaOverview({ media }: { media: Media }) {
     },
     {
       title: "Creator",
-      value: media.created_by?.map((p) => (
-        <Link
-          key={p.id}
-          href={`/person/detail/${p.id}`}
-          className="mr-2 text-blue-500 underline"
-        >
-          {p.name}
-        </Link>
-      )),
+      value:
+        media.created_by?.length > 0 &&
+        media.created_by?.map((p) => (
+          <Link
+            key={p.id}
+            href={`/person/detail/${p.id}`}
+            className="mr-2 text-blue-500 underline"
+          >
+            {p.name}
+          </Link>
+        )),
       type: "tv",
     },
     {

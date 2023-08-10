@@ -144,6 +144,10 @@ interface PageResult<T> {
   total_results: number;
 }
 
+interface GenreList {
+  genres: Genre[];
+}
+
 interface Genre {
   id: number;
   name: string;
