@@ -6,6 +6,7 @@ import MediaOverview from "./overview";
 import MediaEpisodes from "./episodes";
 import Spinner from "../spinner";
 import Photos from "./photos";
+import Videos from "./videos";
 
 export default function MediaDetails({ media }: { media: Media }) {
   const searchParams = useSearchParams();
@@ -28,22 +29,23 @@ export default function MediaDetails({ media }: { media: Media }) {
             Episodes
           </button>
         )}
-        {media.videos && (
+        {media.videos?.results.length ? (
           <button
             onClick={() => setActiveTab("videos")}
             className={`tab ${activeTab === "videos" && "tab-active"}`}
           >
             Videos
           </button>
-        )}
-        {media.images && (
+        ) : null}
+
+        {media.images?.posters.length || media.images?.backdrops.length ? (
           <button
             onClick={() => setActiveTab("photos")}
             className={`tab ${activeTab === "photos" && "tab-active"}`}
           >
             Photos
           </button>
-        )}
+        ) : null}
       </div>
 
       <div className="my-6 lg:my-0">
@@ -59,6 +61,7 @@ export default function MediaDetails({ media }: { media: Media }) {
             <MediaEpisodes media={media} season={searchParams.get("season")} />
           </Suspense>
         )}
+        {activeTab === "videos" && <Videos media={media} />}
         {activeTab === "photos" && <Photos media={media} />}
       </div>
     </div>

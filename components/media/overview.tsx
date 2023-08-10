@@ -155,7 +155,7 @@ export default function MediaOverview({ media }: { media: Media }) {
                 ? detail.value && (
                     <div className="flex mt-2" key={detail.title}>
                       <div className="min-w-[120px]">{detail.title}</div>
-                      <div className="w-full">{detail.value}</div>
+                      <div className="flex flex-wrap">{detail.value}</div>
                     </div>
                   )
                 : null

@@ -36,4 +36,8 @@
     @apply text-white bg-[#111];
     @apply lg:border-b-white;
   }
+
+  .button {
+    @apply px-5 py-3 bg-zinc-800/60 flex items-center gap-4 transition hover:bg-zinc-700/60;
+  }
 }

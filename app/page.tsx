@@ -1,6 +1,6 @@
+import { getRandomMedia, getTrending } from "@/lib/api";
 import MediaCarousel from "@/components/carousel/static";
 import MediaHero from "@/components/media/hero";
-import { getRandomMedia, getTrending } from "@/lib/api";
 
 export default async function Home() {
   const trendingMovie = await getTrending("movie");
