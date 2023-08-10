@@ -1,18 +1,21 @@
-import { createPortal } from 'react-dom'
-import { PiX } from 'react-icons/pi'
+import { createPortal } from "react-dom";
+import { PiX } from "react-icons/pi";
 
 type Props = {
-  src: string
-  isOpen: boolean
-  close: () => void
-}
+  src: string;
+  isOpen: boolean;
+  close: () => void;
+};
 
 export default function IframeModal({ src, isOpen, close }: Props) {
-  if (typeof window === 'object')
+  if (typeof window === "object")
     return createPortal(
       isOpen && (
         <div
-          className="fixed top-0 left-0 right-0 bottom-0 z-10 bg-black/90 flex"
+          className={
+            "fixed top-0 left-0 right-0 bottom-0 z-10 bg-black/90 flex animate-fade-in opacity-0" +
+            (isOpen ? " animate-fade-in" : "")
+          }
           onClick={() => close()}
         >
           <button
@@ -29,6 +32,6 @@ export default function IframeModal({ src, isOpen, close }: Props) {
           />
         </div>
       ),
-      document.querySelector('body')!,
-    )
+      document.querySelector("body")!
+    );
 }

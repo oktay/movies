@@ -14,16 +14,20 @@ export default function MediaHero({ media }: { media: Media }) {
 
   return (
     <div className="relative aspect-[1/1] md:aspect-[4/2] lg:aspect-[16/6]">
-      <Image
-        className="w-full h-full object-cover"
-        src={`https://image.tmdb.org/t/p/w1280${media.backdrop_path}`}
-        alt=""
-        width={1280}
-        height={720}
-        loading="eager"
-        priority
-        unoptimized
-      />
+      {media.backdrop_path ? (
+        <Image
+          className="w-full h-full object-cover"
+          src={`https://image.tmdb.org/t/p/w1280${media.backdrop_path}`}
+          alt=""
+          width={1280}
+          height={720}
+          loading="eager"
+          priority
+          unoptimized
+        />
+      ) : (
+        <div className="w-full h-full bg-zinc-900" />
+      )}
       <div className="absolute inset-0 bg-zinc-700 mix-blend-multiply" />
       <div className="absolute inset-0 flex items-end md:items-center">
         <div className="px-global h-full flex flex-col justify-between md:justify-center">
