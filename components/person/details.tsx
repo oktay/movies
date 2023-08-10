@@ -7,9 +7,53 @@ import PersonCredits from "./credits";
 
 export default function PersonDetails({ person }: { person: Person }) {
   const [activeTab, setActiveTab] = useState("known_for");
-  const filteredCredits = person.combined_credits?.cast?.filter(
-    (item, index, self) => index === self.findIndex((t) => t.id === item.id)
-  );
+
+  const knownFor = () => {
+    const department = person.known_for_department;
+    let results;
+
+    if (department === "Acting") {
+      results = person.combined_credits?.cast;
+    } else if (department === "Directing") {
+      results = person.combined_credits?.crew?.filter(
+        (item) => item.department === "Directing"
+      );
+    } else if (department === "Production") {
+      results = person.combined_credits?.crew?.filter(
+        (item) => item.department === "Production"
+      );
+    } else if (department === "Writing" || department === "Creator") {
+      results = person.combined_credits?.crew?.filter(
+        (item) => item.department === "Writing"
+      );
+    }
+
+    // if no results, return
+    if (!results) return;
+
+    // remove duplicates
+    results = removeDuplicates(results);
+
+    // remove adult
+    results = results.filter((item: Credit) => {
+      if (item.adult) return false;
+      return true;
+    });
+
+    // sort by popularity
+    results.sort((a: Credit, b: Credit) =>
+      a.vote_count > b.vote_count ? -1 : 1
+    );
+
+    return results;
+  };
+
+  function removeDuplicates(myArr: any[]) {
+    return myArr.filter((obj, pos, arr) => {
+      const prop = obj.title ? "title" : "name";
+      return arr.map((mapObj) => mapObj[prop]).indexOf(obj[prop]) === pos;
+    });
+  }
 
   return (
     <div>
@@ -42,8 +86,8 @@ export default function PersonDetails({ person }: { person: Person }) {
       </div>
 
       <div className="my-6 lg:my-0">
-        {activeTab === "known_for" && filteredCredits && (
-          <MediaGrid items={filteredCredits} />
+        {activeTab === "known_for" && knownFor() && (
+          <MediaGrid items={knownFor() as Media[]} />
         )}
         {activeTab === "credits" && <PersonCredits person={person} />}
         {activeTab === "photos" && <PersonPhotos person={person} />}
