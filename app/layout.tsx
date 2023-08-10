@@ -15,13 +15,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="grid grid-rows-[1fr_5rem] lg:grid-rows-1 lg:grid-cols-[5rem_1fr]">
-          <header className="lg:h-screen bg-zinc-950 border-t border-zinc-800 lg:border-r">
+        <div>
+          <header className="bg-zinc-950 border-t border-zinc-800 lg:border-r fixed bottom-0 lg:top-0 left-0 z-10 h-16 w-full lg:h-full lg:w-20">
             <Navbar />
           </header>
-          <div className="-order-1 lg:order-none overflow-y-auto h-[calc(100vh-5rem)] lg:h-screen">
-            {children}
-          </div>
+          <div className="overflow-hidden pb-16 lg:pl-20">{children}</div>
         </div>
       </body>
     </html>

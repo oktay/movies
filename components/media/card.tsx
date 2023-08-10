@@ -24,7 +24,7 @@ export default function MediaCard({ media }: { media: Media }) {
         )}
       </div>
       <div className="mt-2">
-        <h3 className="line-clamp-1">{media.name || media.title}</h3>
+        <h3 className="truncate">{media.name || media.title}</h3>
       </div>
     </Link>
   );

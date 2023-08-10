@@ -1,7 +1,7 @@
 import SearchForm from "@/components/search/form";
 import SearchResults from "@/components/search/results";
 
-export default function QueryPage({
+export default function SearchPage({
   searchParams,
 }: {
   searchParams: { q: string; page: string };

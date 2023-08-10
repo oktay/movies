@@ -15,10 +15,7 @@ export default async function MediaEpisodes({
   return (
     <div className="px-global">
       <div className="flex items-center mb-4">
-        {media.number_of_seasons && (
-          <SeasonSelect count={media.number_of_seasons} />
-        )}
-
+        <SeasonSelect count={media.number_of_seasons || 1} />
         <p className="text-zinc-500 text-sm font-semibold ml-4">
           {data.episodes.length} Episodes
         </p>
