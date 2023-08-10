@@ -81,6 +81,21 @@ interface Person {
   };
 }
 
+interface Episode {
+  air_date?: string;
+  crew: Person[];
+  episode_number: number;
+  guest_stars: Person[];
+  name?: string;
+  overview?: string;
+  id: number;
+  production_code: string;
+  season_number: number;
+  still_path?: string;
+  vote_average?: number;
+  vote_count?: number;
+}
+
 interface Video {
   iso_639_1: string;
   iso_3166_1: string;
@@ -113,6 +128,12 @@ interface ExternalIds {
   github_id?: string;
   email?: string;
   homepage?: string;
+}
+
+interface Season {
+  air_date?: string;
+  _id: string;
+  episodes: Episode[];
 }
 
 interface PageResult<T> {

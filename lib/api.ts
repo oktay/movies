@@ -50,6 +50,9 @@ export const getRandomMedia = (items: Media[]): Promise<Media> => {
   return getMedia(randomItemType, randomItem.id);
 };
 
+export const getMediaEpisodes = (id: string, season: number): Promise<Season> =>
+  fetchApi(`/tv/${id}/season/${season}`);
+
 export const getPerson = (id: string): Promise<Person> =>
   fetchApi(`/person/${id}`, {
     append_to_response: "credits,images",

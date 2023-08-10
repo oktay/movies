@@ -1,6 +1,5 @@
 import { getSearch } from "@/lib/api";
 import MediaGrid from "@/components/grid/static";
-import Link from "next/link";
 import Pagination from "../pagination";
 
 export default async function SearchResults({
@@ -15,12 +14,12 @@ export default async function SearchResults({
   return (
     <>
       {query && data.results.length === 0 && (
-        <p className="text-2xl px-4 lg:px-8">No results found</p>
+        <p className="text-2xl px-global">No results found</p>
       )}
 
       {query && data.results.length > 0 && (
         <>
-          <h1 className="text-2xl px-4 lg:px-8 mb-8">
+          <h1 className="text-2xl px-global">
             Showing results for &quot;{query}&quot;
           </h1>
 

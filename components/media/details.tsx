@@ -1,9 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import MediaOverview from "./overview";
+import MediaEpisodes from "./episodes";
+import Spinner from "../spinner";
 
 export default function MediaDetails({ media }: { media: Media }) {
+  const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState("overview");
 
   return (
@@ -42,6 +46,19 @@ export default function MediaDetails({ media }: { media: Media }) {
       </div>
 
       <div>{activeTab === "overview" && <MediaOverview media={media} />}</div>
+      <div>
+        {activeTab === "episodes" && (
+          <Suspense
+            fallback={
+              <div className="h-96 flex items-center justify-center text-4xl">
+                <Spinner />
+              </div>
+            }
+          >
+            <MediaEpisodes media={media} season={searchParams.get("season")} />
+          </Suspense>
+        )}
+      </div>
     </div>
   );
 }
