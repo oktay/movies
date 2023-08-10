@@ -35,3 +35,11 @@ export function fullDate(date: string) {
 export function numberWithCommas(x: number) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+export function directors(item: Media) {
+  const people = item.credits?.crew;
+
+  if (people) {
+    return people.filter((person) => person.job === "Director");
+  }
+}

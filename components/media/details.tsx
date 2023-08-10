@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import MediaOverview from "./overview";
 import MediaEpisodes from "./episodes";
 import Spinner from "../spinner";
+import Photos from "./photos";
 
 export default function MediaDetails({ media }: { media: Media }) {
   const searchParams = useSearchParams();
@@ -45,8 +46,8 @@ export default function MediaDetails({ media }: { media: Media }) {
         )}
       </div>
 
-      <div>{activeTab === "overview" && <MediaOverview media={media} />}</div>
-      <div>
+      <div className="my-6 lg:my-0">
+        {activeTab === "overview" && <MediaOverview media={media} />}
         {activeTab === "episodes" && (
           <Suspense
             fallback={
@@ -58,6 +59,7 @@ export default function MediaDetails({ media }: { media: Media }) {
             <MediaEpisodes media={media} season={searchParams.get("season")} />
           </Suspense>
         )}
+        {activeTab === "photos" && <Photos media={media} />}
       </div>
     </div>
   );

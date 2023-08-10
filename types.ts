@@ -31,6 +31,7 @@ interface Media {
   episode_run_time?: number[];
   number_of_seasons?: number;
   number_of_episodes?: number;
+  created_by: Person[];
   videos?: {
     results: Video[];
   };

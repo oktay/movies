@@ -13,7 +13,7 @@ export default async function MediaEpisodes({
   const data = await getMediaEpisodes(media.id, season ? +season : 1);
 
   return (
-    <div className="px-global my-global">
+    <div className="px-global">
       <div className="flex items-center mb-4">
         {media.number_of_seasons && (
           <SeasonSelect count={media.number_of_seasons} />
