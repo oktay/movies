@@ -2,6 +2,7 @@ import { getQuery } from "@/lib/api";
 import MediaCarouselBase from "./_base";
 import MediaCarouselItems from "./_items";
 
+export const revalidate = 60 * 60 * 24; // 24 hours
 export default async function MediaDynamicCarousel({
   query,
 }: {

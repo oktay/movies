@@ -3,6 +3,7 @@ import EpisodeGrid from "../episode/grid";
 import EpisodeCard from "../episode/card";
 import SeasonSelect from "../episode/select";
 
+export const revalidate = 60 * 60 * 24; // 24 hours
 export default async function MediaEpisodes({
   media,
   season = "1",

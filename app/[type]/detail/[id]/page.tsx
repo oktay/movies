@@ -3,6 +3,7 @@ import MediaCarousel from "@/components/carousel/static";
 import MediaDetails from "@/components/media/details";
 import MediaHero from "@/components/media/hero";
 
+export const revalidate = 60 * 60 * 24; // 24 hours
 export default async function Detail({
   params,
 }: {
