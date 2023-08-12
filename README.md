@@ -4,7 +4,9 @@ This is a TMDB Client built with [Next.js 13](https://nextjs.org/), [TailwindCSS
 
 # Screenshot
 </br>
-<img src="./screenshot.png">
+<img src=".github/screenshot.png">
+<img src=".github/screenshot-2.png">
+<img src=".github/screenshot-3.png">
 
 ## Setup
 
