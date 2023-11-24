@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { getTrailer } from "@/lib/utils";
+import { getTrailer, getYear, runtime } from "@/lib/utils";
 import { PiPlayCircleLight, PiPlayFill } from "react-icons/pi";
 import Image from "next/image";
-import IframeModal from "../modal";
 import Link from "next/link";
+import IframeModal from "../modal";
+import Rating from "@/components/media/rating";
 
 export default function MediaHero({ media }: { media: Media }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,6 +45,18 @@ export default function MediaHero({ media }: { media: Media }) {
                 {media.title || media.name}
               </h1>
             </Link>
+            <div className="mt-2 sm:mt-4 md:mt-6 flex items-center space-x-4 text-white/60 md:text-xl lg:text-2xl">
+              <Rating average={media.vote_average} />
+
+              {media.release_date && <span>{getYear(media.release_date)}</span>}
+              {media.runtime && <span>{runtime(media.runtime)}</span>}
+              {media.number_of_seasons && (
+                <span>Season {media.number_of_seasons}</span>
+              )}
+              {media.first_air_date && (
+                <span>{getYear(media.first_air_date)}</span>
+              )}
+            </div>
             <p className="mt-2 sm:mt-4 md:mt-6 max-w-3xl tex-lg md:text-xl text-gray-300 line-clamp-3 mb-8 md:mb-0">
               {media.overview}
             </p>
