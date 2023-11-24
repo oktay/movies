@@ -22,8 +22,12 @@ export default function PersonCard({ person }: { person: Person }) {
         )}
       </div>
       <div className="mt-2">
-        <h3 className="truncate">{person.name}</h3>
-        <p className="text-sm text-white/60">{person.character}</p>
+        <h3 className="truncate" title={person.name}>
+          {person.name}
+        </h3>
+        <p className="text-sm text-white/60 truncate" title={person.character}>
+          {person.character}
+        </p>
       </div>
     </Link>
   );
