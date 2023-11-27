@@ -1,8 +1,9 @@
 import Image from "next/image";
+import ExternalLinks from "./links";
 
 export default function Footer() {
   return (
-    <footer className="pb-8">
+    <footer className="py-8 border-t border-zinc-800">
       <div className="px-global text-white/40">
         <p>&copy; 2023 Oktay Colakoglu. All rights reserved</p>
 
@@ -71,6 +72,8 @@ export default function Footer() {
             jasonujmaalvis/vue-movies
           </a>
         </p>
+
+        <ExternalLinks />
       </div>
     </footer>
   );
