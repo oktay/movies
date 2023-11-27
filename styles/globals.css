@@ -38,6 +38,10 @@
   }
 
   .button {
-    @apply px-5 py-3 bg-zinc-800/60 flex items-center gap-4 transition hover:bg-zinc-700/60;
+    @apply px-5 py-3 bg-zinc-800/60 flex items-center gap-4 transition select-none hover:bg-zinc-700/60;
+  }
+
+  .button-secondary {
+    @apply px-5 py-3 border border-zinc-800/60 flex items-center gap-4 transition select-none hover:bg-zinc-800/60;
   }
 }
