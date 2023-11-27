@@ -16,7 +16,7 @@ export default function VideoCard({ video }: { video: Video }) {
           alt=""
           width={500}
           height={280}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover p-1 bg-zinc-800"
           unoptimized
         />
         <button

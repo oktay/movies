@@ -58,7 +58,7 @@ export default function MediaOverview({ media }: { media: Media }) {
             <Link
               key={p.id}
               href={`/person/detail/${p.id}`}
-              className="mr-2 text-blue-500 underline"
+              className="text-blue-500 underline"
             >
               {p.name}
             </Link>
@@ -84,7 +84,7 @@ export default function MediaOverview({ media }: { media: Media }) {
           <Link
             key={p.id}
             href={`/person/detail/${p.id}`}
-            className="mr-2 text-blue-500 underline"
+            className="text-blue-500 underline"
           >
             {p.name}
           </Link>
@@ -97,7 +97,7 @@ export default function MediaOverview({ media }: { media: Media }) {
         <Link
           key={g.id}
           href={`/${type}/genre/${g.id}`}
-          className="mr-2 text-blue-500 underline"
+          className="text-blue-500 underline"
         >
           {g.name}
         </Link>
@@ -134,7 +134,7 @@ export default function MediaOverview({ media }: { media: Media }) {
         <div className="aspect-[2/3] max-w-[350px] flex-shrink-0 mr-12 hidden lg:block">
           {media.poster_path ? (
             <Image
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover p-1 bg-zinc-800"
               src={`https://image.tmdb.org/t/p/w500${media.poster_path}`}
               width={500}
               height={750}

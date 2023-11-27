@@ -11,7 +11,7 @@ export default function MediaCard({ media }: { media: Media }) {
       <div className="aspect-[2/3]">
         {media.poster_path ? (
           <Image
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover p-1 bg-zinc-800/60"
             src={`https://image.tmdb.org/t/p/w500${media.poster_path}`}
             width={500}
             height={750}

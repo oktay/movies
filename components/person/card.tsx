@@ -8,7 +8,7 @@ export default function PersonCard({ person }: { person: Person }) {
       <div className="aspect-[2/3]">
         {person.profile_path ? (
           <Image
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover p-1 bg-zinc-800"
             src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
             width={500}
             height={750}
