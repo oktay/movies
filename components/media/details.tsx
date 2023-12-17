@@ -1,16 +1,18 @@
 "use client";
 
-import { Suspense, useState } from "react";
-import { useSearchParams } from "next/navigation";
-import MediaOverview from "./overview";
-import MediaEpisodes from "./episodes";
-import Spinner from "../spinner";
-import Photos from "./photos";
-import Videos from "./videos";
+import { useState } from "react";
 
-export default function MediaDetails({ media }: { media: Media }) {
-  const searchParams = useSearchParams();
-  const [activeTab, setActiveTab] = useState("overview");
+type TabIdentifier = "overview" | "episodes" | "videos" | "photos";
+export default function MediaDetails({
+  media,
+  tabComponents,
+}: {
+  media: Media;
+  tabComponents: Record<TabIdentifier, React.ReactNode>;
+}) {
+  const [activeTab, setActiveTab] = useState<TabIdentifier>(
+    "overview"
+  );
 
   return (
     <div>
@@ -49,20 +51,10 @@ export default function MediaDetails({ media }: { media: Media }) {
       </div>
 
       <div className="my-6 lg:my-0">
-        {activeTab === "overview" && <MediaOverview media={media} />}
-        {activeTab === "episodes" && (
-          <Suspense
-            fallback={
-              <div className="h-96 flex items-center justify-center text-4xl">
-                <Spinner />
-              </div>
-            }
-          >
-            <MediaEpisodes media={media} season={searchParams.get("season")} />
-          </Suspense>
-        )}
-        {activeTab === "videos" && <Videos media={media} />}
-        {activeTab === "photos" && <Photos media={media} />}
+        {activeTab === "overview" && tabComponents.overview}
+        {activeTab === "episodes" && tabComponents.episodes}
+        {activeTab === "videos" && tabComponents.videos}
+        {activeTab === "photos" && tabComponents.photos}
       </div>
     </div>
   );
