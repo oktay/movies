@@ -1,3 +1,5 @@
+// to prevent bugs like exposing API Keys to the client https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#unsupported-pattern-importing-server-components-into-client-components
+import "server-only";
 import axios from "axios";
 import { cache } from "react";
 
