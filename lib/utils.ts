@@ -1,4 +1,5 @@
 import { languages } from "./languages";
+import { timezones } from "./timezones";
 
 export function runtime(minutes: number) {
   // seconds
@@ -65,4 +66,14 @@ export function formatContent(string: string) {
     .filter((section) => section !== "")
     .map((section) => `<p>${section}</p>`)
     .join("");
+}
+
+export function getRegion() {
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+  if (!timezones[timezone] || !timezones[timezone].countries.length) {
+    return;
+  }
+
+  return timezones[timezone].countries[0];
 }

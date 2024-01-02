@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react";
 import { getVideo } from "@/lib/utils";
 import { PiPlayCircleLight } from "react-icons/pi";

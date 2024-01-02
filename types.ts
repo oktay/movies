@@ -155,6 +155,13 @@ interface PageResult<T> {
   total_results: number;
 }
 
+interface ProviderResult {
+  id: string;
+  results: {
+    [key: string]: ProviderItem;
+  };
+}
+
 interface GenreList {
   genres: Genre[];
 }
@@ -181,4 +188,24 @@ interface QueryItem {
 
 interface Credits {
   cast: Media[];
+}
+
+interface Region {
+  iso_3166_1: string;
+  english_name: string;
+  native_name: string;
+}
+
+interface Provider {
+  logo_path: string;
+  provider_id: number;
+  provider_name: string;
+  display_priority: number;
+}
+
+interface ProviderItem {
+  link: string;
+  flatrate?: Provider[];
+  rent?: Provider[];
+  buy?: Provider[];
 }
