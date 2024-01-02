@@ -130,7 +130,7 @@ export default function MediaOverview({ media }: { media: Media }) {
 
   return (
     <>
-      <div className="flex px-global">
+      <div className="flex px-global pb-6">
         <div className="aspect-[2/3] max-w-[350px] flex-shrink-0 mr-12 hidden lg:block">
           {media.poster_path ? (
             <Image

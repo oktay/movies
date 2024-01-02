@@ -28,7 +28,7 @@
 
 @layer components {
   .tab {
-    @apply h-12 w-full bg-zinc-700/40 text-zinc-600 uppercase text-sm font-semibold;
+    @apply h-12 w-full bg-zinc-700/40 text-zinc-600 uppercase text-sm font-semibold flex items-center justify-center;
     @apply lg:h-auto lg:w-auto lg:text-xl lg:bg-transparent lg:border-b-2 lg:pb-2 lg:border-b-transparent;
   }
 

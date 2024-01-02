@@ -1,3 +1,4 @@
+import "server-only";
 import axios from "axios";
 import { cache } from "react";
 

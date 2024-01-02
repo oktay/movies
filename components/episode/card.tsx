@@ -9,7 +9,7 @@ export default function EpisodeCard({ episode }: { episode: Episode }) {
         {episode.still_path ? (
           <Image
             src={`https://image.tmdb.org/t/p/w500${episode.still_path}`}
-            className="p-1 bg-zinc-800"
+            className="p-1 w-full h-full object-cover bg-zinc-800"
             alt=""
             width={500}
             height={280}
