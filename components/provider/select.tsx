@@ -25,7 +25,7 @@ export default function RegionSelect({ regions }: { regions: Region[] }) {
   return (
     <select
       onChange={(e) => setRegion(e.target.value)}
-      defaultValue={region || getRegion()}
+      defaultValue={region!}
       className="bg-zinc-800 text-sm px-3 py-1"
     >
       {regions.map((region) => (
