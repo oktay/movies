@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { getRegion } from "@/lib/utils";
 
 export default function MediaNavbar({ media }: { media: Media }) {
   const type = media.name ? "tv" : "movie";
@@ -41,7 +42,7 @@ export default function MediaNavbar({ media }: { media: Media }) {
         </Link>
       ) : null}
       <Link
-        href={`/${type}/detail/${media.id}/watch`}
+        href={`/${type}/detail/${media.id}/watch?region=${getRegion()}`}
         className={`tab ${pathname.endsWith("watch") && "tab-active"}`}
       >
         Watch
