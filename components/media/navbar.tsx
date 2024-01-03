@@ -3,10 +3,16 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getRegion } from "@/lib/utils";
+import { useEffect, useState } from "react";
 
 export default function MediaNavbar({ media }: { media: Media }) {
   const type = media.name ? "tv" : "movie";
   const pathname = usePathname();
+  const [region, setRegion] = useState("");
+
+  useEffect(() => {
+    setRegion(getRegion() || "US");
+  }, []);
 
   return (
     <div className="flex text-center lg:justify-center lg:gap-8 lg:py-8">
@@ -42,7 +48,7 @@ export default function MediaNavbar({ media }: { media: Media }) {
         </Link>
       ) : null}
       <Link
-        href={`/${type}/detail/${media.id}/watch?region=${getRegion()}`}
+        href={`/${type}/detail/${media.id}/watch?region=${region}`}
         className={`tab ${pathname.endsWith("watch") && "tab-active"}`}
       >
         Watch

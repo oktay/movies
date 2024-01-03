@@ -2,29 +2,30 @@
 
 import { getRegion } from "@/lib/utils";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function RegionSelect({ regions }: { regions: Region[] }) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const region = searchParams.get("region");
+  const selectedRegion = searchParams.get("region");
+  const [region, setRegion] = useState(selectedRegion);
 
   useEffect(() => {
-    if (!region) {
-      router.replace(`?region=${getRegion()}`, {
-        scroll: false,
-      });
+    if (!selectedRegion) {
+      setRegion(getRegion() || "US");
     }
-  }, [region]);
+  }, [selectedRegion]);
+
+  useEffect(() => {
+    router.replace(`?region=${region}`, {
+      scroll: false,
+    });
+  }, [region, router]);
 
   return (
     <select
-      onChange={(e) =>
-        router.replace(`?region=${e.target.value}`, {
-          scroll: false,
-        })
-      }
-      defaultValue={region || getRegion()}
+      onChange={(e) => setRegion(e.target.value)}
+      value={region!}
       className="bg-zinc-800 text-sm px-3 py-1"
     >
       {regions.map((region) => (
