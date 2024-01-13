@@ -19,6 +19,7 @@ export default function MediaNavbar({ media }: { media: Media }) {
       <Link
         href={`/${type}/detail/${media.id}`}
         className={`tab ${pathname.endsWith(media.id) && "tab-active"}`}
+        replace={true}
       >
         Overview
       </Link>
@@ -26,6 +27,7 @@ export default function MediaNavbar({ media }: { media: Media }) {
         <Link
           href={`/${type}/detail/${media.id}/episodes`}
           className={`tab ${pathname.endsWith("episodes") && "tab-active"}`}
+          replace={true}
         >
           Episodes
         </Link>
@@ -34,6 +36,7 @@ export default function MediaNavbar({ media }: { media: Media }) {
         <Link
           href={`/${type}/detail/${media.id}/videos`}
           className={`tab ${pathname.endsWith("videos") && "tab-active"}`}
+          replace={true}
         >
           Videos
         </Link>
@@ -43,6 +46,7 @@ export default function MediaNavbar({ media }: { media: Media }) {
         <Link
           href={`/${type}/detail/${media.id}/photos`}
           className={`tab ${pathname.endsWith("photos") && "tab-active"}`}
+          replace={true}
         >
           Photos
         </Link>
@@ -50,6 +54,7 @@ export default function MediaNavbar({ media }: { media: Media }) {
       <Link
         href={`/${type}/detail/${media.id}/watch?region=${region}`}
         className={`tab ${pathname.endsWith("watch") && "tab-active"}`}
+        replace={true}
       >
         Watch
       </Link>
