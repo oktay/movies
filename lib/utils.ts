@@ -1,6 +1,10 @@
 import { languages } from "./languages";
 import { timezones } from "./timezones";
 
+export function formatTitleMetadata(title: string){
+  return title.length >= 60 ? title.slice(0, 60)+'...' : title;
+}
+
 export function runtime(minutes: number) {
   // seconds
   const seconds = minutes * 60;

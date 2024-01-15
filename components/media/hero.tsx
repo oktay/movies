@@ -41,7 +41,7 @@ export default function MediaHero({ media }: { media: Media }) {
           </button>
           <div>
             <Link href={`/${type}/detail/${media.id}`}>
-              <h1 className="text-3xl font-extrabold text-white tracking-tight sm:text-4xl md:text-5xl lg:text-6xl line-clamp-2">
+              <h1 className="text-3xl font-extrabold text-white tracking-tight sm:text-4xl md:text-5xl lg:text-6xl" style={{lineHeight:1.1}}>
                 {media.title || media.name}
               </h1>
             </Link>
