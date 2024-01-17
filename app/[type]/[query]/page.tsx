@@ -2,6 +2,7 @@ import MediaDynamicGrid from "@/components/grid/dynamic";
 import { lists } from "@/lib/api";
 
 export const revalidate = 60 * 60 * 24; // 24 hours
+export const runtime = "edge";
 export default function QueryPage({
   params,
   searchParams,

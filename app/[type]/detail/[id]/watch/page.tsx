@@ -2,6 +2,7 @@ import Providers from "@/components/media/providers";
 import { getMedia } from "@/lib/api";
 
 export const revalidate = 60 * 60 * 24; // 24 hours
+export const runtime = "edge";
 export default async function DetailProviders({
   params,
   searchParams,
