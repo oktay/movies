@@ -101,7 +101,7 @@ export const getGenre = cache(
     id: number,
     page: number | string = 1
   ): Promise<PageResult<Media>> =>
-    fetchApi(`/discover/${type}/`, {
+    fetchApi(`/discover/${type}`, {
       page,
       with_genres: id,
     })
