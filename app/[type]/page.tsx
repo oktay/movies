@@ -35,6 +35,7 @@ export async function generateMetadata(
 }
 
 export const revalidate = 60 * 60 * 24; // 24 hours
+export const runtime = "edge";
 export default async function Type({
   params,
 }: {

@@ -32,6 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export const revalidate = 60 * 60 * 24; // 24 hours
+export const runtime = "edge";
 export default function QueryPage({
   params,
   searchParams,

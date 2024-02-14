@@ -1,6 +1,7 @@
 import SearchForm from "@/components/search/form";
 import SearchResults from "@/components/search/results";
 
+export const runtime = "edge";
 export default function SearchPage({
   searchParams,
 }: {
