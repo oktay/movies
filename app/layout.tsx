@@ -2,9 +2,8 @@ import "@/styles/globals.css";
 import type { Metadata } from "next";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import NextTopLoader from "nextjs-toploader";
 import { DEFAULT_METADATA, DEFAULT_URL } from "@/lib/constants";
-
+import HolyLoader from "holy-loader";
 
 export const metadata: Metadata = {
   title: {
@@ -39,7 +38,7 @@ export const metadata: Metadata = {
     ...DEFAULT_METADATA.openGraph
   },
 };
-
+export const runtime = "edge";
 export default function RootLayout({
   children,
 }: {
@@ -48,7 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <NextTopLoader color="#3b82f6" />
+        <HolyLoader color="#3b82f6" showSpinner />
         <div>
           <header className="bg-zinc-950 border-t border-zinc-800 lg:border-r fixed bottom-0 lg:top-0 left-0 z-10 h-16 w-full lg:h-full lg:w-20">
             <Navbar />

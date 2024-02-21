@@ -1,5 +1,4 @@
 import "server-only";
-import axios from "axios";
 import { cache } from "react";
 
 export const apiUrl = "https://api.themoviedb.org/3";
@@ -24,21 +23,23 @@ export const lists = {
 export const getListItem = (type: MediaType, query: Query) =>
   lists[type].find((item) => item.query === query);
 
-export const api = axios.create({
-  baseURL: apiUrl,
-  params: {
+export const fetchApi = cache(async (path: string, params?: any) => {
+  const url = new URL(apiUrl);
+  const searchParams = new URLSearchParams({
+    ...params,
     api_key: process.env.TMDB_API_KEY,
-  },
-});
+  });
 
-export const fetchApi = cache((url: string, params?: any) =>
-  api
-    .get(url, { params })
-    .then((res) => res.data)
-    .catch((err) => {
-      throw err;
-    })
-);
+  url.pathname += path;
+  url.search = searchParams.toString();
+
+  const resp = await fetch(url.toString());
+  const data = await resp?.json();
+
+  if (!resp.ok || !data) throw new Error("Network Error");
+
+  return data;
+});
 
 export const getMedia = cache(
   (type: MediaType, id: string): Promise<Media> =>
@@ -69,7 +70,7 @@ export const getPerson = cache(
 
 export const getSearch = (
   query: string,
-  page?: number | string
+  page: number | string = 1
 ): Promise<PageResult<Media & Person>> =>
   fetchApi("/search/multi", {
     query,
@@ -77,14 +78,14 @@ export const getSearch = (
   });
 
 export const getTrending = cache(
-  (type: MediaType, page?: number | string): Promise<PageResult<Media>> =>
+  (type: MediaType, page: number | string = 1): Promise<PageResult<Media>> =>
     fetchApi(`/trending/${type}/week`, {
       page,
     })
 );
 
 export const getQuery = cache(
-  (query: QueryItem, page?: number | string): Promise<PageResult<Media>> =>
+  (query: QueryItem, page: number | string = 1): Promise<PageResult<Media>> =>
     fetchApi(`/${query.type}/${query.query}`, {
       page,
     })
@@ -98,9 +99,9 @@ export const getGenre = cache(
   (
     type: MediaType,
     id: number,
-    page?: number | string
+    page: number | string = 1
   ): Promise<PageResult<Media>> =>
-    fetchApi(`/discover/${type}/`, {
+    fetchApi(`/discover/${type}`, {
       page,
       with_genres: id,
     })
