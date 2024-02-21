@@ -1,6 +1,6 @@
 import MediaDynamicGrid from "@/components/grid/dynamic";
 import { getListItem, lists } from "@/lib/api";
-import { DEFAULT_METADATA, SITE_NAME } from "@/lib/constants";
+import { DEFAULT_METADATA } from "@/lib/constants";
 import { Metadata } from "next";
 
 type Props = {
@@ -14,19 +14,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: queryTitle,
     twitter: {
-      title: `${queryTitle} | ${DEFAULT_METADATA.openGraph.title}`,
-      description: DEFAULT_METADATA.description,
-      images: DEFAULT_METADATA.openGraph.images,
-      card: "summary_large_image",
+      ...DEFAULT_METADATA.twitter,
+      title: `${queryTitle} | ${DEFAULT_METADATA.openGraph.title}`
     },
     openGraph: {
+      ...DEFAULT_METADATA.openGraph,
       title: `${queryTitle} | ${DEFAULT_METADATA.openGraph.title}`,
       description: `${DEFAULT_METADATA.openGraph.description}`,
       url: `/${params.type}/${params.query}`,
-      type: "website",
-      locale: DEFAULT_METADATA.openGraph.locale,
-      siteName: SITE_NAME,
-      images: DEFAULT_METADATA.openGraph.images,
     },
   };
 }

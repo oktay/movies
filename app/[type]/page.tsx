@@ -1,7 +1,7 @@
 import MediaDynamicCarousel from "@/components/carousel/dynamic";
 import MediaHero from "@/components/media/hero";
 import { getRandomMedia, getTrending, lists } from "@/lib/api";
-import { DEFAULT_METADATA, SITE_NAME } from "@/lib/constants";
+import { DEFAULT_METADATA } from "@/lib/constants";
 import { Metadata } from "next";
 
 type Props = {
@@ -17,19 +17,13 @@ export async function generateMetadata(
   return {
     title: `Watch ${type}`,
     twitter: {
+      ...DEFAULT_METADATA.twitter,
       title: `Watch ${type} | ${DEFAULT_METADATA.openGraph.title}`,
-      description: DEFAULT_METADATA.description,
-      images: DEFAULT_METADATA.openGraph.images,
-      card: "summary_large_image",
     },
     openGraph: {
+      ...DEFAULT_METADATA.openGraph,
       title: `Watch ${type} | ${DEFAULT_METADATA.openGraph.title}`,
-      description: `${DEFAULT_METADATA.openGraph.description}`,
       url: `/${params.type}`,
-      type: "website",
-      locale: DEFAULT_METADATA.openGraph.locale,
-      siteName: SITE_NAME,
-      images: DEFAULT_METADATA.openGraph.images,
     },
   };
 }

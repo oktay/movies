@@ -1,7 +1,7 @@
 import MediaGrid from "@/components/grid/static";
 import Pagination from "@/components/pagination";
 import { getTrending } from "@/lib/api";
-import { DEFAULT_METADATA, SITE_NAME} from "@/lib/constants";
+import { DEFAULT_METADATA} from "@/lib/constants";
 import { Metadata } from "next";
 
 type Props = {
@@ -16,19 +16,13 @@ export async function generateMetadata({
   return {
     title: `${type}`,
     twitter: {
-      title: `${type} | ${DEFAULT_METADATA.title}`,
-      description: DEFAULT_METADATA.description,
-      images: DEFAULT_METADATA.openGraph.images,
-      card: "summary_large_image",
+      ...DEFAULT_METADATA.twitter,
+      title: `${type} | ${DEFAULT_METADATA.title}`
     },
     openGraph: {
+      ...DEFAULT_METADATA.openGraph,
       title: `${type} | ${DEFAULT_METADATA.openGraph.title}`,
-      description: `${DEFAULT_METADATA.openGraph.description}`,
-      url: `/${params.type}/trending`,
-      type: "website",
-      locale: "en_US",
-      siteName: SITE_NAME,
-      images: DEFAULT_METADATA.openGraph.images,
+      url: `/${params.type}/trending`
     },
   };
 }

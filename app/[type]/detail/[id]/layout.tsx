@@ -5,7 +5,7 @@ import MediaCarousel from "@/components/carousel/static";
 import MediaHero from "@/components/media/hero";
 import MediaNavbar from "@/components/media/navbar";
 import Spinner from "@/components/spinner";
-import { DEFAULT_METADATA, SITE_NAME } from "@/lib/constants";
+import { DEFAULT_METADATA } from "@/lib/constants";
 import { formatTitleMetadata } from "@/lib/utils";
 
 type Props = {
@@ -34,12 +34,10 @@ export async function generateMetadata(
     },
     keywords: data.genres?.map((genre) => genre.name),
     openGraph: {
+      ...DEFAULT_METADATA.openGraph,
       title: formattedMediaTitle + " | " + DEFAULT_METADATA.title,
       description: `${data.overview}`,
       url: `/${params.type}/detail/${params.id}`,
-      type: "website",
-      locale: DEFAULT_METADATA.openGraph.locale,
-      siteName: SITE_NAME,
       images: [`${apiImgUrl}/w1280${data.backdrop_path}`, ...previousImages],
     },
   };

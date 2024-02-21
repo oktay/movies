@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import NextTopLoader from "nextjs-toploader";
-import { DEFAULT_METADATA, ENV_URL, SITE_NAME } from "@/lib/constants";
+import { DEFAULT_METADATA, DEFAULT_URL } from "@/lib/constants";
 
 
 export const metadata: Metadata = {
@@ -12,7 +12,8 @@ export const metadata: Metadata = {
     default: DEFAULT_METADATA.title,
   },
   description: DEFAULT_METADATA.description,
-  metadataBase: new URL(ENV_URL),
+  //@ts-ignore
+  metadataBase: new URL(DEFAULT_URL),
   robots: {
     index: false,
     follow: true,
@@ -32,19 +33,10 @@ export const metadata: Metadata = {
     yahoo: "yahoo",
   },
   twitter: {
-    title: DEFAULT_METADATA.title,
-    description: DEFAULT_METADATA.description,
-    images: DEFAULT_METADATA.openGraph.images,
-    card: "summary_large_image",
+    ...DEFAULT_METADATA.twitter
   },
   openGraph: {
-    title: DEFAULT_METADATA.title,
-    description: DEFAULT_METADATA.openGraph.description,
-    url: ENV_URL,
-    type: "website",
-    locale: DEFAULT_METADATA.openGraph.locale,
-    siteName: SITE_NAME,
-    images: DEFAULT_METADATA.openGraph.images,
+    ...DEFAULT_METADATA.openGraph
   },
 };
 

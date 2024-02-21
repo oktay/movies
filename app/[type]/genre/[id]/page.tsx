@@ -1,7 +1,7 @@
 import MediaGrid from "@/components/grid/static";
 import Pagination from "@/components/pagination";
 import { getGenre, getGenreList } from "@/lib/api";
-import { DEFAULT_METADATA, SITE_NAME } from "@/lib/constants";
+import { DEFAULT_METADATA } from "@/lib/constants";
 import { Metadata } from "next";
 
 type Props = {
@@ -24,19 +24,13 @@ export async function generateMetadata(
   return {
     title: `${name} ${type}`,
     twitter: {
-      title: `${name} ${type} | ${DEFAULT_METADATA.title}`,
-      description: DEFAULT_METADATA.description,
-      images: DEFAULT_METADATA.openGraph.images,
-      card: "summary_large_image",
+      ...DEFAULT_METADATA.twitter,
+      title: `${name} ${type} | ${DEFAULT_METADATA.title}`
     },
     openGraph: {
+      ...DEFAULT_METADATA.openGraph,
       title: `${name} ${type} | ${DEFAULT_METADATA.openGraph.title}`,
-      description: `${DEFAULT_METADATA.openGraph.description}`,
-      type: "website",
       url: url,
-      locale: DEFAULT_METADATA.openGraph.locale,
-      siteName: SITE_NAME,
-      images: DEFAULT_METADATA.openGraph.images,
     },
   };
 }
