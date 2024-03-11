@@ -35,7 +35,7 @@ export default function Videos({ media }: { media: Media }) {
         {videos?.length} Videos
       </span>
 
-      {media.videos?.results.length && (
+      {media.videos?.results?.length! > 0 && (
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4">
           {videos?.map((video) => (
             <VideoCard video={video} key={video.id} />
