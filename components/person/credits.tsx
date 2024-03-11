@@ -35,22 +35,22 @@ export default function PersonCredits({ person }: { person: Person }) {
         <option value="tv">TV Shows</option>
       </select>
 
-      {cast?.length && (
+      {cast?.length! > 0 && (
         <>
           <h2 className="text-xl mb-4">Acting</h2>
           <div className="space-y-1">
-            {cast.map((credit) => (
+            {cast?.map((credit) => (
               <PersonCredit key={credit.credit_id} credit={credit} />
             ))}
           </div>
         </>
       )}
 
-      {crew?.length && (
+      {crew?.length! > 0 && (
         <>
           <h2 className="text-xl my-4">Production</h2>
           <div className="space-y-1">
-            {crew.map((credit) => (
+            {crew?.map((credit) => (
               <PersonCredit key={credit.credit_id} credit={credit} />
             ))}
           </div>
