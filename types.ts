@@ -19,6 +19,7 @@ interface Media {
   vote_average: number;
   vote_count: number;
   media_type?: MediaType;
+  belongs_to_collection?: BelongsToCollection;
   // details
   homepage?: string;
   runtime?: number;
@@ -148,6 +149,13 @@ interface Season {
   episodes: Episode[];
 }
 
+interface BelongsToCollection {
+  id: string;
+  name: string;
+  poster_path: string;
+  backdrop_path: string;
+}
+
 interface PageResult<T> {
   page: number;
   results: T[];
@@ -160,6 +168,10 @@ interface ProviderResult {
   results: {
     [key: string]: ProviderItem;
   };
+}
+
+interface CollectionResult extends Media {
+  parts: Media[];
 }
 
 interface GenreList {

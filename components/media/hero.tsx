@@ -46,8 +46,7 @@ export default function MediaHero({ media }: { media: Media }) {
               </h1>
             </Link>
             <div className="mt-2 sm:mt-4 md:mt-6 flex items-center space-x-4 text-white/60 md:text-xl lg:text-2xl">
-              <Rating average={media.vote_average} />
-
+              {media.vote_count > 0 && <Rating average={media.vote_average} />}
               {media.release_date && <span>{getYear(media.release_date)}</span>}
               {media.runtime && <span>{runtime(media.runtime)}</span>}
               {media.number_of_seasons && (

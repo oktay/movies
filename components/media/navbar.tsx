@@ -51,6 +51,15 @@ export default function MediaNavbar({ media }: { media: Media }) {
           Photos
         </Link>
       ) : null}
+      {media.belongs_to_collection ? (
+        <Link
+          href={`/${type}/detail/${media.id}/collection`}
+          className={`tab ${pathname.endsWith("collection") && "tab-active"}`}
+          replace={true}
+        >
+          Collection
+        </Link>
+      ) : null}
       <Link
         href={`/${type}/detail/${media.id}/watch?region=${region}`}
         className={`tab ${pathname.endsWith("watch") && "tab-active"}`}

@@ -115,3 +115,7 @@ export const getProviders = cache(
   (type: MediaType, id: string): Promise<ProviderResult> =>
     fetchApi(`/${type}/${id}/watch/providers`)
 );
+
+export const getCollection = cache(
+  (id: string): Promise<CollectionResult> => fetchApi(`/collection/${id}`)
+);
