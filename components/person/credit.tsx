@@ -9,7 +9,7 @@ export default function PersonCredit({ credit }: { credit: Credit }) {
 
   const episodeCount = credit.episode_count ? (
     credit.episode_count > 1 ? (
-      <span className="text-white/30"> ({credit.episode_count} episode) </span>
+      <span className="text-white/30"> ({credit.episode_count} episodes) </span>
     ) : (
       <span className="text-white/30"> ({credit.episode_count} episode) </span>
     )
