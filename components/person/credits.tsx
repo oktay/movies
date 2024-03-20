@@ -37,7 +37,7 @@ export default function PersonCredits({ person }: { person: Person }) {
 
       {cast?.length! > 0 && (
         <>
-          <h2 className="text-xl mb-4">Acting</h2>
+          <h2 className="text-xl my-4">Acting</h2>
           <div className="space-y-1">
             {cast?.map((credit) => (
               <PersonCredit key={credit.credit_id} credit={credit} />
