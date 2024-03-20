@@ -1,5 +1,30 @@
 import MediaDynamicGrid from "@/components/grid/dynamic";
-import { lists } from "@/lib/api";
+import { getListItem, lists } from "@/lib/api";
+import { DEFAULT_METADATA } from "@/lib/constants";
+import { Metadata } from "next";
+
+type Props = {
+  params: { type: MediaType, query: Query };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+
+  const queryTitle =  getListItem(params.type, params.query)?.title;
+
+  return {
+    title: queryTitle,
+    twitter: {
+      ...DEFAULT_METADATA.twitter,
+      title: `${queryTitle} | ${DEFAULT_METADATA.openGraph.title}`
+    },
+    openGraph: {
+      ...DEFAULT_METADATA.openGraph,
+      title: `${queryTitle} | ${DEFAULT_METADATA.openGraph.title}`,
+      description: `${DEFAULT_METADATA.openGraph.description}`,
+      url: `/${params.type}/${params.query}`,
+    },
+  };
+}
 
 export const revalidate = 60 * 60 * 24; // 24 hours
 export const runtime = "edge";
