@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
 import type { Metadata } from "next";
+import { GeistSans } from "geist/font/sans";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import HolyLoader from "holy-loader";
@@ -16,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={GeistSans.variable}>
       <body>
         <HolyLoader color="#3b82f6" showSpinner />
         <div>

@@ -62,7 +62,7 @@ export default function MediaHero({ media }: { media: Media }) {
             {trailer && (
               <>
                 <button
-                  className="mt-4 lg:text-xl hidden lg:button"
+                  className="mt-4 lg:text-xl hidden lg:button font-bold"
                   onClick={() => setIsOpen(true)}
                 >
                   <PiPlayFill />

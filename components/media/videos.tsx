@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
+import { PiCaretDownBold } from "react-icons/pi";
 import VideoCard from "../video/card";
 
 export default function Videos({ media }: { media: Media }) {
@@ -14,22 +15,25 @@ export default function Videos({ media }: { media: Media }) {
 
   return (
     <div className="px-global">
-      <select
-        onChange={(e) =>
-          router.replace(`?video=${e.target.value}`, {
-            scroll: false,
-          })
-        }
-        defaultValue={type}
-        className="mb-4 bg-zinc-800 text-sm px-3 py-1"
-      >
-        <option value="all">All</option>
-        {types.map((t) => (
-          <option value={t} key={t}>
-            {t}
-          </option>
-        ))}
-      </select>
+      <div className="relative inline-block mb-4">
+        <select
+          onChange={(e) =>
+            router.replace(`?video=${e.target.value}`, {
+              scroll: false,
+            })
+          }
+          defaultValue={type}
+          className="w-36 bg-zinc-800 text-sm pl-3 pr-10 py-2 border-2 border-zinc-700 appearance-none font-medium truncate"
+        >
+          <option value="all">All</option>
+          {types.map((t) => (
+            <option value={t} key={t}>
+              {t}
+            </option>
+          ))}
+        </select>
+        <PiCaretDownBold className="absolute text-lg right-3 top-2.5" />
+      </div>
 
       <span className="text-zinc-500 text-sm font-semibold ml-4">
         {videos?.length} Videos

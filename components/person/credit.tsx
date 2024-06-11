@@ -1,11 +1,14 @@
 import { getYear } from "@/lib/utils";
 import Link from "next/link";
+import { PiFilmStrip, PiTelevision } from "react-icons/pi";
 
 export default function PersonCredit({ credit }: { credit: Credit }) {
   const title = credit.title || credit.name;
   const date = credit.release_date || credit.first_air_date;
   const bgColor =
     credit.media_type === "movie" ? "bg-zinc-900" : "bg-zinc-950/60";
+  const icon =
+    credit.media_type === "movie" ? <PiFilmStrip /> : <PiTelevision />;
 
   const episodeCount = credit.episode_count ? (
     credit.episode_count > 1 ? (
@@ -30,7 +33,10 @@ export default function PersonCredit({ credit }: { credit: Credit }) {
     >
       <div className="w-20 text-center">{year}</div>
       <div>
-        <b className="text-white">{title}</b> {episodeCount} {role}
+        <b className="text-white flex items-center gap-2">
+          {icon} {title}
+        </b>{" "}
+        {episodeCount} {role}
       </div>
     </Link>
   );

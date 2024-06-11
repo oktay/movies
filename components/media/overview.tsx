@@ -156,8 +156,12 @@ export default function MediaOverview({ media }: { media: Media }) {
               detail.type.includes(type)
                 ? detail.value && (
                     <div className="flex mt-2" key={detail.title}>
-                      <div className="min-w-[120px]">{detail.title}</div>
-                      <div className="flex flex-wrap gap-2">{detail.value}</div>
+                      <div className="min-w-[120px] font-bold">
+                        {detail.title}
+                      </div>
+                      <div className="flex flex-wrap gap-2 text-white/70">
+                        {detail.value}
+                      </div>
                     </div>
                   )
                 : null

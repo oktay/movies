@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { getVideo } from "@/lib/utils";
@@ -29,7 +29,7 @@ export default function VideoCard({ video }: { video: Video }) {
         </button>
       </div>
       <div className="h-full flex flex-col">
-        <h3 className="mb-3">{video.name}</h3>
+        <h3>{video.name}</h3>
         <p className="text-white/60">{video.type}</p>
       </div>
       {link && (
