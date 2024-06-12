@@ -2,7 +2,7 @@ import { getMedia } from "@/lib/api";
 import Videos from "@/components/media/videos";
 
 export const revalidate = 60 * 60 * 24; // 24 hours
-export const runtime = "edge";
+
 export default async function DetailVideos({
   params,
 }: {

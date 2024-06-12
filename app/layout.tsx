@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description:
     "Millions of movies, TV shows and people to discover. Explore now.",
 };
-export const runtime = "edge";
+
 export default function RootLayout({
   children,
 }: {

@@ -3,7 +3,7 @@ import Pagination from "@/components/pagination";
 import { getGenre, getGenreList, lists } from "@/lib/api";
 
 export const revalidate = 60 * 60 * 24; // 24 hours
-export const runtime = "edge";
+
 export default async function QueryPage({
   params,
   searchParams,

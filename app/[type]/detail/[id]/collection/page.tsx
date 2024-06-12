@@ -3,7 +3,7 @@ import CollectionHero from "@/components/collection/hero";
 import { getCollection, getMedia } from "@/lib/api";
 
 export const revalidate = 60 * 60 * 24; // 24 hours
-export const runtime = "edge";
+
 export default async function DetailEpisodes({
   params,
 }: {

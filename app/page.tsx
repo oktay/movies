@@ -3,7 +3,7 @@ import MediaCarousel from "@/components/carousel/static";
 import MediaHero from "@/components/media/hero";
 
 export const revalidate = 60 * 60 * 24; // 24 hours
-export const runtime = "edge";
+
 export default async function Home() {
   const trendingMovie = await getTrending("movie");
   const trendingTv = await getTrending("tv");

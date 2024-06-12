@@ -6,7 +6,7 @@ import MediaNavbar from "@/components/media/navbar";
 import Spinner from "@/components/spinner";
 
 export const revalidate = 60 * 60 * 24; // 24 hours
-export const runtime = "edge";
+
 export default async function DetailLayout({
   params,
   children,
