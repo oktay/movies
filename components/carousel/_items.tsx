@@ -37,7 +37,7 @@ export default function MediaCarouselItems({
         {items.map((item) => (
           <li
             key={item.id}
-            className="w-40 lg:w-60 inline-block mr-2 snap-start whitespace-normal"
+            className="w-40 lg:w-60 inline-block mr-2 snap-start whitespace-normal align-top"
           >
             {item.media_type === "person" || type === "person" ? (
               <PersonCard person={item as Person} />
