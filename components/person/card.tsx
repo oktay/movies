@@ -1,3 +1,4 @@
+import { IMAGE_URL } from "@/lib/constants";
 import Image from "next/image";
 import Link from "next/link";
 import { PiQuestion } from "react-icons/pi";
@@ -9,7 +10,7 @@ export default function PersonCard({ person }: { person: Person }) {
         {person.profile_path ? (
           <Image
             className="w-full h-full object-cover p-1 bg-zinc-800"
-            src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
+            src={`${IMAGE_URL.POSTER}${person.profile_path}`}
             width={500}
             height={750}
             alt=""

@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import IframeModal from "../modal";
 import Rating from "@/components/media/rating";
+import { IMAGE_URL } from "@/lib/constants";
 
 export default function MediaHero({ media }: { media: Media }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +19,7 @@ export default function MediaHero({ media }: { media: Media }) {
       {media.backdrop_path ? (
         <Image
           className="w-full h-full object-cover"
-          src={`https://image.tmdb.org/t/p/w1280${media.backdrop_path}`}
+          src={`${IMAGE_URL.BACKDROP}${media.backdrop_path}`}
           alt=""
           width={1280}
           height={720}

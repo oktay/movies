@@ -1,6 +1,7 @@
 import { formatContent } from "@/lib/utils";
 import { PiQuestion } from "react-icons/pi";
 import Image from "next/image";
+import { IMAGE_URL } from "@/lib/constants";
 
 export default function PersonHero({ person }: { person: Person }) {
   return (
@@ -9,7 +10,7 @@ export default function PersonHero({ person }: { person: Person }) {
         {person.profile_path ? (
           <Image
             className="w-full h-full object-cover"
-            src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
+            src={`${IMAGE_URL.POSTER}${person.profile_path}`}
             width={500}
             height={750}
             alt=""

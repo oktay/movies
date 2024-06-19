@@ -1,4 +1,4 @@
-import { BiLogoGithub, BiLogoLinkedin, BiLink } from "react-icons/bi";
+import { BiLink, BiLogoGithub, BiLogoLinkedin } from "react-icons/bi";
 
 export default function ExternalLinks() {
   return (

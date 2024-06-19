@@ -1,5 +1,5 @@
 import MediaDynamicGrid from "@/components/grid/dynamic";
-import { lists } from "@/lib/api";
+import { LISTS } from "@/lib/constants";
 
 export const revalidate = 60 * 60 * 24; // 24 hours
 
@@ -10,7 +10,7 @@ export default function QueryPage({
   params: { query: Query; type: MediaType };
   searchParams: { page: string };
 }) {
-  const item = lists[params.type].find((item) => item.query === params.query);
+  const item = LISTS[params.type].find((item) => item.query === params.query);
 
   if (!item) throw new Error("This page could not be found.");
 

@@ -3,6 +3,7 @@ import { getAvailableRegions, getProviders } from "@/lib/api";
 import { PiQuestion } from "react-icons/pi";
 import RegionSelect from "../provider/select";
 import ProviderGrid from "../provider/grid";
+import { IMAGE_URL } from "@/lib/constants";
 
 export default async function Providers({
   media,
@@ -23,7 +24,7 @@ export default async function Providers({
         {media.poster_path ? (
           <Image
             className="w-full h-full object-cover p-1 bg-zinc-800"
-            src={`https://image.tmdb.org/t/p/w500${media.poster_path}`}
+            src={`${IMAGE_URL.POSTER}${media.poster_path}`}
             width={500}
             height={750}
             alt={media.name || media.title}

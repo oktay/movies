@@ -13,15 +13,17 @@ export default function Videos({ media }: { media: Media }) {
     (v) => type === "all" || v.type === type
   );
 
+  function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    router.replace(`?video=${e.target.value}`, {
+      scroll: false,
+    });
+  }
+
   return (
     <div className="px-global">
       <div className="relative inline-block mb-4">
         <select
-          onChange={(e) =>
-            router.replace(`?video=${e.target.value}`, {
-              scroll: false,
-            })
-          }
+          onChange={handleChange}
           defaultValue={type}
           className="w-36 bg-zinc-800 text-sm pl-3 pr-10 py-2 border-2 border-zinc-700 appearance-none font-medium truncate"
         >

@@ -1,3 +1,4 @@
+import { IMAGE_URL } from "@/lib/constants";
 import Image from "next/image";
 
 export default function PersonPhotos({ person }: { person: Person }) {
@@ -14,7 +15,7 @@ export default function PersonPhotos({ person }: { person: Person }) {
             {person.images?.profiles.map((image) => (
               <div key={image.file_path} className="aspect-[2/3]">
                 <Image
-                  src={`https://image.tmdb.org/t/p/w500${image.file_path}`}
+                  src={`${IMAGE_URL.POSTER}${image.file_path}`}
                   alt=""
                   width={500}
                   height={280}

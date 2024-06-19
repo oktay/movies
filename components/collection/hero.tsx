@@ -1,3 +1,4 @@
+import { IMAGE_URL } from "@/lib/constants";
 import Image from "next/image";
 import { PiQuestion } from "react-icons/pi";
 
@@ -7,7 +8,7 @@ export default function CollectionHero({ media }: { media: CollectionResult }) {
       {media.backdrop_path ? (
         <Image
           className="w-full h-full object-cover"
-          src={`https://image.tmdb.org/t/p/w1280${media.backdrop_path}`}
+          src={`${IMAGE_URL.BACKDROP}${media.backdrop_path}`}
           alt=""
           width={1280}
           height={720}
@@ -24,7 +25,7 @@ export default function CollectionHero({ media }: { media: CollectionResult }) {
           {media.poster_path ? (
             <Image
               className="w-full h-full object-cover p-1 bg-zinc-800/60"
-              src={`https://image.tmdb.org/t/p/w500${media.poster_path}`}
+              src={`${IMAGE_URL.POSTER}${media.poster_path}`}
               width={500}
               height={750}
               alt=""

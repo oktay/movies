@@ -38,7 +38,10 @@ export function getYear(date: string) {
 }
 
 export function numberWithCommas(x: number) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "decimal",
+  });
+  return formatter.format(x);
 }
 
 export function directors(item: Media) {
@@ -48,6 +51,7 @@ export function directors(item: Media) {
     return people.filter((person) => person.job === "Director");
   }
 }
+
 export function getVideo(item?: Video) {
   if (!item?.key) return null;
   return `https://www.youtube.com/embed/${item.key}?rel=0&showinfo=0&autoplay=0`;
@@ -70,10 +74,11 @@ export function formatContent(string: string) {
 
 export function getRegion() {
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const selectedTimezone = timezones[timezone];
 
-  if (!timezones[timezone] || !timezones[timezone].countries.length) {
+  if (!selectedTimezone?.countries?.length) {
     return;
   }
 
-  return timezones[timezone].countries[0];
+  return selectedTimezone.countries[0];
 }

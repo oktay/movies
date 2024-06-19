@@ -1,6 +1,6 @@
 # movies
 
-This is a TMDB Client built with [Next.js 13](https://nextjs.org/), [TailwindCSS](https://tailwindcss.com/), [The Movie Database API](https://www.themoviedb.org/), and [Typescript](https://github.com/microsoft/TypeScript)
+This is a TMDB Client built with [Next.js 14](https://nextjs.org/), [TailwindCSS](https://tailwindcss.com/), [The Movie Database API](https://www.themoviedb.org/), and [Typescript](https://github.com/microsoft/TypeScript)
 
 # Screenshot
 </br>

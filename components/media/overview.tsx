@@ -9,6 +9,7 @@ import { PiQuestion } from "react-icons/pi";
 import Image from "next/image";
 import MediaCarousel from "../carousel/static";
 import Link from "next/link";
+import { IMAGE_URL } from "@/lib/constants";
 
 export default function MediaOverview({ media }: { media: Media }) {
   const type = media.name ? "tv" : "movie";
@@ -135,7 +136,7 @@ export default function MediaOverview({ media }: { media: Media }) {
           {media.poster_path ? (
             <Image
               className="w-full h-full object-cover p-1 bg-zinc-800"
-              src={`https://image.tmdb.org/t/p/w500${media.poster_path}`}
+              src={`${IMAGE_URL.POSTER}${media.poster_path}`}
               width={500}
               height={750}
               alt=""

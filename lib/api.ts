@@ -1,30 +1,12 @@
 import "server-only";
+import { API_URL, LISTS } from "./constants";
 import { cache } from "react";
 
-export const apiUrl = "https://api.themoviedb.org/3";
-
-export const apiImgUrl = "https://image.tmdb.org/t/p";
-
-export const lists = {
-  movie: <QueryItem[]>[
-    { title: "Popular Movies", query: "popular", type: "movie" },
-    { title: "Top Rated Movies", query: "top_rated", type: "movie" },
-    { title: "Upcoming Movies", query: "upcoming", type: "movie" },
-    { title: "Now Playing Movies", query: "now_playing", type: "movie" },
-  ],
-  tv: <QueryItem[]>[
-    { title: "Popular TV Shows", query: "popular", type: "tv" },
-    { title: "Top Rated TV Shows", query: "top_rated", type: "tv" },
-    { title: "Currently Airing TV Shows", query: "on_the_air", type: "tv" },
-    { title: "TV Shows Airing Today", query: "airing_today", type: "tv" },
-  ],
-};
-
 export const getListItem = (type: MediaType, query: Query) =>
-  lists[type].find((item) => item.query === query);
+  LISTS[type].find((item) => item.query === query);
 
 export const fetchApi = cache(async (path: string, params?: any) => {
-  const url = new URL(apiUrl);
+  const url = new URL(API_URL);
   const searchParams = new URLSearchParams({
     ...params,
     api_key: process.env.TMDB_API_KEY,

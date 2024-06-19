@@ -1,6 +1,7 @@
 import { fullDate } from "@/lib/utils";
 import { PiQuestion } from "react-icons/pi";
 import Image from "next/image";
+import { IMAGE_URL } from "@/lib/constants";
 
 export default function EpisodeCard({ episode }: { episode: Episode }) {
   return (
@@ -8,7 +9,7 @@ export default function EpisodeCard({ episode }: { episode: Episode }) {
       <div className="aspect-[16/9] mb-3">
         {episode.still_path ? (
           <Image
-            src={`https://image.tmdb.org/t/p/w500${episode.still_path}`}
+            src={`${IMAGE_URL.BACKDROP}${episode.still_path}`}
             className="p-1 w-full h-full object-cover bg-zinc-800"
             alt=""
             width={500}

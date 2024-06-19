@@ -1,3 +1,4 @@
+import { IMAGE_URL } from "@/lib/constants";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -16,7 +17,7 @@ export default function ProviderCard({
       rel="noreferrer noopener"
     >
       <Image
-        src={`https://image.tmdb.org/t/p/original${provider.logo_path}`}
+        src={`${IMAGE_URL.ORIGINAL}${provider.logo_path}`}
         alt={provider.provider_name}
         width={50}
         height={50}
