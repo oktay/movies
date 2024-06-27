@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
+import { THEME_COLOR } from "@/lib/constants";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import HolyLoader from "holy-loader";
@@ -19,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={GeistSans.variable}>
       <body>
-        <HolyLoader color="#3b82f6" showSpinner />
+        <HolyLoader color={THEME_COLOR[500]} showSpinner />
         <div>
           <header className="bg-zinc-950 border-t border-zinc-800 lg:border-r fixed bottom-0 lg:top-0 left-0 z-10 h-16 w-full lg:h-full lg:w-20">
             <Navbar />

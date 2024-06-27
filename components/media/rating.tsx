@@ -4,7 +4,7 @@ export default function Rating({ average }: { average: number }) {
   const rate = average / 2;
 
   return (
-    <div className="flex text-blue-500" title={average.toFixed(1)}>
+    <div className="flex text-theme-500" title={average.toFixed(1)}>
       {[...Array(5)].map((_, index) =>
         rate % 1 !== 0 && index === Math.floor(rate) ? (
           <PiStarHalfFill key={index} />

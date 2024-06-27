@@ -59,7 +59,7 @@ export default function MediaOverview({ media }: { media: Media }) {
             <Link
               key={p.id}
               href={`/person/detail/${p.id}`}
-              className="text-blue-500 underline"
+              className="text-theme-500 underline"
             >
               {p.name}
             </Link>
@@ -85,7 +85,7 @@ export default function MediaOverview({ media }: { media: Media }) {
           <Link
             key={p.id}
             href={`/person/detail/${p.id}`}
-            className="text-blue-500 underline"
+            className="text-theme-500 underline"
           >
             {p.name}
           </Link>
@@ -98,7 +98,7 @@ export default function MediaOverview({ media }: { media: Media }) {
         <Link
           key={g.id}
           href={`/${type}/genre/${g.id}`}
-          className="text-blue-500 underline"
+          className="text-theme-500 underline"
         >
           {g.name}
         </Link>

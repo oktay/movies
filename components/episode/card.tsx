@@ -24,7 +24,7 @@ export default function EpisodeCard({ episode }: { episode: Episode }) {
       </div>
       <div className="h-full flex flex-col">
         <h3 className="mb-3">
-          <span className="text-blue-500">
+          <span className="text-theme-500">
             E
             {episode.episode_number < 10
               ? "0" + episode.episode_number
