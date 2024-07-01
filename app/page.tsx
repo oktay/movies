@@ -1,8 +1,13 @@
 import { getRandomMedia, getTrending } from "@/lib/api";
 import MediaCarousel from "@/components/carousel/static";
 import MediaHero from "@/components/media/hero";
+import { Metadata } from "next";
+import { siteConfig } from "@/config/site";
 
-export const revalidate = 60 * 60 * 24; // 24 hours
+export const metadata: Metadata = {
+  title: `Home${siteConfig.titleSuffix}`,
+  description: siteConfig.description,
+}
 
 export default async function Home() {
   const trendingMovie = await getTrending("movie");

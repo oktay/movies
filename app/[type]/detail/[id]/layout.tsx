@@ -4,8 +4,20 @@ import MediaCarousel from "@/components/carousel/static";
 import MediaHero from "@/components/media/hero";
 import MediaNavbar from "@/components/media/navbar";
 import Spinner from "@/components/spinner";
+import { siteConfig } from "@/config/site";
+import { Metadata } from "next";
 
-export const revalidate = 60 * 60 * 24; // 24 hours
+export async function generateMetadata({
+  params,
+}: {
+  params: { type: MediaType; id: string };
+}): Promise<Metadata> {
+  const media = await getMedia(params.type, params.id);
+  const name = media.name || media.title
+  return {
+    title: `${name}${siteConfig.titleSuffix}`,
+  };
+}
 
 export default async function DetailLayout({
   params,

@@ -1,23 +1,33 @@
 import MediaDynamicGrid from "@/components/grid/dynamic";
-import { LISTS } from "@/lib/constants";
+import { siteConfig } from "@/config/site";
+import { getListItem } from "@/lib/utils";
+import { Metadata } from "next";
 
-export const revalidate = 60 * 60 * 24; // 24 hours
+type Props = {
+  params: { query: Query; type: MediaType };
+  searchParams: { page: string };
+}
+
+export function generateMetadata({ params }: Props): Metadata {
+  const query = getListItem(params.type, params.query);
+  return {
+    title: `${query?.title}${siteConfig.titleSuffix}`,
+  };
+
+}
 
 export default function QueryPage({
   params,
   searchParams,
-}: {
-  params: { query: Query; type: MediaType };
-  searchParams: { page: string };
-}) {
-  const item = LISTS[params.type].find((item) => item.query === params.query);
+}: Props) {
+  const query = getListItem(params.type, params.query);
 
-  if (!item) throw new Error("This page could not be found.");
+  if (!query) throw new Error("This page could not be found.");
 
   return (
     <main className="my-global">
-      <h1 className="text-2xl px-global mb-5">{item.title}</h1>
-      <MediaDynamicGrid query={item} page={searchParams.page} />
+      <h1 className="text-2xl px-global mb-5">{query.title}</h1>
+      <MediaDynamicGrid query={query} page={searchParams.page} />
     </main>
   );
 }

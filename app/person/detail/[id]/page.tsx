@@ -1,14 +1,21 @@
 import { getPerson } from "@/lib/api";
 import PersonDetails from "@/components/person/details";
 import PersonHero from "@/components/person/hero";
+import { Metadata } from "next";
+import { siteConfig } from "@/config/site";
 
-export const revalidate = 60 * 60 * 24; // 24 hours
-
-export default async function PersonDetail({
-  params,
-}: {
+type Props = {
   params: { id: string };
-}) {
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const person = await getPerson(params.id);
+  return {
+    title: `${person.name}${siteConfig.titleSuffix}`,
+  };
+}
+
+export default async function PersonDetail({ params }: Props) {
   const person = await getPerson(params.id);
 
   return (

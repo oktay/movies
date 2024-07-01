@@ -1,3 +1,4 @@
+import { API_URL, LISTS } from "./constants";
 import { languages } from "./languages";
 import { timezones } from "./timezones";
 
@@ -81,4 +82,32 @@ export function getRegion() {
   }
 
   return selectedTimezone.countries[0];
+}
+
+export function getGenreName(id: number, genreList: GenreList) {
+  return genreList.genres.find((g) => g.id == id)?.name;
+}
+
+export const getListItem = (type: MediaType, query: Query) =>
+  LISTS[type].find((item) => item.query === query);
+
+export function createUrl(path: string, params?: any) {
+  const url = new URL(API_URL);
+  const searchParams = new URLSearchParams({
+    ...params,
+    api_key: process.env.TMDB_API_KEY,
+  });
+
+  url.pathname += path;
+  url.search = searchParams.toString();
+
+  return url.toString();
+}
+
+export function getMediaCategoryTitle(type: MediaType) {
+  return type === "tv" ? "TV Shows" : "Movies";
+}
+
+export function getRandomItem(items: Media[]) {
+  return items[Math.floor(Math.random() * items.length)];
 }

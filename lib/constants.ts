@@ -1,4 +1,3 @@
-import colors from "tailwindcss/colors";
 
 export const API_URL = "https://api.themoviedb.org/3";
 
@@ -25,5 +24,3 @@ export const LISTS = {
     { title: "TV Shows Airing Today", query: "airing_today", type: "tv" },
   ],
 };
-
-export const THEME_COLOR = colors.sky;

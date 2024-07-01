@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
-import { THEME_COLOR } from "./lib/constants";
+import { themeColor } from "./config/site";
 
 const config: Config = {
   content: [
@@ -14,7 +14,7 @@ const config: Config = {
         sans: ["var(--font-geist-sans)", ...fontFamily.sans],
       },
       colors: {
-        theme: THEME_COLOR,
+        theme: themeColor,
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
