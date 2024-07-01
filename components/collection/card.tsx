@@ -46,7 +46,7 @@ export default function CollectionCard({ media }: { media: Media }) {
             </span>
           </div>
         )}
-        <p className="line-clamp-6 md:line-clamp-none">{media.overview}</p>
+        <p className="line-clamp-6">{media.overview}</p>
       </div>
     </div>
   );

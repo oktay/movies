@@ -16,7 +16,7 @@ export default function MediaCarouselBase({
         {link && (
           <Link
             href={link}
-            className="text-sm text-theme-500 font-semibold ml-4"
+            className="text-sm text-theme-500 font-semibold ml-4 hover:opacity-80 transition"
           >
             Explore More
           </Link>

@@ -12,7 +12,7 @@ export default function MediaCard({ media }: { media: Media }) {
       <div className="aspect-[2/3]">
         {media.poster_path ? (
           <Image
-            className="w-full h-full object-cover p-1 bg-zinc-800/60"
+            className="w-full h-full object-cover p-1 bg-zinc-800/60 hover:brightness-125 transition"
             src={`${IMAGE_URL.POSTER}${media.poster_path}`}
             width={500}
             height={750}

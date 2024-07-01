@@ -49,7 +49,7 @@ export default function Navbar() {
         <Link
           key={link.name}
           href={link.href}
-          className="h-full w-full inline-flex items-center justify-center lg:h-24"
+          className="h-full w-full inline-flex items-center justify-center lg:h-24 hover:opacity-70 transition"
         >
           <span className="sr-only">{link.name}</span>
           {pathname === link.href ? link.iconActive : link.icon}

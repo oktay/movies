@@ -11,7 +11,7 @@ export default function CollectionHero({ media }: { media: CollectionResult }) {
   }, [])
 
   return (
-    <div className="relative aspect-[3/2] md:aspect-[3/2] xl:aspect-[4/1]">
+    <div className="relative aspect-square md:aspect-[3/2] xl:aspect-[4/1]">
       {media.backdrop_path ? (
         <Image
           className="w-full h-full object-cover"

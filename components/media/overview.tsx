@@ -59,7 +59,7 @@ export default function MediaOverview({ media }: { media: Media }) {
             <Link
               key={p.id}
               href={`/person/detail/${p.id}`}
-              className="text-theme-500 underline"
+              className="text-zinc-600 bg-zinc-300 hover:bg-zinc-100 transition text-xs px-2 leading-loose rounded font-medium"
             >
               {p.name}
             </Link>
@@ -85,7 +85,7 @@ export default function MediaOverview({ media }: { media: Media }) {
           <Link
             key={p.id}
             href={`/person/detail/${p.id}`}
-            className="text-theme-500 underline"
+            className="text-zinc-600 bg-zinc-300 hover:bg-zinc-100 transition text-xs px-2 leading-loose rounded font-medium"
           >
             {p.name}
           </Link>
@@ -98,7 +98,7 @@ export default function MediaOverview({ media }: { media: Media }) {
         <Link
           key={g.id}
           href={`/${type}/genre/${g.id}`}
-          className="text-theme-500 underline"
+          className="bg-zinc-300 hover:bg-zinc-100 transition text-zinc-600 text-xs px-2 leading-loose rounded font-medium"
         >
           {g.name}
         </Link>
