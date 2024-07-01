@@ -10,7 +10,7 @@ export default function CollectionCard({ media }: { media: Media }) {
     <div className="flex">
       <Link
         href={`/movie/detail/${media.id}`}
-        className="relative block w-40 lg:w-60"
+        className="relative block w-40 flex-shrink-0"
       >
         <div className="aspect-[2/3]">
           {media.poster_path ? (
@@ -29,8 +29,8 @@ export default function CollectionCard({ media }: { media: Media }) {
           )}
         </div>
       </Link>
-      <div className="ml-4 flex-1 space-y-2">
-        <h3 className="truncate">
+      <div className="ml-4 space-y-2">
+        <h3 className="line-clamp-1">
           {media.name || media.title}{" "}
           {media.release_date && (
             <span className="text-white/60 text-sm">
@@ -46,7 +46,7 @@ export default function CollectionCard({ media }: { media: Media }) {
             </span>
           </div>
         )}
-        <p className="max-w-4xl line-clamp-4">{media.overview}</p>
+        <p className="line-clamp-6 md:line-clamp-none">{media.overview}</p>
       </div>
     </div>
   );

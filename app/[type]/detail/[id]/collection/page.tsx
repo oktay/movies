@@ -25,8 +25,8 @@ export default async function DetailEpisodes({
   return (
     <div className="-mt-6 lg:mt-0">
       <CollectionHero media={collection} />
-      <div className="mt-8 space-y-4 px-global container mx-auto">
-        {collection.parts.map((part) => (
+      <div className="lg:-mt-12 relative px-global container mx-auto grid lg:grid-cols-2 gap-8">
+        {collection.parts.map((part, index) => (
           <CollectionCard key={part.id} media={part} />
         ))}
       </div>

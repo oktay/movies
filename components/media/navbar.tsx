@@ -15,7 +15,7 @@ export default function MediaNavbar({ media }: { media: Media }) {
   }, []);
 
   return (
-    <div className="flex text-center lg:justify-center lg:gap-8 lg:py-8">
+    <div className="flex text-center lg:justify-center lg:gap-8 lg:py-8" id="navbar">
       <Link
         href={`/${type}/detail/${media.id}`}
         className={`tab ${pathname.endsWith(media.id) && "tab-active"}`}
