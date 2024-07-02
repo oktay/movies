@@ -2,22 +2,17 @@
 
 import { sendGAEvent } from "@next/third-parties/google";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useDebouncedCallback } from "use-debounce";
 
 export default function SearchForm({ query }: { query?: string }) {
   const router = useRouter();
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setTimeout(() => router.replace(`/search?q=${e.target.value}`), 1000);
-  }
-
-  useEffect(() => {
-    if (!query) return;
-    sendGAEvent({
-      event: "search",
-      search_term: query,
+  const handleChange = useDebouncedCallback((e) => {
+    router.replace(`/search?q=${e.target.value}`);
+    sendGAEvent("event", "search", {
+      search_term: e.target.value,
     })
-  }, [query]);
+  }, 1000);
 
   return (
     <input

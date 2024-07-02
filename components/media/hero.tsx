@@ -15,7 +15,7 @@ export default function MediaHero({ media }: { media: Media }) {
   const type = media.media_type || media.title ? "movie" : "tv";
 
   return (
-    <div className="relative aspect-[1/1] lg:aspect-[4/2] xl:aspect-[16/6] border-b border-zinc-800">
+    <div className="relative aspect-[1/1] sm:aspect-[3/2] md:aspect-[4/2] xl:aspect-[16/6] border-b border-zinc-800">
       {media.backdrop_path ? (
         <Image
           className="w-full h-full object-cover"
