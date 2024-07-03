@@ -1,6 +1,7 @@
 "use client";
 
 import { sendGAEvent } from "@next/third-parties/google";
+import { track } from "@vercel/analytics";
 import { useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 
@@ -9,9 +10,13 @@ export default function SearchForm({ query }: { query?: string }) {
 
   const handleChange = useDebouncedCallback((e) => {
     router.replace(`/search?q=${e.target.value}`);
+
     sendGAEvent("event", "search", {
       search_term: e.target.value,
     })
+    track("Search", {
+      search_term: e.target.value,
+    });
   }, 1000);
 
   return (

@@ -6,6 +6,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import HolyLoader from "holy-loader";
 import { siteConfig, themeColor } from "@/config/site";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: siteConfig.title,
@@ -32,6 +33,7 @@ export default function RootLayout({
         </div>
       </body>
       <GoogleAnalytics gaId={process.env.GA_ID!} />
+      <Analytics />
     </html>
   );
 }
