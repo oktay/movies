@@ -1,9 +1,18 @@
-import colors from "tailwindcss/colors";
+export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-  title: "Movies App",
-  description: "Millions of movies, TV shows and people to discover. Explore now.",
-  titleSuffix: " — Movies App",
+  name: "Next.js",
+  description:
+    "Beautifully designed components built with Radix UI and Tailwind CSS.",
+  mainNav: [
+    {
+      title: "Home",
+      href: "/",
+    },
+  ],
+  links: {
+    twitter: "https://twitter.com/shadcn",
+    github: "https://github.com/shadcn/ui",
+    docs: "https://ui.shadcn.com",
+  },
 }
-
-export const themeColor = colors.sky;
