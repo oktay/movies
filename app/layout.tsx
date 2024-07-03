@@ -1,8 +1,8 @@
 import "@/styles/globals.css"
 import { Metadata, Viewport } from "next"
+import { GeistSans } from "geist/font/sans"
 
 import { siteConfig } from "@/config/site"
-import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
@@ -40,7 +40,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <body
           className={cn(
             "min-h-screen bg-background font-sans antialiased",
-            fontSans.variable
+            GeistSans.variable
           )}
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
