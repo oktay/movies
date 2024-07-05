@@ -1,0 +1,41 @@
+import { yt } from "@/tmdb/utils"
+
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./ui/dialog"
+
+export const VideoDialog = ({
+  video,
+  title,
+  children,
+}: {
+  video: string
+  title: string
+  children: React.ReactNode
+}) => {
+  return (
+    <Dialog modal>
+      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogContent className="aspect-video max-w-full lg:w-[60vw]">
+        <div>
+          <DialogHeader>
+            <DialogTitle>{title}</DialogTitle>
+          </DialogHeader>
+
+          <div className="h-full flex-1">
+            <iframe
+              className="size-full"
+              src={yt.video(video, true)}
+              allow="autoplay; encrypted-media"
+              allowFullScreen={true}
+            />
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  )
+}

@@ -1,9 +1,11 @@
 import "@/styles/globals.css"
 import { Metadata, Viewport } from "next"
+import { siteConfig } from "@/config"
 import { GeistSans } from "geist/font/sans"
+import HolyLoader from "holy-loader"
 
-import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
+import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -43,10 +45,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
             GeistSans.variable
           )}
         >
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <div />
+          <HolyLoader color="#ccc" />
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <div className="relative flex min-h-screen flex-col">
               <SiteHeader />
               <div className="flex-1">{children}</div>
+              <SiteFooter />
             </div>
             <TailwindIndicator />
           </ThemeProvider>
