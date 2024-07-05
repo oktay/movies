@@ -20,7 +20,6 @@ export default async function Detail({ params }: { params: { id: string } }) {
   } = await tmdb.tv.detail({
     id: params.id,
   })
-
   const items = [
     {
       title: "Created By",

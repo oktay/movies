@@ -3,6 +3,7 @@ import { tmdb } from "@/tmdb/api"
 import { getFullDate, getRuntime, numberWithCommas } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { BackdropImage } from "@/components/backdrop-image"
+import { CollectionDialog } from "@/components/collection-dialog"
 
 export default async function Detail({
   params,
@@ -81,7 +82,9 @@ export default async function Detail({
               <h2 className="line-clamp-1 text-lg font-medium md:text-2xl">
                 {collection.name}
               </h2>
-              <Button className="mt-4">View Collection</Button>
+              <CollectionDialog id={collection.id}>
+                <Button className="mt-4">View Collection</Button>
+              </CollectionDialog>
             </div>
           </div>
         </div>

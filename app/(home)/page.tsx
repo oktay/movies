@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { tmdb } from "@/tmdb/api"
 import { Movie, TvShow } from "@/tmdb/models"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, PlayCircle } from "lucide-react"
 
 import { cn, getRandomItems } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
@@ -46,12 +46,24 @@ export default async function IndexPage() {
               <p className="mt-4 line-clamp-3 text-lg text-muted-foreground">
                 {hero.overview}
               </p>
-              <Link
-                href={`/${hero.media_type}/${hero.id}`}
-                className={cn(buttonVariants({ size: "lg" }), "mt-6")}
-              >
-                Details <ArrowRight className="ml-2 size-4" />
-              </Link>
+
+              <div className="mt-6 flex items-center justify-center gap-4">
+                <Link
+                  href={`/${hero.media_type}/${hero.id}/videos`}
+                  className={cn(buttonVariants({ size: "lg" }))}
+                >
+                  <PlayCircle className="mr-2 size-4" />
+                  Watch Videos
+                </Link>
+                <Link
+                  href={`/${hero.media_type}/${hero.id}`}
+                  className={cn(
+                    buttonVariants({ size: "lg", variant: "secondary" })
+                  )}
+                >
+                  Details <ArrowRight className="ml-2 size-4" />
+                </Link>
+              </div>
             </div>
           </div>
         </div>

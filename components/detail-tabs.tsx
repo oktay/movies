@@ -4,7 +4,13 @@ import { usePathname, useRouter } from "next/navigation"
 
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-export const DetailTabs = ({ id, type }: { id: string; type: string }) => {
+export const DetailTabs = ({
+  id,
+  type,
+}: {
+  id: string
+  type: "movie" | "tv"
+}) => {
   const router = useRouter()
   const pathname = usePathname()
   const page = `/${type}/${id}`
@@ -41,6 +47,14 @@ export const DetailTabs = ({ id, type }: { id: string; type: string }) => {
       href: `${page}/videos`,
     },
   ]
+
+  if (type === "tv") {
+    tabs.splice(2, 0, {
+      label: "Episodes",
+      value: "episodes",
+      href: `${page}/episodes`,
+    })
+  }
 
   const tab =
     pathname === page

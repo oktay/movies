@@ -1,8 +1,10 @@
+import Link from "next/link"
 import { tmdb } from "@/tmdb/api"
 import { PlayCircle } from "lucide-react"
 
+import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { BackdropImage } from "@/components/backdrop-image"
 import { DetailTabs } from "@/components/detail-tabs"
 import { DetailView } from "@/components/detail-view"
@@ -42,7 +44,7 @@ export default async function DetailLayout({
 
         <div>
           <DetailView.Genres>
-            <Badge>{vote_average.toFixed(1)}</Badge>
+            <Badge>{vote_average?.toFixed(1)}</Badge>
             {genres.map((genre) => (
               <DetailView.Genre key={genre.id}>{genre.name}</DetailView.Genre>
             ))}
@@ -50,9 +52,17 @@ export default async function DetailLayout({
 
           <DetailView.Title>{name}</DetailView.Title>
           <DetailView.Overview>{overview}</DetailView.Overview>
-          <Button className="mt-6">
-            <PlayCircle className="mr-2 size-4" /> Watch Trailer
-          </Button>
+          <Link
+            href={`/tv/${params.id}/videos`}
+            className={cn(
+              buttonVariants({
+                variant: "default",
+              }),
+              "mt-6"
+            )}
+          >
+            <PlayCircle className="mr-2 size-4" /> Watch Videos
+          </Link>
         </div>
       </DetailView.Hero>
 
