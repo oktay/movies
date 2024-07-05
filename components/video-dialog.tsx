@@ -20,7 +20,7 @@ export const VideoDialog = ({
   return (
     <Dialog modal>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="aspect-video max-w-full lg:w-[60vw]">
+      <DialogContent className="aspect-video max-w-screen-xl">
         <div>
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle>

@@ -38,7 +38,7 @@ export const SeasonDialog: React.FC<SeasonDialogProps> = async ({
       <DialogTrigger className="cursor-pointer" asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="h-[70vh] max-w-screen-xl">
+      <DialogContent className="max-w-screen-xl">
         <DialogHeader>
           <div className="flex gap-4">
             <div className="relative aspect-poster w-16">
@@ -61,7 +61,7 @@ export const SeasonDialog: React.FC<SeasonDialogProps> = async ({
         </DialogHeader>
 
         {episodes?.length ? (
-          <ScrollArea className="h-full">
+          <ScrollArea className="max-h-[70dvh]">
             <div className="grid gap-4 lg:grid-cols-2">
               {episodes.map((episode) => (
                 <MediaCard.Root
