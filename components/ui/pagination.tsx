@@ -1,5 +1,5 @@
 import * as React from "react"
-import Link, { LinkProps } from "next/link"
+import Link from "next/link"
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react"
 
 import { cn } from "@/lib/utils"
@@ -45,7 +45,7 @@ const PaginationLink = ({
   isActive,
   size = "icon",
   ...props
-}: PaginationLinkProps & LinkProps) => (
+}: PaginationLinkProps & React.ComponentProps<typeof Link>) => (
   <Link
     aria-current={isActive ? "page" : undefined}
     className={cn(
