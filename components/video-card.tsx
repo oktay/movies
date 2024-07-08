@@ -37,7 +37,7 @@ const Content: React.FC<ComponentProps<"div">> = ({
 }) => {
   return (
     <div className={cn("overlay", className)} {...props}>
-      <div className="p-6">{children}</div>
+      <div className="p-4 md:p-6">{children}</div>
     </div>
   )
 }

@@ -34,3 +34,6 @@ yarn-error.log*
 
 .contentlayer
 .env
+
+# tools
+.eslintcache

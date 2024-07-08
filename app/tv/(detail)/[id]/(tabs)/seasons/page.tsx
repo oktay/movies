@@ -1,11 +1,27 @@
+import Link from "next/link"
 import { tmdb } from "@/tmdb/api"
 
 import { Badge } from "@/components/ui/badge"
 import { MediaCard } from "@/components/media-card"
 import { PosterImage } from "@/components/poster-image"
-import { SeasonDialog } from "@/components/season-dialog"
 
-export default async function DetailEpisodes({
+interface DetailSeasonsProps {
+  params: {
+    id: string
+  }
+}
+
+export async function generateMetadata({ params }: DetailSeasonsProps) {
+  const { name } = await tmdb.tv.detail({
+    id: params.id,
+  })
+
+  return {
+    title: `Seasons - ${name}`,
+  }
+}
+
+export default async function DetailSeasons({
   params,
 }: {
   params: {
@@ -19,12 +35,11 @@ export default async function DetailEpisodes({
   if (!seasons) return <div className="empty-box">No episodes</div>
 
   return (
-    <div className="grid-list">
+    <ul className="grid-list">
       {seasons.map((season) => (
-        <SeasonDialog
+        <Link
           key={season.id}
-          id={params.id}
-          season={season.season_number}
+          href={`/tv/${params.id}/seasons/${season.season_number}`}
         >
           <MediaCard.Root>
             <PosterImage image={season.poster_path} alt={season.name} />
@@ -36,8 +51,8 @@ export default async function DetailEpisodes({
               </MediaCard.Excerpt>
             </MediaCard.Content>
           </MediaCard.Root>
-        </SeasonDialog>
+        </Link>
       ))}
-    </div>
+    </ul>
   )
 }

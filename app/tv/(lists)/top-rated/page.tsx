@@ -1,11 +1,19 @@
-import { pages } from "@/config/pages"
+import { pages } from "@/config"
+
 import { TVList } from "@/components/tv-list"
 
-export default async function TopRated({
-  searchParams,
-}: {
+interface ListPageProps {
   searchParams?: Record<string, string>
-}) {
+}
+
+export async function generateMetadata() {
+  return {
+    title: "Top Rated TV Shows",
+    description: pages.tv.topRated.description,
+  }
+}
+
+export default async function TopRated({ searchParams }: ListPageProps) {
   return (
     <TVList
       list="top_rated"

@@ -36,27 +36,28 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <>
-      <html lang="en" suppressHydrationWarning>
-        <head />
-        <body
-          className={cn(
-            "min-h-screen bg-background font-sans antialiased",
-            GeistSans.variable
-          )}
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          GeistSans.variable
+        )}
+      >
+        <HolyLoader color="#ccc" />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          vaul-drawer-wrapper=""
         >
-          <div />
-          <HolyLoader color="#ccc" />
-          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-            <div className="relative flex min-h-screen flex-col">
-              <SiteHeader />
-              <div className="flex-1">{children}</div>
-              <SiteFooter />
-            </div>
-            <TailwindIndicator />
-          </ThemeProvider>
-        </body>
-      </html>
-    </>
+          <div className="relative flex min-h-screen flex-col bg-background">
+            <SiteHeader />
+            <div className="flex-1">{children}</div>
+            <SiteFooter />
+          </div>
+          <TailwindIndicator />
+        </ThemeProvider>
+      </body>
+    </html>
   )
 }

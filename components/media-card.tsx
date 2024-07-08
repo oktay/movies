@@ -18,7 +18,7 @@ const Content: React.FC<ComponentProps<"div">> = ({
 }) => {
   return (
     <div className={cn("overlay", className)} {...props}>
-      <div className="p-6">{children}</div>
+      <div className="p-2 md:p-6">{children}</div>
     </div>
   )
 }
@@ -26,7 +26,7 @@ const Content: React.FC<ComponentProps<"div">> = ({
 const Title: React.FC<ComponentProps<"h2">> = ({ className, ...props }) => {
   return (
     <h2
-      className={cn("line-clamp-1 text-lg font-medium", className)}
+      className={cn("line-clamp-1 text-sm font-medium md:text-lg", className)}
       {...props}
     />
   )
@@ -35,7 +35,10 @@ const Title: React.FC<ComponentProps<"h2">> = ({ className, ...props }) => {
 const Excerpt: React.FC<ComponentProps<"p">> = ({ className, ...props }) => {
   return (
     <p
-      className={cn("line-clamp-3 text-muted-foreground", className)}
+      className={cn(
+        "line-clamp-3 text-xs text-muted-foreground md:text-base",
+        className
+      )}
       {...props}
     />
   )

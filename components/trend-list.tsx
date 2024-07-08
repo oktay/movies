@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { notFound } from "next/navigation"
 import { tmdb } from "@/tmdb/api"
 import { MovieWithMediaType, TvShowWithMediaType } from "@/tmdb/models"
 
@@ -25,6 +26,10 @@ export const TrendList = async ({
     page,
   })
 
+  if (!data.results) {
+    return notFound()
+  }
+
   const currentPage = data.page
   const totalPages = data.total_pages > 500 ? 500 : data.total_pages
 
@@ -46,7 +51,7 @@ export const TrendList = async ({
       )}
 
       <div className="space-y-8">
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <div className="grid-list">
           {results.map((item) => (
             <Link href={`/${item.media_type}/${item.id}`} key={item.id}>
               <MediaCard.Root>

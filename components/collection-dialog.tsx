@@ -1,13 +1,17 @@
+"use client"
+
 import Link from "next/link"
-import { tmdb } from "@/tmdb/api"
-import { DialogDescription } from "@radix-ui/react-dialog"
+import { useDialog } from "@/hooks"
+import { DetailedCollection } from "@/tmdb/models"
 
 import { MediaCard } from "./media-card"
 import { PosterImage } from "./poster-image"
 import { Badge } from "./ui/badge"
+import { Button } from "./ui/button"
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -15,35 +19,30 @@ import {
 } from "./ui/dialog"
 import { ScrollArea } from "./ui/scroll-area"
 
-type CollectionDialogProps = {
-  id: number
-  children: React.ReactNode
-}
-
-export const CollectionDialog: React.FC<CollectionDialogProps> = async ({
-  id,
-  children,
+export const CollectionDialog = ({
+  collection: { name, overview, parts },
+}: {
+  collection: DetailedCollection
 }) => {
-  const { name, overview, parts } = await tmdb.collection.details({
-    id,
-  })
+  const [open, setOpen] = useDialog()
 
   return (
-    <Dialog modal>
-      <DialogTrigger className="cursor-pointer" asChild>
-        {children}
+    <Dialog open={open} onOpenChange={setOpen} modal>
+      <DialogTrigger asChild>
+        <Button className="mt-4">View Collection</Button>
       </DialogTrigger>
+
       <DialogContent className="max-w-screen-lg">
         <DialogHeader>
           <DialogTitle>{name}</DialogTitle>
-          <DialogDescription className="text-muted-foreground">
+          <DialogDescription className="hidden text-muted-foreground md:block">
             {overview}
           </DialogDescription>
         </DialogHeader>
 
         {parts?.length ? (
           <ScrollArea className="h-full max-h-[70dvh]">
-            <div className="grid-list">
+            <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
               {parts.map((part) => (
                 <Link href={`/movie/${part.id}`} key={part.id}>
                   <MediaCard.Root>
@@ -53,7 +52,7 @@ export const CollectionDialog: React.FC<CollectionDialogProps> = async ({
                         {part.vote_average?.toFixed(1)}
                       </Badge>
                       <MediaCard.Title>{part.title}</MediaCard.Title>
-                      <MediaCard.Excerpt className="line-clamp-6 max-w-xl">
+                      <MediaCard.Excerpt className="line-clamp-3 max-w-xl md:line-clamp-6">
                         {part.overview}
                       </MediaCard.Excerpt>
                     </MediaCard.Content>

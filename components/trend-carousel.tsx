@@ -54,14 +54,14 @@ export const TrendCarousel = ({
     api?.scrollPrev()
   }
 
-  function itemTitle(item: Movie | TvShow) {
+  function getTitle(item: Movie | TvShow) {
     return (item as Movie).title || (item as TvShow).name
   }
 
   return (
     <Carousel opts={{ dragFree: true }} setApi={setApi}>
       <div className="mb-4 flex items-center">
-        <h2 className="text-lg font-medium">{title}</h2>
+        <h2 className="font-medium md:text-lg">{title}</h2>
 
         {link && (
           <Link
@@ -78,7 +78,7 @@ export const TrendCarousel = ({
           </Link>
         )}
 
-        <div className="ml-auto flex items-center gap-2">
+        <div className="ml-auto hidden items-center gap-2 md:flex">
           <p className="mr-4 text-xs text-muted-foreground">
             <span className="font-bold text-foreground">{current}</span>
             <span> / </span>
@@ -114,12 +114,12 @@ export const TrendCarousel = ({
               <MediaCard.Root>
                 <PosterImage
                   image={item.poster_path}
-                  alt={itemTitle(item)}
+                  alt={getTitle(item)}
                   size="w500"
                 />
                 <MediaCard.Content>
                   <Badge className="mb-2">{item.vote_average.toFixed(1)}</Badge>
-                  <MediaCard.Title>{itemTitle(item)}</MediaCard.Title>
+                  <MediaCard.Title>{getTitle(item)}</MediaCard.Title>
                   <MediaCard.Excerpt>{item.overview}</MediaCard.Excerpt>
                 </MediaCard.Content>
               </MediaCard.Root>

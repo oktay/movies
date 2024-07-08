@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { notFound } from "next/navigation"
 import { tmdb } from "@/tmdb/api"
 import { TvListType } from "@/tmdb/api/types"
 
@@ -23,6 +24,10 @@ export const TVList = async ({
     page,
   })
 
+  if (!data.results) {
+    return notFound()
+  }
+
   const currentPage = parseInt(page)
   const totalPages = data.total_pages > 500 ? 500 : data.total_pages
 
@@ -38,9 +43,9 @@ export const TVList = async ({
       )}
 
       <div className="space-y-8">
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <div className="grid-list">
           {data.results?.map((tvShow) => (
-            <Link href={`/tv/${tvShow.id}`} key={tvShow.id}>
+            <Link href={`/tv/${tvShow.id}`} key={tvShow.id} className="w-full">
               <MediaCard.Root>
                 <PosterImage
                   image={tvShow.poster_path}

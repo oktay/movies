@@ -1,7 +1,7 @@
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-  name: "Movies",
+  name: "Movies App",
   description:
     "Millions of movies, TV shows and people to discover. Explore now.",
   mainNav: [

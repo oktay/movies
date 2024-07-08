@@ -1,14 +1,16 @@
 import { ComponentProps } from "react"
 import Image from "next/image"
 import { tmdbImage } from "@/tmdb/utils"
-import { Popcorn } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+
+import { Icons } from "./icons"
 
 type PosterImageProps = ComponentProps<"div"> & {
   image?: string
   size?: "w500" | "original"
   alt: string
+  priority?: boolean
 }
 
 export const PosterImage: React.FC<PosterImageProps> = ({
@@ -16,6 +18,7 @@ export const PosterImage: React.FC<PosterImageProps> = ({
   size = "original",
   alt,
   className,
+  priority,
   ...props
 }) => {
   const src = image ? tmdbImage(image, size) : null
@@ -27,7 +30,7 @@ export const PosterImage: React.FC<PosterImageProps> = ({
         {...props}
       >
         <div className="grid size-full place-items-center">
-          <Popcorn className="size-12" />
+          <Icons.Logo className="size-12" />
         </div>
       </div>
     )
@@ -38,6 +41,7 @@ export const PosterImage: React.FC<PosterImageProps> = ({
       className={cn("size-full bg-muted object-cover", className)}
       src={src}
       alt={alt}
+      priority={priority}
       unoptimized
       fill
     />

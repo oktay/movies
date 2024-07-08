@@ -3,11 +3,23 @@ import { tmdb } from "@/tmdb/api"
 import { MediaCard } from "@/components/media-card"
 import { PosterImage } from "@/components/poster-image"
 
-export default async function DetailCredits({
-  params,
-}: {
-  params: { id: string }
-}) {
+interface DetailCreditsProps {
+  params: {
+    id: string
+  }
+}
+
+export async function generateMetadata({ params }: DetailCreditsProps) {
+  const { title } = await tmdb.movie.detail({
+    id: params.id,
+  })
+
+  return {
+    title: `Credits - ${title}`,
+  }
+}
+
+export default async function DetailCredits({ params }: DetailCreditsProps) {
   const { cast } = await tmdb.movie.credits({ id: params.id })
 
   if (!cast?.length) {

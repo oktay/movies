@@ -1,13 +1,18 @@
+import { Metadata } from "next"
 import Link from "next/link"
+import { notFound } from "next/navigation"
 import { tmdb } from "@/tmdb/api"
-import { Movie, TvShow } from "@/tmdb/models"
-import { ArrowRight, PlayCircle } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
 import { cn, getRandomItems } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
 import { BackdropImage } from "@/components/backdrop-image"
 import { TrendCarousel } from "@/components/trend-carousel"
+
+export const metadata: Metadata = {
+  title: "Home",
+}
 
 export default async function IndexPage() {
   const { results: movies } = await tmdb.trending.movie({
@@ -20,69 +25,63 @@ export default async function IndexPage() {
     page: "1",
   })
 
-  const random = getRandomItems([
-    ...movies.filter((movie) => movie.backdrop_path),
-    ...tvShows.filter((tv) => tv.backdrop_path),
-  ])[0]
-
-  const hero = {
-    ...random,
-    title: (random as Movie).title || (random as TvShow).name,
-    type: random.media_type === "movie" ? "Movie" : "TV Show",
+  if (!movies) {
+    return notFound()
   }
+
+  const [hero] = getRandomItems(movies, 1)
 
   return (
     <section>
-      <div className="container mt-8">
-        <div className="card-border h-hero relative">
-          <BackdropImage image={hero.backdrop_path} alt={hero.title} />
+      {hero && (
+        <div className="container mt-8">
+          <div className="card-border h-hero relative">
+            <BackdropImage image={hero.backdrop_path} alt={hero.title} />
 
-          <div className="overlay">
-            <div className="mx-auto max-w-3xl p-12 text-center">
-              <Badge className="mb-2">{hero.type}</Badge>
-              <h1 className="text-3xl font-medium leading-tight tracking-tighter md:text-4xl">
-                {hero.title}
-              </h1>
-              <p className="mt-4 line-clamp-3 text-lg text-muted-foreground">
-                {hero.overview}
-              </p>
+            <div className="overlay">
+              <div className="mx-auto max-w-3xl p-4 pb-8 text-center md:p-12">
+                <Badge className="mb-2">Movie</Badge>
+                <h1 className="line-clamp-2 text-xl font-medium leading-tight tracking-tighter md:text-4xl">
+                  {hero.title}
+                </h1>
+                <p className="mt-4 line-clamp-3 text-sm text-muted-foreground md:text-lg">
+                  {hero.overview}
+                </p>
 
-              <div className="mt-6 flex items-center justify-center gap-4">
-                <Link
-                  href={`/${hero.media_type}/${hero.id}/videos`}
-                  className={cn(buttonVariants({ size: "lg" }))}
-                >
-                  <PlayCircle className="mr-2 size-4" />
-                  Watch Videos
-                </Link>
-                <Link
-                  href={`/${hero.media_type}/${hero.id}`}
-                  className={cn(
-                    buttonVariants({ size: "lg", variant: "secondary" })
-                  )}
-                >
-                  Details <ArrowRight className="ml-2 size-4" />
-                </Link>
+                <div className="mt-6 flex flex-col items-center justify-center gap-4 md:flex-row">
+                  <Link
+                    href={`/${hero.media_type}/${hero.id}`}
+                    className={cn(
+                      buttonVariants({ size: "lg", variant: "default" })
+                    )}
+                  >
+                    Details <ArrowRight className="ml-2 size-4" />
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
       <div className="container mt-12 space-y-12">
-        <TrendCarousel
-          type="movie"
-          title="Trending Movies"
-          link="/trending/movie"
-          items={movies}
-        />
+        {movies && (
+          <TrendCarousel
+            type="movie"
+            title="Trending Movies"
+            link="/trending/movie"
+            items={movies}
+          />
+        )}
 
-        <TrendCarousel
-          type="tv"
-          title="Trending TV Shows"
-          link="/trending/tv"
-          items={tvShows}
-        />
+        {tvShows && (
+          <TrendCarousel
+            type="tv"
+            title="Trending TV Shows"
+            link="/trending/tv"
+            items={tvShows}
+          />
+        )}
       </div>
     </section>
   )

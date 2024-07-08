@@ -6,13 +6,29 @@ import { Button } from "@/components/ui/button"
 import { VideoCard } from "@/components/video-card"
 import { VideoDialog } from "@/components/video-dialog"
 
-export default async function Videos({ params }: { params: { id: number } }) {
+interface VideosProps {
+  params: {
+    id: string
+  }
+}
+
+export async function generateMetadata({ params }: VideosProps) {
+  const { name } = await tmdb.tv.detail({
+    id: params.id,
+  })
+
+  return {
+    title: `Videos - ${name}`,
+  }
+}
+
+export default async function Videos({ params }: VideosProps) {
   const { results } = await tmdb.tv.videos({ id: params.id })
 
   if (!results?.length) return <div className="empty-box">No videos</div>
 
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <ul className="grid gap-4 md:grid-cols-2">
       {results.map((video) => (
         <VideoCard.Root key={video.id}>
           <VideoCard.Thumbnail src={yt.thumbnail(video.key)} alt={video.name} />
@@ -29,6 +45,6 @@ export default async function Videos({ params }: { params: { id: number } }) {
           </VideoCard.Content>
         </VideoCard.Root>
       ))}
-    </div>
+    </ul>
   )
 }

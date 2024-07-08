@@ -3,6 +3,22 @@ import { tmdb } from "@/tmdb/api"
 import { MediaCard } from "@/components/media-card"
 import { PosterImage } from "@/components/poster-image"
 
+interface DetailCreditsProps {
+  params: {
+    id: string
+  }
+}
+
+export async function generateMetadata({ params }: DetailCreditsProps) {
+  const { name } = await tmdb.tv.detail({
+    id: params.id,
+  })
+
+  return {
+    title: `Credits - ${name}`,
+  }
+}
+
 export default async function DetailCredits({
   params,
 }: {

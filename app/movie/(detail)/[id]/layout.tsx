@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { notFound } from "next/navigation"
 import { tmdb } from "@/tmdb/api"
 import { PlayCircle } from "lucide-react"
 
@@ -10,35 +11,56 @@ import { DetailTabs } from "@/components/detail-tabs"
 import { DetailView } from "@/components/detail-view"
 import { PosterImage } from "@/components/poster-image"
 
-export default async function DetailLayout({
-  params,
-  children,
-}: {
+interface DetailLayoutProps {
   params: {
     id: string
   }
   children: React.ReactNode
-}) {
-  const { title, overview, genres, vote_average, backdrop_path, poster_path } =
-    await tmdb.movie.detail({
-      id: params.id,
-    })
+}
+
+export async function generateMetadata({ params }: DetailLayoutProps) {
+  const { title } = await tmdb.movie.detail({
+    id: params.id,
+  })
+
+  return {
+    title,
+  }
+}
+
+export default async function DetailLayout({
+  params,
+  children,
+}: DetailLayoutProps) {
+  const {
+    id,
+    title,
+    overview,
+    genres,
+    vote_average,
+    backdrop_path,
+    poster_path,
+  } = await tmdb.movie.detail({
+    id: params.id,
+  })
+
+  if (!id) return notFound()
 
   return (
     <DetailView.Root>
       <DetailView.Backdrop>
-        <BackdropImage image={backdrop_path} alt={title} />
+        <BackdropImage image={backdrop_path} alt={title} priority />
       </DetailView.Backdrop>
 
       <DetailView.Hero>
         <DetailView.Poster>
-          <PosterImage image={poster_path} alt={title} />
+          <PosterImage image={poster_path} alt={title} priority />
         </DetailView.Poster>
 
         <div>
           <DetailView.Genres>
             <Badge>{vote_average?.toFixed(1)}</Badge>
-            {genres.map((genre) => (
+            {genres?.map((genre) => (
               <DetailView.Genre key={genre.id}>{genre.name}</DetailView.Genre>
             ))}
           </DetailView.Genres>

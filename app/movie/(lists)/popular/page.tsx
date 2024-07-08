@@ -1,11 +1,19 @@
-import { pages } from "@/config/pages"
+import { pages } from "@/config"
+
 import { MovieList } from "@/components/movie-list"
 
-export default function Popular({
-  searchParams,
-}: {
+interface ListPageProps {
   searchParams?: Record<string, string>
-}) {
+}
+
+export async function generateMetadata() {
+  return {
+    title: "Popular Movies",
+    description: pages.movie.popular.description,
+  }
+}
+
+export default function Popular({ searchParams }: ListPageProps) {
   return (
     <MovieList
       list="popular"

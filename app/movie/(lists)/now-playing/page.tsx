@@ -1,11 +1,19 @@
-import { pages } from "@/config/pages"
+import { pages } from "@/config"
+
 import { MovieList } from "@/components/movie-list"
 
-export default async function NowPlaying({
-  searchParams,
-}: {
+interface ListPageProps {
   searchParams?: Record<string, string>
-}) {
+}
+
+export async function generateMetadata() {
+  return {
+    title: "Now Playing Movies",
+    description: pages.movie.nowPlaying.description,
+  }
+}
+
+export default async function NowPlaying({ searchParams }: ListPageProps) {
   return (
     <MovieList
       list="now_playing"

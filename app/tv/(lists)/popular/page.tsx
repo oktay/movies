@@ -1,11 +1,19 @@
-import { pages } from "@/config/pages"
+import { pages } from "@/config"
+
 import { TVList } from "@/components/tv-list"
 
-export default async function Popular({
-  searchParams,
-}: {
+interface ListPageProps {
   searchParams?: Record<string, string>
-}) {
+}
+
+export async function generateMetadata() {
+  return {
+    title: "Popular TV Shows",
+    description: pages.tv.popular.description,
+  }
+}
+
+export default async function Popular({ searchParams }: ListPageProps) {
   return (
     <TVList
       list="popular"

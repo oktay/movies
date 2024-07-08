@@ -3,10 +3,8 @@
 import { forwardRef } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { siteConfig } from "@/config"
-import { Popcorn } from "lucide-react"
+import { NavItem, navigation, siteConfig } from "@/config"
 
-import { NavItem, navigation } from "@/config/navigation"
 import { cn } from "@/lib/utils"
 import {
   NavigationMenu,
@@ -17,6 +15,8 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
+
+import { Icons } from "./icons"
 
 export const SiteNav: React.FC<React.ComponentProps<"div">> = () => {
   const pathname = usePathname()
@@ -33,12 +33,12 @@ export const SiteNav: React.FC<React.ComponentProps<"div">> = () => {
   return (
     <div className="flex gap-4">
       <Link href="/" className="flex items-center space-x-2">
-        <Popcorn className="size-6" />
+        <Icons.Logo className="size-6" />
         <span className="sr-only">{siteConfig.name}</span>
       </Link>
 
       {items && (
-        <NavigationMenu className="hidden md:flex">
+        <NavigationMenu className="hidden lg:flex">
           <NavigationMenuList>
             {items.map(
               ({ title, icon: Icon, items: sub, href, description }, index) =>

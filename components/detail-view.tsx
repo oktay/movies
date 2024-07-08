@@ -15,10 +15,7 @@ const Backdrop: React.FC<ComponentProps<"div">> = ({
 }) => {
   return (
     <div className={cn("container", className)} {...props}>
-      <div className="h-hero card-border relative mt-8">
-        {children}
-        <div className="md:overlay" />
-      </div>
+      <div className="h-hero card-border relative mt-8">{children}</div>
     </div>
   )
 }

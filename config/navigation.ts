@@ -4,10 +4,10 @@ import {
   ClapperboardIcon,
   HeartIcon,
   HomeIcon,
+  LucideIcon,
   PlayIcon,
   RadioTowerIcon,
   StarIcon,
-  TelescopeIcon,
   TrendingUpIcon,
   TvIcon,
 } from "lucide-react"
@@ -15,7 +15,7 @@ import {
 export type NavItem = {
   title: string
   href: string
-  icon?: React.ElementType
+  icon: LucideIcon
   description?: string
   items?: NavItem[]
 }
@@ -32,12 +32,12 @@ const Movies = {
   icon: ClapperboardIcon,
   description: pages.movie.root.description,
   items: [
-    {
-      title: "Discover",
-      href: "/movie/discover",
-      icon: TelescopeIcon,
-      description: pages.movie.discover.description,
-    },
+    // {
+    //   title: "Discover",
+    //   href: "/movie/discover",
+    //   icon: TelescopeIcon,
+    //   description: pages.movie.discover.description,
+    // },
     {
       title: "Popular",
       href: "/movie/popular",
@@ -71,12 +71,12 @@ const TVShows = {
   icon: TvIcon,
   description: pages.tv.root.description,
   items: [
-    {
-      title: "Discover",
-      href: "/tv/discover",
-      icon: TelescopeIcon,
-      description: pages.tv.discover.description,
-    },
+    // {
+    //   title: "Discover",
+    //   href: "/tv/discover",
+    //   icon: TelescopeIcon,
+    //   description: pages.tv.discover.description,
+    // },
     {
       title: "Popular",
       href: "/tv/popular",

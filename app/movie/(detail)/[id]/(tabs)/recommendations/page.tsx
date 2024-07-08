@@ -4,11 +4,25 @@ import { tmdb } from "@/tmdb/api"
 import { MediaCard } from "@/components/media-card"
 import { PosterImage } from "@/components/poster-image"
 
+interface DetailRecommendationsProps {
+  params: {
+    id: string
+  }
+}
+
+export async function generateMetadata({ params }: DetailRecommendationsProps) {
+  const { title } = await tmdb.movie.detail({
+    id: params.id,
+  })
+
+  return {
+    title: `Recommendations - ${title}`,
+  }
+}
+
 export default async function DetailRecommendations({
   params,
-}: {
-  params: { id: string }
-}) {
+}: DetailRecommendationsProps) {
   const { results } = await tmdb.movie.recommendations({
     id: params.id,
   })
@@ -18,7 +32,7 @@ export default async function DetailRecommendations({
   }
 
   return (
-    <div className="grid-list">
+    <ul className="grid-list">
       {results.map((movie) => (
         <Link href={`/movie/${movie.id}`} key={movie.id}>
           <MediaCard.Root>
@@ -34,6 +48,6 @@ export default async function DetailRecommendations({
           </MediaCard.Root>
         </Link>
       ))}
-    </div>
+    </ul>
   )
 }

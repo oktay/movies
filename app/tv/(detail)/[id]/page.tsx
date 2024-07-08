@@ -62,12 +62,12 @@ export default async function Detail({ params }: { params: { id: string } }) {
   ]
 
   return (
-    <div>
+    <section>
       <div className="grid grid-cols-2 gap-y-12 rounded border p-6 md:grid-cols-4">
         {items.map((item) => (
-          <div key={item.value}>
-            <h2 className="font-medium md:text-xl">{item.title}</h2>
-            <p className="mt-2 text-sm text-muted-foreground md:text-base">
+          <div key={item.title}>
+            <h2 className="text-sm font-medium md:text-xl">{item.title}</h2>
+            <p className="mt-2 text-xs text-muted-foreground md:text-base">
               {item.value}
             </p>
           </div>
@@ -81,7 +81,7 @@ export default async function Detail({ params }: { params: { id: string } }) {
             alt={last_episode_to_air.name}
           />
           <div className="overlay">
-            <div className="p-10">
+            <div className="p-4 md:p-10">
               <Badge className="mb-4 gap-1">
                 <span>S{last_episode_to_air.season_number}</span>
                 <span>E{last_episode_to_air.episode_number}</span>
@@ -90,11 +90,11 @@ export default async function Detail({ params }: { params: { id: string } }) {
               <h2 className="line-clamp-1 text-lg font-medium md:text-2xl">
                 {last_episode_to_air.name}
               </h2>
-              <p className="max-w-xl text-muted-foreground">
+              <p className="line-clamp-3 max-w-xl text-muted-foreground md:line-clamp-6">
                 {last_episode_to_air.overview}
               </p>
               <Link
-                href={`/tv/${params.id}/episodes`}
+                href={`/tv/${params.id}/seasons`}
                 className={cn(buttonVariants({ variant: "default" }), "mt-4")}
               >
                 View Episodes
@@ -103,6 +103,6 @@ export default async function Detail({ params }: { params: { id: string } }) {
           </div>
         </div>
       )}
-    </div>
+    </section>
   )
 }

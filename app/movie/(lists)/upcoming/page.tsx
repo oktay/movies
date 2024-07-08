@@ -1,11 +1,19 @@
-import { pages } from "@/config/pages"
+import { pages } from "@/config"
+
 import { MovieList } from "@/components/movie-list"
 
-export default async function Upcoming({
-  searchParams,
-}: {
+interface ListPageProps {
   searchParams?: Record<string, string>
-}) {
+}
+
+export async function generateMetadata() {
+  return {
+    title: "Upcoming Movies",
+    description: pages.movie.upcoming.description,
+  }
+}
+
+export default async function Upcoming({ searchParams }: ListPageProps) {
   return (
     <MovieList
       list="upcoming"

@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { notFound } from "next/navigation"
 import { tmdb } from "@/tmdb/api"
 import { MovieListType } from "@/tmdb/api/types"
 
@@ -23,6 +24,10 @@ export const MovieList = async ({
     page,
   })
 
+  if (!data.results) {
+    return notFound()
+  }
+
   const currentPage = data.page
   const totalPages = data.total_pages > 500 ? 500 : data.total_pages
 
@@ -40,7 +45,7 @@ export const MovieList = async ({
       <div className="space-y-8">
         <div className="grid-list">
           {data.results.map((movie) => (
-            <Link href={`/movie/${movie.id}`} key={movie.id}>
+            <Link href={`/movie/${movie.id}`} key={movie.id} className="w-full">
               <MediaCard.Root>
                 <PosterImage
                   image={movie.poster_path}

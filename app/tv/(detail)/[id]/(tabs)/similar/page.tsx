@@ -4,11 +4,23 @@ import { tmdb } from "@/tmdb/api"
 import { MediaCard } from "@/components/media-card"
 import { PosterImage } from "@/components/poster-image"
 
-export default async function DetailSimilar({
-  params,
-}: {
-  params: { id: string }
-}) {
+interface DetailSimilarProps {
+  params: {
+    id: string
+  }
+}
+
+export async function generateMetadata({ params }: DetailSimilarProps) {
+  const { name } = await tmdb.tv.detail({
+    id: params.id,
+  })
+
+  return {
+    title: `Similar - ${name}`,
+  }
+}
+
+export default async function DetailSimilar({ params }: DetailSimilarProps) {
   const { results } = await tmdb.tv.similar({
     id: params.id,
   })
@@ -18,7 +30,7 @@ export default async function DetailSimilar({
   }
 
   return (
-    <div className="grid-list">
+    <ul className="grid-list">
       {results.map((tv) => (
         <Link href={`/tv/${tv.id}`} key={tv.id}>
           <MediaCard.Root>
@@ -30,6 +42,6 @@ export default async function DetailSimilar({
           </MediaCard.Root>
         </Link>
       ))}
-    </div>
+    </ul>
   )
 }

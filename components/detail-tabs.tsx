@@ -50,9 +50,9 @@ export const DetailTabs = ({
 
   if (type === "tv") {
     tabs.splice(2, 0, {
-      label: "Episodes",
-      value: "episodes",
-      href: `${page}/episodes`,
+      label: "Seasons",
+      value: "seasons",
+      href: `${page}/seasons`,
     })
   }
 
@@ -66,19 +66,21 @@ export const DetailTabs = ({
   }
 
   return (
-    <Tabs value={tab?.value}>
-      <TabsList className="mb-4 w-full justify-start overflow-auto md:w-auto md:justify-center">
-        {tabs.map(({ label, value, href }) => (
-          <TabsTrigger
-            key={value}
-            value={value}
-            onClick={() => handleTabChange(href)}
-            asChild
-          >
-            <button>{label}</button>
-          </TabsTrigger>
-        ))}
-      </TabsList>
+    <Tabs value={tab?.value} className="w-full">
+      <div className="mb-4 max-w-[100vw] justify-start overflow-auto md:w-auto md:justify-center">
+        <TabsList>
+          {tabs.map(({ label, value, href }) => (
+            <TabsTrigger
+              key={value}
+              value={value}
+              onClick={() => handleTabChange(href)}
+              asChild
+            >
+              <button>{label}</button>
+            </TabsTrigger>
+          ))}
+        </TabsList>
+      </div>
     </Tabs>
   )
 }

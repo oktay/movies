@@ -74,10 +74,10 @@
     @apply bg-background text-foreground;
   }
   .grid-list {
-    @apply grid gap-4 grid-cols-[repeat(auto-fill,minmax(10rem,1fr))] lg:grid-cols-[repeat(auto-fill,minmax(15rem,1fr))];
+    @apply grid gap-4 grid-cols-[repeat(auto-fill,minmax(8rem,1fr))] lg:grid-cols-[repeat(auto-fill,minmax(15rem,1fr))];
   }
   .h-hero {
-    @apply h-[55dvh];
+    @apply h-[55vh];
   }
   .overlay {
     @apply absolute inset-0 flex items-end bg-gradient-to-t from-background via-background/70 to-transparent;
