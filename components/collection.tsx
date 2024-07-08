@@ -19,6 +19,9 @@ export const Collection = async ({ id }: { id: number }) => {
           <h2 className="line-clamp-1 text-lg font-medium md:text-2xl">
             {collection.name}
           </h2>
+          <p className="line-clamp-1 max-w-2xl text-muted-foreground">
+            Includes: {collection.parts.map((part) => part.title).join(", ")}
+          </p>
           <CollectionDialog collection={collection} />
         </div>
       </div>
