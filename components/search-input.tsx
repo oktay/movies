@@ -53,6 +53,12 @@ export const SearchInput = () => {
     setTerm(event.target.value)
   }
 
+  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.key === "Enter") {
+      handleSearch(value)
+    }
+  }
+
   function clearSearch() {
     setTerm("")
   }
@@ -65,6 +71,7 @@ export const SearchInput = () => {
         type="text"
         value={term}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
         placeholder="Search..."
         className="pl-10 text-base"
       />

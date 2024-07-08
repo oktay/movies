@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 const Root: React.FC<ComponentProps<"div">> = ({ className, ...props }) => {
   return (
     <div
-      className={cn("card-border relative aspect-video", className)}
+      className={cn("card-border relative aspect-video bg-muted", className)}
       {...props}
     />
   )
