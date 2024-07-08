@@ -38,7 +38,7 @@ export const SiteMenu = () => {
   const [open, setOpen] = useDialog()
 
   return (
-    <Drawer open={open} onOpenChange={setOpen}>
+    <Drawer open={open} onOpenChange={setOpen} shouldScaleBackground>
       <DrawerTrigger asChild>
         <Button size="icon" variant="outline" className="shrink-0 lg:hidden">
           <MenuIcon className="size-4" />

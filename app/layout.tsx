@@ -45,12 +45,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
         )}
       >
         <HolyLoader color="#ccc" />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          vaul-drawer-wrapper=""
-        >
-          <div className="relative flex min-h-screen flex-col bg-background">
+        <ThemeProvider attribute="class" defaultTheme="dark">
+          <div
+            className="relative flex min-h-screen flex-col"
+            vaul-drawer-wrapper=""
+          >
             <SiteHeader />
             <div className="flex-1">{children}</div>
             <SiteFooter />
