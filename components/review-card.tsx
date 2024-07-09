@@ -1,8 +1,8 @@
 import { Review } from "@/tmdb/models"
 import { format } from "@/tmdb/utils"
 
-import { AvatarImage } from "./avatar-image"
-import { Badge } from "./ui/badge"
+import { Badge } from "@/components/ui/badge"
+import { AvatarImage } from "@/components/avatar-image"
 
 interface ReviewCardProps {
   review: Review

@@ -5,8 +5,8 @@ import {
   TvShowWithMediaType,
 } from "@/tmdb/models"
 
-import { MediaCard } from "./media-card"
-import { PosterImage } from "./poster-image"
+import { MediaCard } from "@/components/media-card"
+import { PosterImage } from "@/components/poster-image"
 
 export const SearchItem = ({
   media,

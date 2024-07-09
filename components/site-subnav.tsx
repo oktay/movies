@@ -1,9 +1,9 @@
 import Link from "next/link"
 import { siteConfig } from "@/config"
 
-import { Icons } from "./icons"
-import { ThemeToggle } from "./theme-toggle"
-import { buttonVariants } from "./ui/button"
+import { buttonVariants } from "@/components/ui/button"
+import { Icons } from "@/components/icons"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export const SiteSubnav = () => {
   return (

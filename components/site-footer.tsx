@@ -1,7 +1,7 @@
 import { ComponentProps } from "react"
 import { siteConfig } from "@/config"
 
-import { Icons } from "./icons"
+import { Icons } from "@/components/icons"
 
 export const SiteFooter: React.FC<ComponentProps<"footer">> = () => {
   const year = new Date().getFullYear()

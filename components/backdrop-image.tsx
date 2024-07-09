@@ -3,8 +3,7 @@ import Image from "next/image"
 import { BackdropSize, tmdbImage } from "@/tmdb/utils"
 
 import { cn } from "@/lib/utils"
-
-import { Icons } from "./icons"
+import { Icons } from "@/components/icons"
 
 type BackdropProps = ComponentProps<"div"> & {
   image?: string

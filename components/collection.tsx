@@ -1,7 +1,7 @@
 import { tmdb } from "@/tmdb/api"
 
-import { BackdropImage } from "./backdrop-image"
-import { CollectionDialog } from "./collection-dialog"
+import { BackdropImage } from "@/components/backdrop-image"
+import { CollectionDialog } from "@/components/collection-dialog"
 
 export const Collection = async ({ id }: { id: number }) => {
   const collection = await tmdb.collection.details({

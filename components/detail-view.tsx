@@ -1,8 +1,7 @@
 import { ComponentProps } from "react"
 
 import { cn } from "@/lib/utils"
-
-import { Badge, BadgeProps } from "./ui/badge"
+import { Badge, BadgeProps } from "@/components/ui/badge"
 
 const Root: React.FC<ComponentProps<"div">> = ({ className, ...props }) => {
   return <div className={cn(className)} {...props} />

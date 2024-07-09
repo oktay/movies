@@ -4,10 +4,8 @@ import Link from "next/link"
 import { useDialog } from "@/hooks"
 import { DetailedCollection } from "@/tmdb/models"
 
-import { MediaCard } from "./media-card"
-import { PosterImage } from "./poster-image"
-import { Badge } from "./ui/badge"
-import { Button } from "./ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -16,8 +14,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./ui/dialog"
-import { ScrollArea } from "./ui/scroll-area"
+} from "@/components/ui/dialog"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { MediaCard } from "@/components/media-card"
+import { PosterImage } from "@/components/poster-image"
 
 export const CollectionDialog = ({
   collection: { name, overview, parts },

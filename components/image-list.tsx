@@ -3,9 +3,8 @@ import { Image } from "@/tmdb/models"
 import { tmdbImage } from "@/tmdb/utils"
 
 import { cn, pluralize } from "@/lib/utils"
-
-import { BackdropImage } from "./backdrop-image"
-import { PosterImage } from "./poster-image"
+import { BackdropImage } from "@/components/backdrop-image"
+import { PosterImage } from "@/components/poster-image"
 
 type ImageListProps = {
   images: Image[]

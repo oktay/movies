@@ -5,8 +5,8 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { Search, XIcon } from "lucide-react"
 import { useDebounce } from "use-debounce"
 
-import { Button } from "./ui/button"
-import { Input } from "./ui/input"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 
 export const SearchInput = () => {
   const router = useRouter()

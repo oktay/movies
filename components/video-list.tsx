@@ -6,17 +6,16 @@ import { yt } from "@/tmdb/utils"
 import { PlayCircle } from "lucide-react"
 
 import { pluralize } from "@/lib/utils"
-
-import { Label } from "./ui/label"
+import { Label } from "@/components/ui/label"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select"
-import { VideoCard } from "./video-card"
-import { VideoDialog } from "./video-dialog"
+} from "@/components/ui/select"
+import { VideoCard } from "@/components/video-card"
+import { VideoDialog } from "@/components/video-dialog"
 
 interface VideoListProps {
   videos: Video[]

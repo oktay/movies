@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
-import { TabsTrigger } from "./ui/tabs"
+import { TabsTrigger } from "@/components/ui/tabs"
 
 interface TabsLinkProps {
   href: string

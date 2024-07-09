@@ -3,8 +3,7 @@ import Image from "next/image"
 import { PosterSize, tmdbImage } from "@/tmdb/utils"
 
 import { cn } from "@/lib/utils"
-
-import { Icons } from "./icons"
+import { Icons } from "@/components/icons"
 
 type PosterImageProps = ComponentProps<"div"> & {
   image?: string

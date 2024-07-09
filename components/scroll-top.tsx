@@ -4,8 +4,7 @@ import { useEffect, useState } from "react"
 import { ChevronUpIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-
-import { Button, ButtonProps } from "./ui/button"
+import { Button, ButtonProps } from "@/components/ui/button"
 
 export const ScrollTop: React.FC<ButtonProps> = ({
   variant = "outline",

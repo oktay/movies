@@ -6,16 +6,13 @@ import { useDialog } from "@/hooks"
 import { MenuIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-
-import { Icons } from "./icons"
-import { ThemeToggle } from "./theme-toggle"
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "./ui/accordion"
-import { Button, buttonVariants } from "./ui/button"
+} from "@/components/ui/accordion"
+import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Drawer,
   DrawerContent,
@@ -23,7 +20,9 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "./ui/drawer"
+} from "@/components/ui/drawer"
+import { Icons } from "@/components/icons"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 const itemStyle = cn(
   buttonVariants({

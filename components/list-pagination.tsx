@@ -10,7 +10,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "./ui/pagination"
+} from "@/components/ui/pagination"
 
 export type ListPaginationProps = {
   currentPage: number

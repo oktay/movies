@@ -4,9 +4,8 @@ import { tmdb } from "@/tmdb/api"
 import { MovieWithMediaType, TvShowWithMediaType } from "@/tmdb/models"
 
 import { ListPagination } from "@/components/list-pagination"
-
-import { MediaCard } from "./media-card"
-import { PosterImage } from "./poster-image"
+import { MediaCard } from "@/components/media-card"
+import { PosterImage } from "@/components/poster-image"
 
 export const TrendList = async ({
   type,

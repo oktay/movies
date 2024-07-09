@@ -15,8 +15,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-
-import { Icons } from "./icons"
+import { Icons } from "@/components/icons"
 
 export const SiteNav: React.FC<React.ComponentProps<"div">> = () => {
   const pathname = usePathname()

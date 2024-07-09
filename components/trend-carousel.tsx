@@ -6,17 +6,16 @@ import { Movie, TvShow } from "@/tmdb/models"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-
-import { MediaCard } from "./media-card"
-import { PosterImage } from "./poster-image"
-import { Badge } from "./ui/badge"
-import { Button, buttonVariants } from "./ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Carousel,
   CarouselApi,
   CarouselContent,
   CarouselItem,
-} from "./ui/carousel"
+} from "@/components/ui/carousel"
+import { MediaCard } from "@/components/media-card"
+import { PosterImage } from "@/components/poster-image"
 
 type TrendCarouselProps = {
   title?: string
