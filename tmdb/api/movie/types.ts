@@ -33,3 +33,8 @@ export type MovieImagesRequestParams = {
 export type MovieVideosRequestParams = {
   id: string | number
 }
+
+export type MovieReviewsRequestParams = {
+  id: string | number
+  page?: string
+}

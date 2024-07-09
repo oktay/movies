@@ -21,6 +21,7 @@ export const SearchInput = () => {
   useEffect(() => {
     if (pathname !== "/search") {
       setPage(pathname)
+      setTerm("")
     }
   }, [pathname])
 

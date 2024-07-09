@@ -5,6 +5,7 @@ import { GeistSans } from "geist/font/sans"
 import HolyLoader from "holy-loader"
 
 import { cn } from "@/lib/utils"
+import { ScrollTop } from "@/components/scroll-top"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
@@ -55,6 +56,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <SiteFooter />
           </div>
           <TailwindIndicator />
+          <ScrollTop />
         </ThemeProvider>
       </body>
     </html>

@@ -35,7 +35,7 @@ export default async function IndexPage() {
     <section>
       {hero && (
         <div className="container mt-8">
-          <div className="card-border h-hero relative">
+          <div className="card h-hero relative">
             <BackdropImage image={hero.backdrop_path} alt={hero.title} />
 
             <div className="overlay">

@@ -45,7 +45,12 @@ export const TVList = async ({
       <div className="space-y-8">
         <div className="grid-list">
           {data.results?.map((tvShow) => (
-            <Link href={`/tv/${tvShow.id}`} key={tvShow.id} className="w-full">
+            <Link
+              href={`/tv/${tvShow.id}`}
+              key={tvShow.id}
+              className="w-full"
+              prefetch={false}
+            >
               <MediaCard.Root>
                 <PosterImage
                   image={tvShow.poster_path}

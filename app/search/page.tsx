@@ -1,10 +1,8 @@
-import Link from "next/link"
 import { redirect } from "next/navigation"
 import { tmdb } from "@/tmdb/api"
 
 import { ListPagination } from "@/components/list-pagination"
-import { MediaCard } from "@/components/media-card"
-import { PosterImage } from "@/components/poster-image"
+import { SearchItem } from "@/components/search-item"
 
 interface SearchProps {
   searchParams: {
@@ -38,30 +36,7 @@ export default async function Search({ searchParams }: SearchProps) {
         </div>
         <div className="grid-list">
           {results?.map((result) => {
-            return (
-              <Link key={result.id} href={`/${result.media_type}/${result.id}`}>
-                <MediaCard.Root>
-                  <PosterImage
-                    image={
-                      result.media_type === "person"
-                        ? result.profile_path
-                        : result.poster_path
-                    }
-                    alt={
-                      result.media_type === "movie" ? result.title : result.name
-                    }
-                  />
-
-                  <MediaCard.Content>
-                    <MediaCard.Title>
-                      {result.media_type === "movie"
-                        ? result.title
-                        : result.name}
-                    </MediaCard.Title>
-                  </MediaCard.Content>
-                </MediaCard.Root>
-              </Link>
-            )
+            return <SearchItem key={result.id} media={result} />
           })}
         </div>
         <ListPagination currentPage={page} totalPages={total_pages} />

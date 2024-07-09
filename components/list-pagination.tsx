@@ -35,20 +35,21 @@ export const ListPagination: React.FC<ListPaginationProps> = ({
           </PaginationItem>
         )}
 
-        {numbers.map((number) =>
-          number === "ellipsis1" || number === "ellipsis2" ? (
-            <PaginationEllipsis key={number} />
-          ) : (
-            <PaginationItem key={number}>
-              <PaginationLink
-                isActive={number === currentPage}
-                href={pageLink(number)}
-              >
-                {number}
-              </PaginationLink>
-            </PaginationItem>
-          )
-        )}
+        {totalPages > 1 &&
+          numbers.map((number) =>
+            number === "ellipsis1" || number === "ellipsis2" ? (
+              <PaginationEllipsis key={number} />
+            ) : (
+              <PaginationItem key={number}>
+                <PaginationLink
+                  isActive={number === currentPage}
+                  href={pageLink(number)}
+                >
+                  {number}
+                </PaginationLink>
+              </PaginationItem>
+            )
+          )}
 
         {currentPage !== totalPages && (
           <PaginationItem>

@@ -4,10 +4,7 @@ import { cn } from "@/lib/utils"
 
 const Root: React.FC<ComponentProps<"div">> = ({ className, ...props }) => {
   return (
-    <div
-      className={cn("card-border relative aspect-poster", className)}
-      {...props}
-    />
+    <div className={cn("card relative aspect-poster", className)} {...props} />
   )
 }
 

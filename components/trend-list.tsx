@@ -53,7 +53,11 @@ export const TrendList = async ({
       <div className="space-y-8">
         <div className="grid-list">
           {results.map((item) => (
-            <Link href={`/${item.media_type}/${item.id}`} key={item.id}>
+            <Link
+              href={`/${item.media_type}/${item.id}`}
+              key={item.id}
+              prefetch={false}
+            >
               <MediaCard.Root>
                 <PosterImage
                   image={item.poster_path}

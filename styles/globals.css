@@ -77,15 +77,18 @@
     @apply grid gap-4 grid-cols-[repeat(auto-fill,minmax(8rem,1fr))] lg:grid-cols-[repeat(auto-fill,minmax(15rem,1fr))];
   }
   .h-hero {
-    @apply h-[55vh];
+    @apply h-[50vh];
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-md border overflow-hidden;
   }
   .overlay {
     @apply absolute inset-0 flex items-end bg-gradient-to-t from-background/95 to-transparent;
   }
   .empty-box {
     @apply flex h-32 items-center justify-center rounded-lg border border-dashed text-muted-foreground;
-  }
-  .card-border {
-    @apply rounded-md border overflow-hidden;
   }
 }

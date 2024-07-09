@@ -1,6 +1,6 @@
 import { ComponentProps } from "react"
 import Image from "next/image"
-import { tmdbImage } from "@/tmdb/utils"
+import { PosterSize, tmdbImage } from "@/tmdb/utils"
 
 import { cn } from "@/lib/utils"
 
@@ -8,20 +8,20 @@ import { Icons } from "./icons"
 
 type PosterImageProps = ComponentProps<"div"> & {
   image?: string
-  size?: "w500" | "original"
+  size?: PosterSize
   alt: string
   priority?: boolean
 }
 
 export const PosterImage: React.FC<PosterImageProps> = ({
   image,
-  size = "original",
+  size,
   alt,
   className,
   priority,
   ...props
 }) => {
-  const src = image ? tmdbImage(image, size) : null
+  const src = image ? tmdbImage.poster(image, size) : null
 
   if (!src) {
     return (

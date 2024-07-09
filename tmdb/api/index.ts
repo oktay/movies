@@ -1,5 +1,6 @@
 import { collection } from "./collection"
 import { movie } from "./movie"
+import { person } from "./person"
 import { search } from "./search"
 import { trending } from "./trending"
 import { tv } from "./tv"
@@ -12,4 +13,5 @@ export const tmdb = {
   movie,
   tv,
   search,
+  person,
 }

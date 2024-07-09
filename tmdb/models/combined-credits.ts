@@ -1,13 +1,15 @@
 import { MovieWithMediaType, TvShowWithMediaType } from "."
 import { MediaType } from "./commons"
 
-export type RawMovieCredit = MovieWithMediaType & {
-  character: string
-}
+export type RawMovieCredit = MovieWithMediaType &
+  CombinedCredit & {
+    character: string
+  }
 
-export type RawTvSerieCredit = TvShowWithMediaType & {
-  character: string
-}
+export type RawTvSerieCredit = TvShowWithMediaType &
+  CombinedCredit & {
+    character: string
+  }
 
 export type RawCombinedCredit = RawMovieCredit | RawTvSerieCredit
 
@@ -18,6 +20,7 @@ export type CombinedCreditsResponse = {
 
 export type CombinedCredit = {
   id: number
+  adult: boolean
   title: string
   date: string
   media_type: MediaType
@@ -25,6 +28,7 @@ export type CombinedCredit = {
   vote_average: number
   vote_count: number
   backdrop_path?: string
+  department?: string
 }
 
 export type CombinedCredits = {

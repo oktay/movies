@@ -11,32 +11,14 @@ export function getRandomItems<T>(array: T[], count: number): T[] {
   return array.slice(startIndex, startIndex + count)
 }
 
-export function getRuntime(minutes: number) {
-  const seconds = minutes * 60
-  let secondsLeft = seconds
-
-  const hours = Math.floor(secondsLeft / 3600)
-  secondsLeft = secondsLeft % 3600
-
-  const mins = Math.floor(secondsLeft / 60)
-  secondsLeft = secondsLeft % 60
-
-  return `${hours ? hours + "h" : ""} ${mins}min`
+export function pluralize(count: number, singular: string, plural: string) {
+  return count === 1 ? singular : plural
 }
 
-export function getFullDate(date: string) {
-  return new Date(date).toLocaleDateString("en-US", {
-    dateStyle: "long",
-  })
+export function joiner(arr: any[], key: string) {
+  return arr.length ? arr.map((item) => item[key]).join(", ") : "—"
 }
 
-export function getYear(date: string) {
-  return new Date(date).getFullYear()
-}
-
-export function numberWithCommas(x: number) {
-  const formatter = new Intl.NumberFormat("en-US", {
-    style: "decimal",
-  })
-  return formatter.format(x)
+export function formatValue(value: any, formatter?: any) {
+  return value ? (formatter ? formatter(value) : value) : "—"
 }

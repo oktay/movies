@@ -45,7 +45,12 @@ export const MovieList = async ({
       <div className="space-y-8">
         <div className="grid-list">
           {data.results.map((movie) => (
-            <Link href={`/movie/${movie.id}`} key={movie.id} className="w-full">
+            <Link
+              href={`/movie/${movie.id}`}
+              key={movie.id}
+              className="w-full"
+              prefetch={false}
+            >
               <MediaCard.Root>
                 <PosterImage
                   image={movie.poster_path}

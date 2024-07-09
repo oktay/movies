@@ -2,12 +2,11 @@
 
 import { Suspense } from "react"
 
+import { Skeleton } from "@/components/ui/skeleton"
+import { SearchInput } from "@/components/search-input"
+import { SiteMenu } from "@/components/site-menu"
 import { SiteNav } from "@/components/site-nav"
-
-import { SearchInput } from "./search-input"
-import { SiteMenu } from "./site-menu"
-import { SiteNavSecondary } from "./site-nav-secondary"
-import { Skeleton } from "./ui/skeleton"
+import { SiteSubnav } from "@/components/site-subnav"
 
 export const SiteHeader = () => {
   return (
@@ -21,7 +20,7 @@ export const SiteHeader = () => {
           </Suspense>
 
           <SiteMenu />
-          <SiteNavSecondary />
+          <SiteSubnav />
         </div>
       </div>
     </header>

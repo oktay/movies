@@ -1,6 +1,6 @@
 import { ComponentProps } from "react"
 import Image from "next/image"
-import { tmdbImage } from "@/tmdb/utils"
+import { BackdropSize, tmdbImage } from "@/tmdb/utils"
 
 import { cn } from "@/lib/utils"
 
@@ -8,7 +8,7 @@ import { Icons } from "./icons"
 
 type BackdropProps = ComponentProps<"div"> & {
   image?: string
-  size?: "w500" | "original"
+  size?: BackdropSize
   alt: string
   priority?: boolean
 }
@@ -21,7 +21,7 @@ export const BackdropImage: React.FC<BackdropProps> = ({
   priority,
   ...props
 }) => {
-  const src = image ? tmdbImage(image, size) : null
+  const src = image ? tmdbImage.backdrop(image, size) : null
 
   if (!src) {
     return (

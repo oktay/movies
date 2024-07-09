@@ -33,3 +33,8 @@ export type TvImagesRequestParams = {
 export type TvVideosRequestParams = {
   id: string | number
 }
+
+export type TvReviewsRequestParams = {
+  id: string | number
+  page?: string
+}

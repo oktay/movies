@@ -9,7 +9,7 @@ export const Collection = async ({ id }: { id: number }) => {
   })
 
   return (
-    <div className="card-border h-hero relative mt-4 w-full">
+    <div className="card h-hero relative mt-4 w-full">
       <BackdropImage image={collection.backdrop_path} alt={collection.name} />
       <div className="overlay">
         <div className="p-4 md:p-10">

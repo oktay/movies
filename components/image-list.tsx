@@ -2,7 +2,7 @@ import { ComponentProps } from "react"
 import { Image } from "@/tmdb/models"
 import { tmdbImage } from "@/tmdb/utils"
 
-import { cn } from "@/lib/utils"
+import { cn, pluralize } from "@/lib/utils"
 
 import { BackdropImage } from "./backdrop-image"
 import { PosterImage } from "./poster-image"
@@ -23,14 +23,14 @@ const ImageList: React.FC<ImageListProps> = ({ images, type }) => {
       <h2 className="text-lg font-medium">
         <span>{title}</span>
         <span className="ml-1 align-middle text-xs text-muted-foreground">
-          {count} Image{count > 1 ? "s" : ""}
+          {count} {pluralize(count, "Image", "Images")}
         </span>
       </h2>
       {count ? (
         <div className="grid-list">
           {images.map((image, index) => (
             <a
-              href={tmdbImage(image.file_path)}
+              href={tmdbImage.url(image.file_path)}
               target="_blank"
               key={image.file_path}
               className={cn("relative", aspect)}
@@ -39,7 +39,7 @@ const ImageList: React.FC<ImageListProps> = ({ images, type }) => {
               <ImageComponent
                 image={image.file_path}
                 alt={`${type} ${index + 1}`}
-                size="w500"
+                size="w780"
                 className="rounded-md"
               />
             </a>

@@ -1,0 +1,35 @@
+import { CombinedCreditsResponse, PersonDetails } from "@/tmdb/models"
+
+import { api } from "../api"
+import { PersonDetailsRequestParams } from "./types"
+
+/**
+ * Fetches details for a person by ID.
+ * @param id - Person ID.
+ * @param append - Additional information to append to the response.
+ * @returns A promise resolving to the person details.
+ * @see https://developers.themoviedb.org/3/reference/person-details
+ */
+const details = async ({ id, append }: PersonDetailsRequestParams) =>
+  api.fetcher<PersonDetails>({
+    endpoint: `person/${id}`,
+    params: {
+      append_to_response: append,
+    },
+  })
+
+/**
+ * Fetches combined credits for a person by ID.
+ * @param id - Person ID.
+ * @returns A promise resolving to the combined credits for the person.
+ * @see https://developers.themoviedb.org/3/reference/person-combined-credits
+ */
+const combinedCredits = async ({ id }: PersonDetailsRequestParams) =>
+  api.fetcher<CombinedCreditsResponse>({
+    endpoint: `person/${id}/combined_credits`,
+  })
+
+export const person = {
+  details,
+  combinedCredits,
+}
