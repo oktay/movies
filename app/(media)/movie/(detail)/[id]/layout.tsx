@@ -87,7 +87,7 @@ export default async function DetailLayout({
 
       <DetailView.Content>
         <Tabs className="mt-12 w-full">
-          <div className="max-w-screen -mx-8 overflow-x-scroll pl-8 lg:m-0 lg:p-0">
+          <div className="max-w-screen scrollbar-hidden -mx-8 overflow-x-scroll px-8 lg:m-0 lg:p-0">
             <TabsList>
               <TabsLink href={`/movie/${id}`}>Overview</TabsLink>
               <TabsLink href={`/movie/${id}/credits`}>Credits</TabsLink>
