@@ -3,11 +3,11 @@ import { tmdb } from "@/tmdb/api"
 import { format } from "@/tmdb/utils"
 import { ArrowLeft } from "lucide-react"
 
-import { cn } from "@/lib/utils"
+import { cn, pad, pluralize } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
-import { MediaCard } from "@/components/media-card"
-import { PosterImage } from "@/components/poster-image"
+import { Backdrop } from "@/components/backdrop"
+import { Poster } from "@/components/poster"
 
 interface DetailSeasonProps {
   params: {
@@ -29,73 +29,108 @@ export async function generateMetadata({ params }: DetailSeasonProps) {
 export default async function DetailSeason({
   params: { id, season },
 }: DetailSeasonProps) {
-  const { episodes, air_date, name } = await tmdb.tvSeasons.details({
-    id,
-    season,
-  })
+  const { episodes, poster_path, name, overview, air_date } =
+    await tmdb.tvSeasons.details({
+      id,
+      season,
+    })
 
   return (
     <section>
-      <div className="mb-4 flex gap-2 rounded-md border p-4">
+      <div className="flex items-start pb-4">
+        <div className="relative aspect-poster w-20 md:w-32">
+          <Poster image={poster_path} alt={name} size="w185" className="card" />
+        </div>
+
+        <div className="flex flex-1 flex-col self-stretch pl-4 md:py-4 md:pl-6">
+          <h1 className="text-lg font-semibold">{name}</h1>
+          <div
+            className="mb-2 line-clamp-6 text-sm text-muted-foreground"
+            dangerouslySetInnerHTML={{
+              __html: format.content(overview || "<em>No details</em>"),
+            }}
+          />
+          <p className="mt-auto text-sm">{format.date(air_date)}</p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-3 place-items-start rounded-md border p-2">
         <Link
           href={`/tv/${id}/seasons`}
           className={cn(
             buttonVariants({
               variant: "ghost",
-              size: "icon",
-            })
+              size: "sm",
+            }),
+            "w-auto pl-4"
           )}
         >
-          <ArrowLeft className="size-4" />
-          <span className="sr-only">Back</span>
+          <ArrowLeft className="size-4 md:mr-2" />
+          <span className="sr-only md:not-sr-only">Back</span>
         </Link>
 
-        <div className="mt-1">
-          <h2 className="text-lg font-medium md:text-xl">{name}</h2>
-          {air_date && (
-            <p className="text-sm text-muted-foreground md:text-base">
-              {format.date(air_date)}
-            </p>
-          )}
+        <h2 className="place-self-center text-sm font-medium">Episodes</h2>
+
+        <div className="place-self-end self-center pr-2 text-xs text-muted-foreground">
+          {episodes?.length} {pluralize(episodes.length, "episode", "episodes")}
         </div>
       </div>
 
       {episodes?.length ? (
-        <div className="grid gap-4 lg:grid-cols-2">
-          {episodes.map((episode) => (
-            <div key={episode.id}>
-              <MediaCard.Root
-                className="aspect-square md:aspect-[21/9]"
-                key={episode.id}
-              >
-                <PosterImage image={episode.still_path} alt={episode.name} />
-              </MediaCard.Root>
-              <div className="mt-2">
-                <MediaCard.Title>
-                  E{episode.episode_number}: {episode.name}
-                </MediaCard.Title>
-                <MediaCard.Excerpt>
-                  {episode.air_date && format.date(episode.air_date)}
-                </MediaCard.Excerpt>
-                <MediaCard.Excerpt
-                  className="line-clamp-6 space-y-2"
-                  dangerouslySetInnerHTML={{
-                    __html: format.content(
-                      episode.overview || "<em>No details</em>"
-                    ),
-                  }}
-                />
-                <Badge className="mt-2">
-                  {episode.vote_average > 0
-                    ? episode.vote_average?.toFixed(1)
-                    : "Not rated"}
-                </Badge>
+        <div className="grid gap-4 py-4 md:grid-cols-2 lg:grid-cols-3">
+          {episodes.map(
+            ({
+              id,
+              still_path,
+              name,
+              episode_number,
+              vote_average,
+              air_date,
+              overview,
+            }) => (
+              <div key={id}>
+                <div className="relative aspect-video" key={id}>
+                  <Backdrop
+                    className="card"
+                    image={still_path}
+                    alt={name}
+                    size="w780"
+                  />
+                </div>
+
+                <div className="mt-4">
+                  <div className="flex justify-between">
+                    <h3>
+                      <span className="text-muted-foreground">
+                        E{pad(episode_number)}
+                      </span>{" "}
+                      {name}
+                    </h3>
+
+                    <Badge className="h-5">
+                      {vote_average > 0
+                        ? vote_average?.toFixed(1)
+                        : "Not rated"}
+                    </Badge>
+                  </div>
+
+                  <div
+                    className="mt-2 line-clamp-6 space-y-2 text-sm"
+                    dangerouslySetInnerHTML={{
+                      __html: format.content(overview || "<em>No details</em>"),
+                    }}
+                  />
+
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    {air_date && format.date(air_date)}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            )
+          )}
         </div>
       ) : (
-        <div className="empty-box">No episodes</div>
+        <div className="empty-box mt-4">No episodes</div>
       )}
     </section>
   )

@@ -7,14 +7,14 @@ import { ArrowRight } from "lucide-react"
 import { cn, getRandomItems } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
-import { BackdropImage } from "@/components/backdrop-image"
+import { Backdrop } from "@/components/backdrop"
 import { TrendCarousel } from "@/components/trend-carousel"
 
 export const metadata: Metadata = {
   title: "Home",
 }
 
-export default async function IndexPage() {
+export default async function Home() {
   const { results: movies } = await tmdb.trending.movie({
     time: "day",
     page: "1",
@@ -36,7 +36,7 @@ export default async function IndexPage() {
       {hero && (
         <div className="container mt-8">
           <div className="card h-hero relative">
-            <BackdropImage image={hero.backdrop_path} alt={hero.title} />
+            <Backdrop image={hero.backdrop_path} alt={hero.title} />
 
             <div className="overlay">
               <div className="mx-auto max-w-3xl p-4 pb-8 text-center md:p-12">

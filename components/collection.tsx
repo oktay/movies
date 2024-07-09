@@ -1,16 +1,20 @@
 import { tmdb } from "@/tmdb/api"
 
-import { BackdropImage } from "@/components/backdrop-image"
+import { Backdrop } from "@/components/backdrop"
 import { CollectionDialog } from "@/components/collection-dialog"
 
-export const Collection = async ({ id }: { id: number }) => {
+interface CollectionProps {
+  id: number
+}
+
+export const Collection: React.FC<CollectionProps> = async ({ id }) => {
   const collection = await tmdb.collection.details({
     id,
   })
 
   return (
     <div className="card h-hero relative mt-4 w-full">
-      <BackdropImage image={collection.backdrop_path} alt={collection.name} />
+      <Backdrop image={collection.backdrop_path} alt={collection.name} />
       <div className="overlay">
         <div className="p-4 md:p-10">
           <p className="line-clamp-3 text-xs text-muted-foreground md:text-lg">

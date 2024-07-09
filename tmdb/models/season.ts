@@ -37,6 +37,6 @@ export type SeasonDetails = {
   name: string
   overview: string
   id: number
-  poster_path: string | null
+  poster_path?: string
   season_number: number
 }

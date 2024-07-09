@@ -8,14 +8,16 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 
-export const VideoDialog = ({
-  video,
-  title,
-  children,
-}: {
+interface VideoDialogProps {
   video: string
   title: string
   children: React.ReactNode
+}
+
+export const VideoDialog: React.FC<VideoDialogProps> = ({
+  video,
+  title,
+  children,
 }) => {
   return (
     <Dialog modal>

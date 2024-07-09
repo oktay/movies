@@ -5,20 +5,22 @@ import { MovieWithMediaType, TvShowWithMediaType } from "@/tmdb/models"
 
 import { ListPagination } from "@/components/list-pagination"
 import { MediaCard } from "@/components/media-card"
-import { PosterImage } from "@/components/poster-image"
+import { Poster } from "@/components/poster"
 
-export const TrendList = async ({
-  type,
-  time,
-  page,
-  title,
-  description,
-}: {
+interface TrendListProps {
   type: "movie" | "tv"
   time: "day" | "week"
   page: string
   title?: string
   description?: string
+}
+
+export const TrendList: React.FC<TrendListProps> = async ({
+  type,
+  time,
+  page,
+  title,
+  description,
 }) => {
   const data = await tmdb.trending[type]({
     time,
@@ -58,11 +60,7 @@ export const TrendList = async ({
               prefetch={false}
             >
               <MediaCard.Root>
-                <PosterImage
-                  image={item.poster_path}
-                  alt={item.title}
-                  size="w500"
-                />
+                <Poster image={item.poster_path} alt={item.title} size="w500" />
                 <MediaCard.Content>
                   <MediaCard.Title>{item.title}</MediaCard.Title>
                   <MediaCard.Excerpt>{item.overview}</MediaCard.Excerpt>

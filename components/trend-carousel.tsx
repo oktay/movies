@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import Link from "next/link"
 import { Movie, TvShow } from "@/tmdb/models"
 import { ArrowLeft, ArrowRight } from "lucide-react"
@@ -15,21 +15,21 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel"
 import { MediaCard } from "@/components/media-card"
-import { PosterImage } from "@/components/poster-image"
+import { Poster } from "@/components/poster"
 
-type TrendCarouselProps = {
+interface TrendCarouselProps {
   title?: string
   link?: string
   items: Movie[] | TvShow[]
   type: "movie" | "tv"
 }
 
-export const TrendCarousel = ({
+export const TrendCarousel: React.FC<TrendCarouselProps> = ({
   title,
   link,
   items,
   type,
-}: TrendCarouselProps) => {
+}) => {
   const [api, setApi] = useState<CarouselApi>()
   const [total, setTotal] = useState(0)
   const [current, setCurrent] = useState(0)
@@ -111,7 +111,7 @@ export const TrendCarousel = ({
           >
             <Link href={`/${type}/${item.id}`} prefetch={false}>
               <MediaCard.Root>
-                <PosterImage
+                <Poster
                   image={item.poster_path}
                   alt={getTitle(item)}
                   size="w500"

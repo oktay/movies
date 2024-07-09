@@ -1,18 +1,18 @@
 import { ComponentProps } from "react"
 import Image from "next/image"
-import { PosterSize, tmdbImage } from "@/tmdb/utils"
+import { BackdropSize, tmdbImage } from "@/tmdb/utils"
 
 import { cn } from "@/lib/utils"
 import { Icons } from "@/components/icons"
 
-type PosterImageProps = ComponentProps<"div"> & {
+interface BackdropProps extends ComponentProps<"div"> {
   image?: string
-  size?: PosterSize
+  size?: BackdropSize
   alt: string
   priority?: boolean
 }
 
-export const PosterImage: React.FC<PosterImageProps> = ({
+export const Backdrop: React.FC<BackdropProps> = ({
   image,
   size,
   alt,
@@ -20,7 +20,7 @@ export const PosterImage: React.FC<PosterImageProps> = ({
   priority,
   ...props
 }) => {
-  const src = image ? tmdbImage.poster(image, size) : null
+  const src = image ? tmdbImage.backdrop(image, size) : null
 
   if (!src) {
     return (
@@ -37,7 +37,7 @@ export const PosterImage: React.FC<PosterImageProps> = ({
 
   return (
     <Image
-      className={cn("size-full bg-muted object-cover", className)}
+      className={cn("size-full object-cover", className)}
       src={src}
       alt={alt}
       priority={priority}

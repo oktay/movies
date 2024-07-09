@@ -12,7 +12,6 @@ export const siteConfig = {
   ],
   links: {
     github: "https://github.com/oktay/movies",
-    tmdb: "https://themoviedb.org/",
   },
   author: {
     name: "Oktay Colakoglu",

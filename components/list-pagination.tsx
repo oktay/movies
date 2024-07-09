@@ -12,7 +12,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination"
 
-export type ListPaginationProps = {
+interface ListPaginationProps {
   currentPage: number
   totalPages: number
 }

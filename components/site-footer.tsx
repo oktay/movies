@@ -63,7 +63,7 @@ export const SiteFooter: React.FC<ComponentProps<"footer">> = () => {
                 <br className="lg:hidden" />
                 Data provided by{" "}
                 <a
-                  href={siteConfig.links.tmdb}
+                  href="//themoviedb.org"
                   target="_blank"
                   className="text-foreground"
                   rel="noreferrer"
@@ -74,7 +74,7 @@ export const SiteFooter: React.FC<ComponentProps<"footer">> = () => {
               <p className="mt-4 text-xs lg:mt-0">
                 This project uses the{" "}
                 <a
-                  href={siteConfig.links.tmdb}
+                  href="//themoviedb.org/documentation/api"
                   target="_blank"
                   className="text-foreground"
                   rel="noreferrer"
@@ -83,7 +83,7 @@ export const SiteFooter: React.FC<ComponentProps<"footer">> = () => {
                 </a>{" "}
                 but is not endorsed or certified by{" "}
                 <a
-                  href={siteConfig.links.tmdb}
+                  href="//themoviedb.org"
                   target="_blank"
                   className="text-foreground"
                   rel="noreferrer"

@@ -1,6 +1,6 @@
 import { tmdb } from "@/tmdb/api"
 
-import { ImageList } from "@/components/image-list"
+import { Images } from "@/components/images"
 
 interface DetailImagesProps {
   params: {
@@ -19,15 +19,5 @@ export async function generateMetadata({ params }: DetailImagesProps) {
 }
 
 export default async function DetailImages({ params }: DetailImagesProps) {
-  const { backdrops, posters } = await tmdb.movie.images({
-    id: params.id,
-    langs: "en",
-  })
-
-  return (
-    <section className="space-y-4">
-      <ImageList images={backdrops} type="backdrop" title="Backdrops" />
-      <ImageList images={posters} type="poster" title="Posters" />
-    </section>
-  )
+  return <Images id={params.id} type="movie" />
 }

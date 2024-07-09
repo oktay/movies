@@ -3,7 +3,7 @@ import { tmdb } from "@/tmdb/api"
 
 import { Badge } from "@/components/ui/badge"
 import { MediaCard } from "@/components/media-card"
-import { PosterImage } from "@/components/poster-image"
+import { Poster } from "@/components/poster"
 
 interface DetailSeasonsProps {
   params: {
@@ -34,9 +34,11 @@ export default async function DetailSeasons({ params }: DetailSeasonsProps) {
         <Link
           key={season.id}
           href={`/tv/${params.id}/seasons/${season.season_number}`}
+          prefetch={false}
+          scroll={false}
         >
           <MediaCard.Root>
-            <PosterImage image={season.poster_path} alt={season.name} />
+            <Poster image={season.poster_path} alt={season.name} />
             <MediaCard.Content>
               <Badge className="mb-2">{season.vote_average?.toFixed(1)}</Badge>
               <MediaCard.Title>{season.name}</MediaCard.Title>

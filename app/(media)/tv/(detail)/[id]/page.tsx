@@ -5,7 +5,7 @@ import { format } from "@/tmdb/utils"
 import { cn, formatValue, joiner } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
-import { BackdropImage } from "@/components/backdrop-image"
+import { Backdrop } from "@/components/backdrop"
 
 export default async function Detail({ params }: { params: { id: string } }) {
   const {
@@ -72,7 +72,7 @@ export default async function Detail({ params }: { params: { id: string } }) {
 
       {last_episode_to_air && (
         <div className="h-hero card relative mt-4 w-full">
-          <BackdropImage
+          <Backdrop
             image={last_episode_to_air.still_path}
             alt={last_episode_to_air.name}
           />

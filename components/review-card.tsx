@@ -2,20 +2,20 @@ import { Review } from "@/tmdb/models"
 import { format } from "@/tmdb/utils"
 
 import { Badge } from "@/components/ui/badge"
-import { AvatarImage } from "@/components/avatar-image"
+import { Avatar } from "@/components/avatar"
 
 interface ReviewCardProps {
   review: Review
 }
 
-export const ReviewCard = ({ review }: ReviewCardProps) => {
+export const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
   const { author_details, author, created_at, content } = review
   const { name, avatar_path, username, rating } = author_details
 
   return (
     <div className="grid grid-cols-[auto,1fr] gap-2 md:gap-x-4">
       <div className="relative aspect-square w-10 md:w-12">
-        <AvatarImage image={avatar_path} alt={name} className="border" />
+        <Avatar image={avatar_path} alt={name} className="border" />
       </div>
       <div className="flex items-center justify-between">
         <h3>

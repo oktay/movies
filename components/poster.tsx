@@ -1,38 +1,35 @@
 import { ComponentProps } from "react"
 import Image from "next/image"
-import { ProfileSize, tmdbImage } from "@/tmdb/utils"
+import { PosterSize, tmdbImage } from "@/tmdb/utils"
 
 import { cn } from "@/lib/utils"
 import { Icons } from "@/components/icons"
 
-type AvatarImageProps = ComponentProps<"div"> & {
+interface PosterProps extends ComponentProps<"div"> {
   image?: string
-  size?: ProfileSize
+  size?: PosterSize
   alt: string
   priority?: boolean
 }
 
-export const AvatarImage: React.FC<AvatarImageProps> = ({
+export const Poster: React.FC<PosterProps> = ({
   image,
-  size = "w45",
+  size,
   alt,
   className,
   priority,
   ...props
 }) => {
-  const src = image ? tmdbImage.profile(image, size) : null
+  const src = image ? tmdbImage.poster(image, size) : null
 
   if (!src) {
     return (
       <div
-        className={cn(
-          "size-full rounded-full bg-muted text-muted-foreground",
-          className
-        )}
+        className={cn("size-full bg-muted text-muted-foreground", className)}
         {...props}
       >
         <div className="grid size-full place-items-center">
-          <Icons.Logo className="size-6" />
+          <Icons.Logo className="size-12" />
         </div>
       </div>
     )
@@ -40,7 +37,7 @@ export const AvatarImage: React.FC<AvatarImageProps> = ({
 
   return (
     <Image
-      className={cn("size-full rounded-full bg-muted object-cover", className)}
+      className={cn("size-full bg-muted object-cover", className)}
       src={src}
       alt={alt}
       priority={priority}

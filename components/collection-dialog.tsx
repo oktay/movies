@@ -17,13 +17,16 @@ import {
 } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { MediaCard } from "@/components/media-card"
-import { PosterImage } from "@/components/poster-image"
+import { Poster } from "@/components/poster"
 
-export const CollectionDialog = ({
-  collection: { name, overview, parts },
-}: {
+interface CollectionDialogProps {
   collection: DetailedCollection
+}
+
+export const CollectionDialog: React.FC<CollectionDialogProps> = ({
+  collection,
 }) => {
+  const { name, overview, parts } = collection
   const [open, setOpen] = useDialog()
 
   return (
@@ -46,7 +49,7 @@ export const CollectionDialog = ({
               {parts.map((part) => (
                 <Link href={`/movie/${part.id}`} key={part.id}>
                   <MediaCard.Root>
-                    <PosterImage image={part.poster_path} alt={part.title} />
+                    <Poster image={part.poster_path} alt={part.title} />
                     <MediaCard.Content>
                       <Badge className="mb-2">
                         {part.vote_average?.toFixed(1)}

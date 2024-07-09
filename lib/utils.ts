@@ -22,3 +22,7 @@ export function joiner(arr: any[], key: string) {
 export function formatValue(value: any, formatter?: any) {
   return value ? (formatter ? formatter(value) : value) : "—"
 }
+
+export function pad(value: number) {
+  return String(value).padStart(2, "0")
+}

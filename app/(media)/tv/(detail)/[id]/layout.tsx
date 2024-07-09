@@ -8,9 +8,9 @@ import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
 import { Tabs, TabsList } from "@/components/ui/tabs"
-import { BackdropImage } from "@/components/backdrop-image"
+import { Backdrop } from "@/components/backdrop"
 import { DetailView } from "@/components/detail-view"
-import { PosterImage } from "@/components/poster-image"
+import { Poster } from "@/components/poster"
 import { TabsLink } from "@/components/tabs-link"
 
 interface DetailLayoutProps {
@@ -51,12 +51,12 @@ export default async function DetailLayout({
   return (
     <DetailView.Root>
       <DetailView.Backdrop>
-        <BackdropImage image={backdrop_path} alt={name} priority />
+        <Backdrop image={backdrop_path} alt={name} priority />
       </DetailView.Backdrop>
 
       <DetailView.Hero>
         <DetailView.Poster>
-          <PosterImage image={poster_path} alt={name} priority />
+          <Poster image={poster_path} alt={name} priority />
         </DetailView.Poster>
         <div>
           <DetailView.Genres>

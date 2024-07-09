@@ -2,7 +2,7 @@ import Link from "next/link"
 import { tmdb } from "@/tmdb/api"
 
 import { MediaCard } from "@/components/media-card"
-import { PosterImage } from "@/components/poster-image"
+import { Poster } from "@/components/poster"
 
 interface DetailSimilarProps {
   params: {
@@ -34,7 +34,7 @@ export default async function DetailSimilar({ params }: DetailSimilarProps) {
       {results.map((tv) => (
         <Link href={`/tv/${tv.id}`} key={tv.id}>
           <MediaCard.Root>
-            <PosterImage image={tv.poster_path} size="w500" alt={tv.name} />
+            <Poster image={tv.poster_path} size="w500" alt={tv.name} />
             <MediaCard.Content>
               <MediaCard.Title>{tv.name}</MediaCard.Title>
               <MediaCard.Excerpt>{tv.overview}</MediaCard.Excerpt>

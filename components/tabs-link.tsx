@@ -10,7 +10,7 @@ interface TabsLinkProps {
   children: React.ReactNode
 }
 
-export const TabsLink = ({ href, children }: TabsLinkProps) => {
+export const TabsLink: React.FC<TabsLinkProps> = ({ href, children }) => {
   const pathname = usePathname()
 
   return (
@@ -19,7 +19,7 @@ export const TabsLink = ({ href, children }: TabsLinkProps) => {
       value={href}
       asChild
     >
-      <Link href={href} prefetch={false}>
+      <Link href={href} prefetch={false} scroll={false}>
         {children}
       </Link>
     </TabsTrigger>

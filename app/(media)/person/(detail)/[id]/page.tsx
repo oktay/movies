@@ -3,7 +3,7 @@ import { tmdb } from "@/tmdb/api"
 import { RawCombinedCredit, RawTvSerieCredit } from "@/tmdb/models"
 
 import { MediaCard } from "@/components/media-card"
-import { PosterImage } from "@/components/poster-image"
+import { Poster } from "@/components/poster"
 
 interface DetailProps {
   params: {
@@ -45,7 +45,7 @@ export default async function Detail({ params }: DetailProps) {
         {results?.map((item) => (
           <Link key={item.id} href={`/${item.media_type}/${item.id}`}>
             <MediaCard.Root>
-              <PosterImage image={item.poster_path} alt={item.title} />
+              <Poster image={item.poster_path} alt={item.title} />
               <MediaCard.Content>
                 <MediaCard.Title>
                   {item.title || (item as RawTvSerieCredit).name}

@@ -3,9 +3,9 @@ import { tmdb } from "@/tmdb/api"
 import { format } from "@/tmdb/utils"
 
 import { formatValue } from "@/lib/utils"
-import { BackdropImage } from "@/components/backdrop-image"
+import { Backdrop } from "@/components/backdrop"
 import { DetailView } from "@/components/detail-view"
-import { PosterImage } from "@/components/poster-image"
+import { Poster } from "@/components/poster"
 
 interface DetailLayoutProps {
   children: React.ReactNode
@@ -34,12 +34,12 @@ export default async function Detail({ params, children }: DetailLayoutProps) {
   return (
     <DetailView.Root>
       <DetailView.Backdrop>
-        <BackdropImage alt={name} />
+        <Backdrop alt={name} />
       </DetailView.Backdrop>
 
       <DetailView.Hero>
         <DetailView.Poster>
-          <PosterImage image={profile_path} alt={name} />
+          <Poster image={profile_path} alt={name} />
         </DetailView.Poster>
 
         <div>
