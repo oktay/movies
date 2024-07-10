@@ -1,9 +1,11 @@
 import Link from "next/link"
 import { tmdb } from "@/tmdb/api"
+import { format } from "@/tmdb/utils"
 
 import { ListPagination } from "@/components/list-pagination"
 import { MediaCard } from "@/components/media-card"
 import { Poster } from "@/components/poster"
+import { Rating } from "@/components/rating"
 
 interface DetailRecommendationsProps {
   params: {
@@ -47,10 +49,13 @@ export default async function DetailRecommendations({
         {movies.map((movie) => (
           <Link key={movie.id} href={`/movie/${movie.id}`} prefetch={false}>
             <MediaCard.Root>
-              <Poster image={movie.poster_path} size="w500" alt={movie.title} />
+              <Poster image={movie.poster_path} alt={movie.title} />
               <MediaCard.Content>
+                <Rating average={movie.vote_average} count={movie.vote_count} />
                 <MediaCard.Title>{movie.title}</MediaCard.Title>
-                <MediaCard.Excerpt>{movie.overview}</MediaCard.Excerpt>
+                <MediaCard.Excerpt>
+                  {format.year(movie.release_date)}
+                </MediaCard.Excerpt>
               </MediaCard.Content>
             </MediaCard.Root>
           </Link>

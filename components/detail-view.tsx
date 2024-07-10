@@ -2,6 +2,7 @@ import { ComponentProps } from "react"
 
 import { cn } from "@/lib/utils"
 import { Badge, BadgeProps } from "@/components/ui/badge"
+import { Skeleton } from "@/components/ui/skeleton"
 
 const Root: React.FC<ComponentProps<"div">> = ({ className, ...props }) => {
   return <div className={cn(className)} {...props} />
@@ -96,6 +97,32 @@ const Overview: React.FC<ComponentProps<"p">> = ({ className, ...props }) => {
     />
   )
 }
+
+export const SkeletonDetail = () => (
+  <DetailView.Root>
+    <DetailView.Backdrop>
+      <Skeleton className="size-full rounded-md" />
+    </DetailView.Backdrop>
+
+    <DetailView.Hero>
+      <DetailView.Poster>
+        <Skeleton className="size-full rounded-md" />
+      </DetailView.Poster>
+
+      <div className="space-y-4">
+        <Skeleton className="h-6 w-40 rounded-md" />
+        <Skeleton className="h-4 w-60 rounded-md" />
+        <Skeleton className="h-4 w-full rounded-md" />
+        <Skeleton className="h-4 w-full rounded-md" />
+        <Skeleton className="h-4 w-full rounded-md" />
+      </div>
+    </DetailView.Hero>
+
+    <DetailView.Content>
+      <Skeleton className="mt-4 h-[30vh] w-full rounded-md" />
+    </DetailView.Content>
+  </DetailView.Root>
+)
 
 export const DetailView = {
   Root,

@@ -24,20 +24,13 @@ import {
 import { Icons } from "@/components/icons"
 import { ThemeToggle } from "@/components/theme-toggle"
 
-const itemStyle = cn(
-  buttonVariants({ variant: "ghost" }),
-  "w-full justify-between hover:no-underline"
-)
-
-const linkStyle = cn("flex items-center justify-start")
-
 export const SiteMenu = () => {
   const [open, setOpen] = useDialog()
 
   return (
-    <Drawer open={open} onOpenChange={setOpen} shouldScaleBackground>
+    <Drawer open={open} onOpenChange={setOpen} shouldScaleBackground={false}>
       <DrawerTrigger asChild>
-        <Button size="icon" variant="outline" className="shrink-0 lg:hidden">
+        <Button size="icon" variant="outline">
           <MenuIcon className="size-4" />
         </Button>
       </DrawerTrigger>
@@ -45,23 +38,30 @@ export const SiteMenu = () => {
         <DrawerHeader>
           <DrawerTitle>Menu</DrawerTitle>
         </DrawerHeader>
+
+        <Accordion type="multiple" className="px-2">
+          {navigation.items.map((item) =>
+            item.items ? (
+              <MultipleMenuItem key={item.title} {...item} />
+            ) : (
+              <MenuItem key={item.title} {...item} />
+            )
+          )}
+        </Accordion>
+
         <DrawerFooter>
-          <Accordion type="multiple">
-            {navigation.items.map(({ title, items, href, icon: Icon }) =>
-              items ? (
-                <MultipleMenuItem
-                  key={title}
-                  href={href}
-                  title={title}
-                  items={items}
-                  icon={Icon}
-                />
-              ) : (
-                <MenuItem href={href} key={title} title={title} icon={Icon} />
-              )
-            )}
-          </Accordion>
-          <SecondaryMenu />
+          <nav className="flex gap-2">
+            <Link
+              href={siteConfig.links.github}
+              target="_blank"
+              rel="noreferrer"
+              className={cn(buttonVariants({ variant: "outline" }), "flex-1")}
+            >
+              <Icons.Github className="mr-2 size-4 fill-current" />
+              <span>Source code</span>
+            </Link>
+            <ThemeToggle />
+          </nav>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
@@ -70,9 +70,15 @@ export const SiteMenu = () => {
 
 const MenuItem = ({ title, href, icon: Icon }: NavItem) => {
   return (
-    <Link href={href} className={itemStyle}>
-      <div className={linkStyle}>
-        <Icon className="mr-2 size-3" />
+    <Link
+      href={href}
+      className={cn(
+        buttonVariants({ variant: "ghost" }),
+        "w-full justify-between hover:no-underline"
+      )}
+    >
+      <div className={cn("flex items-center justify-start")}>
+        <Icon className="mr-2 size-4" />
         {title}
       </div>
     </Link>
@@ -82,9 +88,14 @@ const MenuItem = ({ title, href, icon: Icon }: NavItem) => {
 const MultipleMenuItem = ({ title, items, icon: Icon }: NavItem) => {
   return (
     <AccordionItem className="border-b-0" value={title}>
-      <AccordionTrigger className={itemStyle}>
-        <div className={linkStyle}>
-          <Icon className="mr-2 size-3" />
+      <AccordionTrigger
+        className={cn(
+          buttonVariants({ variant: "ghost" }),
+          "w-full justify-between hover:no-underline"
+        )}
+      >
+        <div className={cn("flex items-center justify-start")}>
+          <Icon className="mr-2 size-4" />
           {title}
         </div>
       </AccordionTrigger>
@@ -96,18 +107,3 @@ const MultipleMenuItem = ({ title, items, icon: Icon }: NavItem) => {
     </AccordionItem>
   )
 }
-
-const SecondaryMenu = () => (
-  <nav className="flex gap-2 border-t py-4">
-    <Link
-      href={siteConfig.links.github}
-      target="_blank"
-      rel="noreferrer"
-      className={cn(buttonVariants({ variant: "outline" }), "flex-1")}
-    >
-      <Icons.Github className="mr-2 size-4 fill-current" />
-      <span>Source code</span>
-    </Link>
-    <ThemeToggle />
-  </nav>
-)

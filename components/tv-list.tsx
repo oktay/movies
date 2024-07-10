@@ -2,10 +2,12 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { tmdb } from "@/tmdb/api"
 import { TvListType } from "@/tmdb/api/types"
+import { format } from "@/tmdb/utils"
 
 import { ListPagination } from "@/components/list-pagination"
 import { MediaCard } from "@/components/media-card"
 import { Poster } from "@/components/poster"
+import { Rating } from "@/components/rating"
 
 interface TvListProps {
   list: TvListType
@@ -49,14 +51,17 @@ export const TvList: React.FC<TvListProps> = async ({
             prefetch={false}
           >
             <MediaCard.Root>
-              <Poster
-                image={tvShow.poster_path}
-                alt={tvShow.name}
-                size="w500"
-              />
+              <Poster image={tvShow.poster_path} alt={tvShow.name} />
               <MediaCard.Content>
+                <Rating
+                  average={tvShow.vote_average}
+                  count={tvShow.vote_count}
+                  className="mb-2"
+                />
                 <MediaCard.Title>{tvShow.name}</MediaCard.Title>
-                <MediaCard.Excerpt>{tvShow.overview}</MediaCard.Excerpt>
+                <MediaCard.Excerpt>
+                  {format.year(tvShow.first_air_date)}
+                </MediaCard.Excerpt>
               </MediaCard.Content>
             </MediaCard.Root>
           </Link>

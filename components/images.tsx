@@ -15,9 +15,7 @@ export const Images: React.FC<ImagesProps> = async ({ id, type }) => {
   if (!posters.length && !backdrops.length)
     return <div className="empty-box">No images</div>
 
-  const images = [...posters, ...backdrops].sort(
-    (a: any, b: any) => a.vote_average - b.vote_average
-  )
+  const images = [...posters, ...backdrops]
 
   return (
     <div className="grid-list items-center gap-4">

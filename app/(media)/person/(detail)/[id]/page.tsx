@@ -53,7 +53,7 @@ export default async function Detail({ params }: DetailProps) {
             prefetch={false}
           >
             <MediaCard.Root>
-              <Poster image={item.poster_path} alt={item.title} size="w500" />
+              <Poster image={item.poster_path} alt={item.title} />
               <MediaCard.Content>
                 <div className="mb-2 flex gap-2">
                   <Rating average={item.vote_average} count={item.vote_count} />

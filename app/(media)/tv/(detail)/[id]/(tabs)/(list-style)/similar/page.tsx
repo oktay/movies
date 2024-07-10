@@ -1,9 +1,11 @@
 import Link from "next/link"
 import { tmdb } from "@/tmdb/api"
+import { format } from "@/tmdb/utils"
 
 import { ListPagination } from "@/components/list-pagination"
 import { MediaCard } from "@/components/media-card"
 import { Poster } from "@/components/poster"
+import { Rating } from "@/components/rating"
 
 interface DetailSimilarProps {
   params: {
@@ -47,10 +49,17 @@ export default async function DetailSimilar({
         {tvShows.map((tv) => (
           <Link href={`/tv/${tv.id}`} key={tv.id} prefetch={false}>
             <MediaCard.Root>
-              <Poster image={tv.poster_path} size="w500" alt={tv.name} />
+              <Poster image={tv.poster_path} alt={tv.name} />
               <MediaCard.Content>
+                <Rating
+                  average={tv.vote_average}
+                  count={tv.vote_count}
+                  className="mb-2"
+                />
                 <MediaCard.Title>{tv.name}</MediaCard.Title>
-                <MediaCard.Excerpt>{tv.overview}</MediaCard.Excerpt>
+                <MediaCard.Excerpt>
+                  {format.year(tv.first_air_date)}
+                </MediaCard.Excerpt>
               </MediaCard.Content>
             </MediaCard.Root>
           </Link>

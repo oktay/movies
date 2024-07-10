@@ -1,9 +1,8 @@
 "use client"
 
-import { forwardRef } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { NavItem, navigation, siteConfig } from "@/config"
+import { NavItem, navigation } from "@/config"
 
 import { cn } from "@/lib/utils"
 import {
@@ -17,111 +16,112 @@ import {
 } from "@/components/ui/navigation-menu"
 import { Icons } from "@/components/icons"
 
-export const SiteNav: React.FC<React.ComponentProps<"div">> = () => {
+const SiteNav = () => {
   const pathname = usePathname()
-  const items = navigation.items
 
-  function isActive(href: string) {
-    const isHomePage = href === "/"
-    if (isHomePage) {
-      return pathname === "/"
-    }
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === href
     return pathname.startsWith(href)
   }
 
   return (
-    <div className="flex gap-6">
-      <Link href="/" className="flex items-center space-x-2">
+    <NavigationMenu>
+      <Link href="/" className="mr-4">
         <Icons.Logo className="size-6" />
-        <span className="sr-only">{siteConfig.name}</span>
       </Link>
 
-      {items && (
-        <NavigationMenu className="hidden lg:flex">
-          <NavigationMenuList>
-            {items.map(
-              ({ title, icon: Icon, items: sub, href, description }, index) =>
-                sub ? (
-                  <NavigationMenuItem key={index}>
-                    <NavigationMenuTrigger
-                      className={cn(isActive(href) && "bg-muted")}
-                    >
-                      {Icon && <Icon className="mr-2 size-4" />}
-                      {title}
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <div className="p-6 pb-0">
-                        <h3 className="flex items-center text-lg font-medium">
-                          {Icon && <Icon className="mr-2 size-4" />}
-                          {title}
-                        </h3>
-                        <p className="mt-2 text-muted-foreground">
-                          {description}
-                        </p>
-                      </div>
-                      <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                        {sub?.map((component) => (
-                          <ListItem
-                            key={component.title}
-                            title={component.title}
-                            href={component.href}
-                            icon={component.icon}
-                          >
-                            {component.description}
-                          </ListItem>
-                        ))}
-                      </ul>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-                ) : (
-                  <NavigationMenuItem key={index}>
-                    <Link href={href} prefetch={false} legacyBehavior passHref>
-                      <NavigationMenuLink
-                        className={cn(
-                          navigationMenuTriggerStyle(),
-                          isActive(href) && "bg-muted"
-                        )}
-                      >
-                        {Icon && <Icon className="mr-2 size-4" />}
-                        {title}
-                      </NavigationMenuLink>
-                    </Link>
-                  </NavigationMenuItem>
-                )
-            )}
-          </NavigationMenuList>
-        </NavigationMenu>
-      )}
-    </div>
+      <NavigationMenuList className="hidden lg:flex">
+        {navigation.items.map((item) =>
+          item.items ? (
+            <SiteNavItem
+              key={item.title}
+              isActive={isActive(item.href)}
+              {...item}
+            />
+          ) : (
+            <SiteNavItemSingle
+              key={item.title}
+              isActive={isActive(item.href)}
+              {...item}
+            />
+          )
+        )}
+      </NavigationMenuList>
+    </NavigationMenu>
   )
 }
 
-const ListItem = forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a"> & NavItem
->(({ className, title, children, icon: Icon, ...props }, ref) => {
+const SiteNavItem = ({
+  title,
+  icon,
+  items,
+  description,
+  isActive,
+}: NavItem & { isActive?: boolean }) => {
+  const Icon = icon
+
   return (
-    <li>
-      <NavigationMenuLink asChild>
-        <Link
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          prefetch={false}
-          {...props}
-        >
-          <div className="flex text-sm font-medium leading-none">
-            {Icon && <Icon className="mr-2 size-3" />}
-            {title}
-          </div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </Link>
-      </NavigationMenuLink>
-    </li>
+    <NavigationMenuItem>
+      <NavigationMenuTrigger className={cn(isActive && "bg-accent", "gap-1")}>
+        <Icon className="mr-2 size-4" /> {title}
+      </NavigationMenuTrigger>
+      <NavigationMenuContent>
+        <div className="p-6 pb-0">
+          <Icon className="mr-1 inline size-4" /> {title}
+          <p className="mt-2 text-sm">{description}</p>
+        </div>
+        <div className="grid w-[600px] grid-cols-2 p-4">
+          {items?.map((item) => (
+            <SiteNavListItem key={item.title} {...item} />
+          ))}
+        </div>
+      </NavigationMenuContent>
+    </NavigationMenuItem>
   )
-})
-ListItem.displayName = "ListItem"
+}
+
+const SiteNavItemSingle = ({
+  title,
+  icon,
+  href,
+  isActive,
+}: NavItem & { isActive?: boolean }) => {
+  const Icon = icon
+
+  return (
+    <NavigationMenuItem>
+      <NavigationMenuLink
+        href={href}
+        className={cn(
+          navigationMenuTriggerStyle(),
+          isActive && "bg-accent",
+          "gap-2"
+        )}
+      >
+        <Icon className="mr-2 size-4" /> {title}
+      </NavigationMenuLink>
+    </NavigationMenuItem>
+  )
+}
+
+const SiteNavListItem = ({ title, icon, description, href }: NavItem) => {
+  const Icon = icon
+
+  return (
+    <NavigationMenuLink asChild>
+      <Link
+        href={href}
+        className="select-none space-y-2 rounded-md p-3 hover:bg-accent"
+      >
+        <div className="text-sm font-medium leading-none">
+          <Icon className="mr-1 inline size-4" /> {title}
+        </div>
+        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          {description}
+        </p>
+      </Link>
+    </NavigationMenuLink>
+  )
+}
+
+export { SiteNav }

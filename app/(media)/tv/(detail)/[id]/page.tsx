@@ -2,7 +2,7 @@ import Link from "next/link"
 import { tmdb } from "@/tmdb/api"
 import { format } from "@/tmdb/utils"
 
-import { cn, formatValue, joiner } from "@/lib/utils"
+import { cn, formatValue, joiner, pad } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
 import { Backdrop } from "@/components/backdrop"
@@ -17,7 +17,7 @@ export default async function Detail({ params }: { params: { id: string } }) {
     number_of_episodes,
     spoken_languages,
     production_companies,
-    last_episode_to_air,
+    last_episode_to_air: lastEpisode,
   } = await tmdb.tv.detail({
     id: params.id,
   })
@@ -58,7 +58,7 @@ export default async function Detail({ params }: { params: { id: string } }) {
   ]
 
   return (
-    <section>
+    <section className="space-y-4">
       <div className="grid grid-cols-2 gap-y-12 rounded border p-6 lg:grid-cols-4">
         {items.map((item) => (
           <div key={item.title}>
@@ -70,27 +70,24 @@ export default async function Detail({ params }: { params: { id: string } }) {
         ))}
       </div>
 
-      {last_episode_to_air && (
-        <div className="h-hero relative mt-4 w-full">
-          <Backdrop
-            image={last_episode_to_air.still_path}
-            alt={last_episode_to_air.name}
-          />
+      {lastEpisode && (
+        <div className="h-hero relative w-full">
+          <Backdrop image={lastEpisode.still_path} alt={lastEpisode.name} />
           <div className="overlay">
             <div className="p-4 md:p-10">
               <Badge className="mb-4 gap-1">
-                <span>S{last_episode_to_air.season_number}</span>
-                <span>E{last_episode_to_air.episode_number}</span>
+                <span>S{pad(lastEpisode.season_number)}</span>
+                <span>E{pad(lastEpisode.episode_number)}</span>
               </Badge>
 
               <h2 className="line-clamp-1 text-lg font-medium md:text-2xl">
-                {last_episode_to_air.name}
+                {lastEpisode.name}
               </h2>
               <p className="line-clamp-3 max-w-xl text-muted-foreground md:line-clamp-6">
-                {last_episode_to_air.overview}
+                {lastEpisode.overview}
               </p>
               <Link
-                href={`/tv/${params.id}/seasons`}
+                href={`/tv/${params.id}/seasons/${lastEpisode.season_number}`}
                 className={cn(buttonVariants({ variant: "default" }), "mt-4")}
                 prefetch={false}
               >

@@ -1,5 +1,5 @@
 export const GridBg: React.FC = () => (
-  <div className="absolute top-0 -z-10 h-dvh w-full text-muted">
+  <div className="absolute top-0 h-dvh w-full text-muted">
     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <pattern
@@ -28,6 +28,6 @@ export const GridBg: React.FC = () => (
 
       <rect width="100%" height="100%" fill="url(#grid)" />
     </svg>
-    <div className="absolute bottom-0 h-1/2 w-full bg-gradient-to-t from-background" />
+    <div className="absolute bottom-0 h-[30dvh] w-full bg-gradient-to-t from-background via-background" />
   </div>
 )

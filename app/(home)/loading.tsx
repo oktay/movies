@@ -2,10 +2,9 @@ import { Skeleton } from "@/components/ui/skeleton"
 
 export default function Loading() {
   return (
-    <div className="container mt-8">
+    <div className="container mt-8 space-y-8">
       <Skeleton className="h-hero rounded-md" />
-
-      <Skeleton className="mb-4 mt-12 h-8 w-64" />
+      <Skeleton className="h-8 w-64" />
       <div className="flex flex-wrap">
         {Array.from({ length: 20 }).map((_, i) => (
           <div

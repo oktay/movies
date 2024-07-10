@@ -36,7 +36,7 @@ export default async function DetailCredits({
       {cast.map(({ id, name, character, profile_path }) => (
         <Link href={`/person/${id}`} key={id} prefetch={false}>
           <MediaCard.Root>
-            <Poster image={profile_path} size="w500" alt={name} />
+            <Poster image={profile_path} alt={name} />
             <MediaCard.Content>
               <MediaCard.Title>{name}</MediaCard.Title>
               <MediaCard.Excerpt>{character}</MediaCard.Excerpt>

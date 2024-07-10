@@ -2,7 +2,13 @@
 
 import React, { useEffect, useState } from "react"
 import Link from "next/link"
-import { Movie, TvShow } from "@/tmdb/models"
+import {
+  Movie,
+  MovieWithMediaType,
+  TvShow,
+  TvShowWithMediaType,
+} from "@/tmdb/models"
+import { format } from "@/tmdb/utils"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
@@ -20,7 +26,7 @@ import { Rating } from "@/components/rating"
 interface TrendCarouselProps {
   title?: string
   link?: string
-  items: Movie[] | TvShow[]
+  items: MovieWithMediaType[] | TvShowWithMediaType[]
   type: "movie" | "tv"
 }
 
@@ -55,6 +61,12 @@ export const TrendCarousel: React.FC<TrendCarouselProps> = ({
 
   function getTitle(item: Movie | TvShow) {
     return (item as Movie).title || (item as TvShow).name
+  }
+
+  function getYear(item: MovieWithMediaType | TvShowWithMediaType) {
+    const isMovie = item.media_type === "movie"
+    const date = isMovie ? item.release_date : item.first_air_date
+    return format.year(date)
   }
 
   return (
@@ -101,11 +113,7 @@ export const TrendCarousel: React.FC<TrendCarouselProps> = ({
           >
             <Link href={`/${type}/${item.id}`} prefetch={false}>
               <MediaCard.Root>
-                <Poster
-                  image={item.poster_path}
-                  alt={getTitle(item)}
-                  size="w500"
-                />
+                <Poster image={item.poster_path} alt={getTitle(item)} />
                 <MediaCard.Content>
                   <Rating
                     average={item.vote_average}
@@ -113,7 +121,7 @@ export const TrendCarousel: React.FC<TrendCarouselProps> = ({
                     className="mb-2"
                   />
                   <MediaCard.Title>{getTitle(item)}</MediaCard.Title>
-                  <MediaCard.Excerpt>{item.overview}</MediaCard.Excerpt>
+                  <MediaCard.Excerpt>{getYear(item)}</MediaCard.Excerpt>
                 </MediaCard.Content>
               </MediaCard.Root>
             </Link>

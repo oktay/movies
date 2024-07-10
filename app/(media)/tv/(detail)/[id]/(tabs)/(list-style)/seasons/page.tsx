@@ -38,7 +38,7 @@ export default async function DetailSeasons({ params }: DetailSeasonsProps) {
           scroll={false}
         >
           <MediaCard.Root>
-            <Poster image={season.poster_path} alt={season.name} size="w500" />
+            <Poster image={season.poster_path} alt={season.name} />
             <MediaCard.Content>
               <Rating average={season.vote_average} className="mb-2" />
               <MediaCard.Title>{season.name}</MediaCard.Title>

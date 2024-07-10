@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { useDialog } from "@/hooks"
 import { DetailedCollection } from "@/tmdb/models"
+import { format } from "@/tmdb/utils"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -16,17 +17,15 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { MediaCard } from "@/components/media-card"
 import { Poster } from "@/components/poster"
-
-import { Rating } from "./rating"
+import { Rating } from "@/components/rating"
 
 interface CollectionDialogProps {
   collection: DetailedCollection
 }
 
 export const CollectionDialog: React.FC<CollectionDialogProps> = ({
-  collection,
+  collection: { name, overview, parts },
 }) => {
-  const { name, overview, parts } = collection
   const [open, setOpen] = useDialog()
 
   return (
@@ -52,19 +51,16 @@ export const CollectionDialog: React.FC<CollectionDialogProps> = ({
               {parts.map((part) => (
                 <Link href={`/movie/${part.id}`} key={part.id} prefetch={false}>
                   <MediaCard.Root>
-                    <Poster
-                      image={part.poster_path}
-                      alt={part.title}
-                      size="w500"
-                    />
+                    <Poster image={part.poster_path} alt={part.title} />
                     <MediaCard.Content>
                       <Rating
                         average={part.vote_average}
                         count={part.vote_count}
+                        className="mb-2"
                       />
                       <MediaCard.Title>{part.title}</MediaCard.Title>
-                      <MediaCard.Excerpt className="line-clamp-3 max-w-xl">
-                        {part.overview}
+                      <MediaCard.Excerpt>
+                        {format.year(part.release_date)}
                       </MediaCard.Excerpt>
                     </MediaCard.Content>
                   </MediaCard.Root>

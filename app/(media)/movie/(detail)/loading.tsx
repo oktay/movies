@@ -1,3 +1,1 @@
-import { SkeletonDetail } from "@/components/skeletons"
-
-export default SkeletonDetail
+export { SkeletonDetail as default } from "@/components/detail-view"

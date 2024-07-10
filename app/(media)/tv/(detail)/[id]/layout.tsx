@@ -6,12 +6,11 @@ import { PlayCircle } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-import { Tabs, TabsList } from "@/components/ui/tabs"
+import { Tabs, TabsLink, TabsList } from "@/components/ui/tabs"
 import { Backdrop } from "@/components/backdrop"
 import { DetailView } from "@/components/detail-view"
 import { Poster } from "@/components/poster"
 import { Rating } from "@/components/rating"
-import { TabsLink } from "@/components/tabs-link"
 
 interface DetailLayoutProps {
   params: {

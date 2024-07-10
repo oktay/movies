@@ -38,6 +38,12 @@ export default async function Search({ searchParams }: SearchProps) {
           {results?.map((result) => {
             return <SearchItem key={result.id} media={result} />
           })}
+
+          {!results?.length && (
+            <div className="text-xl text-muted-foreground">
+              No results found
+            </div>
+          )}
         </div>
         <ListPagination currentPage={page} totalPages={total_pages} />
       </div>
