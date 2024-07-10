@@ -14,7 +14,7 @@ interface PosterProps extends ComponentProps<"div"> {
 
 export const Poster: React.FC<PosterProps> = ({
   image,
-  size,
+  size = "w500",
   alt,
   className,
   priority,
@@ -25,7 +25,10 @@ export const Poster: React.FC<PosterProps> = ({
   if (!src) {
     return (
       <div
-        className={cn("size-full bg-muted text-muted-foreground", className)}
+        className={cn(
+          "size-full rounded-md border bg-muted text-muted-foreground",
+          className
+        )}
         {...props}
       >
         <div className="grid size-full place-items-center">
@@ -37,7 +40,10 @@ export const Poster: React.FC<PosterProps> = ({
 
   return (
     <Image
-      className={cn("size-full bg-muted object-cover", className)}
+      className={cn(
+        "size-full rounded-md border bg-muted object-cover",
+        className
+      )}
       src={src}
       alt={alt}
       priority={priority}

@@ -4,13 +4,11 @@ import Link from "next/link"
 import { useDialog } from "@/hooks"
 import { DetailedCollection } from "@/tmdb/models"
 
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -18,6 +16,8 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { MediaCard } from "@/components/media-card"
 import { Poster } from "@/components/poster"
+
+import { Rating } from "./rating"
 
 interface CollectionDialogProps {
   collection: DetailedCollection
@@ -35,7 +35,10 @@ export const CollectionDialog: React.FC<CollectionDialogProps> = ({
         <Button className="mt-4">View Collection</Button>
       </DialogTrigger>
 
-      <DialogContent className="max-w-screen-lg">
+      <DialogContent
+        onOpenAutoFocus={(e) => e.preventDefault()}
+        className="max-w-screen-lg"
+      >
         <DialogHeader>
           <DialogTitle>{name}</DialogTitle>
           <DialogDescription className="hidden text-muted-foreground md:block">
@@ -45,17 +48,22 @@ export const CollectionDialog: React.FC<CollectionDialogProps> = ({
 
         {parts?.length ? (
           <ScrollArea className="h-full max-h-[70dvh]">
-            <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
+            <div className="grid-list">
               {parts.map((part) => (
-                <Link href={`/movie/${part.id}`} key={part.id}>
+                <Link href={`/movie/${part.id}`} key={part.id} prefetch={false}>
                   <MediaCard.Root>
-                    <Poster image={part.poster_path} alt={part.title} />
+                    <Poster
+                      image={part.poster_path}
+                      alt={part.title}
+                      size="w500"
+                    />
                     <MediaCard.Content>
-                      <Badge className="mb-2">
-                        {part.vote_average?.toFixed(1)}
-                      </Badge>
+                      <Rating
+                        average={part.vote_average}
+                        count={part.vote_count}
+                      />
                       <MediaCard.Title>{part.title}</MediaCard.Title>
-                      <MediaCard.Excerpt className="line-clamp-3 max-w-xl md:line-clamp-6">
+                      <MediaCard.Excerpt className="line-clamp-3 max-w-xl">
                         {part.overview}
                       </MediaCard.Excerpt>
                     </MediaCard.Content>
@@ -69,8 +77,6 @@ export const CollectionDialog: React.FC<CollectionDialogProps> = ({
             No parts found
           </div>
         )}
-
-        <DialogFooter />
       </DialogContent>
     </Dialog>
   )

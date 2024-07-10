@@ -6,7 +6,13 @@ import { Video } from "@/tmdb/models"
 import { yt } from "@/tmdb/utils"
 import { PlayCircle } from "lucide-react"
 
-import { VideoDialog } from "@/components/video-dialog"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./ui/dialog"
 
 interface VideosProps {
   videos: Video[]
@@ -14,29 +20,41 @@ interface VideosProps {
 
 export const Videos: React.FC<VideosProps> = ({ videos }) => {
   return (
-    <div className="grid items-center gap-4 md:grid-cols-2 xl:grid-cols-3">
+    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
       {videos.map(({ id, key, name }) => (
-        <VideoDialog key={id} video={key} title={name}>
-          <div className="card relative aspect-video bg-muted">
-            <Image
-              className="size-full object-cover"
-              src={yt.thumbnail(key)}
-              alt={name}
-              unoptimized
-              fill
-            />
-            <div className="overlay">
-              <div className="p-4 md:p-6">
-                <h3 className="line-clamp-2 font-semibold md:text-lg">
-                  {name}
-                </h3>
-                <div className="absolute inset-0 grid cursor-pointer place-items-center">
-                  <PlayCircle className="size-10" />
+        <Dialog key={id} modal>
+          <DialogTrigger asChild>
+            <div className="relative aspect-video cursor-pointer bg-muted">
+              <Image
+                className="size-full rounded-md border object-cover"
+                src={yt.thumbnail(key)}
+                alt={name}
+                unoptimized
+                fill
+              />
+              <div className="overlay">
+                <div className="p-4 md:p-6">
+                  <h3 className="line-clamp-2 font-semibold md:text-lg">
+                    {name}
+                  </h3>
+                  <PlayCircle className="absolute left-1/2 top-1/2 size-10 -translate-x-1/2 -translate-y-1/2" />
                 </div>
               </div>
             </div>
-          </div>
-        </VideoDialog>
+          </DialogTrigger>
+          <DialogContent className="max-w-screen-xl">
+            <DialogHeader>
+              <DialogTitle>{name}</DialogTitle>
+            </DialogHeader>
+
+            <iframe
+              className="aspect-video size-full rounded-md"
+              src={yt.video(key, true)}
+              allow="autoplay; encrypted-media"
+              allowFullScreen={true}
+            />
+          </DialogContent>
+        </Dialog>
       ))}
     </div>
   )

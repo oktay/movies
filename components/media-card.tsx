@@ -3,9 +3,7 @@ import { ComponentProps } from "react"
 import { cn } from "@/lib/utils"
 
 const Root: React.FC<ComponentProps<"div">> = ({ className, ...props }) => {
-  return (
-    <div className={cn("card relative aspect-poster", className)} {...props} />
-  )
+  return <div className={cn("relative aspect-poster", className)} {...props} />
 }
 
 const Content: React.FC<ComponentProps<"div">> = ({

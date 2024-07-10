@@ -12,6 +12,9 @@ interface ImagesProps {
 export const Images: React.FC<ImagesProps> = async ({ id, type }) => {
   const { posters, backdrops } = await tmdb[type].images({ id, langs: "en" })
 
+  if (!posters.length && !backdrops.length)
+    return <div className="empty-box">No images</div>
+
   const images = [...posters, ...backdrops].sort(
     (a: any, b: any) => a.vote_average - b.vote_average
   )

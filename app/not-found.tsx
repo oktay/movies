@@ -13,12 +13,7 @@ export default function NotFound() {
         </p>
         <a
           href="/"
-          className={cn(
-            buttonVariants({
-              variant: "default",
-            }),
-            "mt-6"
-          )}
+          className={cn(buttonVariants({ variant: "default" }), "mt-6")}
         >
           Go Home
         </a>

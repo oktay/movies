@@ -8,7 +8,12 @@ import { ThemeToggle } from "@/components/theme-toggle"
 export const SiteSubnav = () => {
   return (
     <nav className="hidden items-center space-x-2 lg:flex">
-      <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
+      <Link
+        href={siteConfig.links.github}
+        target="_blank"
+        rel="noreferrer"
+        prefetch={false}
+      >
         <div
           className={buttonVariants({
             variant: "outline",

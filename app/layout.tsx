@@ -5,6 +5,7 @@ import { GeistSans } from "geist/font/sans"
 import HolyLoader from "holy-loader"
 
 import { cn } from "@/lib/utils"
+import { GridBg } from "@/components/grid-bg"
 import { ScrollTop } from "@/components/scroll-top"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           GeistSans.variable
         )}
       >
+        <GridBg />
         <HolyLoader color="#ccc" />
         <ThemeProvider attribute="class" defaultTheme="dark">
           <div

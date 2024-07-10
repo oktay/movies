@@ -19,7 +19,7 @@ export const TabsLink: React.FC<TabsLinkProps> = ({ href, children }) => {
       value={href}
       asChild
     >
-      <Link href={href} prefetch={false} scroll={false}>
+      <Link href={href} prefetch={false} scroll={false} replace>
         {children}
       </Link>
     </TabsTrigger>

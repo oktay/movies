@@ -15,12 +15,7 @@ export default function ErrorPage() {
         </p>
         <a
           href="/"
-          className={cn(
-            buttonVariants({
-              variant: "default",
-            }),
-            "mt-6"
-          )}
+          className={cn(buttonVariants({ variant: "default" }), "mt-6")}
         >
           Go home
         </a>

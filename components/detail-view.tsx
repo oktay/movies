@@ -14,7 +14,9 @@ const Backdrop: React.FC<ComponentProps<"div">> = ({
 }) => {
   return (
     <div className={cn("container", className)} {...props}>
-      <div className="h-hero card relative mt-8">{children}</div>
+      <div className="md:h-hero relative mt-8 aspect-poster w-full">
+        {children}
+      </div>
     </div>
   )
 }
@@ -27,12 +29,12 @@ const Hero: React.FC<ComponentProps<"div">> = ({
   return (
     <div
       className={cn(
-        "container mt-4 md:mt-8 md:px-16 lg:mt-12 lg:px-32",
+        "container mt-4 md:mt-8 md:px-16 xl:mt-12 xl:px-32",
         className
       )}
       {...props}
     >
-      <div className="grid gap-4 md:grid-cols-[auto,1fr] md:gap-10 lg:gap-16">
+      <div className="grid gap-4 md:grid-cols-[auto,1fr] md:gap-10 xl:gap-16">
         {children}
       </div>
     </div>
@@ -47,7 +49,7 @@ const Poster: React.FC<ComponentProps<"div">> = ({
   return (
     <div
       className={cn(
-        "card relative hidden aspect-poster w-48 place-self-start md:-mt-64 md:block lg:w-80",
+        "relative hidden aspect-poster w-48 place-self-start md:-mt-32 md:block md:w-56 lg:w-64 xl:-mt-64 xl:w-80",
         className
       )}
       {...props}
@@ -61,7 +63,7 @@ const Content: React.FC<ComponentProps<"div">> = ({ className, ...props }) => {
   return (
     <div
       className={cn(
-        "container mt-4 md:mt-8 md:px-16 lg:mt-12 lg:px-32",
+        "container mt-4 md:mt-8 md:px-16 xl:mt-12 xl:px-32",
         className
       )}
       {...props}
@@ -70,9 +72,7 @@ const Content: React.FC<ComponentProps<"div">> = ({ className, ...props }) => {
 }
 
 const Genres: React.FC<ComponentProps<"div">> = ({ className, ...props }) => {
-  return (
-    <div className={cn("mt-2 flex flex-wrap gap-2", className)} {...props} />
-  )
+  return <div className={cn("flex flex-wrap gap-2", className)} {...props} />
 }
 
 const Genre: React.FC<BadgeProps> = ({ variant = "secondary", ...props }) => {
@@ -82,7 +82,7 @@ const Genre: React.FC<BadgeProps> = ({ variant = "secondary", ...props }) => {
 const Title: React.FC<ComponentProps<"h1">> = ({ className, ...props }) => {
   return (
     <h1
-      className={cn("mt-4 text-2xl font-medium lg:text-4xl", className)}
+      className={cn("text-2xl font-medium xl:text-4xl", className)}
       {...props}
     />
   )
@@ -91,10 +91,7 @@ const Title: React.FC<ComponentProps<"h1">> = ({ className, ...props }) => {
 const Overview: React.FC<ComponentProps<"p">> = ({ className, ...props }) => {
   return (
     <div
-      className={cn(
-        "mt-4 space-y-4 text-muted-foreground lg:text-lg",
-        className
-      )}
+      className={cn("space-y-4 text-muted-foreground xl:text-lg", className)}
       {...props}
     />
   )

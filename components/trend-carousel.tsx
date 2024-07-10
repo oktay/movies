@@ -6,7 +6,6 @@ import { Movie, TvShow } from "@/tmdb/models"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { Badge } from "@/components/ui/badge"
 import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Carousel,
@@ -16,6 +15,7 @@ import {
 } from "@/components/ui/carousel"
 import { MediaCard } from "@/components/media-card"
 import { Poster } from "@/components/poster"
+import { Rating } from "@/components/rating"
 
 interface TrendCarouselProps {
   title?: string
@@ -66,12 +66,10 @@ export const TrendCarousel: React.FC<TrendCarouselProps> = ({
           <Link
             href={link}
             className={cn(
-              buttonVariants({
-                size: "sm",
-                variant: "outline",
-              }),
-              "ml-4 h-8 text-xs text-primary"
+              buttonVariants({ size: "sm", variant: "outline" }),
+              "ml-4 text-primary"
             )}
+            prefetch={false}
           >
             Explore more
           </Link>
@@ -84,21 +82,13 @@ export const TrendCarousel: React.FC<TrendCarouselProps> = ({
             <span>{total}</span>
           </p>
 
-          <Button
-            onClick={previousSlide}
-            size="icon"
-            variant="outline"
-            className="!size-8 rounded-full"
-          >
+          <Button onClick={previousSlide} size="sm" variant="outline">
             <ArrowLeft className="size-3" />
+            <span className="sr-only">Previous</span>
           </Button>
-          <Button
-            onClick={nextSlide}
-            size="icon"
-            variant="outline"
-            className="!size-8 rounded-full"
-          >
-            <ArrowRight className="size-4" />
+          <Button onClick={nextSlide} size="sm" variant="outline">
+            <ArrowRight className="size-3" />
+            <span className="sr-only">Next</span>
           </Button>
         </div>
       </div>
@@ -117,7 +107,11 @@ export const TrendCarousel: React.FC<TrendCarouselProps> = ({
                   size="w500"
                 />
                 <MediaCard.Content>
-                  <Badge className="mb-2">{item.vote_average.toFixed(1)}</Badge>
+                  <Rating
+                    average={item.vote_average}
+                    count={item.vote_count}
+                    className="mb-2"
+                  />
                   <MediaCard.Title>{getTitle(item)}</MediaCard.Title>
                   <MediaCard.Excerpt>{item.overview}</MediaCard.Excerpt>
                 </MediaCard.Content>

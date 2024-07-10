@@ -23,6 +23,7 @@ export const SearchItem: React.FC<SearchItemProps> = ({ media }) => {
         <Poster
           image={isPerson ? media.profile_path : media.poster_path}
           alt={isMovie ? media.title : media.name}
+          size="w500"
         />
         <MediaCard.Content>
           <MediaCard.Title>

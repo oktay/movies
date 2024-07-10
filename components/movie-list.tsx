@@ -20,17 +20,18 @@ export const MovieList: React.FC<MovieListProps> = async ({
   title,
   description,
 }) => {
-  const { results: movies, total_pages } = await tmdb.movie.list({
+  const {
+    results: movies,
+    total_pages: totalPages,
+    page: currentPage,
+  } = await tmdb.movie.list({
     list,
     page,
   })
 
-  if (!movies) {
+  if (!movies?.length) {
     return notFound()
   }
-
-  const currentPage = parseInt(page)
-  const totalPages = total_pages > 500 ? 500 : total_pages
 
   return (
     <div className="container space-y-8 py-8">

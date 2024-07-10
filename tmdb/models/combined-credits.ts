@@ -4,11 +4,13 @@ import { MediaType } from "./commons"
 export type RawMovieCredit = MovieWithMediaType &
   CombinedCredit & {
     character: string
+    order: number
   }
 
 export type RawTvSerieCredit = TvShowWithMediaType &
   CombinedCredit & {
     character: string
+    order: number
   }
 
 export type RawCombinedCredit = RawMovieCredit | RawTvSerieCredit

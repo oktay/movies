@@ -4,7 +4,7 @@ import { notFound } from "next/navigation"
 import { tmdb } from "@/tmdb/api"
 import { ArrowRight } from "lucide-react"
 
-import { cn, getRandomItems } from "@/lib/utils"
+import { getRandomItems } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
 import { Backdrop } from "@/components/backdrop"
@@ -33,38 +33,36 @@ export default async function Home() {
 
   return (
     <section>
-      {hero && (
-        <div className="container mt-8">
-          <div className="card h-hero relative">
-            <Backdrop image={hero.backdrop_path} alt={hero.title} />
+      <div className="container mt-8 space-y-8">
+        <div className="h-hero relative">
+          <Backdrop image={hero.backdrop_path} alt={hero.title} />
 
-            <div className="overlay">
-              <div className="mx-auto max-w-3xl p-4 pb-8 text-center md:p-12">
-                <Badge className="mb-2">Movie</Badge>
-                <h1 className="line-clamp-2 text-xl font-medium leading-tight tracking-tighter md:text-4xl">
-                  {hero.title}
-                </h1>
-                <p className="mt-4 line-clamp-3 text-sm text-muted-foreground md:text-lg">
-                  {hero.overview}
-                </p>
+          <div className="overlay">
+            <div className="mx-auto max-w-3xl space-y-4 p-4 pb-8 text-center md:p-12">
+              <Badge className="select-none">Trending Now</Badge>
 
-                <div className="mt-6 flex flex-col items-center justify-center gap-4 md:flex-row">
-                  <Link
-                    href={`/${hero.media_type}/${hero.id}`}
-                    className={cn(
-                      buttonVariants({ size: "lg", variant: "default" })
-                    )}
-                  >
-                    Details <ArrowRight className="ml-2 size-4" />
-                  </Link>
-                </div>
+              <h1 className="line-clamp-2 text-xl font-medium leading-tight tracking-tighter md:text-4xl">
+                {hero.title}
+              </h1>
+              <p className="line-clamp-3 text-sm text-muted-foreground md:text-lg">
+                {hero.overview}
+              </p>
+
+              <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
+                <Link
+                  href={`/movie/${hero.id}`}
+                  className={buttonVariants({
+                    size: "lg",
+                    variant: "default",
+                  })}
+                >
+                  Details <ArrowRight className="ml-2 size-4" />
+                </Link>
               </div>
             </div>
           </div>
         </div>
-      )}
 
-      <div className="container mt-12 space-y-12">
         {movies && (
           <TrendCarousel
             type="movie"

@@ -39,7 +39,7 @@ export default async function Detail({ params, children }: DetailLayoutProps) {
 
       <DetailView.Hero>
         <DetailView.Poster>
-          <Poster image={profile_path} alt={name} />
+          <Poster image={profile_path} alt={name} size="w780" />
         </DetailView.Poster>
 
         <div>

@@ -23,7 +23,7 @@ export const ListPagination: React.FC<ListPaginationProps> = ({
 }) => {
   const { numbers, prevLink, nextLink, pageLink } = usePagination({
     currentPage,
-    totalPages,
+    totalPages: totalPages > 500 ? 500 : totalPages,
   })
 
   return (
@@ -38,7 +38,7 @@ export const ListPagination: React.FC<ListPaginationProps> = ({
         {totalPages > 1 &&
           numbers.map((number) =>
             number === "ellipsis1" || number === "ellipsis2" ? (
-              <PaginationEllipsis key={number} />
+              <PaginationEllipsis className="hidden md:flex" key={number} />
             ) : (
               <PaginationItem key={number}>
                 <PaginationLink

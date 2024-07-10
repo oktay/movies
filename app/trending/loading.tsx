@@ -1,3 +1,3 @@
-import SkeletonList from "@/components/skeleton-list"
+import { SkeletonList } from "@/components/skeletons"
 
 export default SkeletonList

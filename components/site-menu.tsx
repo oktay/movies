@@ -25,9 +25,7 @@ import { Icons } from "@/components/icons"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 const itemStyle = cn(
-  buttonVariants({
-    variant: "ghost",
-  }),
+  buttonVariants({ variant: "ghost" }),
   "w-full justify-between hover:no-underline"
 )
 
@@ -105,12 +103,7 @@ const SecondaryMenu = () => (
       href={siteConfig.links.github}
       target="_blank"
       rel="noreferrer"
-      className={cn(
-        buttonVariants({
-          variant: "outline",
-        }),
-        "flex-1"
-      )}
+      className={cn(buttonVariants({ variant: "outline" }), "flex-1")}
     >
       <Icons.Github className="mr-2 size-4 fill-current" />
       <span>Source code</span>

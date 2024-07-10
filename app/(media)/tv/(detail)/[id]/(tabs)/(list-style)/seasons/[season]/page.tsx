@@ -4,10 +4,9 @@ import { format } from "@/tmdb/utils"
 import { ArrowLeft } from "lucide-react"
 
 import { cn, pad, pluralize } from "@/lib/utils"
-import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
 import { Backdrop } from "@/components/backdrop"
-import { Poster } from "@/components/poster"
+import { Rating } from "@/components/rating"
 
 interface DetailSeasonProps {
   params: {
@@ -29,47 +28,24 @@ export async function generateMetadata({ params }: DetailSeasonProps) {
 export default async function DetailSeason({
   params: { id, season },
 }: DetailSeasonProps) {
-  const { episodes, poster_path, name, overview, air_date } =
-    await tmdb.tvSeasons.details({
-      id,
-      season,
-    })
+  const { episodes, name } = await tmdb.tvSeasons.details({
+    id,
+    season,
+  })
 
   return (
     <section>
-      <div className="flex items-start pb-4">
-        <div className="relative aspect-poster w-20 md:w-32">
-          <Poster image={poster_path} alt={name} size="w185" className="card" />
-        </div>
-
-        <div className="flex flex-1 flex-col self-stretch pl-4 md:py-4 md:pl-6">
-          <h1 className="text-lg font-semibold">{name}</h1>
-          <div
-            className="mb-2 line-clamp-6 text-sm text-muted-foreground"
-            dangerouslySetInnerHTML={{
-              __html: format.content(overview || "<em>No details</em>"),
-            }}
-          />
-          <p className="mt-auto text-sm">{format.date(air_date)}</p>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-3 place-items-start rounded-md border p-2">
+      <div className="grid grid-cols-3 place-items-start rounded-md border p-1">
         <Link
           href={`/tv/${id}/seasons`}
-          className={cn(
-            buttonVariants({
-              variant: "ghost",
-              size: "sm",
-            }),
-            "w-auto pl-4"
-          )}
+          className={cn(buttonVariants({ variant: "ghost", size: "sm" }))}
+          prefetch={false}
         >
           <ArrowLeft className="size-4 md:mr-2" />
           <span className="sr-only md:not-sr-only">Back</span>
         </Link>
 
-        <h2 className="place-self-center text-sm font-medium">Episodes</h2>
+        <h2 className="place-self-center text-sm font-medium">{name}</h2>
 
         <div className="place-self-end self-center pr-2 text-xs text-muted-foreground">
           {episodes?.length} {pluralize(episodes.length, "episode", "episodes")}
@@ -85,17 +61,13 @@ export default async function DetailSeason({
               name,
               episode_number,
               vote_average,
+              vote_count,
               air_date,
               overview,
             }) => (
               <div key={id}>
                 <div className="relative aspect-video" key={id}>
-                  <Backdrop
-                    className="card"
-                    image={still_path}
-                    alt={name}
-                    size="w780"
-                  />
+                  <Backdrop image={still_path} alt={name} size="w780" />
                 </div>
 
                 <div className="mt-4">
@@ -107,11 +79,11 @@ export default async function DetailSeason({
                       {name}
                     </h3>
 
-                    <Badge className="h-5">
-                      {vote_average > 0
-                        ? vote_average?.toFixed(1)
-                        : "Not rated"}
-                    </Badge>
+                    <Rating
+                      average={vote_average}
+                      count={vote_count}
+                      className="h-5"
+                    />
                   </div>
 
                   <div

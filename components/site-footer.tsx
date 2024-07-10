@@ -7,7 +7,7 @@ export const SiteFooter: React.FC<ComponentProps<"footer">> = () => {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="mt-12 border-t py-4">
+    <footer className="mt-12 border-t bg-background py-4">
       <div className="container flex flex-col items-center text-center lg:flex-row lg:justify-between">
         <div className="order-1 mt-4 text-muted-foreground lg:order-none lg:mt-0">
           <p>

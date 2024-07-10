@@ -1,6 +1,5 @@
 import { tmdb } from "@/tmdb/api"
 
-import { pluralize } from "@/lib/utils"
 import { ListPagination } from "@/components/list-pagination"
 import { ReviewCard } from "@/components/review-card"
 
@@ -35,13 +34,6 @@ export default async function DetailReviews({
 
   return (
     <section className="space-y-4">
-      <h2 className="text-lg font-medium">
-        <span>Reviews</span>
-        <span className="ml-1 align-middle text-xs text-muted-foreground">
-          {results.length} {pluralize(results.length, "Review", "Reviews")}
-        </span>
-      </h2>
-
       {results.map((review) => (
         <ReviewCard key={review.id} review={review} />
       ))}

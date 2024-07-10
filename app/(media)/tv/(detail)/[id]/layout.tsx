@@ -5,12 +5,12 @@ import { format } from "@/tmdb/utils"
 import { PlayCircle } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
 import { Tabs, TabsList } from "@/components/ui/tabs"
 import { Backdrop } from "@/components/backdrop"
 import { DetailView } from "@/components/detail-view"
 import { Poster } from "@/components/poster"
+import { Rating } from "@/components/rating"
 import { TabsLink } from "@/components/tabs-link"
 
 interface DetailLayoutProps {
@@ -42,6 +42,7 @@ export default async function DetailLayout({
     poster_path,
     genres,
     vote_average,
+    vote_count,
   } = await tmdb.tv.detail({
     id: params.id,
   })
@@ -51,16 +52,29 @@ export default async function DetailLayout({
   return (
     <DetailView.Root>
       <DetailView.Backdrop>
-        <Backdrop image={backdrop_path} alt={name} priority />
+        <Backdrop
+          className="hidden md:block"
+          image={backdrop_path}
+          alt={name}
+          priority
+        />
+        <Poster
+          className="md:hidden"
+          image={poster_path}
+          alt={name}
+          size="w780"
+          priority
+        />
       </DetailView.Backdrop>
 
       <DetailView.Hero>
         <DetailView.Poster>
-          <Poster image={poster_path} alt={name} priority />
+          <Poster image={poster_path} alt={name} size="w780" priority />
         </DetailView.Poster>
-        <div>
+
+        <div className="space-y-4">
           <DetailView.Genres>
-            <Badge>{vote_average?.toFixed(1)}</Badge>
+            <Rating average={vote_average} count={vote_count} />
             {genres?.map((genre) => (
               <DetailView.Genre key={genre.id}>{genre.name}</DetailView.Genre>
             ))}
@@ -72,12 +86,8 @@ export default async function DetailLayout({
           />
           <Link
             href={`/tv/${params.id}/videos`}
-            className={cn(
-              buttonVariants({
-                variant: "default",
-              }),
-              "mt-6"
-            )}
+            className={cn(buttonVariants({ variant: "default" }), "mt-6")}
+            prefetch={false}
           >
             <PlayCircle className="mr-2 size-4" /> Watch Videos
           </Link>

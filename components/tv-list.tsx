@@ -20,17 +20,18 @@ export const TvList: React.FC<TvListProps> = async ({
   title,
   description,
 }) => {
-  const { results: tvShows, total_pages } = await tmdb.tv.list({
+  const {
+    results: tvShows,
+    total_pages: totalPages,
+    page: currentPage,
+  } = await tmdb.tv.list({
     list: list,
     page,
   })
 
-  if (!tvShows) {
+  if (!tvShows?.length) {
     return notFound()
   }
-
-  const currentPage = parseInt(page)
-  const totalPages = total_pages > 500 ? 500 : total_pages
 
   return (
     <div className="container space-y-8 py-8">

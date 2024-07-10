@@ -30,7 +30,7 @@ export const SiteNav: React.FC<React.ComponentProps<"div">> = () => {
   }
 
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-6">
       <Link href="/" className="flex items-center space-x-2">
         <Icons.Logo className="size-6" />
         <span className="sr-only">{siteConfig.name}</span>
@@ -75,7 +75,7 @@ export const SiteNav: React.FC<React.ComponentProps<"div">> = () => {
                   </NavigationMenuItem>
                 ) : (
                   <NavigationMenuItem key={index}>
-                    <Link href={href} legacyBehavior passHref>
+                    <Link href={href} prefetch={false} legacyBehavior passHref>
                       <NavigationMenuLink
                         className={cn(
                           navigationMenuTriggerStyle(),
@@ -109,6 +109,7 @@ const ListItem = forwardRef<
             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
             className
           )}
+          prefetch={false}
           {...props}
         >
           <div className="flex text-sm font-medium leading-none">

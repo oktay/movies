@@ -13,19 +13,19 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
   const { name, avatar_path, username, rating } = author_details
 
   return (
-    <div className="grid grid-cols-[auto,1fr] gap-2 md:gap-x-4">
-      <div className="relative aspect-square w-10 md:w-12">
+    <div className="grid grid-cols-[auto,1fr] items-center gap-2 md:items-start md:gap-x-4">
+      <div className="relative aspect-square w-10 md:row-span-2 md:w-12">
         <Avatar image={avatar_path} alt={name} className="border" />
       </div>
       <div className="flex items-center justify-between">
-        <h3>
+        <h3 className="flex flex-wrap items-center gap-2">
           <span className="block text-sm md:text-base">{author}</span>
           <span className="block text-xs text-muted-foreground md:text-sm">
             @{username}
           </span>
         </h3>
         <div className="flex flex-col items-end gap-2 md:flex-row md:items-center">
-          <span className="text-xs text-muted-foreground">
+          <span className="text-right text-xs text-muted-foreground">
             {format.date(created_at)}
           </span>
           <Badge>{rating?.toFixed(1) ?? "Not rated"}</Badge>

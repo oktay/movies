@@ -20,9 +20,9 @@ export default async function TrendingPage({
     <TrendList
       type="movie"
       time="day"
-      page={searchParams?.page ?? "1"}
-      title={pages.trending.movie.title}
+      title="Trending Movies"
       description={pages.trending.movie.description}
+      page={searchParams?.page ?? "1"}
     />
   )
 }

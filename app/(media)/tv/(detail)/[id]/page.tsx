@@ -71,7 +71,7 @@ export default async function Detail({ params }: { params: { id: string } }) {
       </div>
 
       {last_episode_to_air && (
-        <div className="h-hero card relative mt-4 w-full">
+        <div className="h-hero relative mt-4 w-full">
           <Backdrop
             image={last_episode_to_air.still_path}
             alt={last_episode_to_air.name}
@@ -92,6 +92,7 @@ export default async function Detail({ params }: { params: { id: string } }) {
               <Link
                 href={`/tv/${params.id}/seasons`}
                 className={cn(buttonVariants({ variant: "default" }), "mt-4")}
+                prefetch={false}
               >
                 View Episodes
               </Link>
