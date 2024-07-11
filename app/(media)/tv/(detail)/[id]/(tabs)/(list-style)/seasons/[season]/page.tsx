@@ -53,7 +53,7 @@ export default async function DetailSeason({
       </div>
 
       {episodes?.length ? (
-        <div className="grid gap-4 py-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {episodes.map(
             ({
               id,

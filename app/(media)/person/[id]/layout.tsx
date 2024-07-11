@@ -42,7 +42,7 @@ export default async function Detail({ params, children }: DetailLayoutProps) {
           <Poster image={profile_path} alt={name} size="w780" />
         </DetailView.Poster>
 
-        <div>
+        <div className="space-y-4">
           <DetailView.Title>{name}</DetailView.Title>
           <DetailView.Overview
             dangerouslySetInnerHTML={{

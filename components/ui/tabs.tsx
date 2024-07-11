@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import Link, { LinkProps } from "next/link"
+import Link from "next/link"
 import { usePathname } from "next/navigation"
 import * as TabsPrimitive from "@radix-ui/react-tabs"
 
@@ -54,12 +54,10 @@ const TabsContent = React.forwardRef<
 ))
 TabsContent.displayName = TabsPrimitive.Content.displayName
 
-const TabsLink: React.FC<LinkProps> = ({
-  href,
-  prefetch = false,
-  scroll = false,
-  ...props
-}) => {
+const TabsLink = React.forwardRef<
+  typeof Link,
+  React.ComponentPropsWithoutRef<typeof Link>
+>(({ href, prefetch = false, scroll = false, ...props }) => {
   const pathname = usePathname()
 
   return (
@@ -77,6 +75,7 @@ const TabsLink: React.FC<LinkProps> = ({
       />
     </TabsTrigger>
   )
-}
+})
+TabsLink.displayName = "TabsLink" // Set the display name for the component
 
 export { Tabs, TabsList, TabsTrigger, TabsContent, TabsLink }

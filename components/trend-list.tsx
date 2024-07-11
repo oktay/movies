@@ -1,13 +1,10 @@
-import Link from "next/link"
 import { notFound } from "next/navigation"
 import { tmdb } from "@/tmdb/api"
-import { format } from "@/tmdb/utils"
 
 import { Skeleton } from "@/components/ui/skeleton"
 import { ListPagination } from "@/components/list-pagination"
-import { MediaCard } from "@/components/media-card"
-import { Poster } from "@/components/poster"
-import { Rating } from "@/components/rating"
+import { MovieCard } from "@/components/movie-card"
+import { TvCard } from "@/components/tv-card"
 
 interface TrendListProps {
   type: "movie" | "tv"
@@ -25,7 +22,7 @@ export const TrendList: React.FC<TrendListProps> = async ({
   description,
 }) => {
   const {
-    results,
+    results: trends,
     total_pages: totalPages,
     page: currentPage,
   } = await tmdb.trending[type]({
@@ -33,18 +30,9 @@ export const TrendList: React.FC<TrendListProps> = async ({
     page,
   })
 
-  if (!results?.length) {
+  if (!trends?.length) {
     return notFound()
   }
-
-  const trends = results.map((item) => {
-    const isMovie = item.media_type === "movie"
-    return {
-      ...item,
-      title: isMovie ? item.title : item.name,
-      date: isMovie ? item.release_date : item.first_air_date,
-    }
-  })
 
   return (
     <div className="container mt-8 space-y-8">
@@ -54,26 +42,13 @@ export const TrendList: React.FC<TrendListProps> = async ({
       </div>
 
       <div className="grid-list">
-        {trends.map((item) => (
-          <Link
-            href={`/${item.media_type}/${item.id}`}
-            key={item.id}
-            prefetch={false}
-          >
-            <MediaCard.Root>
-              <Poster image={item.poster_path} alt={item.title} />
-              <MediaCard.Content>
-                <Rating
-                  average={item.vote_average}
-                  count={item.vote_count}
-                  className="mb-2"
-                />
-                <MediaCard.Title>{item.title}</MediaCard.Title>
-                <MediaCard.Excerpt>{format.year(item.date)}</MediaCard.Excerpt>
-              </MediaCard.Content>
-            </MediaCard.Root>
-          </Link>
-        ))}
+        {trends.map((item) =>
+          item.media_type === "movie" ? (
+            <MovieCard key={item.id} {...item} />
+          ) : (
+            <TvCard key={item.id} {...item} />
+          )
+        )}
       </div>
 
       <ListPagination currentPage={currentPage} totalPages={totalPages} />

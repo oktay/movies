@@ -34,6 +34,7 @@ export default async function Search({ searchParams }: SearchProps) {
           <h1 className="text-lg font-medium">Search results for:</h1>
           <p className="text-muted-foreground">{searchParams.q}</p>
         </div>
+
         <div className="grid-list">
           {results?.map((result) => {
             return <SearchItem key={result.id} media={result} />

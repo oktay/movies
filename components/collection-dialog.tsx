@@ -1,9 +1,7 @@
 "use client"
 
-import Link from "next/link"
 import { useDialog } from "@/hooks"
 import { DetailedCollection } from "@/tmdb/models"
-import { format } from "@/tmdb/utils"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -15,9 +13,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { MediaCard } from "@/components/media-card"
-import { Poster } from "@/components/poster"
-import { Rating } from "@/components/rating"
+import { MovieCard } from "@/components/movie-card"
 
 interface CollectionDialogProps {
   collection: DetailedCollection
@@ -49,22 +45,7 @@ export const CollectionDialog: React.FC<CollectionDialogProps> = ({
           <ScrollArea className="h-full max-h-[70dvh]">
             <div className="grid-list">
               {parts.map((part) => (
-                <Link href={`/movie/${part.id}`} key={part.id} prefetch={false}>
-                  <MediaCard.Root>
-                    <Poster image={part.poster_path} alt={part.title} />
-                    <MediaCard.Content>
-                      <Rating
-                        average={part.vote_average}
-                        count={part.vote_count}
-                        className="mb-2"
-                      />
-                      <MediaCard.Title>{part.title}</MediaCard.Title>
-                      <MediaCard.Excerpt>
-                        {format.year(part.release_date)}
-                      </MediaCard.Excerpt>
-                    </MediaCard.Content>
-                  </MediaCard.Root>
-                </Link>
+                <MovieCard key={part.id} {...part} />
               ))}
             </div>
           </ScrollArea>

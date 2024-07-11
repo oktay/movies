@@ -42,6 +42,7 @@ export default async function DetailLayout({
     vote_count,
     backdrop_path,
     poster_path,
+    tagline,
   } = await tmdb.movie.detail({
     id: params.id,
   })
@@ -80,9 +81,15 @@ export default async function DetailLayout({
           </DetailView.Genres>
 
           <DetailView.Title>{title}</DetailView.Title>
+
+          {tagline && (
+            <DetailView.Overview>&quot;{tagline}&quot;</DetailView.Overview>
+          )}
+
           <DetailView.Overview
             dangerouslySetInnerHTML={{ __html: format.content(overview) }}
           />
+
           <Link
             href={`/movie/${params.id}/videos`}
             className={cn(buttonVariants({ variant: "default" }))}

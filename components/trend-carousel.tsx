@@ -19,9 +19,8 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel"
-import { MediaCard } from "@/components/media-card"
-import { Poster } from "@/components/poster"
-import { Rating } from "@/components/rating"
+import { MovieCard } from "@/components/movie-card"
+import { TvCard } from "@/components/tv-card"
 
 interface TrendCarouselProps {
   title?: string
@@ -111,20 +110,11 @@ export const TrendCarousel: React.FC<TrendCarouselProps> = ({
             key={item.id}
             className="basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
           >
-            <Link href={`/${type}/${item.id}`} prefetch={false}>
-              <MediaCard.Root>
-                <Poster image={item.poster_path} alt={getTitle(item)} />
-                <MediaCard.Content>
-                  <Rating
-                    average={item.vote_average}
-                    count={item.vote_count}
-                    className="mb-2"
-                  />
-                  <MediaCard.Title>{getTitle(item)}</MediaCard.Title>
-                  <MediaCard.Excerpt>{getYear(item)}</MediaCard.Excerpt>
-                </MediaCard.Content>
-              </MediaCard.Root>
-            </Link>
+            {item.media_type === "movie" ? (
+              <MovieCard {...item} />
+            ) : (
+              <TvCard {...item} />
+            )}
           </CarouselItem>
         ))}
       </CarouselContent>

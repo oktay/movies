@@ -1,11 +1,7 @@
-import Link from "next/link"
 import { tmdb } from "@/tmdb/api"
-import { format } from "@/tmdb/utils"
 
 import { ListPagination } from "@/components/list-pagination"
-import { MediaCard } from "@/components/media-card"
-import { Poster } from "@/components/poster"
-import { Rating } from "@/components/rating"
+import { MovieCard } from "@/components/movie-card"
 
 interface DetailRecommendationsProps {
   params: {
@@ -47,18 +43,7 @@ export default async function DetailRecommendations({
     <div className="space-y-4">
       <section className="grid-list">
         {movies.map((movie) => (
-          <Link key={movie.id} href={`/movie/${movie.id}`} prefetch={false}>
-            <MediaCard.Root>
-              <Poster image={movie.poster_path} alt={movie.title} />
-              <MediaCard.Content>
-                <Rating average={movie.vote_average} count={movie.vote_count} />
-                <MediaCard.Title>{movie.title}</MediaCard.Title>
-                <MediaCard.Excerpt>
-                  {format.year(movie.release_date)}
-                </MediaCard.Excerpt>
-              </MediaCard.Content>
-            </MediaCard.Root>
-          </Link>
+          <MovieCard key={movie.id} {...movie} />
         ))}
       </section>
       <ListPagination totalPages={totalPages} currentPage={currentPage} />

@@ -1,3 +1,4 @@
+import { RawCombinedCredit } from "@/tmdb/models"
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -9,6 +10,23 @@ export function getRandomItems<T>(array: T[], count: number): T[] {
   const maxStartIndex = array.length - count
   const startIndex = Math.floor(Math.random() * (maxStartIndex + 1))
   return array.slice(startIndex, startIndex + count)
+}
+
+export function getUniqueItems(list: any[]) {
+  const unique = new Map(list.map((item) => [item.id, item]))
+  return Array.from(unique.values())
+}
+
+export function getDepartments(list: RawCombinedCredit[]) {
+  const departments = new Set(list.map((item) => item.department))
+  return Array.from(departments)
+}
+
+export function filterByDepartment(
+  list: RawCombinedCredit[],
+  department: string
+) {
+  return list.filter((item) => item.department === department)
 }
 
 export function pluralize(count: number, singular: string, plural: string) {

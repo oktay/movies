@@ -1,13 +1,9 @@
-import Link from "next/link"
 import { notFound } from "next/navigation"
 import { tmdb } from "@/tmdb/api"
 import { MovieListType } from "@/tmdb/api/types"
-import { format } from "@/tmdb/utils"
 
 import { ListPagination } from "@/components/list-pagination"
-import { MediaCard } from "@/components/media-card"
-import { Poster } from "@/components/poster"
-import { Rating } from "@/components/rating"
+import { MovieCard } from "@/components/movie-card"
 
 interface MovieListProps {
   list: MovieListType
@@ -44,27 +40,7 @@ export const MovieList: React.FC<MovieListProps> = async ({
 
       <div className="grid-list">
         {movies.map((movie) => (
-          <Link
-            href={`/movie/${movie.id}`}
-            key={movie.id}
-            className="w-full"
-            prefetch={false}
-          >
-            <MediaCard.Root>
-              <Poster image={movie.poster_path} alt={movie.title} />
-              <MediaCard.Content>
-                <Rating
-                  average={movie.vote_average}
-                  count={movie.vote_count}
-                  className="mb-2"
-                />
-                <MediaCard.Title>{movie.title}</MediaCard.Title>
-                <MediaCard.Excerpt>
-                  {format.year(movie.release_date)}
-                </MediaCard.Excerpt>
-              </MediaCard.Content>
-            </MediaCard.Root>
-          </Link>
+          <MovieCard key={movie.id} {...movie} />
         ))}
       </div>
 
