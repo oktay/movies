@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { sendGAEvent } from "@next/third-parties/google"
+import { track } from "@vercel/analytics"
 import { useDebounce } from "use-debounce"
 
 export const useSearch = (auto: boolean = true) => {
@@ -32,6 +34,14 @@ export const useSearch = (auto: boolean = true) => {
   function handleSearch(value: string) {
     if (value !== "") {
       router.push(`/search?q=${value}`)
+
+      sendGAEvent("event", "search", {
+        search_term: value,
+      })
+      track("Search", {
+        search_term: value,
+      })
+
       return
     }
 

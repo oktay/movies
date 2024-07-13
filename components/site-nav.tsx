@@ -68,16 +68,17 @@ const SiteNavItemSingle = ({ title, icon, href }: NavItem) => {
 
   return (
     <NavigationMenuItem>
-      <NavigationMenuLink
-        href={href}
-        className={cn(
-          navigationMenuTriggerStyle(),
-          isActive && "bg-accent",
-          "gap-2"
-        )}
-      >
-        <Icon className="size-4" /> {title}
-      </NavigationMenuLink>
+      <Link href={href} legacyBehavior passHref>
+        <NavigationMenuLink
+          className={cn(
+            navigationMenuTriggerStyle(),
+            isActive && "bg-accent",
+            "gap-2"
+          )}
+        >
+          <Icon className="size-4" /> {title}
+        </NavigationMenuLink>
+      </Link>
     </NavigationMenuItem>
   )
 }
