@@ -31,13 +31,20 @@ import {
  * @see https://developer.themoviedb.org/reference/movie-upcoming-list
  */
 const list = ({ list, page, region }: MovieListRequestParams) =>
-  api.fetcher<ListResponse<Movie>>({
-    endpoint: `movie/${list}`,
-    params: {
-      page,
-      region,
+  api.fetcher<ListResponse<Movie>>(
+    {
+      endpoint: `movie/${list}`,
+      params: {
+        page,
+        region,
+      },
     },
-  })
+    {
+      next: {
+        revalidate: 60 * 60 * 24, // 24 hours
+      },
+    }
+  )
 
 /**
  * Fetches detailed information about a specific movie.
