@@ -7,10 +7,10 @@ import { PlayCircle } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Tabs, TabsLink, TabsList } from "@/components/ui/tabs"
-import { Backdrop } from "@/components/backdrop"
-import { DetailView } from "@/components/detail-view"
-import { Poster } from "@/components/poster"
-import { Rating } from "@/components/rating"
+import { MediaBackdrop } from "@/components/media-backdrop"
+import { MediaDetailView } from "@/components/media-detail-view"
+import { MediaPoster } from "@/components/media-poster"
+import { MediaRating } from "@/components/media-rating"
 
 interface DetailLayoutProps {
   params: {
@@ -50,43 +50,47 @@ export default async function DetailLayout({
   if (!id) return notFound()
 
   return (
-    <DetailView.Root>
-      <DetailView.Backdrop>
-        <Backdrop
+    <MediaDetailView.Root>
+      <MediaDetailView.Backdrop>
+        <MediaBackdrop
           className="hidden md:block"
           image={backdrop_path}
           alt={name}
           priority
         />
-        <Poster
+        <MediaPoster
           className="md:hidden"
           image={poster_path}
           alt={name}
           size="w780"
           priority
         />
-      </DetailView.Backdrop>
+      </MediaDetailView.Backdrop>
 
-      <DetailView.Hero>
-        <DetailView.Poster>
-          <Poster image={poster_path} alt={name} size="w780" priority />
-        </DetailView.Poster>
+      <MediaDetailView.Hero>
+        <MediaDetailView.Poster>
+          <MediaPoster image={poster_path} alt={name} size="w780" priority />
+        </MediaDetailView.Poster>
 
         <div className="space-y-4">
-          <DetailView.Genres>
-            <Rating average={vote_average} count={vote_count} />
+          <MediaDetailView.Genres>
+            <MediaRating average={vote_average} count={vote_count} />
             {genres?.map((genre) => (
-              <DetailView.Genre key={genre.id}>{genre.name}</DetailView.Genre>
+              <MediaDetailView.Genre key={genre.id}>
+                {genre.name}
+              </MediaDetailView.Genre>
             ))}
-          </DetailView.Genres>
+          </MediaDetailView.Genres>
 
-          <DetailView.Title>{name}</DetailView.Title>
+          <MediaDetailView.Title>{name}</MediaDetailView.Title>
 
           {tagline && (
-            <DetailView.Overview>&quot;{tagline}&quot;</DetailView.Overview>
+            <MediaDetailView.Overview>
+              &quot;{tagline}&quot;
+            </MediaDetailView.Overview>
           )}
 
-          <DetailView.Overview
+          <MediaDetailView.Overview
             dangerouslySetInnerHTML={{ __html: format.content(overview) }}
           />
 
@@ -98,9 +102,9 @@ export default async function DetailLayout({
             <PlayCircle className="mr-2 size-4" /> Watch Videos
           </Link>
         </div>
-      </DetailView.Hero>
+      </MediaDetailView.Hero>
 
-      <DetailView.Content>
+      <MediaDetailView.Content>
         <Tabs className="mt-8 lg:mt-12">
           <div className="max-w-screen scrollbar-hidden -mx-8 overflow-x-scroll px-8 lg:m-0 lg:p-0">
             <TabsList>
@@ -118,7 +122,7 @@ export default async function DetailLayout({
           </div>
         </Tabs>
         <div className="mt-4">{children}</div>
-      </DetailView.Content>
-    </DetailView.Root>
+      </MediaDetailView.Content>
+    </MediaDetailView.Root>
   )
 }

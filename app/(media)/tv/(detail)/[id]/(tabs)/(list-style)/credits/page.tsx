@@ -2,7 +2,7 @@ import Link from "next/link"
 import { tmdb } from "@/tmdb/api"
 
 import { MediaCard } from "@/components/media-card"
-import { Poster } from "@/components/poster"
+import { MediaPoster } from "@/components/media-poster"
 
 interface DetailCreditsProps {
   params: {
@@ -36,7 +36,7 @@ export default async function DetailCredits({
       {cast.map(({ id, name, character, profile_path }) => (
         <Link href={`/person/${id}`} key={id} prefetch={false}>
           <MediaCard.Root>
-            <Poster image={profile_path} alt={name} />
+            <MediaPoster image={profile_path} alt={name} />
             <MediaCard.Content>
               <MediaCard.Title>{name}</MediaCard.Title>
               <MediaCard.Excerpt>{character}</MediaCard.Excerpt>

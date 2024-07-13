@@ -12,6 +12,10 @@ export const siteConfig = {
   ],
   links: {
     github: "https://github.com/oktay/movies",
+    next: "https://nextjs.org",
+    vercel: "https://vercel.com",
+    tmdb: "https://www.themoviedb.org",
+    shadcn: "https://ui.shadcn.com/",
   },
   author: {
     name: "Oktay Colakoglu",

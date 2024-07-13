@@ -1,8 +1,9 @@
 import { redirect } from "next/navigation"
 import { tmdb } from "@/tmdb/api"
+import { BadgeHelp } from "lucide-react"
 
 import { ListPagination } from "@/components/list-pagination"
-import { SearchItem } from "@/components/search-item"
+import { SearchResultCard } from "@/components/search-result-card"
 
 interface SearchProps {
   searchParams: {
@@ -28,7 +29,7 @@ export default async function Search({ searchParams }: SearchProps) {
   })
 
   return (
-    <div className="container">
+    <div className="container h-full">
       <div className="mt-6 space-y-4">
         <div>
           <h1 className="text-lg font-medium">Search results for:</h1>
@@ -37,15 +38,19 @@ export default async function Search({ searchParams }: SearchProps) {
 
         <div className="grid-list">
           {results?.map((result) => {
-            return <SearchItem key={result.id} media={result} />
+            return <SearchResultCard key={result.id} media={result} />
           })}
-
-          {!results?.length && (
-            <div className="text-xl text-muted-foreground">
-              No results found
-            </div>
-          )}
         </div>
+
+        {!results?.length && (
+          <div className="grid h-[55vh] place-items-center rounded-md border bg-background">
+            <div className="space-y-4 text-center text-muted-foreground">
+              <BadgeHelp className="mx-auto size-12" />
+              <p>No results found</p>
+            </div>
+          </div>
+        )}
+
         <ListPagination currentPage={page} totalPages={total_pages} />
       </div>
     </div>

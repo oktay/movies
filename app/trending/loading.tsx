@@ -1,1 +1,1 @@
-export { SkeletonList as default } from "@/components/trend-list"
+export { ListSkeleton as default } from "@/components/list-skeleton"

@@ -10,6 +10,7 @@ import {
   StarIcon,
   TrendingUpIcon,
   TvIcon,
+  User,
 } from "lucide-react"
 
 export type NavItem = {
@@ -104,6 +105,21 @@ const TVShows = {
   ],
 }
 
+const People = {
+  title: "People",
+  href: "/people",
+  icon: User,
+  description: pages.people.root.description,
+  items: [
+    {
+      title: "Popular",
+      href: "/person/popular",
+      icon: HeartIcon,
+      description: pages.people.popular.description,
+    },
+  ],
+}
+
 const Trending = {
   title: "Trending",
   icon: TrendingUpIcon,
@@ -122,9 +138,15 @@ const Trending = {
       icon: TvIcon,
       description: pages.trending.tv.description,
     },
+    // {
+    //   title: "People",
+    //   href: "/trending/people",
+    //   icon: User,
+    //   description: pages.trending.people.description,
+    // },
   ],
 }
 
 export const navigation = {
-  items: [Home, Movies, TVShows, Trending] as NavItem[],
+  items: [Home, Movies, TVShows, People, Trending] as NavItem[],
 }

@@ -4,8 +4,8 @@ import { Movie } from "@/tmdb/models"
 import { format } from "@/tmdb/utils"
 
 import { MediaCard } from "@/components/media-card"
-import { Poster } from "@/components/poster"
-import { Rating } from "@/components/rating"
+import { MediaPoster } from "@/components/media-poster"
+import { MediaRating } from "@/components/media-rating"
 
 export const MovieCard: React.FC<Movie> = ({
   id,
@@ -16,11 +16,15 @@ export const MovieCard: React.FC<Movie> = ({
   release_date,
 }) => {
   return (
-    <Link href={`/movie/${id}`} key={id} className="w-full" prefetch={false}>
+    <Link href={`/movie/${id}`} key={id} prefetch={false}>
       <MediaCard.Root>
-        <Poster image={poster_path} alt={title} />
+        <MediaPoster image={poster_path} alt={title} />
         <MediaCard.Content>
-          <Rating average={vote_average} count={vote_count} className="mb-2" />
+          <MediaRating
+            average={vote_average}
+            count={vote_count}
+            className="mb-2"
+          />
           <MediaCard.Title>{title}</MediaCard.Title>
           <MediaCard.Excerpt>{format.year(release_date)}</MediaCard.Excerpt>
         </MediaCard.Content>

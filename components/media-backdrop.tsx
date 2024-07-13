@@ -1,26 +1,26 @@
 import { ComponentProps } from "react"
 import Image from "next/image"
-import { PosterSize, tmdbImage } from "@/tmdb/utils"
+import { BackdropSize, tmdbImage } from "@/tmdb/utils"
 
 import { cn } from "@/lib/utils"
 import { Icons } from "@/components/icons"
 
-interface PosterProps extends ComponentProps<"div"> {
+interface MediaBackdropProps extends ComponentProps<"div"> {
   image?: string
-  size?: PosterSize
+  size?: BackdropSize
   alt: string
   priority?: boolean
 }
 
-export const Poster: React.FC<PosterProps> = ({
+export const MediaBackdrop: React.FC<MediaBackdropProps> = ({
   image,
-  size = "w500",
+  size = "original",
   alt,
   className,
   priority,
   ...props
 }) => {
-  const src = image ? tmdbImage.poster(image, size) : null
+  const src = image ? tmdbImage.backdrop(image, size) : null
 
   if (!src) {
     return (

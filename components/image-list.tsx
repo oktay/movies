@@ -4,12 +4,12 @@ import { tmdbImage } from "@/tmdb/utils"
 
 import { cn } from "@/lib/utils"
 
-interface ImagesProps {
+interface ImageListProps {
   id: string
   type: "movie" | "tv"
 }
 
-export const Images: React.FC<ImagesProps> = async ({ id, type }) => {
+export const ImageList: React.FC<ImageListProps> = async ({ id, type }) => {
   const { posters, backdrops } = await tmdb[type].images({ id, langs: "en" })
 
   if (!posters.length && !backdrops.length)

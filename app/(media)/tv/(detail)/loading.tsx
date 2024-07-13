@@ -1,1 +1,1 @@
-export { SkeletonDetail as default } from "@/components/detail-view"
+export { SkeletonMediaDetail as default } from "@/components/media-detail-view"

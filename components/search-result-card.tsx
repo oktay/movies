@@ -8,14 +8,16 @@ import { format } from "@/tmdb/utils"
 
 import { Badge } from "@/components/ui/badge"
 import { MediaCard } from "@/components/media-card"
-import { Poster } from "@/components/poster"
-import { Rating } from "@/components/rating"
+import { MediaPoster } from "@/components/media-poster"
+import { MediaRating } from "@/components/media-rating"
 
-interface SearchItemProps {
+interface SearchResultCardProps {
   media: MovieWithMediaType | TvShowWithMediaType | PersonWithMediaType
 }
 
-export const SearchItem: React.FC<SearchItemProps> = ({ media }) => {
+export const SearchResultCard: React.FC<SearchResultCardProps> = ({
+  media,
+}) => {
   const { media_type, id } = media
 
   const isPerson = media_type === "person"
@@ -24,19 +26,17 @@ export const SearchItem: React.FC<SearchItemProps> = ({ media }) => {
   return (
     <Link href={`/${media_type}/${id}`} prefetch={false}>
       <MediaCard.Root>
-        <Poster
+        <MediaPoster
           image={isPerson ? media.profile_path : media.poster_path}
           alt={isMovie ? media.title : media.name}
         />
         <MediaCard.Content>
           {!isPerson && (
-            <>
-              <Rating
-                average={media.vote_average}
-                count={media.vote_count}
-                className="mr-2"
-              />
-            </>
+            <MediaRating
+              average={media.vote_average}
+              count={media.vote_count}
+              className="mr-2"
+            />
           )}
           <Badge className="border-foreground capitalize" variant="outline">
             {media.media_type === "tv" ? "TV Show" : media.media_type}

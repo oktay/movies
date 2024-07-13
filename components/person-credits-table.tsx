@@ -28,12 +28,12 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-interface CreditsTableProps {
+interface PersonCreditsTableProps {
   credits: RawCombinedCredit[]
   department: string
 }
 
-export const CreditsTable: React.FC<CreditsTableProps> = ({
+export const PersonCreditsTable: React.FC<PersonCreditsTableProps> = ({
   credits,
   department,
 }) => {

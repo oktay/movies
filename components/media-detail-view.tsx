@@ -98,16 +98,16 @@ const Overview: React.FC<ComponentProps<"p">> = ({ className, ...props }) => {
   )
 }
 
-export const SkeletonDetail = () => (
-  <DetailView.Root>
-    <DetailView.Backdrop>
+export const SkeletonMediaDetail = () => (
+  <MediaDetailView.Root>
+    <MediaDetailView.Backdrop>
       <Skeleton className="size-full rounded-md" />
-    </DetailView.Backdrop>
+    </MediaDetailView.Backdrop>
 
-    <DetailView.Hero>
-      <DetailView.Poster>
+    <MediaDetailView.Hero>
+      <MediaDetailView.Poster>
         <Skeleton className="size-full rounded-md" />
-      </DetailView.Poster>
+      </MediaDetailView.Poster>
 
       <div className="space-y-4">
         <Skeleton className="h-6 w-40 rounded-md" />
@@ -116,15 +116,15 @@ export const SkeletonDetail = () => (
         <Skeleton className="h-4 w-full rounded-md" />
         <Skeleton className="h-4 w-full rounded-md" />
       </div>
-    </DetailView.Hero>
+    </MediaDetailView.Hero>
 
-    <DetailView.Content>
+    <MediaDetailView.Content>
       <Skeleton className="mt-4 h-[30vh] w-full rounded-md" />
-    </DetailView.Content>
-  </DetailView.Root>
+    </MediaDetailView.Content>
+  </MediaDetailView.Root>
 )
 
-export const DetailView = {
+export const MediaDetailView = {
   Root,
   Backdrop,
   Hero,

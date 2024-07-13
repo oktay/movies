@@ -7,11 +7,11 @@ import { tv } from "./tv"
 import { tvSeasons } from "./tv-seasons"
 
 export const tmdb = {
-  tvSeasons,
   collection,
-  trending,
   movie,
-  tv,
-  search,
   person,
+  search,
+  trending,
+  tv,
+  tvSeasons,
 }

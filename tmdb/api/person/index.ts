@@ -1,7 +1,23 @@
-import { CombinedCreditsResponse, PersonDetails } from "@/tmdb/models"
+import { ListResponse } from "@/tmdb/api/types"
+import { CombinedCreditsResponse, Person, PersonDetails } from "@/tmdb/models"
 
 import { api } from "../api"
-import { PersonDetailsRequestParams } from "./types"
+import { PersonDetailsRequestParams, PersonListRequestParams } from "./types"
+
+/**
+ * Fetches a list of movies based on the specified criteria.
+ *
+ * @param {PersonListRequestParams} params - The parameters for the movie list request, including list type, page, and region.
+ * @returns {Promise<ListResponse<Person>>} A promise that resolves to the list of movies.
+ * @see https://developer.themoviedb.org/reference/person-popular-list
+ */
+const list = async ({ list, page }: PersonListRequestParams) =>
+  api.fetcher<ListResponse<Person>>({
+    endpoint: `person/${list}`,
+    params: {
+      page,
+    },
+  })
 
 /**
  * Fetches details for a person by ID.
@@ -31,5 +47,6 @@ const combinedCredits = async ({ id }: PersonDetailsRequestParams) =>
 
 export const person = {
   details,
+  list,
   combinedCredits,
 }

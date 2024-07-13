@@ -1,36 +1,33 @@
 import { notFound } from "next/navigation"
 import { tmdb } from "@/tmdb/api"
+import { PersonListType } from "@/tmdb/api/types"
 
 import { ListPagination } from "@/components/list-pagination"
-import { MovieCard } from "@/components/movie-card"
 import { PersonCard } from "@/components/person-card"
-import { TvCard } from "@/components/tv-card"
 
-interface TrendListProps {
-  type: "movie" | "tv" | "people"
-  time: "day" | "week"
+interface PersonListProps {
+  list: PersonListType
   page: string
   title?: string
   description?: string
 }
 
-export const TrendList: React.FC<TrendListProps> = async ({
-  type,
-  time,
+export const PersonList: React.FC<PersonListProps> = async ({
+  list,
   page,
   title,
   description,
 }) => {
   const {
-    results: trends,
+    results: people,
     total_pages: totalPages,
     page: currentPage,
-  } = await tmdb.trending[type]({
-    time,
+  } = await tmdb.person.list({
+    list,
     page,
   })
 
-  if (!trends?.length) {
+  if (!people?.length) {
     return notFound()
   }
 
@@ -42,15 +39,9 @@ export const TrendList: React.FC<TrendListProps> = async ({
       </div>
 
       <div className="grid-list">
-        {trends.map((item) =>
-          item.media_type === "tv" ? (
-            <TvCard key={item.id} {...item} />
-          ) : item.media_type === "person" ? (
-            <PersonCard key={item.id} {...item} />
-          ) : (
-            <MovieCard key={item.id} {...item} />
-          )
-        )}
+        {people.map((movie) => (
+          <PersonCard key={movie.id} {...movie} />
+        ))}
       </div>
 
       <ListPagination currentPage={currentPage} totalPages={totalPages} />

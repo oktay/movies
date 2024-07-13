@@ -5,7 +5,7 @@ import { format } from "@/tmdb/utils"
 import { cn, formatValue, joiner, pad } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
-import { Backdrop } from "@/components/backdrop"
+import { MediaBackdrop } from "@/components/media-backdrop"
 
 export default async function Detail({ params }: { params: { id: string } }) {
   const {
@@ -72,7 +72,10 @@ export default async function Detail({ params }: { params: { id: string } }) {
 
       {lastEpisode && (
         <div className="h-hero relative w-full">
-          <Backdrop image={lastEpisode.still_path} alt={lastEpisode.name} />
+          <MediaBackdrop
+            image={lastEpisode.still_path}
+            alt={lastEpisode.name}
+          />
           <div className="overlay">
             <div className="p-4 md:p-10">
               <Badge className="mb-4 gap-1">
@@ -87,7 +90,7 @@ export default async function Detail({ params }: { params: { id: string } }) {
                 {lastEpisode.overview}
               </p>
               <Link
-                href={`/tv/${params.id}/seasons/${lastEpisode.season_number}`}
+                href={`/tv/${params.id}/seasons?s=${lastEpisode.season_number}`}
                 className={cn(buttonVariants({ variant: "default" }), "mt-4")}
                 prefetch={false}
               >

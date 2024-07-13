@@ -3,20 +3,20 @@ import { format } from "@/tmdb/utils"
 
 import { Badge } from "@/components/ui/badge"
 import { Skeleton } from "@/components/ui/skeleton"
-import { Avatar } from "@/components/avatar"
+import { UserAvatar } from "@/components/user-avatar"
 
-interface ReviewCardProps {
+interface UserReviewCardProps {
   review: Review
 }
 
-export const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
+export const UserReviewCard: React.FC<UserReviewCardProps> = ({ review }) => {
   const { author_details, author, created_at, content } = review
   const { name, avatar_path, username, rating } = author_details
 
   return (
     <div className="grid grid-cols-[auto,1fr] items-center gap-2 md:items-start md:gap-x-4">
       <div className="relative aspect-square w-10 md:row-span-2 md:w-12">
-        <Avatar image={avatar_path} alt={name} className="border" />
+        <UserAvatar image={avatar_path} alt={name} className="border" />
       </div>
       <div className="flex items-center justify-between">
         <h3 className="flex flex-wrap items-center gap-2">

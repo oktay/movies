@@ -1,8 +1,10 @@
+"use client"
+
 import { useEffect, useState } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useDebounce } from "use-debounce"
 
-export const useSearch = () => {
+export const useSearch = (auto: boolean = true) => {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -15,16 +17,20 @@ export const useSearch = () => {
   useEffect(() => {
     if (pathname !== "/search") {
       setPage(pathname)
+    }
+    if (!query) {
       setTerm("")
     }
-  }, [pathname])
+  }, [pathname, query])
 
   useEffect(() => {
-    handleSearch(value)
-  }, [value]) // eslint-disable-line react-hooks/exhaustive-deps
+    if (auto) {
+      handleSearch(value)
+    }
+  }, [value, auto]) // eslint-disable-line react-hooks/exhaustive-deps
 
   function handleSearch(value: string) {
-    if (value) {
+    if (value !== "") {
       router.push(`/search?q=${value}`)
       return
     }
@@ -49,8 +55,12 @@ export const useSearch = () => {
   }
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
-    if (event.key === "Enter") {
+    if (event.key === "Enter" && query !== value && !auto) {
       handleSearch(value)
+    }
+
+    if (event.key === "Escape") {
+      clearSearch()
     }
   }
 

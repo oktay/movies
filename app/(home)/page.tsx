@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react"
 import { getRandomItems } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
-import { Backdrop } from "@/components/backdrop"
+import { MediaBackdrop } from "@/components/media-backdrop"
 import { TrendCarousel } from "@/components/trend-carousel"
 
 export const metadata: Metadata = {
@@ -35,7 +35,7 @@ export default async function Home() {
     <section>
       <div className="container mt-8 space-y-8">
         <div className="h-hero relative">
-          <Backdrop image={hero.backdrop_path} alt={hero.title} />
+          <MediaBackdrop image={hero.backdrop_path} alt={hero.title} />
 
           <div className="overlay">
             <div className="mx-auto max-w-3xl space-y-4 p-4 pb-8 text-center md:p-12">

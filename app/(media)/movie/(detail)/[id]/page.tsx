@@ -2,7 +2,7 @@ import { tmdb } from "@/tmdb/api"
 import { format } from "@/tmdb/utils"
 
 import { formatValue, joiner } from "@/lib/utils"
-import { Collection } from "@/components/collection"
+import { MovieCollection } from "@/components/movie-collection"
 
 interface DetailProps {
   params: {
@@ -63,7 +63,9 @@ export default async function Detail({ params }: DetailProps) {
         ))}
       </div>
 
-      {belongs_to_collection && <Collection id={belongs_to_collection.id} />}
+      {belongs_to_collection && (
+        <MovieCollection id={belongs_to_collection.id} />
+      )}
     </section>
   )
 }

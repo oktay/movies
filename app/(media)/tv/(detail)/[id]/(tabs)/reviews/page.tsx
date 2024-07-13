@@ -1,7 +1,7 @@
 import { tmdb } from "@/tmdb/api"
 
 import { ListPagination } from "@/components/list-pagination"
-import { ReviewCard } from "@/components/review-card"
+import { UserReviewCard } from "@/components/user-review-card"
 
 interface DetailReviewsProps {
   params: {
@@ -35,7 +35,7 @@ export default async function DetailReviews({
   return (
     <section className="space-y-4">
       {results.map((review) => (
-        <ReviewCard key={review.id} review={review} />
+        <UserReviewCard key={review.id} review={review} />
       ))}
 
       <ListPagination currentPage={page} totalPages={total_pages} />

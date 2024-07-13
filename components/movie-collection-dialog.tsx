@@ -3,6 +3,7 @@
 import { useDialog } from "@/hooks"
 import { DetailedCollection } from "@/tmdb/models"
 
+import { sortMoviesByDate } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -15,11 +16,11 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { MovieCard } from "@/components/movie-card"
 
-interface CollectionDialogProps {
+interface MovieCollectionDialogProps {
   collection: DetailedCollection
 }
 
-export const CollectionDialog: React.FC<CollectionDialogProps> = ({
+export const MovieCollectionDialog: React.FC<MovieCollectionDialogProps> = ({
   collection: { name, overview, parts },
 }) => {
   const [open, setOpen] = useDialog()
@@ -41,19 +42,13 @@ export const CollectionDialog: React.FC<CollectionDialogProps> = ({
           </DialogDescription>
         </DialogHeader>
 
-        {parts?.length ? (
-          <ScrollArea className="h-full max-h-[70dvh]">
-            <div className="grid-list">
-              {parts.map((part) => (
-                <MovieCard key={part.id} {...part} />
-              ))}
-            </div>
-          </ScrollArea>
-        ) : (
-          <div className="grid place-items-center text-muted-foreground">
-            No parts found
+        <ScrollArea className="aspect-square pr-4 sm:aspect-video">
+          <div className="grid-list">
+            {sortMoviesByDate(parts).map((part) => (
+              <MovieCard key={part.id} {...part} />
+            ))}
           </div>
-        )}
+        </ScrollArea>
       </DialogContent>
     </Dialog>
   )

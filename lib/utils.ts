@@ -1,4 +1,4 @@
-import { RawCombinedCredit } from "@/tmdb/models"
+import { Movie, RawCombinedCredit } from "@/tmdb/models"
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -43,4 +43,12 @@ export function formatValue(value: any, formatter?: any) {
 
 export function pad(value: number) {
   return String(value).padStart(2, "0")
+}
+
+export function sortMoviesByDate(list: Movie[], order: "asc" | "desc" = "asc") {
+  return list.sort((a, b) => {
+    const dateA = new Date(a.release_date).getTime()
+    const dateB = new Date(b.release_date).getTime()
+    return order === "asc" ? dateA - dateB : dateB - dateA
+  })
 }

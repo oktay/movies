@@ -52,7 +52,7 @@ const imageSizes = {
  * @param type The size of the image as defined in `imageSizes`.
  * @returns The URL of the image or a placeholder image URL if the path is invalid.
  */
-const url = (path: string, type: ImageSize = imageSizes.original) => {
+const url = (path: string, type: ImageSize = "original") => {
   if (!path) {
     console.error("Invalid image path provided.")
     return "/placeholder.png"
@@ -86,10 +86,7 @@ const backdrop = (path: string, size: BackdropSize = "original") => {
  * @param size The size of the profile image as defined in `imageSizes.profile`.
  * @returns The URL of the profile image.
  */
-const profile = (
-  path: string,
-  size: keyof typeof imageSizes.profile = "original"
-) => {
+const profile = (path: string, size: ProfileSize = "original") => {
   return url(path, imageSizes.profile[size])
 }
 

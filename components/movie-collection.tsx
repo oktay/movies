@@ -1,20 +1,22 @@
 import { tmdb } from "@/tmdb/api"
 
-import { Backdrop } from "@/components/backdrop"
-import { CollectionDialog } from "@/components/collection-dialog"
+import { MediaBackdrop } from "@/components/media-backdrop"
+import { MovieCollectionDialog } from "@/components/movie-collection-dialog"
 
-interface CollectionProps {
+interface MovieCollectionProps {
   id: number
 }
 
-export const Collection: React.FC<CollectionProps> = async ({ id }) => {
+export const MovieCollection: React.FC<MovieCollectionProps> = async ({
+  id,
+}) => {
   const collection = await tmdb.collection.details({
     id,
   })
 
   return (
     <div className="h-hero relative mt-4 w-full">
-      <Backdrop image={collection.backdrop_path} alt={collection.name} />
+      <MediaBackdrop image={collection.backdrop_path} alt={collection.name} />
       <div className="overlay">
         <div className="p-4 md:p-10">
           <p className="line-clamp-3 text-xs text-muted-foreground md:text-lg">
@@ -26,7 +28,7 @@ export const Collection: React.FC<CollectionProps> = async ({ id }) => {
           <p className="line-clamp-1 max-w-2xl text-muted-foreground">
             Includes: {collection.parts.map((part) => part.title).join(", ")}
           </p>
-          <CollectionDialog collection={collection} />
+          <MovieCollectionDialog collection={collection} />
         </div>
       </div>
     </div>

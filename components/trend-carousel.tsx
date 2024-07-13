@@ -3,12 +3,10 @@
 import React, { useEffect, useState } from "react"
 import Link from "next/link"
 import {
-  Movie,
   MovieWithMediaType,
-  TvShow,
+  PersonWithMediaType,
   TvShowWithMediaType,
 } from "@/tmdb/models"
-import { format } from "@/tmdb/utils"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
@@ -20,20 +18,20 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel"
 import { MovieCard } from "@/components/movie-card"
+import { PersonCard } from "@/components/person-card"
 import { TvCard } from "@/components/tv-card"
 
 interface TrendCarouselProps {
   title?: string
   link?: string
-  items: MovieWithMediaType[] | TvShowWithMediaType[]
-  type: "movie" | "tv"
+  items: MovieWithMediaType[] | TvShowWithMediaType[] | PersonWithMediaType[]
+  type: "movie" | "tv" | "person"
 }
 
 export const TrendCarousel: React.FC<TrendCarouselProps> = ({
   title,
   link,
   items,
-  type,
 }) => {
   const [api, setApi] = useState<CarouselApi>()
   const [total, setTotal] = useState(0)
@@ -56,16 +54,6 @@ export const TrendCarousel: React.FC<TrendCarouselProps> = ({
 
   function previousSlide() {
     api?.scrollPrev()
-  }
-
-  function getTitle(item: Movie | TvShow) {
-    return (item as Movie).title || (item as TvShow).name
-  }
-
-  function getYear(item: MovieWithMediaType | TvShowWithMediaType) {
-    const isMovie = item.media_type === "movie"
-    const date = isMovie ? item.release_date : item.first_air_date
-    return format.year(date)
   }
 
   return (
@@ -110,10 +98,12 @@ export const TrendCarousel: React.FC<TrendCarouselProps> = ({
             key={item.id}
             className="basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
           >
-            {item.media_type === "movie" ? (
-              <MovieCard {...item} />
+            {item.media_type === "tv" ? (
+              <TvCard key={item.id} {...item} />
+            ) : item.media_type === "person" ? (
+              <PersonCard key={item.id} {...item} />
             ) : (
-              <TvCard {...item} />
+              <MovieCard key={item.id} {...item} />
             )}
           </CarouselItem>
         ))}

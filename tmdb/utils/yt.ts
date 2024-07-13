@@ -4,7 +4,7 @@
  * @param autoplay Optional parameter to enable autoplay of the video. Defaults to false.
  * @returns The URL for embedding the YouTube video with specified parameters.
  */
-const video = (key: string, autoplay?: boolean) =>
+const video = (key: string, autoplay: boolean = false) =>
   `https://www.youtube.com/embed/${key}?rel=0&showinfo=0&autoplay=${
     autoplay ? 1 : 0
   }`

@@ -28,6 +28,6 @@ export const GridBg: React.FC = () => (
 
       <rect width="100%" height="100%" fill="url(#grid)" />
     </svg>
-    <div className="absolute bottom-0 h-[30dvh] w-full bg-gradient-to-t from-background via-background" />
+    <div className="absolute bottom-0 h-[30dvh] w-full bg-gradient-to-t from-background" />
   </div>
 )

@@ -1,6 +1,7 @@
-export * from "./trending/types"
 export * from "./movie/types"
+export * from "./trending/types"
 export * from "./tv/types"
+export * from "./person/types"
 
 export type ListResponse<T> = {
   page: number

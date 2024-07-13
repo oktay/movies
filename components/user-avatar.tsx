@@ -1,38 +1,38 @@
 import { ComponentProps } from "react"
 import Image from "next/image"
-import { BackdropSize, tmdbImage } from "@/tmdb/utils"
+import { ProfileSize, tmdbImage } from "@/tmdb/utils"
 
 import { cn } from "@/lib/utils"
 import { Icons } from "@/components/icons"
 
-interface BackdropProps extends ComponentProps<"div"> {
+interface UserAvatarProps extends ComponentProps<"div"> {
   image?: string
-  size?: BackdropSize
+  size?: ProfileSize
   alt: string
   priority?: boolean
 }
 
-export const Backdrop: React.FC<BackdropProps> = ({
+export const UserAvatar: React.FC<UserAvatarProps> = ({
   image,
-  size = "original",
+  size = "w45",
   alt,
   className,
   priority,
   ...props
 }) => {
-  const src = image ? tmdbImage.backdrop(image, size) : null
+  const src = image ? tmdbImage.profile(image, size) : null
 
   if (!src) {
     return (
       <div
         className={cn(
-          "size-full rounded-md border bg-muted text-muted-foreground",
+          "size-full rounded-full bg-muted text-muted-foreground",
           className
         )}
         {...props}
       >
         <div className="grid size-full place-items-center">
-          <Icons.Logo className="size-12" />
+          <Icons.Logo className="size-6" />
         </div>
       </div>
     )
@@ -40,10 +40,7 @@ export const Backdrop: React.FC<BackdropProps> = ({
 
   return (
     <Image
-      className={cn(
-        "size-full rounded-md border bg-muted object-cover",
-        className
-      )}
+      className={cn("size-full rounded-full bg-muted object-cover", className)}
       src={src}
       alt={alt}
       priority={priority}

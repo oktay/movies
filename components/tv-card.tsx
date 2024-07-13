@@ -4,8 +4,8 @@ import { TvShow } from "@/tmdb/models"
 import { format } from "@/tmdb/utils"
 
 import { MediaCard } from "@/components/media-card"
-import { Poster } from "@/components/poster"
-import { Rating } from "@/components/rating"
+import { MediaPoster } from "@/components/media-poster"
+import { MediaRating } from "@/components/media-rating"
 
 export const TvCard: React.FC<TvShow> = ({
   id,
@@ -18,9 +18,13 @@ export const TvCard: React.FC<TvShow> = ({
   return (
     <Link href={`/tv/${id}`} key={id} className="w-full" prefetch={false}>
       <MediaCard.Root>
-        <Poster image={poster_path} alt={name} />
+        <MediaPoster image={poster_path} alt={name} />
         <MediaCard.Content>
-          <Rating average={vote_average} count={vote_count} className="mb-2" />
+          <MediaRating
+            average={vote_average}
+            count={vote_count}
+            className="mb-2"
+          />
           <MediaCard.Title>{name}</MediaCard.Title>
           <MediaCard.Excerpt>{format.year(first_air_date)}</MediaCard.Excerpt>
         </MediaCard.Content>

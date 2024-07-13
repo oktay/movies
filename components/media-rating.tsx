@@ -10,12 +10,12 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip"
 
-interface RatingProps extends BadgeProps {
+interface MediaRatingProps extends BadgeProps {
   average: number
   count?: number
 }
 
-export const Rating: React.FC<RatingProps> = ({
+export const MediaRating: React.FC<MediaRatingProps> = ({
   average,
   count,
   className,
@@ -29,11 +29,11 @@ export const Rating: React.FC<RatingProps> = ({
             className={cn("flex items-center gap-1", className)}
             {...props}
           >
-            {average ? average.toFixed(1) : "Not rated"}
+            {average ? average.toFixed(1) : "N/A"}
           </Badge>
         </TooltipTrigger>
-        <TooltipContent className="flex items-center gap-1 bg-foreground text-background">
-          <User className="size-3" /> {count || "-"}
+        <TooltipContent className="flex items-center gap-1 bg-foreground text-xs text-background">
+          <User className="size-3" /> {count || "N/A"}
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
