@@ -1,7 +1,12 @@
 {
-  "name": "next-template",
-  "version": "0.0.2",
+  "name": "movies",
+  "version": "2.0.0",
   "private": true,
+  "author": {
+    "name": "Oktay Colakoglu",
+    "email": "oktaycolakoglu@gmail.com",
+    "url": "https://oktaycolakoglu.com"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
