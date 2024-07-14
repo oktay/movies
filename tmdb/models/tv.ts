@@ -77,7 +77,7 @@ export type Season = {
   vote_average: number
 }
 
-export type TvSerieDetails = {
+export type TvShowDetails = {
   backdrop_path: string
   created_by: CreatedBy[]
   episode_run_time: number[]

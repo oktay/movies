@@ -5,7 +5,7 @@ import Link from "next/link"
 import {
   RawCombinedCredit,
   RawMovieCredit,
-  RawTvSerieCredit,
+  RawTvShowCredit,
 } from "@/tmdb/models"
 import { format } from "@/tmdb/utils"
 import { Clapperboard, Tv } from "lucide-react"
@@ -122,7 +122,7 @@ const CreditsTableMovieItem: React.FC<RawMovieCredit> = ({
   </TableRow>
 )
 
-const CreditsTableTvItem: React.FC<RawTvSerieCredit> = ({
+const CreditsTableTvItem: React.FC<RawTvShowCredit> = ({
   id,
   first_air_date,
   name,

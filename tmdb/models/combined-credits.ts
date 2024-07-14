@@ -11,7 +11,7 @@ export type RawMovieCredit = MovieWithMediaType &
     credit_id: string
   }
 
-export type RawTvSerieCredit = TvShowWithMediaType &
+export type RawTvShowCredit = TvShowWithMediaType &
   CombinedCredit & {
     character: string
     order: number
@@ -22,7 +22,7 @@ export type RawTvSerieCredit = TvShowWithMediaType &
     credit_id: string
   }
 
-export type RawCombinedCredit = RawMovieCredit | RawTvSerieCredit
+export type RawCombinedCredit = RawMovieCredit | RawTvShowCredit
 
 export type CombinedCreditsResponse = {
   cast: Array<RawCombinedCredit>

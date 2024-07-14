@@ -3,8 +3,8 @@ import {
   GetImagesResponse,
   GetVideosResponse,
   Review,
-  TvSerieDetails,
   TvShow,
+  TvShowDetails,
 } from "@/tmdb/models"
 
 import { api } from "../api"
@@ -50,11 +50,11 @@ const list = ({ list, page = "1", region }: TvListRequestParams) =>
  * Fetches detailed information about a specific TV series.
  *
  * @param {TvDetailsRequestParams} params - The parameters for the TV details request, including the TV series ID and any additional data to append.
- * @returns {Promise<TvSerieDetails>} A promise that resolves to the detailed information about the TV series.
+ * @returns {Promise<TvShowDetails>} A promise that resolves to the detailed information about the TV series.
  * @see https://developer.themoviedb.org/reference/tv-series-details
  */
 const detail = ({ id, append_to_response }: TvDetailsRequestParams) =>
-  api.fetcher<TvSerieDetails>({
+  api.fetcher<TvShowDetails>({
     endpoint: `tv/${id}`,
     params: {
       append_to_response,
