@@ -42,7 +42,7 @@ export const MovieCollectionDialog: React.FC<MovieCollectionDialogProps> = ({
           </DialogDescription>
         </DialogHeader>
 
-        <ScrollArea className="aspect-square pr-4 sm:aspect-video">
+        <ScrollArea className="aspect-square sm:aspect-video md:pr-4">
           <div className="grid-list">
             {sortMoviesByDate(parts).map((part) => (
               <MovieCard key={part.id} {...part} />

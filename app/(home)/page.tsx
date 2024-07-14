@@ -26,7 +26,7 @@ export default async function Home() {
 
   return (
     <section>
-      <div className="container mt-8 space-y-8">
+      <div className="container space-y-8">
         <MovieHero movies={movies} label="Trending Now" />
 
         {movies && (

@@ -19,11 +19,11 @@ import { Icons } from "@/components/icons"
 const SiteNav = () => {
   return (
     <div className="flex items-center">
-      <Link href="/" className="mr-4">
+      <Link href="/">
         <Icons.Logo className="size-6" />
       </Link>
 
-      <NavigationMenu className="hidden lg:flex">
+      <NavigationMenu className="ml-4 hidden lg:flex">
         <NavigationMenuList>
           {navigation.items.map((item) =>
             item.items ? (

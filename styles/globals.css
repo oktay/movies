@@ -91,7 +91,7 @@
 
 @layer components {
   .overlay {
-    @apply absolute inset-0 border rounded-md flex items-end bg-gradient-to-t from-background/95;
+    @apply absolute inset-0 border rounded-md flex items-end bg-gradient-to-t from-background/95 via-background/60;
   }
   .empty-box {
     @apply flex h-32 items-center justify-center rounded-lg border border-dashed text-muted-foreground;

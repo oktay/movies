@@ -55,9 +55,9 @@ const TabsContent = React.forwardRef<
 TabsContent.displayName = TabsPrimitive.Content.displayName
 
 const TabsLink = React.forwardRef<
-  typeof Link,
+  React.ElementRef<typeof Link>,
   React.ComponentPropsWithoutRef<typeof Link>
->(({ href, prefetch = false, scroll = false, ...props }) => {
+>(({ href, prefetch = false, scroll = false, ...props }, ref) => {
   const pathname = usePathname()
 
   return (
@@ -67,6 +67,7 @@ const TabsLink = React.forwardRef<
       asChild
     >
       <Link
+        ref={ref}
         href={href}
         prefetch={prefetch}
         scroll={scroll}

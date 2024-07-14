@@ -30,10 +30,12 @@ export default async function Search({ searchParams }: SearchProps) {
 
   return (
     <div className="container h-full">
-      <div className="mt-6 space-y-4">
-        <div>
-          <h1 className="text-lg font-medium">Search results for:</h1>
-          <p className="text-muted-foreground">{searchParams.q}</p>
+      <div className="space-y-8">
+        <div className="md:mb-24 md:mt-12">
+          <h1 className="mb-2 text-2xl font-medium">Search results for</h1>
+          <p className="text-xl text-muted-foreground">
+            &quot;{searchParams.q}&quot;
+          </p>
         </div>
 
         <div className="grid-list">

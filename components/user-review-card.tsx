@@ -1,8 +1,8 @@
 import { Review } from "@/tmdb/models"
 import { format } from "@/tmdb/utils"
 
-import { Badge } from "@/components/ui/badge"
 import { Skeleton } from "@/components/ui/skeleton"
+import { MediaRating } from "@/components/media-rating"
 import { UserAvatar } from "@/components/user-avatar"
 
 interface UserReviewCardProps {
@@ -15,8 +15,10 @@ export const UserReviewCard: React.FC<UserReviewCardProps> = ({ review }) => {
 
   return (
     <div className="grid grid-cols-[auto,1fr] items-center gap-2 md:items-start md:gap-x-4">
-      <div className="relative aspect-square w-10 md:row-span-2 md:w-12">
-        <UserAvatar image={avatar_path} alt={name} className="border" />
+      <div className="w-10 md:row-span-2 md:w-12">
+        <div className="relative aspect-square">
+          <UserAvatar image={avatar_path} alt={name} className="border" />
+        </div>
       </div>
       <div className="flex items-center justify-between">
         <h3 className="flex flex-wrap items-center gap-2">
@@ -29,7 +31,7 @@ export const UserReviewCard: React.FC<UserReviewCardProps> = ({ review }) => {
           <span className="text-right text-xs text-muted-foreground">
             {format.date(created_at)}
           </span>
-          <Badge>{rating?.toFixed(1) ?? "Not rated"}</Badge>
+          <MediaRating average={rating} count={1} />
         </div>
       </div>
       <div

@@ -1,5 +1,5 @@
 import "@/styles/globals.css"
-import { Metadata, Viewport } from "next"
+import { Metadata } from "next"
 import { siteConfig } from "@/config"
 import { GoogleAnalytics } from "@next/third-parties/google"
 import { Analytics } from "@vercel/analytics/next"
@@ -27,13 +27,6 @@ export const metadata: Metadata = {
   },
 }
 
-export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
-}
-
 interface RootLayoutProps {
   children: React.ReactNode
 }
@@ -48,15 +41,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
           GeistSans.variable
         )}
       >
-        <GridBg />
         <HolyLoader color="#ccc" />
         <ThemeProvider attribute="class" defaultTheme="dark">
           <div
-            className="relative flex min-h-screen flex-col"
+            className="relative flex min-h-screen flex-col bg-background"
             vaul-drawer-wrapper=""
           >
+            <GridBg />
             <SiteHeader />
-            <div className="flex-1">{children}</div>
+            <div className="relative flex-1 py-4">{children}</div>
             <SiteFooter />
           </div>
           <TailwindIndicator />

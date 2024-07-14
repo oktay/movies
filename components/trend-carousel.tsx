@@ -58,16 +58,13 @@ export const TrendCarousel: React.FC<TrendCarouselProps> = ({
 
   return (
     <Carousel opts={{ dragFree: true }} setApi={setApi}>
-      <div className="mb-4 flex items-center">
+      <div className="mb-4 flex items-center justify-between gap-4 md:justify-start">
         <h2 className="font-medium md:text-lg">{title}</h2>
 
         {link && (
           <Link
             href={link}
-            className={cn(
-              buttonVariants({ size: "sm", variant: "outline" }),
-              "ml-4 text-primary"
-            )}
+            className={cn(buttonVariants({ size: "sm", variant: "outline" }))}
             prefetch={false}
           >
             Explore more

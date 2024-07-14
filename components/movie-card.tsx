@@ -3,6 +3,7 @@ import Link from "next/link"
 import { Movie } from "@/tmdb/models"
 import { format } from "@/tmdb/utils"
 
+import { formatValue } from "@/lib/utils"
 import { MediaCard } from "@/components/media-card"
 import { MediaPoster } from "@/components/media-poster"
 import { MediaRating } from "@/components/media-rating"
@@ -26,7 +27,9 @@ export const MovieCard: React.FC<Movie> = ({
             className="mb-2"
           />
           <MediaCard.Title>{title}</MediaCard.Title>
-          <MediaCard.Excerpt>{format.year(release_date)}</MediaCard.Excerpt>
+          <MediaCard.Excerpt>
+            {formatValue(release_date, format.date)}
+          </MediaCard.Excerpt>
         </MediaCard.Content>
       </MediaCard.Root>
     </Link>

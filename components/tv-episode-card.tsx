@@ -23,27 +23,27 @@ export const TvEpisodeCard: React.FC<Episode> = ({
       </div>
 
       <div className="mt-2 flex items-start justify-between gap-2">
-        <h3 className="text-sm">
+        <h3 className="text-base font-bold">
           <span className="text-muted-foreground">E{pad(episode_number)}</span>
           <span className="ml-1 font-medium">{name}</span>
         </h3>
         <MediaRating
           average={vote_average}
           count={vote_count}
-          className="h-4 shrink-0 whitespace-nowrap px-2 text-xs"
+          className="shrink-0 whitespace-nowrap"
         />
       </div>
 
       <div
-        className="mt-1 line-clamp-6 space-y-2 text-xs text-muted-foreground"
+        className="mt-1 line-clamp-6 space-y-2 text-sm text-muted-foreground"
         dangerouslySetInnerHTML={{
           __html: format.content(overview || "<em>No details</em>"),
         }}
       />
 
-      <p className="mt-2 flex items-center text-xs">
+      <p className="mt-2 flex items-center text-sm">
         <Calendar className="inline size-3" />
-        <span className="ml-1">{air_date && format.date(air_date)}</span>
+        <span className="ml-2">{air_date && format.date(air_date)}</span>
       </p>
     </div>
   )

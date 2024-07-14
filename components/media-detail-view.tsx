@@ -5,7 +5,7 @@ import { Badge, BadgeProps } from "@/components/ui/badge"
 import { Skeleton } from "@/components/ui/skeleton"
 
 const Root: React.FC<ComponentProps<"div">> = ({ className, ...props }) => {
-  return <div className={cn(className)} {...props} />
+  return <div className={cn("overflow-hidden", className)} {...props} />
 }
 
 const Backdrop: React.FC<ComponentProps<"div">> = ({
@@ -15,9 +15,7 @@ const Backdrop: React.FC<ComponentProps<"div">> = ({
 }) => {
   return (
     <div className={cn("container", className)} {...props}>
-      <div className="md:h-hero relative mt-8 aspect-poster w-full">
-        {children}
-      </div>
+      <div className="md:h-hero relative aspect-poster w-full">{children}</div>
     </div>
   )
 }

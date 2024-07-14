@@ -115,7 +115,9 @@ const CreditsTableMovieItem: React.FC<RawMovieCredit> = ({
       <Link className="font-medium" href={`/movie/${id}`}>
         {title}
       </Link>
-      <p className="text-muted-foreground">as {character || job}</p>
+      {(character || job) && (
+        <p className="text-muted-foreground">as {character || job}</p>
+      )}
     </TableCell>
   </TableRow>
 )

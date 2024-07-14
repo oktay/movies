@@ -22,7 +22,7 @@ export const TvSeasonDetails: React.FC<TvSeasonDetailsProps> = async ({
   return (
     <TvSeasonDialog name={name} overview={overview} {...props}>
       {episodes?.length ? (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-3">
           {episodes.map((episode) => (
             <TvEpisodeCard key={episode.id} {...episode} />
           ))}

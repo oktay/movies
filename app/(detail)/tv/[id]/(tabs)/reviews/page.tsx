@@ -33,7 +33,7 @@ export default async function DetailReviews({
   if (!results.length) return <div className="empty-box">No reviews</div>
 
   return (
-    <section className="space-y-4">
+    <section className="space-y-8">
       {results.map((review) => (
         <UserReviewCard key={review.id} review={review} />
       ))}

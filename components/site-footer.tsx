@@ -11,13 +11,13 @@ export const SiteFooter: React.FC<ComponentProps<"footer">> = () => {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="mt-12 border-t bg-background">
+    <footer className="relative mt-12 border-t bg-background">
       <div className="container flex flex-col lg:flex-row">
-        <div className="p-8 pt-12 text-muted-foreground md:p-12">
+        <div className="px-2 py-8 pt-12 text-muted-foreground md:p-12">
           <Icons.Logo className="size-8" />
         </div>
 
-        <div className="flex-1 p-12 px-8 md:p-12">
+        <div className="flex-1 p-12 px-2 py-8 md:p-12">
           <div className="mb-24 hidden md:flex">
             {navigation.items.slice(1, navigation.items.length).map((item) => (
               <ul className="flex-1" key={item.title}>
@@ -33,7 +33,7 @@ export const SiteFooter: React.FC<ComponentProps<"footer">> = () => {
             ))}
           </div>
 
-          <div className="flex flex-col justify-between gap-12 lg:flex-row lg:items-center">
+          <div className="flex flex-col justify-between gap-12 xl:flex-row xl:items-center">
             <div className="text-sm text-muted-foreground">
               <p>
                 &copy; {year}{" "}
@@ -100,22 +100,22 @@ export const SiteFooter: React.FC<ComponentProps<"footer">> = () => {
 
               <a
                 href={siteConfig.links.github}
-                className={buttonVariants({ variant: "outline", size: "sm" })}
+                className={buttonVariants({ variant: "outline" })}
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <Icons.Github className="mr-2 inline size-3 fill-current align-middle" />
-                Source code
+                <Icons.Github className="inline size-4 fill-current align-middle md:mr-2" />
+                <span className="sr-only md:not-sr-only">Source code</span>
               </a>
 
               <a
                 href={siteConfig.links.github + "/issues"}
-                className={buttonVariants({ variant: "outline", size: "sm" })}
+                className={buttonVariants({ variant: "outline" })}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Bug className="mr-2 inline size-3 align-middle" />
-                Submit a bug
+                <Bug className="inline size-4 align-middle md:mr-2" />
+                <span className="sr-only md:not-sr-only">Submit a bug</span>
               </a>
             </div>
           </div>

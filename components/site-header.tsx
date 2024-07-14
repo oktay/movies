@@ -13,7 +13,7 @@ export const SiteHeader = () => {
       <div className="container flex h-14 items-center space-x-4 sm:justify-between sm:space-x-0">
         <SiteNav />
 
-        <div className="flex flex-1 justify-end">
+        <div className="flex flex-1 justify-end gap-2">
           <Suspense fallback={<Skeleton className="h-10 w-60" />}>
             <SearchInput />
           </Suspense>

@@ -67,7 +67,7 @@ export const SiteMenu = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Bug className="mr-2 inline size-3 align-middle" />
+              <Bug className="mr-2 inline size-4 align-middle" />
               Submit a bug
             </a>
             <ThemeToggle />

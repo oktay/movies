@@ -3,6 +3,7 @@ import Link from "next/link"
 import { TvShow } from "@/tmdb/models"
 import { format } from "@/tmdb/utils"
 
+import { formatValue } from "@/lib/utils"
 import { MediaCard } from "@/components/media-card"
 import { MediaPoster } from "@/components/media-poster"
 import { MediaRating } from "@/components/media-rating"
@@ -26,7 +27,9 @@ export const TvCard: React.FC<TvShow> = ({
             className="mb-2"
           />
           <MediaCard.Title>{name}</MediaCard.Title>
-          <MediaCard.Excerpt>{format.year(first_air_date)}</MediaCard.Excerpt>
+          <MediaCard.Excerpt>
+            {formatValue(first_air_date, format.date)}
+          </MediaCard.Excerpt>
         </MediaCard.Content>
       </MediaCard.Root>
     </Link>

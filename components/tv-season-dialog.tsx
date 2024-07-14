@@ -38,7 +38,7 @@ export const TvSeasonDialog: React.FC<TvSeasonDialogProps> = ({
     <Dialog open onOpenChange={handleOpenChange} {...props}>
       <DialogContent
         onOpenAutoFocus={(e) => e.preventDefault()}
-        className="max-w-screen-lg"
+        className="max-w-screen-xl"
       >
         <DialogHeader>
           <DialogTitle>{name}</DialogTitle>
@@ -47,7 +47,7 @@ export const TvSeasonDialog: React.FC<TvSeasonDialogProps> = ({
           </DialogDescription>
         </DialogHeader>
 
-        <ScrollArea className="aspect-square pr-4 sm:aspect-video">
+        <ScrollArea className="aspect-square sm:aspect-video md:pr-4">
           {children}
         </ScrollArea>
       </DialogContent>
