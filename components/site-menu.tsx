@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { NavItem, navigation, siteConfig } from "@/config"
 import { useDialog } from "@/hooks"
-import { MenuIcon } from "lucide-react"
+import { Bug, MenuIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import {
@@ -53,13 +53,23 @@ export const SiteMenu = () => {
           <nav className="flex gap-2">
             <Link
               href={siteConfig.links.github}
+              className={cn(buttonVariants({ variant: "outline" }), "flex-1")}
               target="_blank"
               rel="noreferrer"
-              className={cn(buttonVariants({ variant: "outline" }), "flex-1")}
             >
               <Icons.Github className="mr-2 size-4 fill-current" />
               <span>Source code</span>
             </Link>
+
+            <a
+              href={siteConfig.links.github + "/issues"}
+              className={cn(buttonVariants({ variant: "outline" }), "flex-1")}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Bug className="mr-2 inline size-3 align-middle" />
+              Submit a bug
+            </a>
             <ThemeToggle />
           </nav>
         </DrawerFooter>

@@ -5,6 +5,7 @@ import { Bug } from "lucide-react"
 
 import { buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export const SiteFooter: React.FC<ComponentProps<"footer">> = () => {
   const year = new Date().getFullYear()
@@ -95,6 +96,8 @@ export const SiteFooter: React.FC<ComponentProps<"footer">> = () => {
             </div>
 
             <div className="flex gap-2">
+              <ThemeToggle />
+
               <a
                 href={siteConfig.links.github}
                 className={buttonVariants({ variant: "outline", size: "sm" })}
