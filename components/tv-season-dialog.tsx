@@ -38,7 +38,7 @@ export const TvSeasonDialog: React.FC<TvSeasonDialogProps> = ({
     <Dialog open onOpenChange={handleOpenChange} {...props}>
       <DialogContent
         onOpenAutoFocus={(e) => e.preventDefault()}
-        className="max-w-screen-xl"
+        className="max-w-screen-lg"
       >
         <DialogHeader>
           <DialogTitle>{name}</DialogTitle>

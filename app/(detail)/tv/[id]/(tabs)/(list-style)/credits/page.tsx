@@ -1,8 +1,6 @@
-import Link from "next/link"
 import { tmdb } from "@/tmdb/api"
 
-import { MediaCard } from "@/components/media-card"
-import { MediaPoster } from "@/components/media-poster"
+import { MediaCastCard } from "@/components/media-cast-card"
 
 interface DetailCreditsProps {
   params: {
@@ -33,16 +31,8 @@ export default async function DetailCredits({
 
   return (
     <section className="grid-list">
-      {cast.map(({ id, name, character, profile_path }) => (
-        <Link href={`/person/${id}`} key={id} prefetch={false}>
-          <MediaCard.Root>
-            <MediaPoster image={profile_path} alt={name} />
-            <MediaCard.Content>
-              <MediaCard.Title>{name}</MediaCard.Title>
-              <MediaCard.Excerpt>{character}</MediaCard.Excerpt>
-            </MediaCard.Content>
-          </MediaCard.Root>
-        </Link>
+      {cast.map((cast) => (
+        <MediaCastCard key={cast.credit_id} {...cast} />
       ))}
     </section>
   )

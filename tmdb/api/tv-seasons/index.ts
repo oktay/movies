@@ -1,4 +1,4 @@
-import { SeasonDetails } from "@/tmdb/models"
+import { Credits, SeasonDetails } from "@/tmdb/models"
 
 import { api } from "../api"
 import { TvSeasonsDetailsRequestParams } from "./types"
@@ -15,6 +15,18 @@ const details = ({ id, season }: TvSeasonsDetailsRequestParams) =>
     endpoint: `tv/${id}/season/${season}`,
   })
 
+const credits = ({ id, season }: TvSeasonsDetailsRequestParams) =>
+  api.fetcher<Credits>({
+    endpoint: `tv/${id}/season/${season}/credits`,
+  })
+
+const aggregateCredits = ({ id, season }: TvSeasonsDetailsRequestParams) =>
+  api.fetcher<Credits>({
+    endpoint: `tv/${id}/season/${season}/aggregate_credits`,
+  })
+
 export const tvSeasons = {
   details,
+  credits,
+  aggregateCredits,
 }

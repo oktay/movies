@@ -15,6 +15,7 @@ export const TvEpisodeCard: React.FC<Episode> = ({
   vote_count,
   air_date,
   overview,
+  guest_stars,
 }) => {
   return (
     <div>
