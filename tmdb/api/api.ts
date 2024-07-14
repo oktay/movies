@@ -71,11 +71,11 @@ const fetcher: Fetcher = async ({ endpoint, params }, init) => {
   const url = `${apiConfig.baseUrl}/${endpoint}?${_params}`
   const response = await fetch(url, _init)
 
-  if (!response.ok) {
-    throw new Error(
-      `API request failed with status ${response.status}: ${response.statusText}`
-    )
-  }
+  // if (!response.ok) {
+  //   throw new Error(
+  //     `API request failed with status ${response.status}: ${response.statusText}`
+  //   )
+  // }
 
   return await response.json()
 }

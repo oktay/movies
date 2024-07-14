@@ -55,11 +55,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
             className="relative flex min-h-screen flex-col"
             vaul-drawer-wrapper=""
           >
-            <div className="flex-1">
-              <SiteHeader />
-              {children}
-              <SiteFooter />
-            </div>
+            <SiteHeader />
+            <div className="flex-1">{children}</div>
+            <SiteFooter />
           </div>
           <TailwindIndicator />
           <ScrollTop />

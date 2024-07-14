@@ -43,8 +43,8 @@ export default async function DetailSeasons({
           <Link
             href={`/tv/${params.id}/seasons?s=${season.season_number}`}
             prefetch={false}
-            scroll={false}
             replace
+            scroll={false}
           >
             <MediaCard.Root>
               <MediaPoster image={season.poster_path} alt={season.name} />

@@ -30,7 +30,7 @@ export const TvSeasonDialog: React.FC<TvSeasonDialogProps> = ({
 
   function handleOpenChange(open: boolean) {
     if (!open) {
-      router.replace(pathname)
+      router.replace(pathname, { scroll: false })
     }
   }
 
