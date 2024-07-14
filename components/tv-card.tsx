@@ -28,7 +28,7 @@ export const TvCard: React.FC<TvShow> = ({
           />
           <MediaCard.Title>{name}</MediaCard.Title>
           <MediaCard.Excerpt>
-            {formatValue(first_air_date, format.date)}
+            {formatValue(first_air_date, format.year)}
           </MediaCard.Excerpt>
         </MediaCard.Content>
       </MediaCard.Root>

@@ -28,7 +28,7 @@ export const MovieCard: React.FC<Movie> = ({
           />
           <MediaCard.Title>{title}</MediaCard.Title>
           <MediaCard.Excerpt>
-            {formatValue(release_date, format.date)}
+            {formatValue(release_date, format.year)}
           </MediaCard.Excerpt>
         </MediaCard.Content>
       </MediaCard.Root>
