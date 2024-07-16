@@ -47,9 +47,7 @@ export const TvSeasonDialog: React.FC<TvSeasonDialogProps> = ({
           </DialogDescription>
         </DialogHeader>
 
-        <ScrollArea className="aspect-square sm:aspect-video md:pr-4">
-          {children}
-        </ScrollArea>
+        <ScrollArea className="max-h-[75dvh] md:pr-4">{children}</ScrollArea>
       </DialogContent>
     </Dialog>
   )

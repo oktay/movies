@@ -42,7 +42,7 @@ export const TvSeasonDetails: React.FC<TvSeasonDetailsProps> = async ({
 
         <TabsContent value="episodes">
           {episodes?.length ? (
-            <div className="grid gap-4 sm:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2">
               {episodes.map((episode) => (
                 <TvEpisodeCard key={episode.id} {...episode} />
               ))}

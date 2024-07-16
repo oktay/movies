@@ -2,7 +2,8 @@ import { Episode } from "@/tmdb/models"
 import { format } from "@/tmdb/utils"
 import { Calendar } from "lucide-react"
 
-import { pad } from "@/lib/utils"
+import { formatValue, pad } from "@/lib/utils"
+import { Badge } from "@/components/ui/badge"
 import { MediaBackdrop } from "@/components/media-backdrop"
 import { MediaRating } from "@/components/media-rating"
 
@@ -18,34 +19,41 @@ export const TvEpisodeCard: React.FC<Episode> = ({
   guest_stars,
 }) => {
   return (
-    <div>
+    <div className="flex flex-col rounded-md border">
       <div className="relative aspect-video" key={id}>
-        <MediaBackdrop image={still_path} alt={name} size="w780" />
-      </div>
-
-      <div className="mt-2 flex items-start justify-between gap-2">
-        <h3 className="text-base font-bold">
-          <span className="text-muted-foreground">E{pad(episode_number)}</span>
-          <span className="ml-1 font-medium">{name}</span>
-        </h3>
-        <MediaRating
-          average={vote_average}
-          count={vote_count}
-          className="shrink-0 whitespace-nowrap"
+        <MediaBackdrop
+          image={still_path}
+          alt={name}
+          size="w780"
+          className="rounded-b-none border-x-0 border-b border-t-0"
         />
       </div>
 
-      <div
-        className="mt-1 line-clamp-6 space-y-2 text-sm text-muted-foreground"
-        dangerouslySetInnerHTML={{
-          __html: format.content(overview || "<em>No details</em>"),
-        }}
-      />
+      <div className="flex flex-1 flex-col p-4">
+        <h3 className="flex items-center gap-2 font-medium">
+          {pad(episode_number)}. {name}
+        </h3>
 
-      <p className="mt-2 flex items-center text-sm">
-        <Calendar className="inline size-3" />
-        <span className="ml-2">{air_date && format.date(air_date)}</span>
-      </p>
+        <div
+          className="mb-4 mt-1 line-clamp-6 space-y-2 text-sm leading-relaxed text-muted-foreground"
+          dangerouslySetInnerHTML={{
+            __html: format.content(overview || "<em>No details</em>"),
+          }}
+        />
+
+        <div className="mt-auto flex items-center gap-2">
+          <MediaRating
+            average={vote_average}
+            count={vote_count}
+            className="leading-none"
+          />
+
+          <Badge variant="outline">
+            <Calendar className="inline size-3" />
+            <span className="ml-2">{formatValue(air_date, format.date)}</span>
+          </Badge>
+        </div>
+      </div>
     </div>
   )
 }
