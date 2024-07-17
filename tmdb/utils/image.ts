@@ -2,6 +2,7 @@ export type ImageSize = (typeof imageSizes)[keyof typeof imageSizes]
 export type PosterSize = keyof typeof imageSizes.poster
 export type BackdropSize = keyof typeof imageSizes.backdrop
 export type ProfileSize = keyof typeof imageSizes.profile
+export type LogoSize = keyof typeof imageSizes.logo
 
 /**
  * Object containing different sizes for TMDB images.
@@ -91,6 +92,16 @@ const profile = (path: string, size: ProfileSize = "original") => {
 }
 
 /**
+ * Generates the URL for a logo image.
+ * @param path - The path of the image.
+ * @param size - The size of the logo image. Defaults to "original".
+ * @returns The URL of the logo image.
+ */
+const logo = (path: string, size: LogoSize = "original") => {
+  return url(path, imageSizes.logo[size])
+}
+
+/**
  * Object containing functions to generate URLs for different types of TMDB images.
  */
 export const tmdbImage = {
@@ -98,4 +109,5 @@ export const tmdbImage = {
   poster,
   backdrop,
   profile,
+  logo,
 }

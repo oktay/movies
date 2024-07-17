@@ -38,3 +38,8 @@ export type MovieReviewsRequestParams = {
   id: string | number
   page?: string
 }
+
+export type MovieProvidersRequestParams = {
+  id: string | number
+  region?: string
+}

@@ -5,6 +5,7 @@ import { search } from "./search"
 import { trending } from "./trending"
 import { tv } from "./tv"
 import { tvSeasons } from "./tv-seasons"
+import { watchProviders } from "./watch-providers"
 
 export const tmdb = {
   collection,
@@ -14,4 +15,5 @@ export const tmdb = {
   trending,
   tv,
   tvSeasons,
+  watchProviders,
 }

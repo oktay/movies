@@ -5,6 +5,7 @@ import {
   Review,
   TvShow,
   TvShowDetails,
+  WatchProviders,
 } from "@/tmdb/models"
 
 import { api } from "../api"
@@ -14,6 +15,7 @@ import {
   TvDetailsRequestParams,
   TvImagesRequestParams,
   TvListRequestParams,
+  TvProvidersRequestParams,
   TvRecommendationsRequestParams,
   TvReviewsRequestParams,
   TvSimilarRequestParams,
@@ -145,6 +147,21 @@ const reviews = ({ id, page }: TvReviewsRequestParams) =>
     },
   })
 
+/**
+ * Fetches providers for a specific TV Series.
+ *
+ * @param {TvProvidersRequestParams} params - The parameters for the movie reviews request, including the movie ID and page number.
+ * @returns {Promise<WatchProviders>} A promise that resolves to a list of reviews for the movie.
+ * @see https://developer.themoviedb.org/reference/tv-series-watch-providers
+ */
+const providers = ({ id, region }: TvProvidersRequestParams) =>
+  api.fetcher<WatchProviders>({
+    endpoint: `tv/${id}/watch/providers`,
+    params: {
+      watch_region: region,
+    },
+  })
+
 export const tv = {
   list,
   detail,
@@ -154,6 +171,7 @@ export const tv = {
   images,
   videos,
   reviews,
+  providers,
 }
 
 export * from "./types"

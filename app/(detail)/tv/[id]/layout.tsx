@@ -4,7 +4,6 @@ import { tmdb } from "@/tmdb/api"
 import { format } from "@/tmdb/utils"
 import { PlayCircle } from "lucide-react"
 
-import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Tabs, TabsLink, TabsList } from "@/components/ui/tabs"
 import { MediaBackdrop } from "@/components/media-backdrop"
@@ -95,11 +94,11 @@ export default async function DetailLayout({
           />
 
           <Link
-            href={`/tv/${params.id}/videos`}
-            className={cn(buttonVariants({ variant: "default" }), "mt-6")}
+            href={`/tv/${id}/watch`}
+            className={buttonVariants()}
             prefetch={false}
           >
-            <PlayCircle className="mr-2 size-4" /> Watch Videos
+            <PlayCircle className="mr-2 size-4" /> Watch Now
           </Link>
         </div>
       </MediaDetailView.Hero>
@@ -110,6 +109,7 @@ export default async function DetailLayout({
             <TabsList>
               <TabsLink href={`/tv/${id}`}>Overview</TabsLink>
               <TabsLink href={`/tv/${id}/credits`}>Credits</TabsLink>
+              <TabsLink href={`/tv/${id}/watch`}>Watch</TabsLink>
               <TabsLink href={`/tv/${id}/reviews`}>Reviews</TabsLink>
               <TabsLink href={`/tv/${id}/seasons`}>Seasons</TabsLink>
               <TabsLink href={`/tv/${id}/images`}>Images</TabsLink>
