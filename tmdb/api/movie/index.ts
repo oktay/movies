@@ -43,7 +43,7 @@ const list = ({ list, page, region }: MovieListRequestParams) =>
     },
     {
       next: {
-        revalidate: 60 * 60 * 24, // 24 hours
+        revalidate: 3600,
       },
     }
   )

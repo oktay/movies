@@ -25,7 +25,7 @@ const movie = ({ time, page = "1" }: TrendingRequestParams) =>
     },
     {
       next: {
-        revalidate: time === "week" ? 60 * 60 * 24 * 7 : 60 * 60 * 24, // 24 hours or 7 days
+        revalidate: 3600,
       },
     }
   )
@@ -47,7 +47,7 @@ const tv = ({ time, page = "1" }: TrendingRequestParams) =>
     },
     {
       next: {
-        revalidate: time === "week" ? 60 * 60 * 24 * 7 : 60 * 60 * 24, // 24 hours or 7 days
+        revalidate: 3600,
       },
     }
   )
@@ -69,7 +69,7 @@ const people = ({ time, page = "1" }: TrendingRequestParams) =>
     },
     {
       next: {
-        revalidate: time === "week" ? 60 * 60 * 24 * 7 : 60 * 60 * 24, // 24 hours or 7 days
+        revalidate: 3600,
       },
     }
   )
