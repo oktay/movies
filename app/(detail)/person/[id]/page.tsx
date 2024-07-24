@@ -1,13 +1,11 @@
 import { tmdb } from "@/tmdb/api"
-import { RawCombinedCredit } from "@/tmdb/models"
 import { format } from "@/tmdb/utils"
 
 import {
   filterByDepartment,
   formatValue,
   getDepartments,
-  getRandomItems,
-  getUniqueItems,
+  getPersonHighlights,
 } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { MediaBackdrop } from "@/components/media-backdrop"
@@ -49,44 +47,25 @@ export default async function Detail({ params }: DetailProps) {
     id: params.id,
   })
 
-  const filteredCast = getUniqueItems(
-    cast
-      .filter((item) => {
-        if (item.vote_count <= 0) return false
-        if (item.media_type === "tv") return item.episode_count > 8
-        return item.order < 10
-      })
-      .sort((a, b) => {
-        const aScore = a.vote_average * (a.vote_count / 1000)
-        const bScore = b.vote_average * (b.vote_count / 1000)
-        return bScore - aScore
-      })
-  )
+  const { highlights, hero } = getPersonHighlights({
+    cast,
+    crew,
+    department,
+  })
 
-  const filteredCrew = getUniqueItems(
-    crew.sort((a, b) => b.vote_count - a.vote_count)
-  )
-
-  const highlights = (
-    department === "Acting" ? filteredCast : filteredCrew
-  ).slice(0, 8) as RawCombinedCredit[]
-
-  const [hero] = getRandomItems(highlights, 1)
+  const info = [birthday && format.date(birthday), place_of_birth]
+    .filter(Boolean)
+    .join(" — ")
 
   return (
     <MediaDetailView.Root>
       <MediaDetailView.Backdrop>
-        <MediaBackdrop
-          className="hidden md:block"
-          image={hero?.backdrop_path}
-          alt={name}
-        />
-        <MediaPoster className="md:hidden" image={profile_path} alt={name} />
+        <MediaBackdrop image={hero?.backdrop_path} alt={name} priority />
 
         {hero?.backdrop_path && (
           <Badge
             variant="secondary"
-            className="absolute right-4 top-4 hidden select-none md:block"
+            className="absolute right-4 top-4 select-none"
           >
             An image from {hero.media_type === "tv" ? hero.name : hero.title},
             one of the productions that also features {name}.
@@ -96,18 +75,12 @@ export default async function Detail({ params }: DetailProps) {
 
       <MediaDetailView.Hero>
         <MediaDetailView.Poster>
-          <MediaPoster image={profile_path} alt={name} size="w780" />
+          <MediaPoster image={profile_path} alt={name} size="w780" priority />
         </MediaDetailView.Poster>
 
         <div className="space-y-4">
           <MediaDetailView.Title>{name}</MediaDetailView.Title>
-          <MediaDetailView.Overview>
-            <p>
-              {[format.date(birthday), place_of_birth]
-                .filter(Boolean)
-                .join(" — ")}
-            </p>
-          </MediaDetailView.Overview>
+          <MediaDetailView.Overview>{info}</MediaDetailView.Overview>
           <MediaDetailView.Overview
             dangerouslySetInnerHTML={{
               __html: formatValue(biography, format.content),

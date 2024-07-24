@@ -15,7 +15,9 @@ const Backdrop: React.FC<ComponentProps<"div">> = ({
 }) => {
   return (
     <div className={cn("container", className)} {...props}>
-      <div className="md:h-hero relative aspect-poster w-full">{children}</div>
+      <div className="md:h-hero relative hidden aspect-poster w-full md:block">
+        {children}
+      </div>
     </div>
   )
 }
@@ -27,10 +29,7 @@ const Hero: React.FC<ComponentProps<"div">> = ({
 }) => {
   return (
     <div
-      className={cn(
-        "container mt-4 md:mt-8 md:px-16 xl:mt-12 xl:px-32",
-        className
-      )}
+      className={cn("container md:mt-8 md:px-16 xl:mt-12 xl:px-32", className)}
       {...props}
     >
       <div className="grid gap-4 md:grid-cols-[auto,1fr] md:gap-10 xl:gap-16">
@@ -48,7 +47,7 @@ const Poster: React.FC<ComponentProps<"div">> = ({
   return (
     <div
       className={cn(
-        "relative hidden aspect-poster w-48 place-self-start md:-mt-32 md:block md:w-56 lg:w-64 xl:-mt-64 xl:w-80",
+        "relative aspect-poster w-full place-self-start md:-mt-32 md:block md:w-56 lg:w-64 xl:-mt-64 xl:w-80",
         className
       )}
       {...props}

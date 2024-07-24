@@ -22,11 +22,62 @@ export function getDepartments(list: RawCombinedCredit[]) {
   return Array.from(departments)
 }
 
+export function getPersonHighlights(
+  {
+    cast,
+    crew,
+    department,
+  }: {
+    cast: RawCombinedCredit[]
+    crew: RawCombinedCredit[]
+    department: string
+  },
+  count = 8
+) {
+  const list = department === "Acting" ? sortCast(cast) : sortCrew(crew)
+
+  return {
+    highlights: list.slice(0, count),
+    hero: getRandomItems(list, 1)[0],
+  }
+}
+
 export function filterByDepartment(
   list: RawCombinedCredit[],
   department: string
 ) {
   return list.filter((item) => item.department === department)
+}
+
+export function sortCrew(crew: RawCombinedCredit[]) {
+  return getUniqueItems(crew.sort((a, b) => b.vote_count - a.vote_count))
+}
+
+export function sortCast(cast: RawCombinedCredit[]) {
+  return getUniqueItems(
+    cast
+      .filter((item) => {
+        if (item.vote_count <= 0) return false
+        if (item.media_type === "tv") return item.episode_count > 8
+        return item.order < 10
+      })
+      .sort((a, b) => {
+        const aScore = a.vote_average * (a.vote_count / 1000)
+        const bScore = b.vote_average * (b.vote_count / 1000)
+        return bScore - aScore
+      })
+  )
+}
+
+export function sortByReleaseDate(
+  list: Movie[],
+  order: "asc" | "desc" = "asc"
+) {
+  return list.sort((a, b) => {
+    const dateA = new Date(a.release_date).getTime()
+    const dateB = new Date(b.release_date).getTime()
+    return order === "asc" ? dateA - dateB : dateB - dateA
+  })
 }
 
 export function pluralize(count: number, singular: string, plural: string) {
@@ -43,12 +94,4 @@ export function formatValue(value: any, formatter?: any) {
 
 export function pad(value: number) {
   return String(value).padStart(2, "0")
-}
-
-export function sortMoviesByDate(list: Movie[], order: "asc" | "desc" = "asc") {
-  return list.sort((a, b) => {
-    const dateA = new Date(a.release_date).getTime()
-    const dateB = new Date(b.release_date).getTime()
-    return order === "asc" ? dateA - dateB : dateB - dateA
-  })
 }

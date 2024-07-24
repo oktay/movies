@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useDialog } from "@/hooks"
 import { DetailedCollection } from "@/tmdb/models"
 
-import { sortMoviesByDate } from "@/lib/utils"
+import { sortByReleaseDate } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -47,7 +47,7 @@ export const MovieCollectionDialog: React.FC<MovieCollectionDialogProps> = ({
 
         <ScrollArea className="max-h-[80dvh] md:pr-4">
           <div className="grid gap-4 md:grid-cols-2">
-            {sortMoviesByDate(parts).map((part) => (
+            {sortByReleaseDate(parts).map((part) => (
               <Link href={`/movie/${part.id}`} key={part.id}>
                 <MediaMiniDetail.Root className="rounded-md border">
                   <MediaMiniDetail.Backdrop>

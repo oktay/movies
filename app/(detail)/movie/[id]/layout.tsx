@@ -51,19 +51,7 @@ export default async function DetailLayout({
   return (
     <MediaDetailView.Root>
       <MediaDetailView.Backdrop>
-        <MediaBackdrop
-          className="hidden md:block"
-          image={backdrop_path}
-          alt={title}
-          priority
-        />
-        <MediaPoster
-          className="md:hidden"
-          image={poster_path}
-          alt={title}
-          size="w780"
-          priority
-        />
+        <MediaBackdrop image={backdrop_path} alt={title} priority />
       </MediaDetailView.Backdrop>
 
       <MediaDetailView.Hero>
