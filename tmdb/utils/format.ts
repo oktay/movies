@@ -12,18 +12,13 @@ const content = (string: string) => {
 }
 
 /**
- * Formats a duration from seconds into a human-readable string.
- * @param seconds The duration in seconds.
+ * Formats a duration from minutes into a human-readable string.
+ * @param minutes The duration in minutes.
  * @returns A string representing the duration in hours and minutes.
  */
-const runtime = (seconds: number) => {
-  let secondsLeft = seconds
-
-  const hours = Math.floor(secondsLeft / 3600)
-  secondsLeft = secondsLeft % 3600
-
-  const mins = Math.floor(secondsLeft / 60)
-  secondsLeft = secondsLeft % 60
+const runtime = (minutes: number) => {
+  const hours = Math.floor(minutes / 60)
+  const mins = minutes % 60
 
   return `${hours ? hours + "h" : ""} ${mins}min`
 }
