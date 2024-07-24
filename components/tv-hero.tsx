@@ -14,11 +14,16 @@ import { MediaBackdrop } from "@/components/media-backdrop"
 interface TvHeroProps {
   tvShows: TvShow[]
   label: string
+  count?: number
 }
 
-export const TvHero: React.FC<TvHeroProps> = ({ tvShows, label }) => {
+export const TvHero: React.FC<TvHeroProps> = ({
+  tvShows,
+  label,
+  count = 1,
+}) => {
   const [mounted, setMounted] = useState(false)
-  const [hero] = getRandomItems(tvShows, 1)
+  const items = getRandomItems(tvShows, count)
 
   useEffect(() => {
     setMounted(true)
@@ -26,24 +31,24 @@ export const TvHero: React.FC<TvHeroProps> = ({ tvShows, label }) => {
 
   if (!mounted) return <Skeleton className="h-hero relative w-full" />
 
-  return (
+  return items.map((item) => (
     <div className="h-hero relative">
-      <MediaBackdrop image={hero.backdrop_path} alt={hero.name} />
+      <MediaBackdrop image={item.backdrop_path} alt={item.name} />
 
       <div className="overlay">
         <div className="mx-auto max-w-3xl space-y-4 p-4 pb-8 text-center md:p-12">
           <Badge className="select-none">{label}</Badge>
 
           <h1 className="line-clamp-2 text-xl font-medium leading-tight tracking-tighter md:text-4xl">
-            {hero.name}
+            {item.name}
           </h1>
           <p className="line-clamp-3 text-sm text-muted-foreground md:text-lg">
-            {hero.overview}
+            {item.overview}
           </p>
 
           <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
             <Link
-              href={`/tv/${hero.id}`}
+              href={`/tv/${item.id}`}
               className={buttonVariants({
                 size: "lg",
                 variant: "default",
@@ -55,5 +60,5 @@ export const TvHero: React.FC<TvHeroProps> = ({ tvShows, label }) => {
         </div>
       </div>
     </div>
-  )
+  ))
 }

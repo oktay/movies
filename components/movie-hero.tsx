@@ -14,11 +14,16 @@ import { MediaBackdrop } from "@/components/media-backdrop"
 interface MovieHeroProps {
   movies: Movie[]
   label: string
+  count?: number
 }
 
-export const MovieHero: React.FC<MovieHeroProps> = ({ movies, label }) => {
+export const MovieHero: React.FC<MovieHeroProps> = ({
+  movies,
+  label,
+  count = 1,
+}) => {
   const [mounted, setMounted] = useState(false)
-  const [hero] = getRandomItems(movies, 1)
+  const items = getRandomItems(movies, count)
 
   useEffect(() => {
     setMounted(true)
@@ -26,24 +31,24 @@ export const MovieHero: React.FC<MovieHeroProps> = ({ movies, label }) => {
 
   if (!mounted) return <Skeleton className="h-hero relative w-full" />
 
-  return (
+  return items.map((item) => (
     <div className="h-hero relative">
-      <MediaBackdrop image={hero.backdrop_path} alt={hero.title} />
+      <MediaBackdrop image={item.backdrop_path} alt={item.title} />
 
       <div className="overlay">
         <div className="mx-auto max-w-3xl space-y-4 p-4 pb-8 text-center md:p-12">
           <Badge className="select-none">{label}</Badge>
 
           <h1 className="line-clamp-2 text-xl font-medium leading-tight tracking-tighter md:text-4xl">
-            {hero.title}
+            {item.title}
           </h1>
           <p className="line-clamp-3 text-sm text-muted-foreground md:text-lg">
-            {hero.overview}
+            {item.overview}
           </p>
 
           <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
             <Link
-              href={`/movie/${hero.id}`}
+              href={`/movie/${item.id}`}
               className={buttonVariants({
                 size: "lg",
                 variant: "default",
@@ -55,5 +60,5 @@ export const MovieHero: React.FC<MovieHeroProps> = ({ movies, label }) => {
         </div>
       </div>
     </div>
-  )
+  ))
 }
