@@ -1,6 +1,6 @@
 import { Episode } from "@/tmdb/models"
 import { format } from "@/tmdb/utils"
-import { Calendar } from "lucide-react"
+import { Calendar, Clock } from "lucide-react"
 
 import { formatValue, pad } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
@@ -16,7 +16,7 @@ export const TvEpisodeCard: React.FC<Episode> = ({
   vote_count,
   air_date,
   overview,
-  guest_stars,
+  runtime,
 }) => {
   return (
     <div className="flex flex-col rounded-md border">
@@ -47,6 +47,11 @@ export const TvEpisodeCard: React.FC<Episode> = ({
             count={vote_count}
             className="leading-none"
           />
+
+          <Badge variant="outline">
+            <Clock className="inline size-3" />
+            <span className="ml-2">{formatValue(runtime, format.runtime)}</span>
+          </Badge>
 
           <Badge variant="outline">
             <Calendar className="inline size-3" />
