@@ -67,7 +67,12 @@ const fetcher: Fetcher = async ({ endpoint, params }, init) => {
   const _params = createSearchParams(sanitizedParams)
   const _headers = createHeaders(init)
 
-  const _init = { ...init, headers: _headers }
+  const _init = {
+    ...init,
+    next: { revalidate: 600, ...init?.next },
+    headers: _headers,
+  }
+
   const url = `${apiConfig.baseUrl}/${endpoint}?${_params}`
   const response = await fetch(url, _init)
 

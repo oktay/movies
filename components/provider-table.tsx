@@ -1,5 +1,6 @@
 import React from "react"
 import { Buy, Flatrate, Rent } from "@/tmdb/models"
+import { Airplay, Disc, LibraryBig } from "lucide-react"
 
 import {
   Table,
@@ -12,7 +13,7 @@ import {
 import { ProviderLogo } from "@/components/provider-logo"
 
 interface ProviderTableProps {
-  title: string
+  title: "Stream" | "Buy" | "Rent"
   providers: (Flatrate | Buy | Rent)[]
 }
 
@@ -20,18 +21,30 @@ export const ProviderTable: React.FC<ProviderTableProps> = ({
   title,
   providers,
 }) => {
+  const Icons = {
+    Stream: Airplay,
+    Buy: LibraryBig,
+    Rent: Disc,
+  }
+
+  const Icon = Icons[title]
+
   return (
-    <Table className="border bg-accent/10">
-      <TableHeader className="bg-background/50">
+    <Table>
+      <TableHeader className="select-none">
         <TableRow>
-          <TableHead colSpan={2}>{title}</TableHead>
+          <TableHead colSpan={2}>
+            <div className="flex items-center gap-4">
+              <Icon className="size-4" /> {title}
+            </div>
+          </TableHead>
         </TableRow>
       </TableHeader>
 
       <TableBody>
         {providers?.map((provider) => (
-          <TableRow key={provider.provider_id}>
-            <TableCell className="w-8 py-3">
+          <TableRow key={provider.provider_id} className="select-none">
+            <TableCell className="w-8">
               <div className="relative aspect-square w-8">
                 <ProviderLogo
                   image={provider.logo_path}
@@ -40,14 +53,12 @@ export const ProviderTable: React.FC<ProviderTableProps> = ({
                 />
               </div>
             </TableCell>
-            <TableCell className="select-none">
-              {provider.provider_name}
-            </TableCell>
+            <TableCell>{provider.provider_name}</TableCell>
           </TableRow>
         ))}
 
         {!providers?.length && (
-          <TableRow>
+          <TableRow className="select-none">
             <TableCell colSpan={2} className="text-muted-foreground">
               Not available
             </TableCell>

@@ -36,7 +36,7 @@ export const MovieHero: React.FC<MovieHeroProps> = ({
       <MediaBackdrop image={item.backdrop_path} alt={item.title} />
 
       <div className="overlay">
-        <div className="mx-auto max-w-3xl space-y-4 p-4 pb-8 text-center md:p-12">
+        <div className="mx-auto max-w-3xl space-y-4 p-4 pb-8 text-center md:p-14">
           <Badge className="select-none">{label}</Badge>
 
           <h1 className="line-clamp-2 text-xl font-medium leading-tight tracking-tighter md:text-4xl">

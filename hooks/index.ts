@@ -1,4 +1,5 @@
 export * from "./useActiveNav"
 export * from "./useDialog"
 export * from "./usePagination"
+export * from "./useProviders"
 export * from "./useSearch"

@@ -2,7 +2,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { tmdb } from "@/tmdb/api"
 import { format } from "@/tmdb/utils"
-import { PlayCircle } from "lucide-react"
+import { Globe, Play } from "lucide-react"
 
 import { buttonVariants } from "@/components/ui/button"
 import { Tabs, TabsLink, TabsList } from "@/components/ui/tabs"
@@ -42,6 +42,7 @@ export default async function DetailLayout({
     backdrop_path,
     poster_path,
     tagline,
+    homepage,
   } = await tmdb.movie.detail({
     id: params.id,
   })
@@ -81,13 +82,26 @@ export default async function DetailLayout({
             dangerouslySetInnerHTML={{ __html: format.content(overview) }}
           />
 
-          <Link
-            href={`/movie/${id}/watch`}
-            className={buttonVariants()}
-            prefetch={false}
-          >
-            <PlayCircle className="mr-2 size-4" /> Watch Now
-          </Link>
+          <div className="flex gap-2 pt-4">
+            <Link
+              href={`/movie/${id}/watch`}
+              className={buttonVariants()}
+              prefetch={false}
+            >
+              <Play className="mr-2 size-4" /> Watch Now
+            </Link>
+
+            {homepage && (
+              <Link
+                href={homepage}
+                className={buttonVariants({ variant: "secondary" })}
+                target="_blank"
+                prefetch={false}
+              >
+                <Globe className="mr-2 size-4" /> Website
+              </Link>
+            )}
+          </div>
         </div>
       </MediaDetailView.Hero>
 

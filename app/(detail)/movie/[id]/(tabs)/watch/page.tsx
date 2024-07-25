@@ -10,7 +10,17 @@ interface DetailWatchProps {
 
 export default async function DetailWatch({ params }: DetailWatchProps) {
   const { results: providers } = await tmdb.movie.providers({ id: params.id })
-  const { results: regions } = await tmdb.watchProviders.regions()
 
-  return <MediaWatchProviders providers={providers} regions={regions} />
+  return (
+    <div className="space-y-6 rounded-md border p-6">
+      <div>
+        <h2 className="text-lg font-medium">Where to Watch</h2>
+        <p className="text-muted-foreground">
+          Select a region to see where you can watch this movie
+        </p>
+      </div>
+
+      <MediaWatchProviders providers={providers} />
+    </div>
+  )
 }

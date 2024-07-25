@@ -33,20 +33,13 @@ import {
  * @see https://developer.themoviedb.org/reference/tv-series-top-rated
  */
 const list = ({ list, page = "1", region }: TvListRequestParams) =>
-  api.fetcher<ListResponse<TvShow>>(
-    {
-      endpoint: `tv/${list}`,
-      params: {
-        page,
-        region,
-      },
+  api.fetcher<ListResponse<TvShow>>({
+    endpoint: `tv/${list}`,
+    params: {
+      page,
+      region,
     },
-    {
-      next: {
-        revalidate: 3600,
-      },
-    }
-  )
+  })
 
 /**
  * Fetches detailed information about a specific TV series.
