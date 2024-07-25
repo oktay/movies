@@ -32,7 +32,7 @@ export const TvHero: React.FC<TvHeroProps> = ({
   if (!mounted) return <Skeleton className="h-hero relative w-full" />
 
   return items.map((item) => (
-    <div className="h-hero relative">
+    <div className="h-hero relative" key={item.id}>
       <MediaBackdrop image={item.backdrop_path} alt={item.name} />
 
       <div className="overlay">
