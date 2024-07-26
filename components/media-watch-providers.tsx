@@ -28,8 +28,8 @@ export const MediaWatchProviders: React.FC<MediaWatchProvidersProps> = async ({
         <ProviderTable title="Rent" providers={results?.[region]?.rent} />
       </div>
 
-      <small className="flex items-center gap-2 text-muted-foreground">
-        <Info className="size-4" />
+      <small className="flex gap-2 rounded-sm border p-4 text-muted-foreground md:items-center">
+        <Info className="size-4 shrink-0" />
         <p>
           Currently showing providers for{" "}
           <span className="underline">{country}</span> You can change your

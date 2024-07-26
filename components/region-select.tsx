@@ -1,8 +1,10 @@
+"use client"
+
 import { regions } from "@/config"
 import { SelectProps } from "@radix-ui/react-select"
 import ReactCountryFlag from "react-country-flag"
 
-import { getRegion } from "@/lib/get-region"
+import { getCountryName } from "@/lib/utils"
 import {
   Select,
   SelectContent,
@@ -10,17 +12,31 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { useToast } from "@/components/ui/use-toast"
 import { setRegion } from "@/app/actions"
 
 export const RegionSelect: React.FC<SelectProps> = ({
-  value,
   onValueChange,
   ...props
 }) => {
-  const region = getRegion()
+  const { toast } = useToast()
+
+  const handleChange = (value: string) => {
+    setRegion(value)
+    onValueChange?.(value)
+
+    setTimeout(() => {
+      toast({
+        title: "Region changed successfully",
+        description: `You have successfully changed your region to ${getCountryName(
+          value
+        )}`,
+      })
+    }, 500)
+  }
 
   return (
-    <Select value={region} onValueChange={setRegion} {...props}>
+    <Select onValueChange={handleChange} {...props}>
       <SelectTrigger>
         <SelectValue />
       </SelectTrigger>

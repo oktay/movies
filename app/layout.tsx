@@ -7,6 +7,7 @@ import { GeistSans } from "geist/font/sans"
 import HolyLoader from "holy-loader"
 
 import { cn } from "@/lib/utils"
+import { Toaster } from "@/components/ui/toaster"
 import { GridBg } from "@/components/grid-bg"
 import { ScrollTop } from "@/components/scroll-top"
 import { SiteFooter } from "@/components/site-footer"
@@ -57,6 +58,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </ThemeProvider>
         <GoogleAnalytics gaId={process.env.GA_ID!} />
         <Analytics />
+        <Toaster />
       </body>
     </html>
   )
