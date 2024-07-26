@@ -1,3 +1,4 @@
+import { timezones } from "@/config"
 import { Movie, RawCombinedCredit } from "@/tmdb/models"
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
@@ -94,4 +95,25 @@ export function formatValue(value: any, formatter?: any) {
 
 export function pad(value: number) {
   return String(value).padStart(2, "0")
+}
+
+export function getUserTimezone() {
+  return Intl.DateTimeFormat().resolvedOptions().timeZone
+}
+
+export function getUserRegion() {
+  const userTimezone = getUserTimezone() as keyof typeof timezones
+  const selectedTimezone = timezones[userTimezone]
+
+  let country = "US"
+
+  if (selectedTimezone?.countries?.length) {
+    country = selectedTimezone.countries[0]
+  }
+
+  return country
+}
+
+export function getCountryName(code: string) {
+  return new Intl.DisplayNames("en", { type: "region" }).of(code)
 }

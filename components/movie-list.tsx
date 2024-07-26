@@ -2,6 +2,7 @@ import { notFound } from "next/navigation"
 import { tmdb } from "@/tmdb/api"
 import { MovieListType } from "@/tmdb/api/types"
 
+import { getRegion } from "@/lib/get-region"
 import { ListPagination } from "@/components/list-pagination"
 import { MovieCard } from "@/components/movie-card"
 
@@ -18,16 +19,19 @@ export const MovieList: React.FC<MovieListProps> = async ({
   title,
   description,
 }) => {
+  const region = getRegion()
+
   const {
-    results: movies,
+    results,
     total_pages: totalPages,
     page: currentPage,
   } = await tmdb.movie.list({
+    region,
     list,
     page,
   })
 
-  if (!movies?.length) {
+  if (!results?.length) {
     return notFound()
   }
 
@@ -39,7 +43,7 @@ export const MovieList: React.FC<MovieListProps> = async ({
       </div>
 
       <div className="grid-list">
-        {movies.map((movie) => (
+        {results.map((movie) => (
           <MovieCard key={movie.id} {...movie} />
         ))}
       </div>

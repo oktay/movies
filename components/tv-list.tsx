@@ -2,6 +2,8 @@ import { notFound } from "next/navigation"
 import { tmdb } from "@/tmdb/api"
 import { TvListType } from "@/tmdb/api/types"
 
+import { getRegion } from "@/lib/get-region"
+import { getUserTimezone } from "@/lib/utils"
 import { ListPagination } from "@/components/list-pagination"
 import { TvCard } from "@/components/tv-card"
 
@@ -18,16 +20,21 @@ export const TvList: React.FC<TvListProps> = async ({
   title,
   description,
 }) => {
+  const region = getRegion()
+  const timezone = getUserTimezone()
+
   const {
-    results: tvShows,
+    results,
     total_pages: totalPages,
     page: currentPage,
   } = await tmdb.tv.list({
-    list: list,
+    region,
+    list,
     page,
+    timezone,
   })
 
-  if (!tvShows?.length) {
+  if (!results?.length) {
     return notFound()
   }
 
@@ -39,7 +46,7 @@ export const TvList: React.FC<TvListProps> = async ({
       </div>
 
       <div className="grid-list">
-        {tvShows?.map((tvShow) => (
+        {results?.map((tvShow) => (
           <TvCard key={tvShow.id} {...tvShow} />
         ))}
       </div>

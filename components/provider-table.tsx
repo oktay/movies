@@ -1,6 +1,5 @@
 import React from "react"
 import { Buy, Flatrate, Rent } from "@/tmdb/models"
-import { Airplay, Disc, LibraryBig } from "lucide-react"
 
 import {
   Table,
@@ -21,23 +20,11 @@ export const ProviderTable: React.FC<ProviderTableProps> = ({
   title,
   providers,
 }) => {
-  const Icons = {
-    Stream: Airplay,
-    Buy: LibraryBig,
-    Rent: Disc,
-  }
-
-  const Icon = Icons[title]
-
   return (
     <Table>
       <TableHeader className="select-none">
         <TableRow>
-          <TableHead colSpan={2}>
-            <div className="flex items-center gap-4">
-              <Icon className="size-4" /> {title}
-            </div>
-          </TableHead>
+          <TableHead colSpan={2}>{title}</TableHead>
         </TableRow>
       </TableHeader>
 

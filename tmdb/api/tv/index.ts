@@ -32,12 +32,13 @@ import {
  * @see https://developer.themoviedb.org/reference/tv-series-popular
  * @see https://developer.themoviedb.org/reference/tv-series-top-rated
  */
-const list = ({ list, page = "1", region }: TvListRequestParams) =>
+const list = ({ list, page = "1", region, timezone }: TvListRequestParams) =>
   api.fetcher<ListResponse<TvShow>>({
     endpoint: `tv/${list}`,
     params: {
       page,
       region,
+      timezone,
     },
   })
 

@@ -1,54 +1,41 @@
-"use client"
-
-import { regions } from "@/config"
-import { useProviders } from "@/hooks"
+import { tmdb } from "@/tmdb/api"
 import { WatchLocale } from "@/tmdb/models"
-import ReactCountryFlag from "react-country-flag"
+import { Info } from "lucide-react"
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
+import { getRegion } from "@/lib/get-region"
+import { getCountryName } from "@/lib/utils"
 import { ProviderTable } from "@/components/provider-table"
 
 interface MediaWatchProvidersProps {
-  providers: WatchLocale
+  id: string
+  type: "movie" | "tv"
 }
 
-export const MediaWatchProviders: React.FC<MediaWatchProvidersProps> = ({
-  providers,
+export const MediaWatchProviders: React.FC<MediaWatchProvidersProps> = async ({
+  id,
+  type,
 }) => {
-  const { results, region, setRegion } = useProviders(providers)
+  const { results } = await tmdb[type].providers({ id })
+
+  const region = getRegion() as keyof WatchLocale
+  const country = getCountryName(region)
 
   return (
-    <div className="space-y-4">
-      <Select value={region} onValueChange={setRegion}>
-        <SelectTrigger className="max-w-56">
-          <SelectValue />
-        </SelectTrigger>
-
-        <SelectContent>
-          {regions.map((region) => (
-            <SelectItem key={region.iso_3166_1} value={region.iso_3166_1}>
-              <ReactCountryFlag
-                countryCode={region.iso_3166_1}
-                className="pr-2 text-xl"
-                svg
-              />
-              {region.english_name}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-
+    <div className="space-y-6">
       <div className="grid gap-4 lg:grid-cols-3">
-        <ProviderTable title="Stream" providers={results.flatrate} />
-        <ProviderTable title="Buy" providers={results.buy} />
-        <ProviderTable title="Rent" providers={results.rent} />
+        <ProviderTable title="Stream" providers={results?.[region]?.flatrate} />
+        <ProviderTable title="Buy" providers={results?.[region]?.buy} />
+        <ProviderTable title="Rent" providers={results?.[region]?.rent} />
       </div>
+
+      <small className="flex items-center gap-2 text-muted-foreground">
+        <Info className="size-4" />
+        <p>
+          Currently showing providers for{" "}
+          <span className="underline">{country}</span> You can change your
+          preferred region in the settings
+        </p>
+      </small>
     </div>
   )
 }

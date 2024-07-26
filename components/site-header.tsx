@@ -1,11 +1,10 @@
-"use client"
-
 import { Suspense } from "react"
 
 import { Skeleton } from "@/components/ui/skeleton"
 import { SearchInput } from "@/components/search-input"
 import { SiteMenu } from "@/components/site-menu"
 import { SiteNav } from "@/components/site-nav"
+import { SiteSettings } from "@/components/site-settings"
 
 export const SiteHeader = () => {
   return (
@@ -17,6 +16,8 @@ export const SiteHeader = () => {
           <Suspense fallback={<Skeleton className="h-10 w-60" />}>
             <SearchInput />
           </Suspense>
+
+          <SiteSettings />
 
           <div className="lg:hidden">
             <SiteMenu />

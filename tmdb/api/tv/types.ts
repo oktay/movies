@@ -4,6 +4,7 @@ export type TvListRequestParams = {
   list: TvListType
   page?: string
   region?: string
+  timezone?: string
 }
 
 export type TvDetailsRequestParams = {

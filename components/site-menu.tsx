@@ -21,8 +21,8 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer"
+import { Separator } from "@/components/ui/separator"
 import { Icons } from "@/components/icons"
-import { ThemeToggle } from "@/components/theme-toggle"
 
 export const SiteMenu = () => {
   const [open, setOpen] = useDialog()
@@ -34,6 +34,7 @@ export const SiteMenu = () => {
           <MenuIcon className="size-4" />
         </Button>
       </DrawerTrigger>
+
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>Menu</DrawerTitle>
@@ -48,6 +49,8 @@ export const SiteMenu = () => {
             )
           )}
         </Accordion>
+
+        <Separator className="mt-4" />
 
         <DrawerFooter>
           <nav className="flex gap-2">
@@ -70,7 +73,6 @@ export const SiteMenu = () => {
               <Bug className="mr-2 inline size-4 align-middle" />
               Submit a bug
             </a>
-            <ThemeToggle />
           </nav>
         </DrawerFooter>
       </DrawerContent>

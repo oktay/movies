@@ -1,5 +1,3 @@
-import { tmdb } from "@/tmdb/api"
-
 import { MediaWatchProviders } from "@/components/media-watch-providers"
 
 interface DetailWatchProps {
@@ -8,19 +6,17 @@ interface DetailWatchProps {
   }
 }
 
-export default async function DetailWatch({ params }: DetailWatchProps) {
-  const { results: providers } = await tmdb.tv.providers({ id: params.id })
-
+export default function DetailWatch({ params }: DetailWatchProps) {
   return (
     <div className="space-y-6 rounded-md border p-6">
       <div>
         <h2 className="text-lg font-medium">Where to Watch</h2>
         <p className="text-muted-foreground">
-          Select a region to see where you can watch this TV show
+          Stream, buy or rent this TV show from the providers below.
         </p>
       </div>
 
-      <MediaWatchProviders providers={providers} />
+      <MediaWatchProviders id={params.id} type="tv" />
     </div>
   )
 }
