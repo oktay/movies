@@ -35,11 +35,14 @@ export function getPersonHighlights(
   },
   count = 8
 ) {
-  const list = department === "Acting" ? sortCast(cast) : sortCrew(crew)
+  const sortedList = department === "Acting" ? sortCast(cast) : sortCrew(crew)
+  const backdropFiltered = sortedList.filter(
+    (item: RawCombinedCredit) => item.backdrop_path
+  )
 
   return {
-    highlights: list.slice(0, count),
-    hero: getRandomItems(list, 1)[0],
+    highlights: sortedList.slice(0, count),
+    hero: getRandomItems(backdropFiltered, 1)[0],
   }
 }
 
