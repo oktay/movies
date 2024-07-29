@@ -4,6 +4,7 @@ import { Info } from "lucide-react"
 
 import { getRegion } from "@/lib/get-region"
 import { getCountryName } from "@/lib/utils"
+import { Alert, AlertDescription } from "@/components/ui/alert"
 import { ProviderTable } from "@/components/provider-table"
 
 interface MediaWatchProvidersProps {
@@ -28,14 +29,14 @@ export const MediaWatchProviders: React.FC<MediaWatchProvidersProps> = async ({
         <ProviderTable title="Rent" providers={results?.[region]?.rent} />
       </div>
 
-      <small className="flex gap-2 rounded-sm border p-4 text-muted-foreground md:items-center">
-        <Info className="size-4 shrink-0" />
-        <p>
+      <Alert>
+        <Info className="size-4" />
+        <AlertDescription className="text-muted-foreground">
           Currently showing providers for{" "}
           <span className="underline">{country}</span> You can change your
           preferred region in the settings
-        </p>
-      </small>
+        </AlertDescription>
+      </Alert>
     </div>
   )
 }

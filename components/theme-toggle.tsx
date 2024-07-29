@@ -28,6 +28,7 @@ export function ThemeToggle() {
     <div className="flex flex-col gap-2">
       {themes.map((value) => (
         <Button
+          key={value}
           variant={theme === value ? "default" : "outline"}
           onClick={() => handleClick(value)}
         >
