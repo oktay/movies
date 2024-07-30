@@ -1,3 +1,5 @@
+import { CombinedCreditsResponse } from "@/tmdb/models"
+
 export type PersonListType = "popular"
 
 export type PersonDetailsRequestParams = {
@@ -8,4 +10,8 @@ export type PersonDetailsRequestParams = {
 export type PersonListRequestParams = {
   list: PersonListType
   page?: string
+}
+
+export type WithCombinedCredits = {
+  combined_credits: CombinedCreditsResponse
 }

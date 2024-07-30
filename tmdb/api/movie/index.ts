@@ -48,8 +48,8 @@ const list = ({ list, page, region }: MovieListRequestParams) =>
  * @returns {Promise<MovieDetails>} A promise that resolves to the detailed information about the movie.
  * @see https://developer.themoviedb.org/reference/movie-details
  */
-const detail = ({ id, append }: MovieDetailsRequestParams) =>
-  api.fetcher<MovieDetails>({
+const detail = <T>({ id, append }: MovieDetailsRequestParams) =>
+  api.fetcher<MovieDetails & T>({
     endpoint: `movie/${id}`,
     params: {
       append_to_response: append,

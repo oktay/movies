@@ -1,4 +1,5 @@
 import { tmdb } from "@/tmdb/api"
+import { WithCombinedCredits } from "@/tmdb/api/types"
 import { format } from "@/tmdb/utils"
 
 import {
@@ -22,7 +23,7 @@ interface DetailProps {
 }
 
 export async function generateMetadata({ params }: DetailProps) {
-  const { name } = await tmdb.person.details({
+  const { name } = await tmdb.person.detail({
     id: params.id,
   })
 
@@ -39,12 +40,10 @@ export default async function Detail({ params }: DetailProps) {
     birthday,
     place_of_birth,
     known_for_department: department,
-  } = await tmdb.person.details({
+    combined_credits: { cast, crew },
+  } = await tmdb.person.detail<WithCombinedCredits>({
     id: params.id,
-  })
-
-  const { cast, crew } = await tmdb.person.combinedCredits({
-    id: params.id,
+    append: "combined_credits",
   })
 
   const { highlights, hero } = getPersonHighlights({

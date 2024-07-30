@@ -1,5 +1,5 @@
 import { timezones } from "@/config"
-import { Movie, RawCombinedCredit } from "@/tmdb/models"
+import { Movie, RawCombinedCredit, TvShow } from "@/tmdb/models"
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function getRandomItems<T>(array: T[], count: number): T[] {
+export function getRandomItems<T>(array: T[], count: number = 1): T[] {
   const maxStartIndex = array.length - count
   const startIndex = Math.floor(Math.random() * (maxStartIndex + 1))
   return array.slice(startIndex, startIndex + count)
@@ -35,15 +35,35 @@ export function getPersonHighlights(
   },
   count = 8
 ) {
-  const sortedList = department === "Acting" ? sortCast(cast) : sortCrew(crew)
-  const backdropFiltered = sortedList.filter(
-    (item: RawCombinedCredit) => item.backdrop_path
-  )
+  const list =
+    department === "Acting"
+      ? sortByVoteScore(
+          cast.filter((item) => {
+            if (item.vote_count <= 0) return false
+            if (item.media_type === "tv") return item.episode_count > 8
+            return item.order < 10
+          })
+        )
+      : sortByVoteScore(crew)
+
+  const highlights = getUniqueItems(list).slice(0, count)
+
+  const hero = getRandomItems(
+    highlights.filter((item) => item.backdrop_path)
+  )[0]
 
   return {
-    highlights: sortedList.slice(0, count),
-    hero: getRandomItems(backdropFiltered, 1)[0],
+    highlights,
+    hero,
   }
+}
+
+function sortByVoteScore(items: Movie[] | TvShow[] | RawCombinedCredit[]) {
+  return items.sort((a, b) => {
+    const aScore = a.vote_average * (a.vote_count / 1000)
+    const bScore = b.vote_average * (b.vote_count / 1000)
+    return bScore - aScore
+  })
 }
 
 export function filterByDepartment(
@@ -51,26 +71,6 @@ export function filterByDepartment(
   department: string
 ) {
   return list.filter((item) => item.department === department)
-}
-
-export function sortCrew(crew: RawCombinedCredit[]) {
-  return getUniqueItems(crew.sort((a, b) => b.vote_count - a.vote_count))
-}
-
-export function sortCast(cast: RawCombinedCredit[]) {
-  return getUniqueItems(
-    cast
-      .filter((item) => {
-        if (item.vote_count <= 0) return false
-        if (item.media_type === "tv") return item.episode_count > 8
-        return item.order < 10
-      })
-      .sort((a, b) => {
-        const aScore = a.vote_average * (a.vote_count / 1000)
-        const bScore = b.vote_average * (b.vote_count / 1000)
-        return bScore - aScore
-      })
-  )
 }
 
 export function sortByReleaseDate(

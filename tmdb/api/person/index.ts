@@ -26,8 +26,8 @@ const list = async ({ list, page }: PersonListRequestParams) =>
  * @returns A promise resolving to the person details.
  * @see https://developers.themoviedb.org/3/reference/person-details
  */
-const details = async ({ id, append }: PersonDetailsRequestParams) =>
-  api.fetcher<PersonDetails>({
+const detail = async <T>({ id, append }: PersonDetailsRequestParams) =>
+  api.fetcher<PersonDetails & T>({
     endpoint: `person/${id}`,
     params: {
       append_to_response: append,
@@ -46,7 +46,7 @@ const combinedCredits = async ({ id }: PersonDetailsRequestParams) =>
   })
 
 export const person = {
-  details,
+  detail,
   list,
   combinedCredits,
 }

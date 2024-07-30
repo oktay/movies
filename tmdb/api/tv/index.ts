@@ -49,8 +49,8 @@ const list = ({ list, page = "1", region, timezone }: TvListRequestParams) =>
  * @returns {Promise<TvShowDetails>} A promise that resolves to the detailed information about the TV series.
  * @see https://developer.themoviedb.org/reference/tv-series-details
  */
-const detail = ({ id, append_to_response }: TvDetailsRequestParams) =>
-  api.fetcher<TvShowDetails>({
+const detail = <T>({ id, append_to_response }: TvDetailsRequestParams) =>
+  api.fetcher<TvShowDetails & T>({
     endpoint: `tv/${id}`,
     params: {
       append_to_response,
