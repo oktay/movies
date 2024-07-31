@@ -9,7 +9,7 @@ export type TvListRequestParams = {
 
 export type TvDetailsRequestParams = {
   id: string
-  append_to_response?: string
+  append?: string
 }
 
 export type TvCreditsRequestParams = {

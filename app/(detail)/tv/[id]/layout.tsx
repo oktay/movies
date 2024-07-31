@@ -1,15 +1,14 @@
-import Link from "next/link"
 import { notFound } from "next/navigation"
 import { tmdb } from "@/tmdb/api"
+import { WithVideos } from "@/tmdb/api/types"
 import { format } from "@/tmdb/utils"
-import { Globe, Play } from "lucide-react"
 
-import { buttonVariants } from "@/components/ui/button"
 import { Tabs, TabsLink, TabsList } from "@/components/ui/tabs"
 import { MediaBackdrop } from "@/components/media-backdrop"
 import { MediaDetailView } from "@/components/media-detail-view"
 import { MediaPoster } from "@/components/media-poster"
 import { MediaRating } from "@/components/media-rating"
+import { MediaTrailerDialog } from "@/components/media-trailer-dialog"
 
 interface DetailLayoutProps {
   params: {
@@ -43,8 +42,10 @@ export default async function DetailLayout({
     vote_count,
     tagline,
     homepage,
-  } = await tmdb.tv.detail({
+    videos,
+  } = await tmdb.tv.detail<WithVideos>({
     id: params.id,
+    append: "videos",
   })
 
   if (!id) return notFound()
@@ -82,26 +83,7 @@ export default async function DetailLayout({
             dangerouslySetInnerHTML={{ __html: format.content(overview) }}
           />
 
-          <div className="flex gap-2 pt-4">
-            <Link
-              href={`/tv/${id}/watch`}
-              className={buttonVariants()}
-              prefetch={false}
-            >
-              <Play className="mr-2 size-4" /> Watch Now
-            </Link>
-
-            {homepage && (
-              <Link
-                href={homepage}
-                className={buttonVariants({ variant: "secondary" })}
-                target="_blank"
-                prefetch={false}
-              >
-                <Globe className="mr-2 size-4" /> Website
-              </Link>
-            )}
-          </div>
+          <MediaTrailerDialog videos={videos?.results} />
         </div>
       </MediaDetailView.Hero>
 

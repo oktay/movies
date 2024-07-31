@@ -32,9 +32,12 @@ export const MediaRating: React.FC<MediaRatingProps> = ({
             {average ? average.toFixed(1) : "N/A"}
           </Badge>
         </TooltipTrigger>
-        <TooltipContent className="flex items-center gap-1 bg-foreground text-xs text-background">
-          <User className="size-3" /> {count || "N/A"}
-        </TooltipContent>
+
+        {count && (
+          <TooltipContent className="flex items-center gap-1 bg-foreground text-xs text-background">
+            <User className="size-3" /> {count}
+          </TooltipContent>
+        )}
       </Tooltip>
     </TooltipProvider>
   )

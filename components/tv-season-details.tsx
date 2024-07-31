@@ -1,4 +1,5 @@
 import { tmdb } from "@/tmdb/api"
+import { WithCredits } from "@/tmdb/api/types"
 import { DialogProps } from "@radix-ui/react-dialog"
 
 import { getUniqueItems } from "@/lib/utils"
@@ -17,14 +18,15 @@ export const TvSeasonDetails: React.FC<TvSeasonDetailsProps> = async ({
   season,
   ...props
 }) => {
-  const { episodes, name, overview } = await tmdb.tvSeasons.details({
+  const {
+    episodes,
+    name,
+    overview,
+    credits: { cast },
+  } = await tmdb.tvSeasons.details<WithCredits>({
     id,
     season,
-  })
-
-  const { cast } = await tmdb.tvSeasons.credits({
-    id,
-    season,
+    append: "credits",
   })
 
   const guestStars = getUniqueItems(
@@ -66,7 +68,7 @@ export const TvSeasonDetails: React.FC<TvSeasonDetailsProps> = async ({
 
         <TabsContent value="guests">
           {guestStars?.length ? (
-            <div className="mt-4 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
               {guestStars.map((cast) => (
                 <MediaCastCard key={cast.credit_id} {...cast} />
               ))}

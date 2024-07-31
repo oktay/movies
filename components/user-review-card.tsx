@@ -31,7 +31,7 @@ export const UserReviewCard: React.FC<UserReviewCardProps> = ({ review }) => {
           <span className="text-right text-xs text-muted-foreground">
             {format.date(created_at)}
           </span>
-          <MediaRating average={rating} count={1} />
+          <MediaRating average={rating} />
         </div>
       </div>
       <div

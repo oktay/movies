@@ -13,14 +13,21 @@ export type ListResponse<T> = {
 }
 
 export type WithImages = {
-  images: Image[]
+  images: {
+    posters: Image[]
+    backdrops: Image[]
+  }
 }
 
 export type WithVideos = {
-  videos: Video[]
+  videos: {
+    results: Video[]
+  }
 }
 
 export type WithCredits = {
-  cast: Cast[]
-  crew: Crew[]
+  credits: {
+    cast: Cast[]
+    crew: Crew[]
+  }
 }

@@ -5,7 +5,7 @@ import { useDialog } from "@/hooks"
 import { DetailedCollection } from "@/tmdb/models"
 
 import { sortByReleaseDate } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -30,8 +30,8 @@ export const MovieCollectionDialog: React.FC<MovieCollectionDialogProps> = ({
 
   return (
     <Dialog open={open} onOpenChange={setOpen} modal>
-      <DialogTrigger asChild>
-        <Button className="mt-4">View The Collection</Button>
+      <DialogTrigger className={buttonVariants()}>
+        View The Collection
       </DialogTrigger>
 
       <DialogContent

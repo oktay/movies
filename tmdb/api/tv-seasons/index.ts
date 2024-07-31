@@ -10,9 +10,12 @@ import { TvSeasonsDetailsRequestParams } from "./types"
  * @returns {Promise<SeasonDetails>} A promise that resolves to the detailed information about the TV season.
  * @see https://developer.themoviedb.org/reference/tv-season-details
  */
-const details = ({ id, season }: TvSeasonsDetailsRequestParams) =>
-  api.fetcher<SeasonDetails>({
+const details = <T>({ id, season, append }: TvSeasonsDetailsRequestParams) =>
+  api.fetcher<SeasonDetails & T>({
     endpoint: `tv/${id}/season/${season}`,
+    params: {
+      append_to_response: append,
+    },
   })
 
 const credits = ({ id, season }: TvSeasonsDetailsRequestParams) =>

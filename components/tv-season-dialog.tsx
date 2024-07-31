@@ -34,10 +34,14 @@ export const TvSeasonDialog: React.FC<TvSeasonDialogProps> = ({
     }
   }
 
+  function onOpenAutoFocus(e: Event) {
+    e.preventDefault()
+  }
+
   return (
-    <Dialog open onOpenChange={handleOpenChange} {...props}>
+    <Dialog modal open onOpenChange={handleOpenChange} {...props}>
       <DialogContent
-        onOpenAutoFocus={(e) => e.preventDefault()}
+        onOpenAutoFocus={onOpenAutoFocus}
         className="max-w-screen-lg"
       >
         <DialogHeader>
