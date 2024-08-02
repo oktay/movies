@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { notFound } from "next/navigation"
 import { tmdb } from "@/tmdb/api"
 import { WithVideos } from "@/tmdb/api/types"
@@ -41,7 +42,6 @@ export default async function DetailLayout({
     vote_average,
     vote_count,
     tagline,
-    homepage,
     videos,
   } = await tmdb.tv.detail<WithVideos>({
     id: params.id,
@@ -65,9 +65,12 @@ export default async function DetailLayout({
           <MediaDetailView.Genres>
             <MediaRating average={vote_average} count={vote_count} />
             {genres?.map((genre) => (
-              <MediaDetailView.Genre key={genre.id}>
-                {genre.name}
-              </MediaDetailView.Genre>
+              <Link
+                key={genre.id}
+                href={`/tv/discover?with_genres=${genre.id}`}
+              >
+                <MediaDetailView.Genre>{genre.name}</MediaDetailView.Genre>
+              </Link>
             ))}
           </MediaDetailView.Genres>
 

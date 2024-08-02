@@ -37,7 +37,7 @@ export const MovieList: React.FC<MovieListProps> = async ({
 
   return (
     <div className="container space-y-8">
-      <div className="md:mb-24 md:mt-12">
+      <div className="md:mb-12 md:mt-6">
         <h1 className="mb-2 text-2xl font-medium">{title}</h1>
         <p className="max-w-3xl text-muted-foreground">{description}</p>
       </div>

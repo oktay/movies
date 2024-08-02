@@ -4,6 +4,11 @@ export * from "./movie/types"
 export * from "./trending/types"
 export * from "./tv/types"
 export * from "./person/types"
+export * from "./collection/types"
+export * from "./search/types"
+export * from "./discover/types"
+export * from "./genres/types"
+export * from "./watch-providers/types"
 
 export type ListResponse<T> = {
   page: number

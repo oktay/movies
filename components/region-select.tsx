@@ -1,6 +1,6 @@
 "use client"
 
-import { regions } from "@/config"
+import { regions } from "@/lib"
 import { SelectProps } from "@radix-ui/react-select"
 import ReactCountryFlag from "react-country-flag"
 

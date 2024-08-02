@@ -15,7 +15,7 @@ export const MovieCollection: React.FC<MovieCollectionProps> = async ({
   })
 
   return (
-    <div className="h-hero relative mt-4 w-full">
+    <div className="h-hero relative w-full">
       <MediaBackdrop image={collection.backdrop_path} alt={collection.name} />
       <div className="overlay">
         <div className="p-4 md:p-10">

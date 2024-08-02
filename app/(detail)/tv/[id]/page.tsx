@@ -12,11 +12,13 @@ export default async function Detail({ params }: { params: { id: string } }) {
     first_air_date,
     last_air_date,
     status,
+    original_name,
     created_by,
     number_of_seasons,
     number_of_episodes,
     spoken_languages,
     production_companies,
+    networks,
     last_episode_to_air: lastEpisode,
   } = await tmdb.tv.detail({
     id: params.id,
@@ -25,11 +27,23 @@ export default async function Detail({ params }: { params: { id: string } }) {
   const items = [
     {
       title: "Created By",
-      value: joiner(created_by, "name"),
+      value: created_by.map(({ id, name }) => (
+        <Link
+          key={id}
+          href={`/person/${id}`}
+          className="mr-1 border-b-2 transition hover:text-foreground"
+        >
+          {name}
+        </Link>
+      )),
     },
     {
       title: "Status",
       value: formatValue(status),
+    },
+    {
+      title: "Original Name",
+      value: formatValue(original_name),
     },
     {
       title: "First Air Date",
@@ -53,7 +67,27 @@ export default async function Detail({ params }: { params: { id: string } }) {
     },
     {
       title: "Production Companies",
-      value: joiner(production_companies, "name"),
+      value: production_companies.map(({ id, name }) => (
+        <Link
+          key={id}
+          href={`/tv/discover?with_companies=${id}`}
+          className="mr-1 border-b-2 transition hover:text-foreground"
+        >
+          {name}
+        </Link>
+      )),
+    },
+    {
+      title: "Networks",
+      value: networks.map(({ id, name }) => (
+        <Link
+          key={id}
+          href={`/tv/discover?with_networks=${id}`}
+          className="mr-1 border-b-2 transition hover:text-foreground"
+        >
+          {name}
+        </Link>
+      )),
     },
   ]
 

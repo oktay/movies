@@ -1,4 +1,5 @@
-import { timezones } from "@/config"
+import { availableParams } from "@/config"
+import { timezones } from "@/lib"
 import { Movie, RawCombinedCredit, TvShow } from "@/tmdb/models"
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
@@ -35,16 +36,17 @@ export function getPersonHighlights(
   },
   count = 8
 ) {
-  const list =
-    department === "Acting"
-      ? sortByVoteScore(
-          cast.filter((item) => {
-            if (item.vote_count <= 0) return false
-            if (item.media_type === "tv") return item.episode_count > 8
-            return item.order < 10
-          })
-        )
-      : sortByVoteScore(crew)
+  const isActing = department === "Acting"
+
+  const isRemarkable = (item: RawCombinedCredit) => {
+    if (item.vote_count <= 0) return false
+    if (item.media_type === "tv") return item.episode_count > 8
+    return item.order < 10
+  }
+
+  const list = isActing
+    ? sortByVoteScore(cast.filter(isRemarkable))
+    : sortByVoteScore(crew)
 
   const highlights = getUniqueItems(list).slice(0, count)
 
@@ -119,4 +121,14 @@ export function getUserRegion() {
 
 export function getCountryName(code: string) {
   return new Intl.DisplayNames("en", { type: "region" }).of(code)
+}
+
+export function filterDiscoverParams(
+  params?: Record<string, string>
+): Record<string, string> {
+  return Object.fromEntries(
+    Object.entries(params ?? {}).filter(([key]) =>
+      availableParams.includes(key)
+    )
+  )
 }

@@ -44,7 +44,7 @@ export default async function Search({ searchParams }: SearchProps) {
   return (
     <div className="container h-full">
       <div className="space-y-8">
-        <div className="md:mb-24 md:mt-12">
+        <div className="md:mb-12 md:mt-6">
           <h1 className="mb-2 text-2xl font-medium">Search results for</h1>
           <p className="text-xl text-muted-foreground">
             &quot;{searchParams.q}&quot;

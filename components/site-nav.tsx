@@ -5,6 +5,7 @@ import { NavItem, navigation } from "@/config"
 import { useActiveNav } from "@/hooks"
 
 import { cn } from "@/lib/utils"
+import { Badge } from "@/components/ui/badge"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -94,6 +95,9 @@ const SiteNavListItem = ({ title, icon, description, href }: NavItem) => {
       >
         <div className="text-sm font-medium leading-none">
           <Icon className="mr-1 inline size-3" /> {title}
+          {title === "Discover" && (
+            <Badge className="ml-2 px-1 py-0 text-xs">New</Badge>
+          )}
         </div>
         <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
           {description}

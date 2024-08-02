@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { tmdb } from "@/tmdb/api"
 import { format } from "@/tmdb/utils"
 
@@ -12,6 +13,7 @@ interface DetailProps {
 
 export default async function Detail({ params }: DetailProps) {
   const {
+    status,
     release_date,
     runtime,
     budget,
@@ -19,6 +21,7 @@ export default async function Detail({ params }: DetailProps) {
     spoken_languages,
     production_companies,
     belongs_to_collection,
+    original_title,
   } = await tmdb.movie.detail({
     id: params.id,
   })
@@ -27,6 +30,14 @@ export default async function Detail({ params }: DetailProps) {
     {
       title: "Release Date",
       value: formatValue(release_date, format.date),
+    },
+    {
+      title: "Status",
+      value: formatValue(status),
+    },
+    {
+      title: "Original Title",
+      value: formatValue(original_title),
     },
     {
       title: "Runtime",
@@ -46,12 +57,20 @@ export default async function Detail({ params }: DetailProps) {
     },
     {
       title: "Production Companies",
-      value: joiner(production_companies, "name"),
+      value: production_companies.map(({ id, name }) => (
+        <Link
+          key={id}
+          href={`/movie/discover?with_companies=${id}`}
+          className="mr-1 border-b-2 transition hover:text-foreground"
+        >
+          {name}
+        </Link>
+      )),
     },
   ]
 
   return (
-    <section>
+    <section className="space-y-4">
       <div className="grid grid-cols-2 gap-y-12 rounded border p-6 md:grid-cols-4">
         {overview.map((item) => (
           <div key={item.title}>

@@ -7,6 +7,7 @@ import {
   PlayIcon,
   RadioTowerIcon,
   StarIcon,
+  TelescopeIcon,
   TrendingUpIcon,
   TvIcon,
   User,
@@ -59,12 +60,12 @@ const movies = {
   icon: ClapperboardIcon,
   description: pages.movie.root.description,
   items: [
-    // {
-    //   title: "Discover",
-    //   href: "/movie/discover",
-    //   icon: TelescopeIcon,
-    //   description: pages.movie.discover.description,
-    // },
+    {
+      title: "Discover",
+      href: "/movie/discover",
+      icon: TelescopeIcon,
+      description: pages.movie.discover.description,
+    },
     {
       title: "Popular",
       href: "/movie/popular",
@@ -98,12 +99,12 @@ const tvShows = {
   icon: TvIcon,
   description: pages.tv.root.description,
   items: [
-    // {
-    //   title: "Discover",
-    //   href: "/tv/discover",
-    //   icon: TelescopeIcon,
-    //   description: pages.tv.discover.description,
-    // },
+    {
+      title: "Discover",
+      href: "/tv/discover",
+      icon: TelescopeIcon,
+      description: pages.tv.discover.description,
+    },
     {
       title: "Popular",
       href: "/tv/popular",
@@ -176,3 +177,19 @@ const trending = {
 export const navigation = {
   items: [home, movies, tvShows, people, trending] as NavItem[],
 }
+
+export const availableParams = [
+  "with_genres",
+  "with_original_language",
+  "with_watch_providers",
+  "with_companies",
+  "with_networks",
+  "primary_release_date.gte",
+  "primary_release_date.lte",
+  "first_air_date.gte",
+  "first_air_date.lte",
+  "vote_average.gte",
+  "vote_average.lte",
+  "vote_count.gte",
+  "vote_count.lte",
+]

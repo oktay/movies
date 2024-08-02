@@ -1,4 +1,7 @@
 export * from "./useActiveNav"
 export * from "./useDialog"
+export * from "./useFilters"
+export * from "./useMultiSelect"
 export * from "./usePagination"
 export * from "./useSearch"
+export * from "./useSort"
