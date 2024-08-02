@@ -1,6 +1,6 @@
 import { tmdb } from "@/tmdb/api"
 
-import { ImageList } from "@/components/image-list"
+import { MediaImages } from "@/components/media-images"
 
 interface DetailImagesProps {
   params: {
@@ -19,5 +19,5 @@ export async function generateMetadata({ params }: DetailImagesProps) {
 }
 
 export default async function DetailImages({ params }: DetailImagesProps) {
-  return <ImageList id={params.id} type="tv" />
+  return <MediaImages id={params.id} type="tv" />
 }

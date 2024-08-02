@@ -140,7 +140,11 @@ const CreditsTableTvItem: React.FC<RawTvShowCredit> = ({
         {name}
       </Link>
       <p className="text-muted-foreground">
-        {episode_count} {pluralize(episode_count, "episode", "episodes")}
+        {episode_count > 0 && (
+          <span>
+            {episode_count} {pluralize(episode_count, "episode", "episodes")}
+          </span>
+        )}
         {(character || job) && ` as ${character || job}`}
       </p>
     </TableCell>
