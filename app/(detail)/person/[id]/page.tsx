@@ -1,5 +1,5 @@
 import { tmdb } from "@/tmdb/api"
-import { WithCombinedCredits } from "@/tmdb/api/types"
+import { WithCombinedCredits, WithImages } from "@/tmdb/api/types"
 import { format } from "@/tmdb/utils"
 
 import {
@@ -9,8 +9,10 @@ import {
   getPersonHighlights,
 } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { MediaBackdrop } from "@/components/media-backdrop"
 import { MediaDetailView } from "@/components/media-detail-view"
+import { MediaImages } from "@/components/media-images"
 import { MediaPoster } from "@/components/media-poster"
 import { MovieCard } from "@/components/movie-card"
 import { PersonCreditsTable } from "@/components/person-credits-table"
@@ -39,11 +41,12 @@ export default async function Detail({ params }: DetailProps) {
     biography,
     birthday,
     place_of_birth,
+    images: { profiles },
     known_for_department: department,
     combined_credits: { cast, crew },
-  } = await tmdb.person.detail<WithCombinedCredits>({
+  } = await tmdb.person.detail<WithCombinedCredits & WithImages>({
     id: params.id,
-    append: "combined_credits",
+    append: "combined_credits,images",
   })
 
   const { highlights, hero } = getPersonHighlights({
@@ -89,32 +92,49 @@ export default async function Detail({ params }: DetailProps) {
       </MediaDetailView.Hero>
 
       <MediaDetailView.Content>
-        <section>
-          <h2 className="mb-4 text-lg font-medium md:text-xl">Known for</h2>
-          <div className="grid-list">
-            {highlights?.map((item) =>
-              item.media_type === "movie" ? (
-                <MovieCard key={item.id} {...item} />
-              ) : (
-                <TvCard key={item.id} {...item} />
-              )
-            )}
-          </div>
+        <Tabs defaultValue="known">
+          <TabsList className="mb-4">
+            <TabsTrigger value="known">Known for</TabsTrigger>
+            <TabsTrigger value="credits">Credits</TabsTrigger>
+            <TabsTrigger value="images">Images</TabsTrigger>
+          </TabsList>
 
-          <div className="mt-8 space-y-8">
-            {department === "Acting" && (
-              <PersonCreditsTable department="Acting" credits={cast} />
+          <TabsContent value="known">
+            {highlights.length > 0 ? (
+              <div className="grid-list">
+                {highlights?.map((item) =>
+                  item.media_type === "movie" ? (
+                    <MovieCard key={item.id} {...item} />
+                  ) : (
+                    <TvCard key={item.id} {...item} />
+                  )
+                )}
+              </div>
+            ) : (
+              <div className="empty-box">No credits</div>
             )}
+          </TabsContent>
 
-            {getDepartments(crew).map((department) => (
-              <PersonCreditsTable
-                key={department}
-                department={department}
-                credits={filterByDepartment(crew, department)}
-              />
-            ))}
-          </div>
-        </section>
+          <TabsContent value="credits">
+            <div className="space-y-8">
+              {department === "Acting" && (
+                <PersonCreditsTable department="Acting" credits={cast} />
+              )}
+
+              {getDepartments(crew).map((department) => (
+                <PersonCreditsTable
+                  key={department}
+                  department={department}
+                  credits={filterByDepartment(crew, department)}
+                />
+              ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="images">
+            <MediaImages profiles={profiles} />
+          </TabsContent>
+        </Tabs>
       </MediaDetailView.Content>
     </MediaDetailView.Root>
   )

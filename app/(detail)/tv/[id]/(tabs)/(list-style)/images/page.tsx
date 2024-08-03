@@ -19,5 +19,9 @@ export async function generateMetadata({ params }: DetailImagesProps) {
 }
 
 export default async function DetailImages({ params }: DetailImagesProps) {
-  return <MediaImages id={params.id} type="tv" />
+  const { posters, backdrops } = await tmdb.tv.images({
+    id: params.id,
+    langs: "en",
+  })
+  return <MediaImages posters={posters} backdrops={backdrops} />
 }

@@ -21,6 +21,8 @@ export type WithImages = {
   images: {
     posters: Image[]
     backdrops: Image[]
+    logos: Image[]
+    profiles: Image[]
   }
 }
 
