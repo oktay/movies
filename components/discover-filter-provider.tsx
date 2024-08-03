@@ -24,6 +24,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { InfoTooltip } from "@/components/info-tooltip"
 import { ProviderLogo } from "@/components/provider-logo"
 
 interface DiscoverFilterGenreProps {
@@ -53,8 +54,12 @@ export const DiscoverFilterProvider: React.FC<DiscoverFilterGenreProps> = ({
 
   return (
     <div className="space-y-2">
-      <Label className="flex items-center text-muted-foreground">
-        Where to watch <ProviderTooltip />
+      <Label className="flex items-center gap-2 text-muted-foreground">
+        Where to watch
+        <InfoTooltip className="w-60">
+          Currently showing providers are available in your region. You can
+          change your region in the settings.
+        </InfoTooltip>
       </Label>
       <Popover>
         <PopoverTrigger
