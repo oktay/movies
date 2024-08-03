@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/tooltip"
 
 export const InfoTooltip: React.FC<TooltipContentProps> = ({ ...props }) => (
-  <TooltipProvider>
+  <TooltipProvider delayDuration={100}>
     <Tooltip>
       <TooltipTrigger>
         <Info className="size-4" />

@@ -1,15 +1,23 @@
 import { languages } from "@/lib"
+import { Check, ChevronsUpDown } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command"
 import { Label } from "@/components/ui/label"
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 interface DiscoverFilterLangProps {
   value: string
@@ -20,35 +28,88 @@ export const DiscoverFilterLang: React.FC<DiscoverFilterLangProps> = ({
   value,
   onChange,
 }) => {
-  const handleValueChange = (value: string) => {
-    onChange(value === "all" ? "" : value)
-  }
+  const selected = languages.find(
+    (lang) => lang.iso_639_1 === value
+  )?.english_name
 
   return (
     <div className="space-y-2">
-      <Label className="text-muted-foreground">Language</Label>
+      <Label className="flex text-muted-foreground">Language</Label>
 
-      <Select value={value} onValueChange={handleValueChange}>
-        <SelectTrigger
-          className={cn(
-            buttonVariants({ variant: "outline" }),
-            "justify-between text-left",
-            value ? "text-foreground" : "text-muted-foreground"
-          )}
+      <Popover>
+        <PopoverTrigger
+          className={cn(value ? "text-foreground" : "text-muted-foreground")}
+          asChild
         >
-          <SelectValue placeholder="Select language..." />
-        </SelectTrigger>
+          <Button
+            className="w-full justify-between text-left"
+            variant="outline"
+          >
+            {selected || "Select language..."}
+            <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
+          </Button>
+        </PopoverTrigger>
 
-        <SelectContent>
-          <SelectItem value="all">All</SelectItem>
-
-          {languages.map((lang) => (
-            <SelectItem value={lang.iso_639_1} key={lang.iso_639_1}>
-              {lang.english_name}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+        <PopoverContent className="p-0 md:w-80">
+          <LanguageList value={value} onSelect={onChange} />
+        </PopoverContent>
+      </Popover>
     </div>
+  )
+}
+
+export const LanguageList = ({
+  value,
+  onSelect,
+}: {
+  value: string
+  onSelect: (value: string) => void
+}) => {
+  return (
+    <Command>
+      <CommandInput placeholder="Search.." />
+      <CommandList>
+        <CommandEmpty>No results found</CommandEmpty>
+        <CommandGroup>
+          <ScrollArea className="max-h-40 overflow-y-auto">
+            <LanguageOption value="" onSelect={onSelect} selected={!value}>
+              All
+            </LanguageOption>
+
+            {languages.map((lang) => (
+              <LanguageOption
+                value={lang.iso_639_1}
+                onSelect={onSelect}
+                selected={value === lang.iso_639_1}
+              >
+                {lang.english_name}
+              </LanguageOption>
+            ))}
+          </ScrollArea>
+        </CommandGroup>
+      </CommandList>
+    </Command>
+  )
+}
+
+export const LanguageOption = ({
+  value,
+  children,
+  selected,
+  onSelect,
+}: {
+  value: string
+  children: string
+  selected: boolean
+  onSelect: (value: string) => void
+}) => {
+  return (
+    <CommandItem value={children} key={value} onSelect={() => onSelect(value)}>
+      <Check
+        className={cn("mr-2 size-4", selected ? "opacity-100" : "opacity-0")}
+      />
+
+      {children}
+    </CommandItem>
   )
 }

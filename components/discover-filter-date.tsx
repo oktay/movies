@@ -43,7 +43,7 @@ export const DiscoverFilterDate: React.FC<DiscoverFilterDateProps> = ({
 
   return (
     <div className="space-y-2">
-      <Label className="text-muted-foreground">{label}</Label>
+      <Label className="flex text-muted-foreground">{label}</Label>
       <Popover>
         <PopoverTrigger asChild>
           <Button

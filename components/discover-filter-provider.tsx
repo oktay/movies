@@ -1,9 +1,9 @@
 import { useMultiSelect } from "@/hooks"
 import { WatchProvider } from "@/tmdb/models"
-import { Check, ChevronsUpDown, Info } from "lucide-react"
+import { Check, ChevronsUpDown } from "lucide-react"
 
 import { cn, joiner } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import {
   Command,
   CommandEmpty,
@@ -18,12 +18,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { InfoTooltip } from "@/components/info-tooltip"
 import { ProviderLogo } from "@/components/provider-logo"
 
@@ -38,7 +33,7 @@ export const DiscoverFilterProvider: React.FC<DiscoverFilterGenreProps> = ({
   providers,
   onChange,
 }) => {
-  const { selection, toggleSelection } = useMultiSelect({
+  const { selection, toggleSelection, clearSelection } = useMultiSelect({
     value,
     logic: "or",
     onChange,
@@ -63,15 +58,17 @@ export const DiscoverFilterProvider: React.FC<DiscoverFilterGenreProps> = ({
       </Label>
       <Popover>
         <PopoverTrigger
+          className={cn(value ? "text-foreground" : "text-muted-foreground")}
           role="combobox"
-          className={cn(
-            buttonVariants({ variant: "outline" }),
-            "w-full justify-between text-left",
-            value ? "text-foreground" : "text-muted-foreground"
-          )}
+          asChild
         >
-          <span className="line-clamp-1">{comboboxValue}</span>
-          <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
+          <Button
+            variant="outline"
+            className="w-full justify-between text-left"
+          >
+            <span className="line-clamp-1">{comboboxValue}</span>
+            <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
+          </Button>
         </PopoverTrigger>
 
         <PopoverContent align="start" className="p-0 md:w-80">
@@ -79,6 +76,7 @@ export const DiscoverFilterProvider: React.FC<DiscoverFilterGenreProps> = ({
             providers={providers}
             selection={selection}
             toggleSelection={toggleSelection}
+            clearSelection={clearSelection}
           />
         </PopoverContent>
       </Popover>
@@ -86,38 +84,26 @@ export const DiscoverFilterProvider: React.FC<DiscoverFilterGenreProps> = ({
   )
 }
 
-const ProviderTooltip = () => (
-  <TooltipProvider>
-    <Tooltip>
-      <TooltipTrigger>
-        <Info className="ml-2 size-4" />
-      </TooltipTrigger>
-      <TooltipContent className="w-60">
-        Currently showing providers are available in your region. You can change
-        your region in the settings.
-      </TooltipContent>
-    </Tooltip>
-  </TooltipProvider>
-)
-
 const ProviderItem = ({
-  provider: { provider_id: id, provider_name: name, logo_path },
-  seleceted,
+  provider,
+  selected,
   toggleSelection,
 }: {
   provider: WatchProvider
-  seleceted: boolean
+  selected: boolean
   toggleSelection: (value: number) => void
 }) => {
+  const { provider_id: id, provider_name: name, logo_path: logo } = provider
+
   return (
     <CommandItem key={id} value={name} onSelect={() => toggleSelection(id)}>
       <Check
-        className={cn("mr-2 size-4", seleceted ? "opacity-100" : "opacity-0")}
+        className={cn("mr-2 size-4", selected ? "opacity-100" : "opacity-0")}
       />
 
       <span className="relative mr-2 size-4">
         <ProviderLogo
-          image={logo_path}
+          image={logo}
           alt={name}
           className="rounded-md"
           size="w45"
@@ -133,26 +119,42 @@ const ProviderList = ({
   providers,
   selection,
   toggleSelection,
+  clearSelection,
 }: {
   providers: WatchProvider[]
   selection: number[]
   toggleSelection: (value: number) => void
+  clearSelection: () => void
 }) => {
   return (
     <Command>
       <CommandInput placeholder="Search providers..." />
-      <CommandList className="overflow-y-auto">
+      <CommandList>
         <CommandEmpty>No provider found.</CommandEmpty>
+
         <CommandGroup>
-          {providers.map((provider) => (
-            <ProviderItem
-              key={provider.provider_id}
-              provider={provider}
-              seleceted={selection.includes(provider.provider_id)}
-              toggleSelection={toggleSelection}
-            />
-          ))}
+          <ScrollArea className="max-h-40 overflow-y-auto">
+            {providers.map((provider) => (
+              <ProviderItem
+                key={provider.provider_id}
+                provider={provider}
+                selected={selection.includes(provider.provider_id)}
+                toggleSelection={toggleSelection}
+              />
+            ))}
+          </ScrollArea>
         </CommandGroup>
+
+        {selection.length > 0 && (
+          <CommandGroup className="border-t bg-background">
+            <CommandItem
+              className="justify-center"
+              onSelect={() => clearSelection()}
+            >
+              Clear selection
+            </CommandItem>
+          </CommandGroup>
+        )}
       </CommandList>
     </Command>
   )

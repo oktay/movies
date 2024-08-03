@@ -13,6 +13,8 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
+  SheetDescription,
+  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -40,22 +42,23 @@ export const DiscoverFilters: React.FC<DiscoverFiltersProps> = ({
 
   return (
     <Sheet>
-      <SheetTrigger
-        className={cn(buttonVariants({ variant: "outline" }), "relative")}
-      >
+      <SheetTrigger className={cn(buttonVariants({ variant: "outline" }))}>
         <SlidersHorizontal className="mr-2 size-4" /> Filters
         {count > 0 && (
           <Badge className="ml-2 px-2 text-xs leading-none">{count}</Badge>
         )}
       </SheetTrigger>
 
-      <SheetContent>
+      <SheetContent className="flex flex-col">
         <SheetHeader>
           <SheetTitle>Filters</SheetTitle>
+          <SheetDescription>
+            Narrow down your search results with the following filters.
+          </SheetDescription>
         </SheetHeader>
 
-        <ScrollArea className="h-full pr-4">
-          <div className="h-full space-y-8 pb-8 pt-4">
+        <ScrollArea className="pr-4">
+          <div className="space-y-8">
             <DiscoverFilterGenre
               genres={genres}
               value={getFilter("with_genres")}
@@ -104,18 +107,17 @@ export const DiscoverFilters: React.FC<DiscoverFiltersProps> = ({
               value={getFilter("vote_count.gte")}
               onChange={(value) => setFilter({ "vote_count.gte": value })}
             />
-
-            <div className="flex gap-2">
-              <SheetClose className={buttonVariants()} onClick={saveFilters}>
-                Save Changes
-              </SheetClose>
-
-              <Button variant="outline" onClick={clearFilters}>
-                Clear
-              </Button>
-            </div>
           </div>
         </ScrollArea>
+
+        <SheetFooter>
+          <Button variant="outline" onClick={clearFilters}>
+            Clear
+          </Button>
+          <SheetClose className={buttonVariants()} onClick={saveFilters}>
+            Save Changes
+          </SheetClose>
+        </SheetFooter>
       </SheetContent>
     </Sheet>
   )

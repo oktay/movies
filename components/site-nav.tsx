@@ -96,7 +96,9 @@ const SiteNavListItem = ({ title, icon, description, href }: NavItem) => {
         <div className="text-sm font-medium leading-none">
           <Icon className="mr-1 inline size-3" /> {title}
           {title === "Discover" && (
-            <Badge className="ml-2 px-1 py-0 text-xs">New</Badge>
+            <Badge className="ml-2 px-1 py-0 text-[9px] leading-normal tracking-wide">
+              NEW
+            </Badge>
           )}
         </div>
         <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">

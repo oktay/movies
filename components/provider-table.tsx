@@ -31,7 +31,7 @@ export const ProviderTable: React.FC<ProviderTableProps> = ({
       <TableBody>
         {providers?.map((provider) => (
           <TableRow key={provider.provider_id} className="select-none">
-            <TableCell className="w-8">
+            <TableCell className="w-8 p-0 pl-4">
               <div className="relative aspect-square w-8">
                 <ProviderLogo
                   image={provider.logo_path}
