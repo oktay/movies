@@ -14,8 +14,8 @@ import {
 
 interface DiscoverFilterDateProps {
   value: string
-  fromDate?: string
-  toDate?: string
+  disableBefore?: string
+  disableAfter?: string
   align: "start" | "end" | "center"
   label: string
   onChange: (value: string) => void
@@ -23,21 +23,22 @@ interface DiscoverFilterDateProps {
 
 export const DiscoverFilterDate: React.FC<DiscoverFilterDateProps> = ({
   value,
-  fromDate,
-  toDate,
   align,
   label,
+  disableBefore,
+  disableAfter,
   onChange,
 }) => {
-  const dates = {
-    from: fromDate ? new Date(fromDate) : undefined,
-    to: toDate ? new Date(toDate) : undefined,
-    value: value ? new Date(value) : undefined,
-    format: "yyyy/MM/dd",
+  const selected = value ? new Date(value) : undefined
+  const from = disableBefore ? new Date(disableBefore) : new Date("01/01/1900")
+  const to = disableAfter ? new Date(disableAfter) : new Date("12/31/2050")
+  const disabled = {
+    after: disableAfter ? new Date(disableAfter) : new Date("12/31/2050"),
+    before: disableBefore ? new Date(disableBefore) : new Date("01/01/1900"),
   }
 
   const setSelectedDate = (date?: Date) => {
-    onChange(date ? format(date, dates.format) : "")
+    onChange(date ? format(date, "yyyy/MM/dd") : "")
   }
 
   return (
@@ -49,24 +50,22 @@ export const DiscoverFilterDate: React.FC<DiscoverFilterDateProps> = ({
             variant={"outline"}
             className={cn(
               "w-full justify-start text-left font-normal",
-              !dates.value && "text-muted-foreground"
+              !value && "text-muted-foreground"
             )}
           >
             <CalendarIcon className="mr-2 size-4" />
-            {dates.value ? (
-              format(dates.value, dates.format)
-            ) : (
-              <span>Select date...</span>
-            )}
+            {value ? format(value, "PP") : <span>Select date...</span>}
           </Button>
         </PopoverTrigger>
 
         <PopoverContent align={align} className="w-auto p-0">
           <Calendar
             mode="single"
-            selected={dates.value}
-            fromDate={dates.from}
-            toDate={dates.to}
+            captionLayout="dropdown"
+            selected={selected}
+            fromDate={from}
+            toDate={to}
+            disabled={disabled}
             onSelect={setSelectedDate}
             initialFocus
           />

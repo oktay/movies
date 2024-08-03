@@ -67,7 +67,7 @@ export const DiscoverFilters: React.FC<DiscoverFiltersProps> = ({
                 label="From"
                 align="start"
                 value={getFilter("primary_release_date.gte")}
-                toDate={getFilter("primary_release_date.lte")}
+                disableAfter={getFilter("primary_release_date.lte")}
                 onChange={(value) =>
                   setFilter({ "primary_release_date.gte": value })
                 }
@@ -77,7 +77,7 @@ export const DiscoverFilters: React.FC<DiscoverFiltersProps> = ({
                 label="To"
                 align="end"
                 value={getFilter("primary_release_date.lte")}
-                fromDate={getFilter("primary_release_date.gte")}
+                disableBefore={getFilter("primary_release_date.gte")}
                 onChange={(value) =>
                   setFilter({ "primary_release_date.lte": value })
                 }

@@ -4,6 +4,13 @@ import { DayPicker } from "react-day-picker"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 
@@ -49,11 +56,47 @@ function Calendar({
         day_range_middle:
           "aria-selected:bg-accent aria-selected:text-accent-foreground",
         day_hidden: "invisible",
+        caption_dropdowns: "flex gap-2 w-full",
+        dropdown_month: "[&>div]:hidden",
+        dropdown_year: "[&>div]:hidden",
+        vhidden: "hidden",
         ...classNames,
       }}
       components={{
         IconLeft: ({ ...props }) => <ChevronLeft className="size-4" />,
         IconRight: ({ ...props }) => <ChevronRight className="size-4" />,
+        Dropdown: ({ children, value, caption, onChange, name, ...props }) => {
+          const options = children as any[]
+
+          const handleChange = (value: string) => {
+            onChange?.({
+              target: { value },
+            } as React.ChangeEvent<HTMLSelectElement>)
+          }
+
+          return (
+            <Select
+              defaultValue={value?.toString()}
+              onValueChange={handleChange}
+              {...props}
+            >
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+
+              <SelectContent>
+                {options.map((child) => (
+                  <SelectItem
+                    key={child.props.value.toString()}
+                    value={child.props.value.toString()}
+                  >
+                    {child.props.children}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )
+        },
       }}
       {...props}
     />

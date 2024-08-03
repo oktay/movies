@@ -99,7 +99,7 @@ export default async function DetailLayout({
               <TabsLink className="gap-2" href={`/tv/${id}/credits`}>
                 Credits
                 <InfoTooltip>
-                  You can see seasonal credits and guest stars in seasons tab.
+                  You can see season credits and guest stars in seasons tab.
                 </InfoTooltip>
               </TabsLink>
               <TabsLink href={`/tv/${id}/watch`}>Watch</TabsLink>
