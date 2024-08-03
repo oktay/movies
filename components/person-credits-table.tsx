@@ -11,7 +11,13 @@ import { format } from "@/tmdb/utils"
 import { Clapperboard, Tv } from "lucide-react"
 
 import { pluralize } from "@/lib/utils"
-import { Label } from "@/components/ui/label"
+import {
+  Command,
+  CommandEmpty,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command"
 import {
   Select,
   SelectContent,
@@ -56,57 +62,79 @@ export const PersonCreditsTable: React.FC<PersonCreditsTableProps> = ({
   const sortedList = useMemo(() => credits.sort(sort), [credits])
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h2 className="text-lg font-medium">{department}</h2>
-        <div className="flex w-64 items-center gap-2">
-          <Label className="text-muted-foreground">Filter</Label>
+    <Command>
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-medium">{department}</h2>
 
-          <Select value={value} onValueChange={setValue}>
-            <SelectTrigger>
-              <SelectValue placeholder="Filter" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All</SelectItem>
-              <SelectItem value="movie">Movie</SelectItem>
-              <SelectItem value="tv">TV Shows</SelectItem>
-            </SelectContent>
-          </Select>
+          <div className="flex items-center gap-4">
+            <div className="rounded-md border-x border-t">
+              <CommandInput className="h-10 w-40" placeholder="Search..." />
+            </div>
+
+            <Select value={value} onValueChange={setValue}>
+              <SelectTrigger className="w-40">
+                <SelectValue placeholder="Filter" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All</SelectItem>
+                <SelectItem value="movie">Movie</SelectItem>
+                <SelectItem value="tv">TV Shows</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
-      </div>
 
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-12"></TableHead>
-            <TableHead className="w-24">Year</TableHead>
-            <TableHead className="w-full">Details</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {sortedList
-            .filter(filter)
-            ?.map((credit) =>
-              credit.media_type === "tv" ? (
-                <CreditsTableTvItem key={credit.credit_id} {...credit} />
-              ) : (
-                <CreditsTableMovieItem key={credit.credit_id} {...credit} />
-              )
-            )}
-        </TableBody>
-      </Table>
-    </div>
+        <CommandList className="max-h-full">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="w-12"></TableHead>
+                <TableHead className="w-24">Year</TableHead>
+                <TableHead className="w-full">Details</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <CommandEmpty asChild>
+                <TableRow>
+                  <TableCell colSpan={3} className="text-center">
+                    No result for search criteria
+                  </TableCell>
+                </TableRow>
+              </CommandEmpty>
+
+              {sortedList.filter(filter)?.map((credit) =>
+                credit.media_type === "tv" ? (
+                  <CommandItem
+                    key={credit.credit_id}
+                    value={credit.name}
+                    asChild
+                  >
+                    <CreditsTableTvItem {...credit} />
+                  </CommandItem>
+                ) : (
+                  <CommandItem
+                    key={credit.credit_id}
+                    value={credit.title}
+                    asChild
+                  >
+                    <CreditsTableMovieItem {...credit} />
+                  </CommandItem>
+                )
+              )}
+            </TableBody>
+          </Table>
+        </CommandList>
+      </div>
+    </Command>
   )
 }
 
-const CreditsTableMovieItem: React.FC<RawMovieCredit> = ({
-  id,
-  release_date,
-  title,
-  character,
-  job,
-}) => (
-  <TableRow>
+const CreditsTableMovieItem = React.forwardRef<
+  HTMLTableRowElement,
+  RawMovieCredit
+>(({ id, release_date, title, character, job }, ref) => (
+  <TableRow ref={ref}>
     <TableCell className="text-center font-medium">
       <Clapperboard className="inline-block size-4" />
     </TableCell>
@@ -120,17 +148,14 @@ const CreditsTableMovieItem: React.FC<RawMovieCredit> = ({
       )}
     </TableCell>
   </TableRow>
-)
+))
+CreditsTableMovieItem.displayName = "CreditsTableMovieItem"
 
-const CreditsTableTvItem: React.FC<RawTvShowCredit> = ({
-  id,
-  first_air_date,
-  name,
-  episode_count,
-  character,
-  job,
-}) => (
-  <TableRow>
+const CreditsTableTvItem = React.forwardRef<
+  HTMLTableRowElement,
+  RawTvShowCredit
+>(({ id, first_air_date, name, episode_count, character, job }, ref) => (
+  <TableRow ref={ref}>
     <TableCell className="text-center font-medium">
       <Tv className="inline-block size-4" />
     </TableCell>
@@ -149,4 +174,5 @@ const CreditsTableTvItem: React.FC<RawTvShowCredit> = ({
       </p>
     </TableCell>
   </TableRow>
-)
+))
+CreditsTableTvItem.displayName = "CreditsTableTvItem"

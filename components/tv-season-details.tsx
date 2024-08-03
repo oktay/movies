@@ -5,6 +5,7 @@ import { DialogProps } from "@radix-ui/react-dialog"
 import { getUniqueItems } from "@/lib/utils"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { MediaCastCard } from "@/components/media-cast-card"
+import { MediaCrewCard } from "@/components/media-crew-card"
 import { TvEpisodeCard } from "@/components/tv-episode-card"
 import { TvSeasonDialog } from "@/components/tv-season-dialog"
 
@@ -22,7 +23,7 @@ export const TvSeasonDetails: React.FC<TvSeasonDetailsProps> = async ({
     episodes,
     name,
     overview,
-    credits: { cast },
+    credits: { cast, crew },
   } = await tmdb.tvSeasons.details<WithCredits>({
     id,
     season,
@@ -40,6 +41,7 @@ export const TvSeasonDetails: React.FC<TvSeasonDetailsProps> = async ({
           <TabsTrigger value="episodes">Episodes</TabsTrigger>
           <TabsTrigger value="cast">Cast</TabsTrigger>
           <TabsTrigger value="guests">Guest Stars</TabsTrigger>
+          <TabsTrigger value="crew">Crew</TabsTrigger>
         </TabsList>
 
         <TabsContent value="episodes">
@@ -75,6 +77,18 @@ export const TvSeasonDetails: React.FC<TvSeasonDetailsProps> = async ({
             </div>
           ) : (
             <div className="empty-box">No guest stars</div>
+          )}
+        </TabsContent>
+
+        <TabsContent value="crew">
+          {crew?.length ? (
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+              {crew.map((crew) => (
+                <MediaCrewCard key={crew.credit_id} {...crew} />
+              ))}
+            </div>
+          ) : (
+            <div className="empty-box">No crew</div>
           )}
         </TabsContent>
       </Tabs>

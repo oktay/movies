@@ -31,7 +31,7 @@ export const MediaImages: React.FC<MediaImagesProps> = ({
   return (
     <div className="grid-list items-center gap-4">
       {images.map(({ file_path, aspect_ratio }) => (
-        <Dialog>
+        <Dialog key={file_path}>
           <DialogTrigger>
             <div
               key={file_path}
