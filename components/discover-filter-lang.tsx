@@ -50,7 +50,7 @@ export const DiscoverFilterLang: React.FC<DiscoverFilterLangProps> = ({
           </Button>
         </PopoverTrigger>
 
-        <PopoverContent className="p-0 md:w-80">
+        <PopoverContent className="w-64 p-0 md:w-80">
           <LanguageList value={value} onSelect={onChange} />
         </PopoverContent>
       </Popover>
@@ -78,6 +78,7 @@ export const LanguageList = ({
 
             {languages.map((lang) => (
               <LanguageOption
+                key={lang.iso_639_1}
                 value={lang.iso_639_1}
                 onSelect={onSelect}
                 selected={value === lang.iso_639_1}

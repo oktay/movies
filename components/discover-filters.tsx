@@ -49,15 +49,15 @@ export const DiscoverFilters: React.FC<DiscoverFiltersProps> = ({
         )}
       </SheetTrigger>
 
-      <SheetContent className="flex flex-col">
-        <SheetHeader>
+      <SheetContent className="flex flex-col px-0">
+        <SheetHeader className="px-4 md:px-6">
           <SheetTitle>Filters</SheetTitle>
           <SheetDescription>
             Narrow down your search results with the following filters.
           </SheetDescription>
         </SheetHeader>
 
-        <ScrollArea className="pr-4">
+        <ScrollArea className="px-4 md:px-6">
           <div className="space-y-8">
             <DiscoverFilterGenre
               genres={genres}
@@ -110,8 +110,8 @@ export const DiscoverFilters: React.FC<DiscoverFiltersProps> = ({
           </div>
         </ScrollArea>
 
-        <SheetFooter>
-          <Button variant="outline" onClick={clearFilters}>
+        <SheetFooter className="gap-2 px-4 md:gap-0 md:px-6">
+          <Button size="lg" variant="outline" onClick={clearFilters}>
             Clear
           </Button>
           <SheetClose className={buttonVariants()} onClick={saveFilters}>

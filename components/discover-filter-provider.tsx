@@ -71,7 +71,7 @@ export const DiscoverFilterProvider: React.FC<DiscoverFilterGenreProps> = ({
           </Button>
         </PopoverTrigger>
 
-        <PopoverContent align="start" className="p-0 md:w-80">
+        <PopoverContent align="start" className="p- w-64 md:w-80">
           <ProviderList
             providers={providers}
             selection={selection}

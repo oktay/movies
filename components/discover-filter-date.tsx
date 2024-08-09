@@ -58,7 +58,7 @@ export const DiscoverFilterDate: React.FC<DiscoverFilterDateProps> = ({
           </Button>
         </PopoverTrigger>
 
-        <PopoverContent align={align} className="w-auto p-0">
+        <PopoverContent align={align} className="w-64 p-0 md:w-auto">
           <Calendar
             mode="single"
             captionLayout="dropdown"
