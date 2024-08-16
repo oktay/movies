@@ -1,3 +1,4 @@
+import { cookies } from "next/headers"
 import { SettingsIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -9,10 +10,9 @@ import {
 } from "@/components/ui/popover"
 import { RegionSelect } from "@/components/region-select"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { getRegion } from "@/app/actions"
 
 export const SiteSettings = async () => {
-  const region = await getRegion()
+  const region = cookies().get("region")?.value ?? "US"
 
   return (
     <Popover>

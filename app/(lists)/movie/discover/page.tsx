@@ -1,3 +1,4 @@
+import { cookies } from "next/headers"
 import { pages } from "@/config"
 import { tmdb } from "@/tmdb/api"
 import { SortByType } from "@/tmdb/api/types"
@@ -7,7 +8,6 @@ import { DiscoverFilters } from "@/components/discover-filters"
 import { DiscoverSort } from "@/components/discover-sort"
 import { ListPagination } from "@/components/list-pagination"
 import { MovieCard } from "@/components/movie-card"
-import { getRegion } from "@/app/actions"
 
 interface ListPageProps {
   searchParams?: Record<string, string>
@@ -21,7 +21,7 @@ export async function generateMetadata() {
 }
 
 export default async function Discover({ searchParams }: ListPageProps) {
-  const region = await getRegion()
+  const region = cookies().get("region")?.value ?? "US"
 
   const {
     results: movies,

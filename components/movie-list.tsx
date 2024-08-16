@@ -1,10 +1,10 @@
+import { cookies } from "next/headers"
 import { notFound } from "next/navigation"
 import { tmdb } from "@/tmdb/api"
 import { MovieListType } from "@/tmdb/api/types"
 
 import { ListPagination } from "@/components/list-pagination"
 import { MovieCard } from "@/components/movie-card"
-import { getRegion } from "@/app/actions"
 
 interface MovieListProps {
   list: MovieListType
@@ -19,7 +19,7 @@ export const MovieList: React.FC<MovieListProps> = async ({
   title,
   description,
 }) => {
-  const region = await getRegion()
+  const region = cookies().get("region")?.value ?? "US"
 
   const {
     results,
