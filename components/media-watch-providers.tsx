@@ -17,7 +17,7 @@ export const MediaWatchProviders: React.FC<MediaWatchProvidersProps> = async ({
 }) => {
   const { results } = await tmdb[type].providers({ id })
 
-  const region = cookies().get("region")?.value ?? ("US" as keyof WatchLocale)
+  const region = (cookies().get("region")?.value ?? "US") as keyof WatchLocale
   const country = getCountryName(region)
 
   return (
