@@ -1,5 +1,4 @@
 import { availableParams } from "@/config"
-import { timezones } from "@/lib"
 import { Movie, RawCombinedCredit, TvShow } from "@/tmdb/models"
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
@@ -104,19 +103,6 @@ export function pad(value: number) {
 
 export function getUserTimezone() {
   return Intl.DateTimeFormat().resolvedOptions().timeZone
-}
-
-export function getUserRegion() {
-  const userTimezone = getUserTimezone() as keyof typeof timezones
-  const selectedTimezone = timezones[userTimezone]
-
-  let country = "US"
-
-  if (selectedTimezone?.countries?.length) {
-    country = selectedTimezone.countries[0]
-  }
-
-  return country
 }
 
 export function getCountryName(code: string) {

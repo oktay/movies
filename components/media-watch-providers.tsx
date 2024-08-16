@@ -1,10 +1,10 @@
 import { tmdb } from "@/tmdb/api"
 import { WatchLocale } from "@/tmdb/models"
 
-import { getRegion } from "@/lib/get-region"
 import { getCountryName } from "@/lib/utils"
 import { InfoTooltip } from "@/components/info-tooltip"
 import { ProviderTable } from "@/components/provider-table"
+import { getRegion } from "@/app/actions"
 
 interface MediaWatchProvidersProps {
   id: string
@@ -17,7 +17,7 @@ export const MediaWatchProviders: React.FC<MediaWatchProvidersProps> = async ({
 }) => {
   const { results } = await tmdb[type].providers({ id })
 
-  const region = getRegion() as keyof WatchLocale
+  const region = (await getRegion()) as keyof WatchLocale
   const country = getCountryName(region)
 
   return (

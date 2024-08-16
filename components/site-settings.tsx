@@ -1,6 +1,5 @@
 import { SettingsIcon } from "lucide-react"
 
-import { getRegion } from "@/lib/get-region"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import {
@@ -10,9 +9,10 @@ import {
 } from "@/components/ui/popover"
 import { RegionSelect } from "@/components/region-select"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { getRegion } from "@/app/actions"
 
-export const SiteSettings = () => {
-  const region = getRegion()
+export const SiteSettings = async () => {
+  const region = await getRegion()
 
   return (
     <Popover>

@@ -7,3 +7,7 @@ export async function setRegion(region: string) {
     maxAge: 60 * 60 * 24 * 365,
   })
 }
+
+export async function getRegion() {
+  return cookies().get("region")?.value ?? "US"
+}

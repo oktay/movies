@@ -2,10 +2,10 @@ import { notFound } from "next/navigation"
 import { tmdb } from "@/tmdb/api"
 import { TvListType } from "@/tmdb/api/types"
 
-import { getRegion } from "@/lib/get-region"
 import { getUserTimezone } from "@/lib/utils"
 import { ListPagination } from "@/components/list-pagination"
 import { TvCard } from "@/components/tv-card"
+import { getRegion } from "@/app/actions"
 
 interface TvListProps {
   list: TvListType
@@ -20,7 +20,7 @@ export const TvList: React.FC<TvListProps> = async ({
   title,
   description,
 }) => {
-  const region = getRegion()
+  const region = await getRegion()
   const timezone = getUserTimezone()
 
   const {
