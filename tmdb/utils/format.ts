@@ -55,10 +55,21 @@ const currency = (x: number) => {
   return formatter.format(x)
 }
 
+/**
+ * Formats a country code into a human-readable country name.
+ * @param country The country code to format.
+ * @returns A string representing the formatted country name.
+ * */
+const country = (country: string) => {
+  const formatter = new Intl.DisplayNames(["en"], { type: "language" })
+  return formatter.of(country)
+}
+
 export const format = {
   content,
   runtime,
   date,
   year,
   currency,
+  country,
 }

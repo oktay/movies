@@ -1,6 +1,8 @@
+import Link from "next/link"
 import { tmdb } from "@/tmdb/api"
+import { Info } from "lucide-react"
 
-import { Separator } from "@/components/ui/separator"
+import { Alert, AlertTitle } from "@/components/ui/alert"
 import { MediaCastCard } from "@/components/media-cast-card"
 import { MediaCrewCard } from "@/components/media-crew-card"
 
@@ -39,7 +41,16 @@ export default async function DetailCredits({
         <div className="empty-box">No cast</div>
       )}
 
-      <Separator />
+      <Alert>
+        <Info className="size-4" />
+        <AlertTitle className="text-muted-foreground">
+          You can view the seasonal cast, guest stars and crew in the{" "}
+          <Link href="seasons" className="font-medium underline">
+            Seasons
+          </Link>{" "}
+          tab.
+        </AlertTitle>
+      </Alert>
 
       {crew.length > 0 ? (
         <div className="grid-list">

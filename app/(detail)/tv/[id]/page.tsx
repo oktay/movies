@@ -5,6 +5,13 @@ import { format } from "@/tmdb/utils"
 import { cn, formatValue, joiner, pad } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+} from "@/components/ui/table"
 import { MediaBackdrop } from "@/components/media-backdrop"
 
 export default async function Detail({ params }: { params: { id: string } }) {
@@ -19,6 +26,9 @@ export default async function Detail({ params }: { params: { id: string } }) {
     spoken_languages,
     production_companies,
     networks,
+    episode_run_time,
+    production_countries,
+    original_language,
     last_episode_to_air: lastEpisode,
   } = await tmdb.tv.detail({
     id: params.id,
@@ -62,8 +72,20 @@ export default async function Detail({ params }: { params: { id: string } }) {
       value: formatValue(number_of_episodes),
     },
     {
+      title: "Episode Runtime",
+      value: formatValue(episode_run_time, format.runtime),
+    },
+    {
       title: "Language",
       value: joiner(spoken_languages, "english_name"),
+    },
+    {
+      title: "Original Language",
+      value: formatValue(original_language, format.country),
+    },
+    {
+      title: "Production Countries",
+      value: joiner(production_countries, "name"),
     },
     {
       title: "Production Companies",
@@ -93,16 +115,16 @@ export default async function Detail({ params }: { params: { id: string } }) {
 
   return (
     <section className="space-y-4">
-      <div className="grid grid-cols-2 gap-y-12 rounded border p-6 lg:grid-cols-4">
-        {items.map((item) => (
-          <div key={item.title}>
-            <h2 className="font-medium md:text-xl">{item.title}</h2>
-            <p className="mt-2 line-clamp-2 text-sm text-muted-foreground md:text-base">
-              {item.value}
-            </p>
-          </div>
-        ))}
-      </div>
+      <Table>
+        <TableBody>
+          {items.map((item) => (
+            <TableRow key={item.title}>
+              <TableHead className="w-1/5">{item.title}</TableHead>
+              <TableCell colSpan={2}>{item.value}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
 
       {lastEpisode && (
         <div className="h-hero relative w-full">

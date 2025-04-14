@@ -3,6 +3,13 @@ import { tmdb } from "@/tmdb/api"
 import { format } from "@/tmdb/utils"
 
 import { formatValue, joiner } from "@/lib/utils"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+} from "@/components/ui/table"
 import { MovieCollection } from "@/components/movie-collection"
 
 interface DetailProps {
@@ -22,6 +29,8 @@ export default async function Detail({ params }: DetailProps) {
     production_companies,
     belongs_to_collection,
     original_title,
+    original_language,
+    production_countries,
   } = await tmdb.movie.detail({
     id: params.id,
   })
@@ -56,6 +65,14 @@ export default async function Detail({ params }: DetailProps) {
       value: joiner(spoken_languages, "english_name"),
     },
     {
+      title: "Original Language",
+      value: formatValue(original_language, format.country),
+    },
+    {
+      title: "Production Countries",
+      value: joiner(production_countries, "name"),
+    },
+    {
       title: "Production Companies",
       value: production_companies.map(({ id, name }) => (
         <Link
@@ -71,16 +88,16 @@ export default async function Detail({ params }: DetailProps) {
 
   return (
     <section className="space-y-4">
-      <div className="grid grid-cols-2 gap-y-12 rounded border p-6 md:grid-cols-4">
-        {overview.map((item) => (
-          <div key={item.title}>
-            <h2 className="font-medium md:text-xl">{item.title}</h2>
-            <p className="mt-2 line-clamp-2 text-sm text-muted-foreground md:text-base">
-              {item.value}
-            </p>
-          </div>
-        ))}
-      </div>
+      <Table>
+        <TableBody>
+          {overview.map((item) => (
+            <TableRow key={item.title}>
+              <TableHead className="w-1/5">{item.title}</TableHead>
+              <TableCell colSpan={2}>{item.value}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
 
       {belongs_to_collection && (
         <MovieCollection id={belongs_to_collection.id} />

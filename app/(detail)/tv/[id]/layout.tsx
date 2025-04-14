@@ -5,7 +5,6 @@ import { WithVideos } from "@/tmdb/api/types"
 import { format } from "@/tmdb/utils"
 
 import { Tabs, TabsLink, TabsList } from "@/components/ui/tabs"
-import { InfoTooltip } from "@/components/info-tooltip"
 import { MediaBackdrop } from "@/components/media-backdrop"
 import { MediaDetailView } from "@/components/media-detail-view"
 import { MediaPoster } from "@/components/media-poster"
@@ -98,9 +97,6 @@ export default async function DetailLayout({
               <TabsLink href={`/tv/${id}`}>Overview</TabsLink>
               <TabsLink className="gap-2" href={`/tv/${id}/credits`}>
                 Credits
-                <InfoTooltip>
-                  You can see season credits and guest stars in seasons tab.
-                </InfoTooltip>
               </TabsLink>
               <TabsLink href={`/tv/${id}/watch`}>Watch</TabsLink>
               <TabsLink href={`/tv/${id}/reviews`}>Reviews</TabsLink>
