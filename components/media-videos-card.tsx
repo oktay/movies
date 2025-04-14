@@ -5,12 +5,12 @@ import { PlayCircle } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
-interface VideoCardProps extends ComponentProps<"div"> {
+interface MediaVideosCardProps extends ComponentProps<"div"> {
   name: string
   ytKey: string
 }
 
-export const VideoCard: React.FC<VideoCardProps> = ({
+export const MediaVideosCard: React.FC<MediaVideosCardProps> = ({
   name,
   ytKey,
   className,

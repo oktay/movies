@@ -1,5 +1,5 @@
 import React from "react"
-import { tmdb } from "@/tmdb/api"
+import { Video } from "@/tmdb/models"
 import { yt } from "@/tmdb/utils"
 
 import {
@@ -9,16 +9,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { VideoCard } from "@/components/video-card"
+import { MediaVideosCard } from "@/components/media-videos-card"
 
-interface VideoListProps {
-  id: string
-  type: "movie" | "tv"
+interface MediaVideosProps {
+  videos: Video[]
 }
 
-export const VideoList: React.FC<VideoListProps> = async ({ id, type }) => {
-  const { results: videos } = await tmdb[type].videos({ id })
-
+export const MediaVideos: React.FC<MediaVideosProps> = async ({ videos }) => {
   if (!videos?.length) return <div className="empty-box">No videos</div>
 
   return (
@@ -26,7 +23,7 @@ export const VideoList: React.FC<VideoListProps> = async ({ id, type }) => {
       {videos.map(({ id, key, name }) => (
         <Dialog key={id} modal>
           <DialogTrigger asChild>
-            <VideoCard name={name} ytKey={key} />
+            <MediaVideosCard name={name} ytKey={key} />
           </DialogTrigger>
 
           <DialogContent className="max-w-screen-lg">

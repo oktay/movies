@@ -12,14 +12,8 @@ interface DetailRecommendationsProps {
   }
 }
 
-export async function generateMetadata({ params }: DetailRecommendationsProps) {
-  const { name } = await tmdb.tv.detail({
-    id: params.id,
-  })
-
-  return {
-    title: `Recommendations - ${name}`,
-  }
+export const metadata = {
+  title: "Recommendations",
 }
 
 export default async function DetailRecommendations({

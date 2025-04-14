@@ -19,13 +19,13 @@ export const TvEpisodeCard: React.FC<Episode> = ({
   runtime,
 }) => {
   return (
-    <div className="flex flex-col rounded-md border">
-      <div className="relative aspect-video" key={id}>
+    <div className="flex flex-col rounded-md border bg-background md:flex-row">
+      <div className="relative aspect-video md:w-64" key={id}>
         <MediaBackdrop
           image={still_path}
           alt={name}
           size="w780"
-          className="rounded-b-none border-x-0 border-b border-t-0"
+          className="rounded-b-none border-x-0 border-t-0 md:rounded-l-md md:rounded-r-none md:border-b-0 md:border-r"
         />
       </div>
 

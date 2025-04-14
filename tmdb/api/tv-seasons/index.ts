@@ -1,7 +1,10 @@
-import { Credits, SeasonDetails } from "@/tmdb/models"
+import { Credits, Image, SeasonDetails } from "@/tmdb/models"
 
 import { api } from "../api"
-import { TvSeasonsDetailsRequestParams } from "./types"
+import {
+  TvSeasonsDetailsRequestParams,
+  TvSeasonsImagesRequestParams,
+} from "./types"
 
 /**
  * Fetches detailed information about a specific TV season.
@@ -10,11 +13,17 @@ import { TvSeasonsDetailsRequestParams } from "./types"
  * @returns {Promise<SeasonDetails>} A promise that resolves to the detailed information about the TV season.
  * @see https://developer.themoviedb.org/reference/tv-season-details
  */
-const details = <T>({ id, season, append }: TvSeasonsDetailsRequestParams) =>
+const details = <T>({
+  id,
+  season,
+  append,
+  langs,
+}: TvSeasonsDetailsRequestParams) =>
   api.fetcher<SeasonDetails & T>({
     endpoint: `tv/${id}/season/${season}`,
     params: {
       append_to_response: append,
+      include_image_language: langs,
     },
   })
 
@@ -28,8 +37,17 @@ const aggregateCredits = ({ id, season }: TvSeasonsDetailsRequestParams) =>
     endpoint: `tv/${id}/season/${season}/aggregate_credits`,
   })
 
+const images = ({ id, season, langs }: TvSeasonsImagesRequestParams) =>
+  api.fetcher<{ posters: Image[]; backdrops: Image[] }>({
+    endpoint: `tv/${id}/season/${season}/images`,
+    params: {
+      include_image_language: langs,
+    },
+  })
+
 export const tvSeasons = {
   details,
   credits,
   aggregateCredits,
+  images,
 }

@@ -1,6 +1,6 @@
 import { tmdb } from "@/tmdb/api"
 
-import { VideoList } from "@/components/video-list"
+import { MediaVideos } from "@/components/media-videos"
 
 interface VideosProps {
   params: {
@@ -8,16 +8,14 @@ interface VideosProps {
   }
 }
 
-export async function generateMetadata({ params }: VideosProps) {
-  const { name } = await tmdb.tv.detail({
-    id: params.id,
-  })
-
-  return {
-    title: `Videos - ${name}`,
-  }
+export const metadata = {
+  title: "Videos",
 }
 
 export default async function DetailVideos({ params }: VideosProps) {
-  return <VideoList type="tv" id={params.id} />
+  const { results: videos } = await tmdb.tv.videos({
+    id: params.id,
+  })
+
+  return <MediaVideos videos={videos} />
 }

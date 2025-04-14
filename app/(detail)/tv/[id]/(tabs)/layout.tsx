@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import { siteConfig } from "@/config"
 import { tmdb } from "@/tmdb/api"
 import { WithVideos } from "@/tmdb/api/types"
 import { format } from "@/tmdb/utils"
@@ -10,6 +11,7 @@ import { MediaDetailView } from "@/components/media-detail-view"
 import { MediaPoster } from "@/components/media-poster"
 import { MediaRating } from "@/components/media-rating"
 import { MediaTrailerDialog } from "@/components/media-trailer-dialog"
+import { ScrollFixer } from "@/components/scroll-fixer"
 
 interface DetailLayoutProps {
   params: {
@@ -24,7 +26,10 @@ export async function generateMetadata({ params }: DetailLayoutProps) {
   })
 
   return {
-    title: name,
+    title: {
+      default: name,
+      template: `%s - ${name} - ${siteConfig.name}`,
+    },
   }
 }
 
@@ -52,6 +57,8 @@ export default async function DetailLayout({
 
   return (
     <MediaDetailView.Root>
+      <ScrollFixer />
+
       <MediaDetailView.Backdrop>
         <MediaBackdrop image={backdrop_path} alt={name} priority />
       </MediaDetailView.Backdrop>

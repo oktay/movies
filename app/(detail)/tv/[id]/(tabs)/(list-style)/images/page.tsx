@@ -8,14 +8,8 @@ interface DetailImagesProps {
   }
 }
 
-export async function generateMetadata({ params }: DetailImagesProps) {
-  const { name } = await tmdb.tv.detail({
-    id: params.id,
-  })
-
-  return {
-    title: `Images - ${name}`,
-  }
+export const metadata = {
+  title: "Images",
 }
 
 export default async function DetailImages({ params }: DetailImagesProps) {

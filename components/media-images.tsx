@@ -14,17 +14,12 @@ interface MediaImagesProps {
 }
 
 export const MediaImages: React.FC<MediaImagesProps> = ({
-  posters,
-  backdrops,
-  profiles,
-  logos,
+  posters = [],
+  backdrops = [],
+  profiles = [],
+  logos = [],
 }) => {
-  const images = [
-    ...(posters ?? []),
-    ...(backdrops ?? []),
-    ...(profiles ?? []),
-    ...(logos ?? []),
-  ]
+  const images = [...posters, ...backdrops, ...profiles, ...logos]
 
   if (!images.length) return <div className="empty-box">No images</div>
 

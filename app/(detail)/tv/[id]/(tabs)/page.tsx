@@ -146,7 +146,7 @@ export default async function Detail({ params }: { params: { id: string } }) {
                 {lastEpisode.overview}
               </p>
               <Link
-                href={`/tv/${params.id}/seasons?s=${lastEpisode.season_number}`}
+                href={`/tv/${params.id}/seasons/${lastEpisode.season_number}`}
                 className={cn(buttonVariants({ variant: "default" }), "mt-4")}
                 prefetch={false}
               >

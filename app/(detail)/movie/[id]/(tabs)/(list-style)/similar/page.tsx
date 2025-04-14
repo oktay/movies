@@ -12,14 +12,8 @@ interface DetailSimilarProps {
   }
 }
 
-export async function generateMetadata({ params }: DetailSimilarProps) {
-  const { title } = await tmdb.movie.detail({
-    id: params.id,
-  })
-
-  return {
-    title: `Similar - ${title}`,
-  }
+export const metadata = {
+  title: "Similar",
 }
 
 export default async function DetailSimilar({

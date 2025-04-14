@@ -5,7 +5,6 @@ import { tmdb } from "@/tmdb/api"
 import { MediaCard } from "@/components/media-card"
 import { MediaPoster } from "@/components/media-poster"
 import { MediaRating } from "@/components/media-rating"
-import { TvSeasonDetails } from "@/components/tv-season-details"
 
 interface DetailSeasonsProps {
   params: {
@@ -16,20 +15,14 @@ interface DetailSeasonsProps {
   }
 }
 
-export async function generateMetadata({ params }: DetailSeasonsProps) {
-  const { name } = await tmdb.tv.detail({
-    id: params.id,
-  })
-
-  return {
-    title: `Seasons - ${name}`,
-  }
+export const metadata = {
+  title: {
+    default: "Seasons",
+    template: "%s - Seasons",
+  },
 }
 
-export default async function DetailSeasons({
-  params,
-  searchParams,
-}: DetailSeasonsProps) {
+export default async function DetailSeasons({ params }: DetailSeasonsProps) {
   const { seasons } = await tmdb.tv.detail({
     id: params.id,
   })
@@ -41,10 +34,8 @@ export default async function DetailSeasons({
       {seasons.map((season) => (
         <Fragment key={season.id}>
           <Link
-            href={`/tv/${params.id}/seasons?s=${season.season_number}`}
+            href={`/tv/${params.id}/seasons/${season.season_number}`}
             prefetch={false}
-            replace
-            scroll={false}
           >
             <MediaCard.Root>
               <MediaPoster image={season.poster_path} alt={season.name} />
@@ -57,10 +48,6 @@ export default async function DetailSeasons({
               </MediaCard.Content>
             </MediaCard.Root>
           </Link>
-
-          {parseInt(searchParams.s) === season.season_number && (
-            <TvSeasonDetails id={params.id} season={season.season_number} />
-          )}
         </Fragment>
       ))}
     </section>
