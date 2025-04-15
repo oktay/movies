@@ -193,3 +193,5 @@ export const availableParams = [
   "vote_count.gte",
   "vote_count.lte",
 ]
+
+export const pageLimit = 500

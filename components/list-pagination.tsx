@@ -1,5 +1,6 @@
 "use client"
 
+import { pageLimit } from "@/config"
 import { usePagination } from "@/hooks"
 
 import {
@@ -23,7 +24,7 @@ export const ListPagination: React.FC<ListPaginationProps> = ({
 }) => {
   const { numbers, prevLink, nextLink, pageLink } = usePagination({
     currentPage,
-    totalPages: totalPages > 500 ? 500 : totalPages,
+    totalPages: totalPages > pageLimit ? pageLimit : totalPages,
   })
 
   return (
@@ -51,7 +52,7 @@ export const ListPagination: React.FC<ListPaginationProps> = ({
             )
           )}
 
-        {currentPage !== totalPages && (
+        {currentPage !== pageLimit && currentPage !== totalPages && (
           <PaginationItem>
             <PaginationNext className="hidden md:flex" href={nextLink} />
           </PaginationItem>
