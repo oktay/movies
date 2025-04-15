@@ -148,9 +148,9 @@ const reviews = ({ id, page }: TvReviewsRequestParams) =>
  * @returns {Promise<WatchProviders>} A promise that resolves to a list of reviews for the movie.
  * @see https://developer.themoviedb.org/reference/tv-series-watch-providers
  */
-const providers = ({ id, region }: TvProvidersRequestParams) =>
+const providers = ({ id, region, season }: TvProvidersRequestParams) =>
   api.fetcher<WatchProviders>({
-    endpoint: `tv/${id}/watch/providers`,
+    endpoint: `tv/${id}/${season ? `season/${season}/` : ""}watch/providers`,
     params: {
       watch_region: region,
     },

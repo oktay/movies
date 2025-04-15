@@ -9,19 +9,21 @@ import { ProviderTable } from "@/components/provider-table"
 interface MediaWatchProvidersProps {
   id: string
   type: "movie" | "tv"
+  season: number
 }
 
 export const MediaWatchProviders: React.FC<MediaWatchProvidersProps> = async ({
   id,
   type,
+  season,
 }) => {
-  const { results } = await tmdb[type].providers({ id })
+  const { results } = await tmdb[type].providers({ id, season })
 
   const region = (cookies().get("region")?.value ?? "US") as keyof WatchLocale
   const country = getCountryName(region)
 
   return (
-    <div className="space-y-6 rounded-md border p-6">
+    <div className="space-y-6 rounded-md border bg-background p-6">
       <div>
         <h2 className="flex items-center gap-2 text-lg font-medium">
           Where to Watch

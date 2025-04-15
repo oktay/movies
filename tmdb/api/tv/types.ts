@@ -43,4 +43,5 @@ export type TvReviewsRequestParams = {
 export type TvProvidersRequestParams = {
   id: string | number
   region?: string
+  season?: string | number
 }

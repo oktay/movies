@@ -8,6 +8,7 @@ import { MediaCastCard } from "@/components/media-cast-card"
 import { MediaCrewCard } from "@/components/media-crew-card"
 import { MediaImages } from "@/components/media-images"
 import { MediaVideos } from "@/components/media-videos"
+import { MediaWatchProviders } from "@/components/media-watch-providers"
 import { TvEpisodeCard } from "@/components/tv-episode-card"
 
 interface TvSeasonDetailsProps extends DialogProps {
@@ -38,14 +39,17 @@ export const TvSeasonDetails: React.FC<TvSeasonDetailsProps> = async ({
 
   return (
     <Tabs defaultValue="episodes">
-      <TabsList>
-        <TabsTrigger value="episodes">Episodes</TabsTrigger>
-        <TabsTrigger value="cast">Cast</TabsTrigger>
-        <TabsTrigger value="guests">Guest Stars</TabsTrigger>
-        <TabsTrigger value="crew">Crew</TabsTrigger>
-        <TabsTrigger value="images">Images</TabsTrigger>
-        <TabsTrigger value="videos">Videos</TabsTrigger>
-      </TabsList>
+      <div className="max-w-screen scrollbar-hidden -mx-8 overflow-x-scroll px-8 lg:m-0 lg:p-0">
+        <TabsList>
+          <TabsTrigger value="episodes">Episodes</TabsTrigger>
+          <TabsTrigger value="watch">Watch</TabsTrigger>
+          <TabsTrigger value="cast">Cast</TabsTrigger>
+          <TabsTrigger value="guests">Guest Stars</TabsTrigger>
+          <TabsTrigger value="crew">Crew</TabsTrigger>
+          <TabsTrigger value="images">Images</TabsTrigger>
+          <TabsTrigger value="videos">Videos</TabsTrigger>
+        </TabsList>
+      </div>
 
       <TabsContent value="episodes" className="mt-4">
         {episodes?.length ? (
@@ -57,6 +61,10 @@ export const TvSeasonDetails: React.FC<TvSeasonDetailsProps> = async ({
         ) : (
           <div className="empty-box">No episodes</div>
         )}
+      </TabsContent>
+
+      <TabsContent value="watch">
+        <MediaWatchProviders id={id} season={season} type="tv" />
       </TabsContent>
 
       <TabsContent value="cast">
