@@ -1,9 +1,11 @@
+import Image from "next/image"
 import { Episode } from "@/tmdb/models"
-import { format } from "@/tmdb/utils"
-import { Calendar, Clock } from "lucide-react"
+import { format, tmdbImage } from "@/tmdb/utils"
+import { Calendar, Clock, Expand } from "lucide-react"
 
 import { formatValue, pad } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { MediaBackdrop } from "@/components/media-backdrop"
 import { MediaRating } from "@/components/media-rating"
 
@@ -19,15 +21,30 @@ export const TvEpisodeCard: React.FC<Episode> = ({
   runtime,
 }) => {
   return (
-    <div className="flex flex-col rounded-md border bg-background md:flex-row">
-      <div className="relative aspect-video md:w-64" key={id}>
-        <MediaBackdrop
-          image={still_path}
-          alt={name}
-          size="w780"
-          className="rounded-b-none border-x-0 border-t-0 md:rounded-l-md md:rounded-r-none md:border-b-0 md:border-r"
-        />
-      </div>
+    <div className="flex flex-col md:flex-row">
+      <Dialog>
+        <DialogTrigger className="group relative">
+          <div className="relative aspect-video md:w-72" key={id}>
+            <MediaBackdrop image={still_path} alt={name} size="w780" />
+          </div>
+
+          <div className="overlay grid place-items-center opacity-0 transition group-hover:opacity-100">
+            <Expand />
+          </div>
+        </DialogTrigger>
+
+        <DialogContent className="max-w-screen-xl">
+          <div className="aspect-video">
+            <Image
+              src={tmdbImage.url(still_path, "original")}
+              alt={still_path}
+              className="rounded-md border bg-muted"
+              unoptimized
+              fill
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <div className="flex flex-1 flex-col p-4">
         <h3 className="flex items-center gap-2 font-medium">

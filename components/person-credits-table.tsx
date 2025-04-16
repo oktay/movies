@@ -61,6 +61,9 @@ export const PersonCreditsTable: React.FC<PersonCreditsTableProps> = ({
 
   const sortedList = useMemo(() => credits.sort(sort), [credits])
 
+  const getCount = (type: "movie" | "tv") =>
+    sortedList.filter((credit) => credit.media_type === type).length
+
   return (
     <Command>
       <div className="space-y-4">
@@ -77,9 +80,11 @@ export const PersonCreditsTable: React.FC<PersonCreditsTableProps> = ({
                 <SelectValue placeholder="Filter" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All</SelectItem>
-                <SelectItem value="movie">Movie</SelectItem>
-                <SelectItem value="tv">TV Shows</SelectItem>
+                <SelectItem value="all">All ({sortedList.length})</SelectItem>
+                <SelectItem value="movie">
+                  Movie ({getCount("movie")})
+                </SelectItem>
+                <SelectItem value="tv">TV Shows ({getCount("tv")})</SelectItem>
               </SelectContent>
             </Select>
           </div>
