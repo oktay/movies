@@ -9,7 +9,7 @@ import { ProviderTable } from "@/components/provider-table"
 interface MediaWatchProvidersProps {
   id: string
   type: "movie" | "tv"
-  season: number
+  season?: number
 }
 
 export const MediaWatchProviders: React.FC<MediaWatchProvidersProps> = async ({
