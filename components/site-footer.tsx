@@ -67,20 +67,12 @@ export const SiteFooter: React.FC<ComponentProps<"footer">> = () => {
                   <Icons.Shadcn className="inline size-3 fill-current align-middle" />{" "}
                   shadcn/ui
                 </a>
-                . Powered by{" "}
-                <a
-                  href={siteConfig.links.vercel}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-foreground"
-                >
-                  <Icons.Vercel className="inline size-3 fill-current align-middle" />{" "}
-                  Vercel
-                </a>
                 .
               </p>
 
               <p className="mt-8">
+                This product uses the TMDB API but is not endorsed or certified
+                by TMDB. <br />
                 Data provided by{" "}
                 <a
                   href={siteConfig.links.tmdb}
