@@ -1,10 +1,15 @@
+"use client"
+
 import Image from "next/image"
 import { Image as TmdbImage } from "@/tmdb/models"
 import { tmdbImage } from "@/tmdb/utils"
-import { Expand } from "lucide-react"
+import { Download, Expand, Link } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { useCopyToClipboard } from "@/hooks/useCopyToClipboard"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+
+import { Button } from "./ui/button"
 
 interface MediaImagesProps {
   posters?: TmdbImage[]
@@ -20,6 +25,7 @@ export const MediaImages: React.FC<MediaImagesProps> = ({
   logos = [],
 }) => {
   const images = [...posters, ...backdrops, ...profiles, ...logos]
+  const [copiedText, copy] = useCopyToClipboard()
 
   if (!images.length) return <div className="empty-box">No images</div>
 
@@ -64,6 +70,30 @@ export const MediaImages: React.FC<MediaImagesProps> = ({
                 unoptimized
                 fill
               />
+            </div>
+
+            <div className="absolute bottom-4 right-4 flex space-x-2">
+              <Button
+                size="sm"
+                variant="ghost"
+                onClick={() => copy(tmdbImage.url(file_path, "w780"))}
+              >
+                <Link className="size-4" />
+                <span className="sr-only md:not-sr-only md:ml-2">
+                  {copiedText ? "Copied!" : "Copy link"}
+                </span>
+              </Button>
+
+              <Button asChild size="sm" variant="ghost">
+                <a
+                  href={tmdbImage.url(file_path, "original")}
+                  download
+                  target="_blank"
+                >
+                  <Download className="size-4" />
+                  <span className="sr-only md:not-sr-only md:ml-2">Save</span>
+                </a>
+              </Button>
             </div>
           </DialogContent>
         </Dialog>
