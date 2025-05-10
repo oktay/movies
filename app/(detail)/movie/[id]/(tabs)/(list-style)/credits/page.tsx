@@ -1,6 +1,6 @@
 import { tmdb } from "@/tmdb/api"
 
-import { Separator } from "@/components/ui/separator"
+import { SeparatorLabel } from "@/components/ui/separator-label"
 import { MediaCastCard } from "@/components/media-cast-card"
 import { MediaCrewCard } from "@/components/media-crew-card"
 
@@ -29,7 +29,7 @@ export default async function DetailCredits({ params }: DetailCreditsProps) {
         <div className="empty-box">No cast</div>
       )}
 
-      <Separator />
+      <SeparatorLabel>Crew</SeparatorLabel>
 
       {crew.length > 0 ? (
         <div className="grid-list">

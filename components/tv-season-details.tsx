@@ -1,8 +1,9 @@
 import { tmdb } from "@/tmdb/api"
 import { WithCredits, WithImages, WithVideos } from "@/tmdb/api/types"
-import { DialogProps } from "@radix-ui/react-dialog"
+import { TabsProps } from "@radix-ui/react-tabs"
 
 import { getUniqueItems } from "@/lib/utils"
+import { SeparatorLabel } from "@/components/ui/separator-label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { MediaCastCard } from "@/components/media-cast-card"
 import { MediaCrewCard } from "@/components/media-crew-card"
@@ -11,7 +12,7 @@ import { MediaVideos } from "@/components/media-videos"
 import { MediaWatchProviders } from "@/components/media-watch-providers"
 import { TvEpisodeCard } from "@/components/tv-episode-card"
 
-interface TvSeasonDetailsProps extends DialogProps {
+interface TvSeasonDetailsProps extends TabsProps {
   id: string
   season: number
 }
@@ -38,14 +39,12 @@ export const TvSeasonDetails: React.FC<TvSeasonDetailsProps> = async ({
   )
 
   return (
-    <Tabs defaultValue="episodes">
+    <Tabs defaultValue="episodes" {...props}>
       <div className="max-w-screen scrollbar-hidden -mx-8 overflow-x-scroll px-8 lg:m-0 lg:p-0">
         <TabsList>
           <TabsTrigger value="episodes">Episodes</TabsTrigger>
           <TabsTrigger value="watch">Watch</TabsTrigger>
-          <TabsTrigger value="cast">Cast</TabsTrigger>
-          <TabsTrigger value="guests">Guest Stars</TabsTrigger>
-          <TabsTrigger value="crew">Crew</TabsTrigger>
+          <TabsTrigger value="credits">Credits</TabsTrigger>
           <TabsTrigger value="images">Images</TabsTrigger>
           <TabsTrigger value="videos">Videos</TabsTrigger>
         </TabsList>
@@ -67,40 +66,42 @@ export const TvSeasonDetails: React.FC<TvSeasonDetailsProps> = async ({
         <MediaWatchProviders id={id} season={season} type="tv" />
       </TabsContent>
 
-      <TabsContent value="cast">
-        {cast?.length ? (
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-            {cast.map((cast) => (
-              <MediaCastCard key={cast.credit_id} {...cast} />
-            ))}
-          </div>
-        ) : (
-          <div className="empty-box">No cast</div>
-        )}
-      </TabsContent>
+      <TabsContent value="credits">
+        <section className="space-y-12">
+          {cast.length > 0 ? (
+            <div className="grid-list">
+              {cast.map((cast) => (
+                <MediaCastCard key={cast.credit_id} {...cast} />
+              ))}
+            </div>
+          ) : (
+            <div className="empty-box">No cast</div>
+          )}
 
-      <TabsContent value="guests">
-        {guestStars?.length ? (
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-            {guestStars.map((cast) => (
-              <MediaCastCard key={cast.credit_id} {...cast} />
-            ))}
-          </div>
-        ) : (
-          <div className="empty-box">No guest stars</div>
-        )}
-      </TabsContent>
+          <SeparatorLabel>Guest Stars</SeparatorLabel>
 
-      <TabsContent value="crew">
-        {crew?.length ? (
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-            {crew.map((crew) => (
-              <MediaCrewCard key={crew.credit_id} {...crew} />
-            ))}
-          </div>
-        ) : (
-          <div className="empty-box">No crew</div>
-        )}
+          {guestStars?.length ? (
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+              {guestStars.map((cast) => (
+                <MediaCastCard key={cast.credit_id} {...cast} />
+              ))}
+            </div>
+          ) : (
+            <div className="empty-box">No guest stars</div>
+          )}
+
+          <SeparatorLabel>Crew</SeparatorLabel>
+
+          {crew.length > 0 ? (
+            <div className="grid-list">
+              {crew.map((crew) => (
+                <MediaCrewCard key={crew.credit_id} {...crew} />
+              ))}
+            </div>
+          ) : (
+            <div className="empty-box">No crew</div>
+          )}
+        </section>
       </TabsContent>
 
       <TabsContent value="images">
