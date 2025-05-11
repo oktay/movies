@@ -20,6 +20,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { InfoTooltip } from "@/components/info-tooltip"
 import { RegionSelect } from "@/components/region-select"
 import { ThemeToggle } from "@/components/theme-toggle"
 
@@ -94,8 +95,19 @@ export const SiteSettings: React.FC<SiteSettingsProps> = ({
 }) => {
   return (
     <SiteSettingsWrapper>
-      <div className="mt-2 space-y-2">
-        <Label className="text-xs text-muted-foreground">Region</Label>
+      <div
+        className="mt-2 space-y-2"
+        onFocusCapture={(e) => {
+          e.stopPropagation()
+        }}
+      >
+        <Label className="flex items-center text-xs text-muted-foreground">
+          <span className="mr-1">Region</span>
+          <InfoTooltip className="w-60">
+            This setting will use for showing the available watch providers in
+            your region.
+          </InfoTooltip>
+        </Label>
         <RegionSelect value={region} />
       </div>
 
