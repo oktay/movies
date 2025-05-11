@@ -57,7 +57,6 @@ npm run dev
 - [shadcn/ui](https://ui.shadcn.com/) - UI library for fundamental ui elements.
 - [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework for rapidly building custom designs.
 - [The Movie Database API](https://developers.themoviedb.org/3) - An API that provides access to a vast collection of movie and TV show data.
-- [Vercel](https://vercel.com/) - A cloud platform for static sites and serverless functions.
 
 ## Contributing
 
