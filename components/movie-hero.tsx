@@ -15,12 +15,14 @@ interface MovieHeroProps {
   movies: Movie[]
   label: string
   count?: number
+  priority?: boolean
 }
 
 export const MovieHero: React.FC<MovieHeroProps> = ({
   movies,
   label,
   count = 1,
+  priority,
 }) => {
   const [mounted, setMounted] = useState(false)
   const items = getRandomItems(movies, count)
@@ -33,7 +35,19 @@ export const MovieHero: React.FC<MovieHeroProps> = ({
 
   return items.map((item) => (
     <div className="h-hero relative" key={item.id}>
-      <MediaBackdrop image={item.backdrop_path} alt={item.title} />
+      <MediaBackdrop
+        image={item.backdrop_path}
+        alt={item.title}
+        priority={priority}
+        className="md:hidden"
+        size="w1280"
+      />
+      <MediaBackdrop
+        image={item.backdrop_path}
+        alt={item.title}
+        priority={priority}
+        className="hidden md:block"
+      />
 
       <div className="overlay">
         <div className="mx-auto max-w-3xl space-y-4 p-4 pb-8 text-center md:p-14">

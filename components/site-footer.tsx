@@ -20,7 +20,7 @@ export const SiteFooter: React.FC<ComponentProps<"footer">> = () => {
           <div className="mb-24 hidden md:flex">
             {navigation.items.slice(1, navigation.items.length).map((item) => (
               <ul className="flex-1" key={item.title}>
-                <p className="mb-4 text-muted-foreground">{item.title}</p>
+                <li className="mb-4 text-muted-foreground">{item.title}</li>
                 {item.items?.map((subitem) => (
                   <li className="mb-2 text-sm" key={subitem.href}>
                     <Link href={subitem.href} prefetch={false}>
@@ -40,7 +40,7 @@ export const SiteFooter: React.FC<ComponentProps<"footer">> = () => {
                   href={siteConfig.author.web}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-foreground"
+                  className="border-b text-foreground"
                 >
                   {siteConfig.author.name}
                 </a>{" "}
@@ -52,7 +52,7 @@ export const SiteFooter: React.FC<ComponentProps<"footer">> = () => {
                   href={siteConfig.links.next}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-foreground"
+                  className="border-b text-foreground"
                 >
                   <Icons.Next className="inline size-3 fill-current align-middle" />{" "}
                   Next.js
@@ -62,7 +62,7 @@ export const SiteFooter: React.FC<ComponentProps<"footer">> = () => {
                   href={siteConfig.links.shadcn}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-foreground"
+                  className="border-b text-foreground"
                 >
                   <Icons.Shadcn className="inline size-3 fill-current align-middle" />{" "}
                   shadcn/ui
@@ -78,7 +78,7 @@ export const SiteFooter: React.FC<ComponentProps<"footer">> = () => {
                   href={siteConfig.links.tmdb}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-foreground"
+                  className="border-b text-foreground"
                 >
                   TMDB
                 </a>

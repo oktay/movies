@@ -23,7 +23,7 @@ export default async function Home() {
   return (
     <section>
       <div className="container space-y-8">
-        <MovieHero movies={movies} label="Trending Now" />
+        <MovieHero movies={movies} label="Trending Now" priority />
 
         <TrendCarousel
           type="movie"

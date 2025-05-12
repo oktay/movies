@@ -32,6 +32,7 @@ export const SiteMenu = () => {
       <DrawerTrigger asChild>
         <Button size="icon" variant="outline">
           <MenuIcon className="size-4" />
+          <span className="sr-only">Menu</span>
         </Button>
       </DrawerTrigger>
 

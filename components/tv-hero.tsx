@@ -15,12 +15,14 @@ interface TvHeroProps {
   tvShows: TvShow[]
   label: string
   count?: number
+  priority?: boolean
 }
 
 export const TvHero: React.FC<TvHeroProps> = ({
   tvShows,
   label,
   count = 1,
+  priority,
 }) => {
   const [mounted, setMounted] = useState(false)
   const items = getRandomItems(tvShows, count)
@@ -33,7 +35,11 @@ export const TvHero: React.FC<TvHeroProps> = ({
 
   return items.map((item) => (
     <div className="h-hero relative" key={item.id}>
-      <MediaBackdrop image={item.backdrop_path} alt={item.name} />
+      <MediaBackdrop
+        image={item.backdrop_path}
+        alt={item.name}
+        priority={priority}
+      />
 
       <div className="overlay">
         <div className="mx-auto max-w-3xl space-y-4 p-4 pb-8 text-center md:p-14">

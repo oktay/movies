@@ -22,6 +22,7 @@ const SiteNav = () => {
     <div className="flex items-center">
       <Link href="/">
         <Icons.Logo className="size-6" />
+        <span className="sr-only">Movies Logo</span>
       </Link>
 
       <NavigationMenu className="ml-4 hidden lg:flex">
