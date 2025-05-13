@@ -10,7 +10,7 @@ To get started with the app, follow the steps outlined in the "Getting Started" 
 
 Happy movie browsing!
 
-<img src="https://api.microlink.io/?url=https://movies-topaz-gamma.vercel.app&screenshot=true&meta=false&embed=screenshot.url&type=jpeg&overlay.browser=dark&overlay.background=linear-gradient%28225deg%2C+%23FF057C+0%25%2C+%238D0B93+50%25%2C+%23321575+100%25%29" />
+<img src="https://api.microlink.io/?url=https://movies.oktaycolakoglu.com&screenshot=true&meta=false&embed=screenshot.url&type=jpeg&overlay.browser=dark&overlay.background=linear-gradient%28225deg%2C+%23FF057C+0%25%2C+%238D0B93+50%25%2C+%23321575+100%25%29" />
 
 ## Getting Started
 
