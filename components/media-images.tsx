@@ -72,7 +72,7 @@ export const MediaImages: React.FC<MediaImagesProps> = ({
               />
             </div>
 
-            <div className="absolute bottom-4 right-4 flex space-x-2">
+            <div className="absolute bottom-0 left-0 flex h-32 w-full items-end justify-end space-x-2 bg-gradient-to-t from-background to-transparent pb-4 pr-4">
               <Button
                 size="sm"
                 variant="ghost"
