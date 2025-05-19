@@ -24,7 +24,10 @@ const Hero: React.FC<ComponentProps<"div">> = ({
   ...props
 }) => {
   return (
-    <div className={cn("mt-4", className)} {...props}>
+    <div
+      className={cn("rounded-b-md border-x border-b pt-4", className)}
+      {...props}
+    >
       <div className="grid grid-cols-[auto,1fr] gap-4 px-4 pb-4">
         {children}
       </div>

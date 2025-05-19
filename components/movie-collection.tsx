@@ -1,7 +1,8 @@
+import Link from "next/link"
 import { tmdb } from "@/tmdb/api"
 
+import { Button } from "@/components/ui/button"
 import { MediaBackdrop } from "@/components/media-backdrop"
-import { MovieCollectionDialog } from "@/components/movie-collection-dialog"
 
 interface MovieCollectionProps {
   id: number
@@ -28,7 +29,9 @@ export const MovieCollection: React.FC<MovieCollectionProps> = async ({
           <p className="mb-4 line-clamp-1 max-w-2xl text-muted-foreground">
             Includes: {collection.parts.map((part) => part.title).join(", ")}
           </p>
-          <MovieCollectionDialog collection={collection} />
+          <Button asChild>
+            <Link href={`/collection/${id}`}>View the collection</Link>
+          </Button>
         </div>
       </div>
     </div>
