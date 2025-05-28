@@ -1,13 +1,21 @@
+import Link from "next/link"
 import { notFound } from "next/navigation"
 import { tmdb } from "@/tmdb/api"
 import { WithCredits } from "@/tmdb/api/types"
 import { format } from "@/tmdb/utils"
 
 import { Badge } from "@/components/ui/badge"
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
 import { MediaDetailView } from "@/components/media-detail-view"
 import { MediaPoster } from "@/components/media-poster"
 import { MediaRating } from "@/components/media-rating"
-import { TvSeasonBreadcrumb } from "@/components/tv-season-breadcrumb"
 import { TvSeasonDetails } from "@/components/tv-season-details"
 import { TvSeasonNavigation } from "@/components/tv-season-navigation"
 
@@ -57,12 +65,25 @@ export default async function DetailSeasons({
         </div>
 
         <div className="space-y-4 self-end">
-          <TvSeasonBreadcrumb
-            id={id}
-            season={season}
-            seasonName={name}
-            showName={detail.name}
-          />
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href={`/tv/${id}`}>{detail.name}</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href={`/tv/${id}/seasons`}>Seasons</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>{name}</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
 
           <MediaDetailView.Genres className="items-center">
             <MediaRating average={vote_average} />
