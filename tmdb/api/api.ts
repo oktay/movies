@@ -69,7 +69,7 @@ const fetcher: Fetcher = async ({ endpoint, params }, init) => {
 
   const _init = {
     ...init,
-    next: { revalidate: 600, ...init?.next },
+    next: { revalidate: 0, ...init?.next },
     headers: _headers,
   }
 
