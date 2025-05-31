@@ -70,6 +70,18 @@ const credits = ({ id }: TvCreditsRequestParams) =>
   })
 
 /**
+ * Fetches the aggregate credits (cast and crew) that have been added to a TV show.
+ *
+ * @param {TvCreditsRequestParams} params - The parameters for the TV credits request, including the TV series ID.
+ * @returns {Promise<Credits>} A promise that resolves to the credits for the TV series.
+ * @see https://developer.themoviedb.org/reference/tv-series-credits
+ */
+const aggregateCredits = ({ id }: TvCreditsRequestParams) =>
+  api.fetcher<Credits>({
+    endpoint: `tv/${id}/aggregate_credits`,
+  })
+
+/**
  * Fetches recommendations for a specific TV series.
  *
  * @param {TvRecommendationsRequestParams} params - The parameters for the TV recommendations request, including the TV series ID and page number.
@@ -160,6 +172,7 @@ export const tv = {
   list,
   detail,
   credits,
+  aggregateCredits,
   recommendations,
   similar,
   images,
