@@ -39,6 +39,7 @@ export default async function DetailLayout({
 }: DetailLayoutProps) {
   const {
     id,
+    adult,
     name,
     overview,
     backdrop_path,
@@ -53,7 +54,7 @@ export default async function DetailLayout({
     append: "videos",
   })
 
-  if (!id) return notFound()
+  if (!id || adult) return notFound()
 
   return (
     <MediaDetailView.Root>

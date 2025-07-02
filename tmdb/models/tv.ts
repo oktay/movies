@@ -78,6 +78,7 @@ export type Season = {
 }
 
 export type TvShowDetails = {
+  adult: boolean
   backdrop_path: string
   created_by: CreatedBy[]
   episode_run_time: number[]

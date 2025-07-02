@@ -39,6 +39,7 @@ export default async function DetailLayout({
 }: DetailLayoutProps) {
   const {
     id,
+    adult,
     title,
     overview,
     genres,
@@ -46,7 +47,6 @@ export default async function DetailLayout({
     vote_count,
     backdrop_path,
     poster_path,
-    release_date,
     tagline,
     videos,
   } = await tmdb.movie.detail<WithVideos>({
@@ -54,7 +54,7 @@ export default async function DetailLayout({
     append: "videos",
   })
 
-  if (!id) return notFound()
+  if (!id || adult) return notFound()
 
   return (
     <MediaDetailView.Root>

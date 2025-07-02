@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation"
 import { tmdb } from "@/tmdb/api"
 import { WithCombinedCredits, WithImages } from "@/tmdb/api/types"
 import { format } from "@/tmdb/utils"
@@ -36,6 +37,8 @@ export async function generateMetadata({ params }: DetailProps) {
 
 export default async function Detail({ params }: DetailProps) {
   const {
+    id,
+    adult,
     name,
     profile_path,
     biography,
@@ -48,6 +51,8 @@ export default async function Detail({ params }: DetailProps) {
     id: params.id,
     append: "combined_credits,images",
   })
+
+  if (!id || adult) return notFound()
 
   const { highlights, hero } = getPersonHighlights({
     cast,
