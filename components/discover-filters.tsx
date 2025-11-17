@@ -50,15 +50,17 @@ export const DiscoverFilters: React.FC<DiscoverFiltersProps> = ({
       </SheetTrigger>
 
       <SheetContent className="flex flex-col px-0">
-        <SheetHeader className="px-4 md:px-6">
-          <SheetTitle>Filters</SheetTitle>
-          <SheetDescription>
-            Narrow down your search results with the following filters.
-          </SheetDescription>
+        <SheetHeader>
+          <div className="px-4 md:px-6">
+            <SheetTitle>Filters</SheetTitle>
+            <SheetDescription>
+              Narrow down your search results with the following filters.
+            </SheetDescription>
+          </div>
         </SheetHeader>
 
-        <ScrollArea className="px-4 md:px-6">
-          <div className="space-y-8">
+        <ScrollArea>
+          <div className="space-y-8 px-4 md:px-6">
             <DiscoverFilterGenre
               genres={genres}
               value={getFilter("with_genres")}
