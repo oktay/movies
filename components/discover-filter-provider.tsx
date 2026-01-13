@@ -71,7 +71,7 @@ export const DiscoverFilterProvider: React.FC<DiscoverFilterGenreProps> = ({
           </Button>
         </PopoverTrigger>
 
-        <PopoverContent align="start" className="p- w-64 md:w-80">
+        <PopoverContent className="w-64 p-0 md:w-80">
           <ProviderList
             providers={providers}
             selection={selection}
@@ -126,6 +126,13 @@ const ProviderList = ({
   toggleSelection: (value: number) => void
   clearSelection: () => void
 }) => {
+  const selectedFirst = (a: WatchProvider, b: WatchProvider) => {
+    const isSelectedA = selection.includes(a.provider_id) ? -1 : 1
+    const isSelectedB = selection.includes(b.provider_id) ? -1 : 1
+    const compareName = a.provider_name.localeCompare(b.provider_name)
+    return isSelectedA - isSelectedB || compareName
+  }
+
   return (
     <Command>
       <CommandInput placeholder="Search providers..." />
@@ -134,7 +141,7 @@ const ProviderList = ({
 
         <CommandGroup>
           <ScrollArea className="max-h-40 overflow-y-auto">
-            {providers.map((provider) => (
+            {providers.sort(selectedFirst).map((provider) => (
               <ProviderItem
                 key={provider.provider_id}
                 provider={provider}

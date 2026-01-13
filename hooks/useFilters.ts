@@ -27,12 +27,25 @@ export const useFilters = (type: "movie" | "tv") => {
 
   const saveFilters = () => {
     const searchParams = new URLSearchParams(filters)
+    const sortBy = activeParams.sort_by
+
+    if (sortBy) {
+      searchParams.set("sort_by", sortBy)
+    }
+
     router.replace(`${pathname}?${searchParams.toString()}`)
   }
 
   const clearFilters = () => {
+    const searchParams = new URLSearchParams()
+    const sortBy = activeParams.sort_by
+
+    if (sortBy) {
+      searchParams.set("sort_by", sortBy)
+    }
+
     setFilters({})
-    router.replace(pathname)
+    router.replace(`${pathname}?${searchParams.toString()}`)
   }
 
   const count = Object.values(filters).filter(Boolean).length
