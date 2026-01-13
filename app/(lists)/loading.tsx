@@ -1,1 +1,1 @@
-export { ListSkeleton as default } from "@/components/list-skeleton"
+export { ListSkeleton as default } from "@/components/skeletons/list-skeleton"
