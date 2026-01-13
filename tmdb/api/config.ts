@@ -27,7 +27,7 @@ const defaultHeaders: Record<string, string> = {
  * @type {Record<string, string>}
  */
 const defaultParams: Record<string, string> = {
-  language: "en-US",
+  // language: "en-US",
 }
 
 /**

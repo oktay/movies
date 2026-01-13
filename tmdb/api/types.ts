@@ -23,6 +23,7 @@ export type WithImages = {
     backdrops: Image[]
     logos: Image[]
     profiles: Image[]
+    stills: Image[]
   }
 }
 

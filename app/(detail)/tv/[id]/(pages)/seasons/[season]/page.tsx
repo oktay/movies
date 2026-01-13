@@ -1,21 +1,13 @@
-import Link from "next/link"
 import { notFound } from "next/navigation"
 import { tmdb } from "@/tmdb/api"
 import { WithCredits } from "@/tmdb/api/types"
 import { format } from "@/tmdb/utils"
 
 import { Badge } from "@/components/ui/badge"
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
 import { MediaDetailView } from "@/components/media-detail-view"
 import { MediaPoster } from "@/components/media-poster"
 import { MediaRating } from "@/components/media-rating"
+import { TvSeasonBreadcrumb } from "@/components/tv-season-breadcrumb"
 import { TvSeasonDetails } from "@/components/tv-season-details"
 import { TvSeasonNavigation } from "@/components/tv-season-navigation"
 
@@ -44,16 +36,15 @@ export async function generateMetadata({ params }: DetailSeasonsProps) {
 export default async function DetailSeasons({
   params: { id, season },
 }: DetailSeasonsProps) {
-  const detail = await tmdb.tv.detail({
+  const showDetails = await tmdb.tv.detail({
     id: id,
   })
 
-  const { name, overview, poster_path, vote_average, air_date } =
-    await tmdb.tvSeasons.details<WithCredits>({
-      id,
-      season,
-      append: "credits",
-    })
+  const seasonDetails = await tmdb.tvSeasons.details<WithCredits>({
+    id,
+    season,
+    append: "credits",
+  })
 
   if (!id) return notFound()
 
@@ -61,46 +52,46 @@ export default async function DetailSeasons({
     <MediaDetailView.Root>
       <MediaDetailView.Hero>
         <div className="relative aspect-poster w-full md:w-56">
-          <MediaPoster image={poster_path} size="w780" alt={name} priority />
+          <MediaPoster
+            image={seasonDetails?.poster_path}
+            alt={seasonDetails?.name}
+            size="w780"
+            priority
+          />
         </div>
 
         <div className="space-y-4 self-end">
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href={`/tv/${id}`}>{detail.name}</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href={`/tv/${id}/seasons`}>Seasons</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>{name}</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
+          <TvSeasonBreadcrumb
+            id={id}
+            showDetails={showDetails}
+            season={season}
+            seasonDetails={seasonDetails}
+          />
 
           <MediaDetailView.Genres className="items-center">
-            <MediaRating average={vote_average} />
-            <Badge variant="outline">{format.date(air_date)}</Badge>
+            <MediaRating average={seasonDetails?.vote_average} />
+            <Badge variant="outline">
+              {format.date(seasonDetails?.air_date)}
+            </Badge>
           </MediaDetailView.Genres>
 
-          <MediaDetailView.Title>{name}</MediaDetailView.Title>
+          <MediaDetailView.Title>{seasonDetails?.name}</MediaDetailView.Title>
 
           <MediaDetailView.Overview
-            dangerouslySetInnerHTML={{ __html: format.content(overview) }}
+            dangerouslySetInnerHTML={{
+              __html: format.content(seasonDetails?.overview),
+            }}
           />
         </div>
       </MediaDetailView.Hero>
 
       <MediaDetailView.Content className="space-y-4">
         <TvSeasonDetails id={id} season={season} />
-        <TvSeasonNavigation id={id} season={season} seasons={detail.seasons} />
+        <TvSeasonNavigation
+          id={id}
+          season={season}
+          seasons={showDetails.seasons}
+        />
       </MediaDetailView.Content>
     </MediaDetailView.Root>
   )

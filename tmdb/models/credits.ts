@@ -27,6 +27,20 @@ export type Crew = {
   job: string
 }
 
+export type GuestStar = {
+  credit_id: string
+  order: number
+  character: string
+  adult: boolean
+  gender: number | null
+  id: number
+  known_for_department: string
+  name: string
+  original_name: string
+  popularity: number
+  profile_path: string | null
+}
+
 export type Credits = {
   id: number
   cast: Cast[]

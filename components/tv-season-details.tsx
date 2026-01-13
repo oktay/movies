@@ -3,10 +3,8 @@ import { WithCredits, WithImages, WithVideos } from "@/tmdb/api/types"
 import { TabsProps } from "@radix-ui/react-tabs"
 
 import { getUniqueItems } from "@/lib/utils"
-import { SeparatorLabel } from "@/components/ui/separator-label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { MediaCastCard } from "@/components/media-cast-card"
-import { MediaCrewCard } from "@/components/media-crew-card"
+import { MediaCreditsList } from "@/components/media-credits-list"
 import { MediaImages } from "@/components/media-images"
 import { MediaVideos } from "@/components/media-videos"
 import { MediaWatchProviders } from "@/components/media-watch-providers"
@@ -67,41 +65,7 @@ export const TvSeasonDetails: React.FC<TvSeasonDetailsProps> = async ({
       </TabsContent>
 
       <TabsContent value="credits">
-        <section className="space-y-12">
-          {cast.length > 0 ? (
-            <div className="grid-list">
-              {cast.map((cast) => (
-                <MediaCastCard key={cast.credit_id} {...cast} />
-              ))}
-            </div>
-          ) : (
-            <div className="empty-box">No cast</div>
-          )}
-
-          <SeparatorLabel>Guest Stars</SeparatorLabel>
-
-          {guestStars?.length ? (
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-              {guestStars.map((cast) => (
-                <MediaCastCard key={cast.credit_id} {...cast} />
-              ))}
-            </div>
-          ) : (
-            <div className="empty-box">No guest stars</div>
-          )}
-
-          <SeparatorLabel>Crew</SeparatorLabel>
-
-          {crew.length > 0 ? (
-            <div className="grid-list">
-              {crew.map((crew) => (
-                <MediaCrewCard key={crew.credit_id} {...crew} />
-              ))}
-            </div>
-          ) : (
-            <div className="empty-box">No crew</div>
-          )}
-        </section>
+        <MediaCreditsList cast={cast} crew={crew} guestStars={guestStars} />
       </TabsContent>
 
       <TabsContent value="images">
