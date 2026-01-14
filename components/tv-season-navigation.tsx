@@ -1,6 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
+import { pages } from "@/config"
 import { Season } from "@/tmdb/models"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
@@ -25,7 +26,7 @@ export const TvSeasonNavigation: React.FC<TvSeasonNavigationProps> = ({
   const nextSeason = seasons.find((s) => s.season_number === Number(season) + 1)
 
   const goSeason = (s: number) => {
-    router.push(`/tv/${id}/seasons/${s}`)
+    router.push(`${pages.tv.root.link}/${id}/seasons/${s}`)
   }
 
   return (

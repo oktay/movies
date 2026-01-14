@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { pages } from "@/config"
 import { useDialog } from "@/hooks"
 import { DetailedCollection } from "@/tmdb/models"
 
@@ -48,7 +49,7 @@ export const MovieCollectionDialog: React.FC<MovieCollectionDialogProps> = ({
         <ScrollArea className="max-h-[80dvh] md:pr-4">
           <div className="grid gap-4 md:grid-cols-2">
             {sortByReleaseDate(parts).map((part) => (
-              <Link href={`/movie/${part.id}`} key={part.id}>
+              <Link href={`${pages.movie.root.link}/${part.id}`} key={part.id}>
                 <MediaMiniDetail.Root className="rounded-md border">
                   <MediaMiniDetail.Backdrop>
                     <MediaBackdrop

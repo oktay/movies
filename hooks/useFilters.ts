@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
+import { pages } from "@/config"
 
 import { filterDiscoverParams } from "@/lib/utils"
 
@@ -23,7 +24,8 @@ export const useFilters = (type: "movie" | "tv") => {
     })
   }
 
-  const pathname = type === "movie" ? "/movie/discover" : "/tv/discover"
+  const pathname =
+    type === "movie" ? pages.movie.discover.link : pages.tv.discover.link
 
   const saveFilters = () => {
     const searchParams = new URLSearchParams(filters)

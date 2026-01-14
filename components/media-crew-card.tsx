@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { pages } from "@/config"
 import { Crew } from "@/tmdb/models"
 
 import { MediaCard } from "@/components/media-card"
@@ -10,7 +11,7 @@ export const MediaCrewCard: React.FC<Crew> = ({
   profile_path,
   job,
 }) => (
-  <Link href={`/person/${id}`} prefetch={false}>
+  <Link href={`${pages.people.root.link}/${id}`} prefetch={false}>
     <MediaCard.Root>
       <MediaPoster image={profile_path} alt={name} />
       <MediaCard.Content>

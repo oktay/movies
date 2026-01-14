@@ -1,6 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
+import { pages } from "@/config"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -30,7 +31,7 @@ export const TvEpisodeNavigation = ({
   )
 
   const goEpisode = (e: number) => {
-    router.push(`/tv/${id}/seasons/${season}/episodes/${e}`)
+    router.push(`${pages.tv.root.link}/${id}/seasons/${season}/episodes/${e}`)
   }
 
   return (

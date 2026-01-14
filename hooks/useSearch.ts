@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { pages } from "@/config"
 import { sendGAEvent } from "@next/third-parties/google"
 import { useDebounce } from "use-debounce"
 
@@ -16,7 +17,7 @@ export const useSearch = (auto: boolean = true) => {
   const [value] = useDebounce(term, 500)
 
   useEffect(() => {
-    if (pathname !== "/search") {
+    if (pathname !== pages.search.link) {
       setPage(pathname)
     }
     if (!query) {
@@ -32,7 +33,7 @@ export const useSearch = (auto: boolean = true) => {
 
   function handleSearch(value: string) {
     if (value !== "") {
-      router.push(`/search?q=${value}`)
+      router.push(`${pages.search.link}?q=${value}`)
 
       sendGAEvent("event", "search", {
         search_term: value,
@@ -41,7 +42,7 @@ export const useSearch = (auto: boolean = true) => {
       return
     }
 
-    if (!page && pathname === "/search") {
+    if (!page && pathname === pages.search.link) {
       router.replace("/", {
         scroll: true,
       })

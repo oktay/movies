@@ -1,5 +1,6 @@
 import React from "react"
 import Link from "next/link"
+import { pages } from "@/config"
 import { Movie } from "@/tmdb/models"
 import { format } from "@/tmdb/utils"
 
@@ -17,7 +18,7 @@ export const MovieCard: React.FC<Movie> = ({
   release_date,
 }) => {
   return (
-    <Link href={`/movie/${id}`} key={id} prefetch={false}>
+    <Link href={`${pages.movie.root.link}/${id}`} key={id} prefetch={false}>
       <MediaCard.Root>
         <MediaPoster image={poster_path} alt={title} />
         <MediaCard.Content>

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { pages } from "@/config"
 import { Movie } from "@/tmdb/models"
 import { ArrowRight } from "lucide-react"
 
@@ -62,7 +63,7 @@ export const MovieHero: React.FC<MovieHeroProps> = ({
 
           <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
             <Link
-              href={`/movie/${item.id}`}
+              href={`${pages.movie.root.link}/${item.id}`}
               className={buttonVariants({
                 size: "lg",
                 variant: "default",

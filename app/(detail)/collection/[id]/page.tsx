@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { pages } from "@/config"
 import { tmdb } from "@/tmdb/api"
 
 import { sortByReleaseDate } from "@/lib/utils"
@@ -21,7 +22,7 @@ export default async function Detail({ params }: DetailProps) {
     <section className="space-y-4">
       <div className="grid gap-4 md:grid-cols-2">
         {sortByReleaseDate(parts).map((part) => (
-          <Link href={`/movie/${part.id}`} key={part.id}>
+          <Link href={`${pages.movie.root.link}/${part.id}`} key={part.id}>
             <MediaMiniDetail.Root>
               <MediaMiniDetail.Backdrop>
                 <MediaBackdrop

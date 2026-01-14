@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { pages } from "@/config"
 import { tmdb } from "@/tmdb/api"
 import { format } from "@/tmdb/utils"
 
@@ -40,7 +41,7 @@ export default async function Detail({ params }: { params: { id: string } }) {
       value: created_by.map(({ id, name }) => (
         <Link
           key={id}
-          href={`/person/${id}`}
+          href={`${pages.people.root.link}/${id}`}
           className="mr-1 border-b-2 transition hover:text-foreground"
         >
           {name}
@@ -92,7 +93,7 @@ export default async function Detail({ params }: { params: { id: string } }) {
       value: production_companies.map(({ id, name }) => (
         <Link
           key={id}
-          href={`/tv/discover?with_companies=${id}`}
+          href={`${pages.tv.discover.link}?with_companies=${id}`}
           className="mr-1 border-b-2 transition hover:text-foreground"
         >
           {name}
@@ -104,7 +105,7 @@ export default async function Detail({ params }: { params: { id: string } }) {
       value: networks.map(({ id, name }) => (
         <Link
           key={id}
-          href={`/tv/discover?with_networks=${id}`}
+          href={`${pages.tv.discover.link}?with_networks=${id}`}
           className="mr-1 border-b-2 transition hover:text-foreground"
         >
           {name}
@@ -146,7 +147,7 @@ export default async function Detail({ params }: { params: { id: string } }) {
                 {lastEpisode.overview}
               </p>
               <Link
-                href={`/tv/${params.id}/seasons/${lastEpisode.season_number}/episodes/${lastEpisode.episode_number}`}
+                href={`${pages.tv.root.link}/${params.id}/seasons/${lastEpisode.season_number}/episodes/${lastEpisode.episode_number}`}
                 className={cn(buttonVariants({ variant: "default" }), "mt-4")}
                 prefetch={false}
               >

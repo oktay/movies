@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { pages } from "@/config"
 import { tmdb } from "@/tmdb/api"
 import { format } from "@/tmdb/utils"
 
@@ -77,7 +78,7 @@ export default async function Detail({ params }: DetailProps) {
       value: production_companies.map(({ id, name }) => (
         <Link
           key={id}
-          href={`/movie/discover?with_companies=${id}`}
+          href={`${pages.movie.discover.link}?with_companies=${id}`}
           className="mr-1 border-b-2 transition hover:text-foreground"
         >
           {name}

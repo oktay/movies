@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { siteConfig } from "@/config"
+import { pages, siteConfig } from "@/config"
 import { tmdb } from "@/tmdb/api"
 import { WithVideos } from "@/tmdb/api/types"
 import { format } from "@/tmdb/utils"
@@ -75,7 +75,7 @@ export default async function DetailLayout({
             {genres?.map((genre) => (
               <Link
                 key={genre.id}
-                href={`/tv/discover?with_genres=${genre.id}`}
+                href={`${pages.tv.discover.link}?with_genres=${genre.id}`}
               >
                 <MediaDetailView.Genre>{genre.name}</MediaDetailView.Genre>
               </Link>
@@ -102,19 +102,34 @@ export default async function DetailLayout({
         <Tabs className="mt-8 lg:mt-12">
           <div className="max-w-screen scrollbar-hidden -mx-8 overflow-x-scroll px-8 lg:m-0 lg:p-0">
             <TabsList>
-              <TabsLink href={`/tv/${id}`}>Overview</TabsLink>
-              <TabsLink className="gap-2" href={`/tv/${id}/credits`}>
+              <TabsLink href={`${pages.tv.root.link}/${id}`}>Overview</TabsLink>
+              <TabsLink
+                className="gap-2"
+                href={`${pages.tv.root.link}/${id}/credits`}
+              >
                 Credits
               </TabsLink>
-              <TabsLink href={`/tv/${id}/watch`}>Watch</TabsLink>
-              <TabsLink href={`/tv/${id}/reviews`}>Reviews</TabsLink>
-              <TabsLink href={`/tv/${id}/seasons`}>Seasons</TabsLink>
-              <TabsLink href={`/tv/${id}/images`}>Images</TabsLink>
-              <TabsLink href={`/tv/${id}/videos`}>Videos</TabsLink>
-              <TabsLink href={`/tv/${id}/recommendations`}>
+              <TabsLink href={`${pages.tv.root.link}/${id}/watch`}>
+                Watch
+              </TabsLink>
+              <TabsLink href={`${pages.tv.root.link}/${id}/reviews`}>
+                Reviews
+              </TabsLink>
+              <TabsLink href={`${pages.tv.root.link}/${id}/seasons`}>
+                Seasons
+              </TabsLink>
+              <TabsLink href={`${pages.tv.root.link}/${id}/images`}>
+                Images
+              </TabsLink>
+              <TabsLink href={`${pages.tv.root.link}/${id}/videos`}>
+                Videos
+              </TabsLink>
+              <TabsLink href={`${pages.tv.root.link}/${id}/recommendations`}>
                 Recommendations
               </TabsLink>
-              <TabsLink href={`/tv/${id}/similar`}>Similar</TabsLink>
+              <TabsLink href={`${pages.tv.root.link}/${id}/similar`}>
+                Similar
+              </TabsLink>
             </TabsList>
           </div>
         </Tabs>

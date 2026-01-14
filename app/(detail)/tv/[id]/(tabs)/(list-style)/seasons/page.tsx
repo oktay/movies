@@ -1,5 +1,6 @@
 import { Fragment } from "react"
 import Link from "next/link"
+import { pages } from "@/config"
 import { tmdb } from "@/tmdb/api"
 
 import { MediaCard } from "@/components/media-card"
@@ -34,7 +35,7 @@ export default async function DetailSeasons({ params }: DetailSeasonsProps) {
       {seasons.map((season) => (
         <Fragment key={season.id}>
           <Link
-            href={`/tv/${params.id}/seasons/${season.season_number}`}
+            href={`${pages.tv.root.link}/${params.id}/seasons/${season.season_number}`}
             prefetch={false}
           >
             <MediaCard.Root>

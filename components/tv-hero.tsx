@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { pages } from "@/config"
 import { TvShow } from "@/tmdb/models"
 import { ArrowRight } from "lucide-react"
 
@@ -54,7 +55,7 @@ export const TvHero: React.FC<TvHeroProps> = ({
 
           <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
             <Link
-              href={`/tv/${item.id}`}
+              href={`${pages.tv.root.link}/${item.id}`}
               className={buttonVariants({
                 size: "lg",
                 variant: "default",

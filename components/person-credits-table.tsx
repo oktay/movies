@@ -2,6 +2,7 @@
 
 import React, { useMemo } from "react"
 import Link from "next/link"
+import { pages } from "@/config"
 import {
   RawCombinedCredit,
   RawMovieCredit,
@@ -145,7 +146,7 @@ const CreditsTableMovieItem = React.forwardRef<
     </TableCell>
     <TableCell>{release_date ? format.year(release_date) : "-"}</TableCell>
     <TableCell>
-      <Link className="font-medium" href={`/movie/${id}`}>
+      <Link className="font-medium" href={`${pages.movie.root.link}/${id}`}>
         {title}
       </Link>
       {(character || job) && (
@@ -166,7 +167,7 @@ const CreditsTableTvItem = React.forwardRef<
     </TableCell>
     <TableCell>{first_air_date ? format.year(first_air_date) : "-"}</TableCell>
     <TableCell>
-      <Link className="font-medium" href={`/tv/${id}`}>
+      <Link className="font-medium" href={`${pages.tv.root.link}/${id}`}>
         {name}
       </Link>
       <p className="text-muted-foreground">

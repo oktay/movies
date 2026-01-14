@@ -1,5 +1,6 @@
 import { Fragment } from "react"
 import Link from "next/link"
+import { pages } from "@/config"
 import { Episode, SeasonDetails, TvShowDetails } from "@/tmdb/models"
 
 import { pad } from "@/lib/utils"
@@ -32,14 +33,14 @@ export const TvSeasonBreadcrumb = ({
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href={`/tv/${id}`}>{showDetails.name}</Link>
+            <Link href={`${pages.tv.root.link}/${id}`}>{showDetails.name}</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
 
         <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href={`/tv/${id}/seasons`}>Seasons</Link>
+            <Link href={`${pages.tv.root.link}/${id}/seasons`}>Seasons</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
 
@@ -47,7 +48,7 @@ export const TvSeasonBreadcrumb = ({
         <BreadcrumbItem>
           {episodeDetails ? (
             <BreadcrumbLink asChild>
-              <Link href={`/tv/${id}/seasons/${season}`}>
+              <Link href={`${pages.tv.root.link}/${id}/seasons/${season}`}>
                 {seasonDetails.name}
               </Link>
             </BreadcrumbLink>

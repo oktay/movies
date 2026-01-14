@@ -1,5 +1,6 @@
 import React from "react"
 import Link from "next/link"
+import { pages } from "@/config"
 import { TvShow } from "@/tmdb/models"
 import { format } from "@/tmdb/utils"
 
@@ -17,7 +18,12 @@ export const TvCard: React.FC<TvShow> = ({
   first_air_date,
 }) => {
   return (
-    <Link href={`/tv/${id}`} key={id} className="w-full" prefetch={false}>
+    <Link
+      href={`${pages.tv.root.link}/${id}`}
+      key={id}
+      className="w-full"
+      prefetch={false}
+    >
       <MediaCard.Root>
         <MediaPoster image={poster_path} alt={name} />
         <MediaCard.Content>

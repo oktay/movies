@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import { pages } from "@/config"
 import { tmdb } from "@/tmdb/api"
 
 import { MovieHero } from "@/components/movie-hero"
@@ -28,7 +29,7 @@ export default async function Home() {
         <TrendCarousel
           type="movie"
           title="Trending Movies"
-          link="/trending/movie"
+          link={pages.trending.movie.link}
           items={movies}
         />
 
@@ -48,7 +49,7 @@ export default async function Home() {
         <TrendCarousel
           type="tv"
           title="Trending TV Shows"
-          link="/trending/tv"
+          link={pages.trending.tv.link}
           items={tvShows}
         />
 

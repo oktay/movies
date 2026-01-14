@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { pages } from "@/config"
 import { Episode } from "@/tmdb/models"
 import { format } from "@/tmdb/utils"
 import { Calendar, Clock } from "lucide-react"
@@ -24,7 +25,7 @@ export const TvEpisodeCard: React.FC<Episode> = ({
   return (
     <div className="flex flex-col md:flex-row">
       <Link
-        href={`/tv/${show_id}/seasons/${season_number}/episodes/${episode_number}`}
+        href={`${pages.tv.root.link}/${show_id}/seasons/${season_number}/episodes/${episode_number}`}
         className="relative aspect-video md:w-72"
         key={id}
       >
@@ -33,7 +34,7 @@ export const TvEpisodeCard: React.FC<Episode> = ({
 
       <div className="flex flex-1 flex-col p-4">
         <Link
-          href={`/tv/${show_id}/seasons/${season_number}/episodes/${episode_number}`}
+          href={`${pages.tv.root.link}/${show_id}/seasons/${season_number}/episodes/${episode_number}`}
         >
           <h3 className="flex items-center gap-2 font-medium">
             {pad(episode_number)}. {name}

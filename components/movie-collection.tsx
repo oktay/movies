@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { pages } from "@/config"
 import { tmdb } from "@/tmdb/api"
 
 import { Button } from "@/components/ui/button"
@@ -30,7 +31,9 @@ export const MovieCollection: React.FC<MovieCollectionProps> = async ({
             Includes: {collection.parts.map((part) => part.title).join(", ")}
           </p>
           <Button asChild>
-            <Link href={`/collection/${id}`}>View the collection</Link>
+            <Link href={`${pages.collection.root.link}/${id}`}>
+              View the collection
+            </Link>
           </Button>
         </div>
       </div>

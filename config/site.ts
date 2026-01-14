@@ -50,43 +50,43 @@ export type NavItem = {
 
 const home = {
   title: "Home",
-  href: "/",
+  href: pages.home.link,
   icon: HomeIcon,
 }
 
 const movies = {
   title: "Movies",
-  href: "/movie",
+  href: pages.movie.root.link,
   icon: ClapperboardIcon,
   description: pages.movie.root.description,
   items: [
     {
       title: "Discover",
-      href: "/movie/discover",
+      href: pages.movie.discover.link,
       icon: TelescopeIcon,
       description: pages.movie.discover.description,
     },
     {
       title: "Popular",
-      href: "/movie/popular",
+      href: pages.movie.popular.link,
       icon: HeartIcon,
       description: pages.movie.popular.description,
     },
     {
       title: "Now Playing",
-      href: "/movie/now-playing",
+      href: pages.movie.nowPlaying.link,
       icon: PlayIcon,
       description: pages.movie.nowPlaying.description,
     },
     {
       title: "Upcoming",
-      href: "/movie/upcoming",
+      href: pages.movie.upcoming.link,
       icon: CalendarIcon,
       description: pages.movie.upcoming.description,
     },
     {
       title: "Top Rated",
-      href: "/movie/top-rated",
+      href: pages.movie.topRated.link,
       icon: StarIcon,
       description: pages.movie.topRated.description,
     },
@@ -95,37 +95,37 @@ const movies = {
 
 const tvShows = {
   title: "TV Shows",
-  href: "/tv",
+  href: pages.tv.root.link,
   icon: TvIcon,
   description: pages.tv.root.description,
   items: [
     {
       title: "Discover",
-      href: "/tv/discover",
+      href: pages.tv.discover.link,
       icon: TelescopeIcon,
       description: pages.tv.discover.description,
     },
     {
       title: "Popular",
-      href: "/tv/popular",
+      href: pages.tv.popular.link,
       icon: HeartIcon,
       description: pages.tv.popular.description,
     },
     {
       title: "Airing Today",
-      href: "/tv/airing-today",
+      href: pages.tv.airingToday.link,
       icon: PlayIcon,
       description: pages.tv.airingToday.description,
     },
     {
       title: "On The Air",
-      href: "/tv/on-the-air",
+      href: pages.tv.onTheAir.link,
       icon: RadioTowerIcon,
       description: pages.tv.onTheAir.description,
     },
     {
       title: "Top Rated",
-      href: "/tv/top-rated",
+      href: pages.tv.topRated.link,
       icon: StarIcon,
       description: pages.tv.topRated.description,
     },
@@ -134,13 +134,13 @@ const tvShows = {
 
 const people = {
   title: "People",
-  href: "/people",
+  href: pages.people.root.link,
   icon: User,
   description: pages.people.root.description,
   items: [
     {
       title: "Popular",
-      href: "/person/popular",
+      href: pages.people.popular.link,
       icon: HeartIcon,
       description: pages.people.popular.description,
     },
@@ -150,24 +150,24 @@ const people = {
 const trending = {
   title: "Trending",
   icon: TrendingUpIcon,
-  href: "/trending",
+  href: pages.trending.root.link,
   description: pages.trending.root.description,
   items: [
     {
       title: "Movies",
-      href: "/trending/movie",
+      href: pages.trending.movie.link,
       icon: ClapperboardIcon,
       description: pages.trending.movie.description,
     },
     {
       title: "TV Shows",
-      href: "/trending/tv",
+      href: pages.trending.tv.link,
       icon: TvIcon,
       description: pages.trending.tv.description,
     },
     // {
     //   title: "People",
-    //   href: "/trending/people",
+    //   href: pages.trending.people.link,
     //   icon: User,
     //   description: pages.trending.people.description,
     // },
