@@ -23,6 +23,8 @@ import { TvCard } from "@/components/tv-card"
 
 interface TrendCarouselProps {
   title?: string
+  description?: string
+  icon?: React.ReactNode
   link?: string
   items: MovieWithMediaType[] | TvShowWithMediaType[] | PersonWithMediaType[]
   type: "movie" | "tv" | "person"
@@ -30,6 +32,8 @@ interface TrendCarouselProps {
 
 export const TrendCarousel: React.FC<TrendCarouselProps> = ({
   title,
+  description,
+  icon,
   link,
   items,
 }) => {
@@ -58,20 +62,30 @@ export const TrendCarousel: React.FC<TrendCarouselProps> = ({
 
   return (
     <Carousel opts={{ dragFree: true }} setApi={setApi}>
-      <div className="mb-4 flex items-center justify-between gap-4 md:justify-start">
-        <h2 className="font-medium md:text-lg">{title}</h2>
+      <div className="mb-4 flex items-center justify-between gap-4 rounded-md p-2 pr-4 md:justify-start">
+        <div className="shrink-0">{icon}</div>
+
+        <div className="mr-32 w-full shrink truncate">
+          <h2 className="font-xl">{title}</h2>
+          <p className="hidden truncate text-sm text-muted-foreground xl:block">
+            {description}
+          </p>
+        </div>
 
         {link && (
           <Link
             href={link}
-            className={cn(buttonVariants({ size: "sm", variant: "outline" }))}
+            className={cn(
+              buttonVariants({ size: "sm", variant: "outline" }),
+              "ml-auto shrink-0"
+            )}
             prefetch={false}
           >
             Explore more
           </Link>
         )}
 
-        <div className="ml-auto hidden items-center gap-2 md:flex">
+        <div className="ml-4 hidden shrink-0 items-center gap-2 md:flex">
           <p className="mr-4 text-xs text-muted-foreground">
             <span className="font-bold text-foreground">{current}</span>
             <span> / </span>

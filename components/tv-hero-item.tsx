@@ -9,6 +9,7 @@ import { ArrowRight } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
 import { MediaBackdrop } from "@/components/media-backdrop"
+import { MediaRating } from "@/components/media-rating"
 
 interface TvHeroItemProps {
   id: string
@@ -50,6 +51,21 @@ export const TvHeroItem: React.FC<TvHeroItemProps> = async ({
               {item.name}
             </h1>
           )}
+
+          <div>
+            <MediaRating average={item.vote_average} count={item.vote_count} />
+            {item.genres.map((genre) => (
+              <Link
+                href={`${pages.tv.discover.link}?with_genres=${genre.id}`}
+                key={genre.id}
+              >
+                <Badge variant="secondary" className="ml-2 select-none">
+                  {genre.name}
+                </Badge>
+              </Link>
+            ))}
+          </div>
+
           <p className="line-clamp-3 text-sm text-muted-foreground md:text-lg">
             {item.overview}
           </p>
