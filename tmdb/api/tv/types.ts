@@ -8,7 +8,7 @@ export type TvListRequestParams = {
 }
 
 export type TvDetailsRequestParams = {
-  id: string
+  id: string | number
   append?: string
 }
 

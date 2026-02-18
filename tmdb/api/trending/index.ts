@@ -13,7 +13,7 @@ import { TrendingRequestParams } from "./types"
  *
  * @param {TrendingRequestParams} params - The parameters for the trending request, including the time window and page number.
  * @returns {Promise<ListResponse<MovieWithMediaType | TvShowWithMediaType | PersonWithMediaType>>} A promise that resolves to the list of trending movies, TV shows, or people.
- * @see https://developers.themoviedb.org/3/trending/trending-movies
+ * @see https://developer.themoviedb.org/reference/trending-movies
  */
 const movie = ({ time, page = "1" }: TrendingRequestParams) =>
   api.fetcher<ListResponse<MovieWithMediaType>>({
@@ -28,7 +28,7 @@ const movie = ({ time, page = "1" }: TrendingRequestParams) =>
  *
  * @param {TrendingRequestParams} params - The parameters for the trending request, including the time window and page number.
  * @returns {Promise<ListResponse<TvShowWithMediaType>>} A promise that resolves to the list of trending TV shows.
- * @see https://developers.themoviedb.org/3/trending/trending-tv
+ * @see https://developer.themoviedb.org/reference/trending-tv
  */
 const tv = ({ time, page = "1" }: TrendingRequestParams) =>
   api.fetcher<ListResponse<TvShowWithMediaType>>({
@@ -43,7 +43,7 @@ const tv = ({ time, page = "1" }: TrendingRequestParams) =>
  *
  * @param {TrendingRequestParams} params - The parameters for the trending request, including the time window and page number.
  * @returns {Promise<ListResponse<PersonWithMediaType>>} A promise that resolves to the list of trending people.
- * @see https://developers.themoviedb.org/3/trending/trending-people
+ * @see https://developer.themoviedb.org/reference/trending-people
  */
 const people = ({ time, page = "1" }: TrendingRequestParams) =>
   api.fetcher<ListResponse<PersonWithMediaType>>({

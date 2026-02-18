@@ -1,5 +1,6 @@
 export * from "./collections"
 export * from "./combined-credits"
+export * from "./commons"
 export * from "./credits"
 export * from "./genres"
 export * from "./images"

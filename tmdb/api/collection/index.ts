@@ -8,7 +8,7 @@ import { CollectionRequestParams } from "./types"
  *
  * @param {CollectionRequestParams} params - The parameters for the collection request, including the collection ID.
  * @returns {Promise<DetailedCollection>} A promise that resolves to the detailed information about the collection.
- * @see https://developers.themoviedb.org/3/collections/collection-details
+ * @see https://developer.themoviedb.org/reference/collection-details
  */
 const details = ({ id }: CollectionRequestParams) =>
   api.fetcher<DetailedCollection>({

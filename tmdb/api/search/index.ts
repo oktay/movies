@@ -13,17 +13,13 @@ import { SearchRequestParams } from "./types"
  *
  * @param {SearchRequestParams} params - The parameters for the search request, including the search query, adult content filter, and page number.
  * @returns {Promise<ListResponse<MovieWithMediaType | TvShowWithMediaType | PersonWithMediaType>>} A promise that resolves to the list of movies, TV shows, and people.
- * @see https://developers.themoviedb.org/3/search-multi
+ * @see https://developer.themoviedb.org/reference/search-multi
  */
-const multi = async ({
-  query,
-  adult = false,
-  page = "1",
-}: SearchRequestParams) =>
+const multi = ({ query, adult = false, page = "1" }: SearchRequestParams) =>
   api.fetcher<
     ListResponse<MovieWithMediaType | TvShowWithMediaType | PersonWithMediaType>
   >({
-    endpoint: "/search/multi",
+    endpoint: "search/multi",
     params: {
       query,
       page,

@@ -11,7 +11,7 @@ import { PersonDetailsRequestParams, PersonListRequestParams } from "./types"
  * @returns {Promise<ListResponse<Person>>} A promise that resolves to the list of movies.
  * @see https://developer.themoviedb.org/reference/person-popular-list
  */
-const list = async ({ list, page }: PersonListRequestParams) =>
+const list = ({ list, page }: PersonListRequestParams) =>
   api.fetcher<ListResponse<Person>>({
     endpoint: `person/${list}`,
     params: {
@@ -24,9 +24,9 @@ const list = async ({ list, page }: PersonListRequestParams) =>
  * @param id - Person ID.
  * @param append - Additional information to append to the response.
  * @returns A promise resolving to the person details.
- * @see https://developers.themoviedb.org/3/reference/person-details
+ * @see https://developer.themoviedb.org/reference/person-details
  */
-const detail = async <T>({ id, append }: PersonDetailsRequestParams) =>
+const detail = <T>({ id, append }: PersonDetailsRequestParams) =>
   api.fetcher<PersonDetails & T>({
     endpoint: `person/${id}`,
     params: {
@@ -38,9 +38,9 @@ const detail = async <T>({ id, append }: PersonDetailsRequestParams) =>
  * Fetches combined credits for a person by ID.
  * @param id - Person ID.
  * @returns A promise resolving to the combined credits for the person.
- * @see https://developers.themoviedb.org/3/reference/person-combined-credits
+ * @see https://developer.themoviedb.org/reference/person-combined-credits
  */
-const combinedCredits = async ({ id }: PersonDetailsRequestParams) =>
+const combinedCredits = ({ id }: PersonDetailsRequestParams) =>
   api.fetcher<CombinedCreditsResponse>({
     endpoint: `person/${id}/combined_credits`,
   })
