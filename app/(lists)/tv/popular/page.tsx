@@ -1,6 +1,6 @@
 import { pages } from "@/config"
 
-import { TvList } from "@/components/tv-list"
+import { TvList } from "@/components/tv/tv-list"
 
 interface ListPageProps {
   searchParams?: Record<string, string>

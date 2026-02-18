@@ -11,13 +11,13 @@ import {
 } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { MediaBackdrop } from "@/components/media-backdrop"
-import { MediaDetailView } from "@/components/media-detail-view"
-import { MediaImages } from "@/components/media-images"
-import { MediaPoster } from "@/components/media-poster"
-import { MovieCard } from "@/components/movie-card"
-import { PersonCreditsTable } from "@/components/person-credits-table"
-import { TvCard } from "@/components/tv-card"
+import { MediaBackdrop } from "@/components/media/media-backdrop"
+import { MediaDetailView } from "@/components/media/media-detail-view"
+import { MediaImages } from "@/components/media/media-images"
+import { MediaPoster } from "@/components/media/media-poster"
+import { MovieCard } from "@/components/movie/movie-card"
+import { PersonCreditsTable } from "@/components/person/person-credits-table"
+import { TvCard } from "@/components/tv/tv-card"
 
 interface DetailProps {
   params: {

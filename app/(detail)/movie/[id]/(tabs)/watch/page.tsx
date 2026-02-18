@@ -1,4 +1,4 @@
-import { MediaWatchProviders } from "@/components/media-watch-providers"
+import { MediaWatchProviders } from "@/components/media/media-watch-providers"
 
 interface DetailWatchProps {
   params: {

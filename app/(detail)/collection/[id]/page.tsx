@@ -3,9 +3,9 @@ import { pages } from "@/config"
 import { tmdb } from "@/tmdb/api"
 
 import { sortByReleaseDate } from "@/lib/utils"
-import { MediaBackdrop } from "@/components/media-backdrop"
-import { MediaMiniDetail } from "@/components/media-mini-detail"
-import { MediaPoster } from "@/components/media-poster"
+import { MediaBackdrop } from "@/components/media/media-backdrop"
+import { MediaMiniDetail } from "@/components/media/media-mini-detail"
+import { MediaPoster } from "@/components/media/media-poster"
 
 interface DetailProps {
   params: {

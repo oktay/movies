@@ -6,12 +6,12 @@ import { WithVideos } from "@/tmdb/api/types"
 import { format } from "@/tmdb/utils"
 
 import { Tabs, TabsLink, TabsList } from "@/components/ui/tabs"
-import { MediaBackdrop } from "@/components/media-backdrop"
-import { MediaDetailView } from "@/components/media-detail-view"
-import { MediaPoster } from "@/components/media-poster"
-import { MediaRating } from "@/components/media-rating"
-import { MediaTrailerDialog } from "@/components/media-trailer-dialog"
-import { ScrollFixer } from "@/components/scroll-fixer"
+import { MediaBackdrop } from "@/components/media/media-backdrop"
+import { MediaDetailView } from "@/components/media/media-detail-view"
+import { MediaPoster } from "@/components/media/media-poster"
+import { MediaRating } from "@/components/media/media-rating"
+import { MediaTrailerDialog } from "@/components/media/media-trailer-dialog"
+import { ScrollFixer } from "@/components/shared/scroll-fixer"
 
 interface DetailLayoutProps {
   params: {

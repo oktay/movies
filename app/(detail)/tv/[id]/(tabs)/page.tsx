@@ -13,7 +13,7 @@ import {
   TableHead,
   TableRow,
 } from "@/components/ui/table"
-import { MediaBackdrop } from "@/components/media-backdrop"
+import { MediaBackdrop } from "@/components/media/media-backdrop"
 
 export default async function Detail({ params }: { params: { id: string } }) {
   const {

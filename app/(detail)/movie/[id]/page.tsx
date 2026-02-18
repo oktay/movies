@@ -11,7 +11,7 @@ import {
   TableHead,
   TableRow,
 } from "@/components/ui/table"
-import { MovieCollection } from "@/components/movie-collection"
+import { MovieCollection } from "@/components/movie/movie-collection"
 
 interface DetailProps {
   params: {

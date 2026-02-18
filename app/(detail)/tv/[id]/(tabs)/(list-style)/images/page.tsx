@@ -1,6 +1,6 @@
 import { tmdb } from "@/tmdb/api"
 
-import { MediaImages } from "@/components/media-images"
+import { MediaImages } from "@/components/media/media-images"
 
 interface DetailImagesProps {
   params: {

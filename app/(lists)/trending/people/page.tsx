@@ -1,6 +1,6 @@
 import { pages } from "@/config"
 
-import { TrendList } from "@/components/trend-list"
+import { TrendList } from "@/components/trend/trend-list"
 
 interface TrendingPageProps {
   searchParams?: Record<string, string>

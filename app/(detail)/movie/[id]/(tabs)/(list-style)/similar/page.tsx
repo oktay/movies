@@ -1,7 +1,7 @@
 import { tmdb } from "@/tmdb/api"
 
-import { ListPagination } from "@/components/list-pagination"
-import { MovieCard } from "@/components/movie-card"
+import { MovieCard } from "@/components/movie/movie-card"
+import { ListPagination } from "@/components/shared/list-pagination"
 
 interface DetailSimilarProps {
   params: {

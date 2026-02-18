@@ -4,10 +4,10 @@ import { tmdb } from "@/tmdb/api"
 import { SortByType } from "@/tmdb/api/types"
 
 import { filterDiscoverParams } from "@/lib/utils"
-import { DiscoverFilters } from "@/components/discover-filters"
-import { DiscoverSort } from "@/components/discover-sort"
-import { ListPagination } from "@/components/list-pagination"
-import { MovieCard } from "@/components/movie-card"
+import { DiscoverFilters } from "@/components/discover/discover-filters"
+import { DiscoverSort } from "@/components/discover/discover-sort"
+import { MovieCard } from "@/components/movie/movie-card"
+import { ListPagination } from "@/components/shared/list-pagination"
 
 interface ListPageProps {
   searchParams?: Record<string, string>

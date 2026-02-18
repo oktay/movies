@@ -1,8 +1,8 @@
 import { redirect } from "next/navigation"
 import { tmdb } from "@/tmdb/api"
 
-import { ListPagination } from "@/components/list-pagination"
-import { SearchResultCard } from "@/components/search-result-card"
+import { SearchResultCard } from "@/components/search/search-result-card"
+import { ListPagination } from "@/components/shared/list-pagination"
 
 interface SearchProps {
   searchParams: {

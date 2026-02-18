@@ -3,9 +3,9 @@ import Link from "next/link"
 import { pages } from "@/config"
 import { tmdb } from "@/tmdb/api"
 
-import { MediaCard } from "@/components/media-card"
-import { MediaPoster } from "@/components/media-poster"
-import { MediaRating } from "@/components/media-rating"
+import { MediaCard } from "@/components/media/media-card"
+import { MediaPoster } from "@/components/media/media-poster"
+import { MediaRating } from "@/components/media/media-rating"
 
 interface DetailSeasonsProps {
   params: {

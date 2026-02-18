@@ -1,0 +1,88 @@
+import Image from "next/image"
+import Link from "next/link"
+import { pages } from "@/config"
+import { tmdb } from "@/tmdb/api"
+import { WithImages } from "@/tmdb/api/types"
+import { tmdbImage } from "@/tmdb/utils"
+import { ArrowRight } from "lucide-react"
+
+import { Badge } from "@/components/ui/badge"
+import { buttonVariants } from "@/components/ui/button"
+import { MediaBackdrop } from "@/components/media/media-backdrop"
+import { MediaRating } from "@/components/media/media-rating"
+
+interface TvHeroItemProps {
+  id: string
+  label?: string
+  priority?: boolean
+}
+
+export const TvHeroItem: React.FC<TvHeroItemProps> = async ({
+  id,
+  label,
+  priority,
+}) => {
+  const item = await tmdb.tv.detail<WithImages>({ id, append: "images" })
+  const logo = item.images?.logos.find((logo) => logo.iso_639_1 === "en")
+
+  return (
+    <div className="h-hero relative" key={item.id}>
+      <MediaBackdrop
+        image={item.backdrop_path}
+        alt={item.name}
+        priority={priority}
+      />
+
+      <div className="overlay">
+        <div className="mx-auto max-w-3xl space-y-4 p-4 pb-8 text-center md:p-14">
+          <Badge className="select-none">{label}</Badge>
+
+          {logo ? (
+            <Image
+              src={tmdbImage.logo(logo.file_path, "w500")}
+              className="mx-auto my-12 w-3/4"
+              alt={item.name}
+              height={logo.height}
+              width={logo.width}
+              unoptimized
+            />
+          ) : (
+            <h1 className="line-clamp-2 text-xl font-medium leading-tight tracking-tighter md:text-4xl">
+              {item.name}
+            </h1>
+          )}
+
+          <div>
+            <MediaRating average={item.vote_average} count={item.vote_count} />
+            {item.genres.map((genre) => (
+              <Link
+                href={`${pages.tv.discover.link}?with_genres=${genre.id}`}
+                key={genre.id}
+              >
+                <Badge variant="secondary" className="ml-2 select-none">
+                  {genre.name}
+                </Badge>
+              </Link>
+            ))}
+          </div>
+
+          <p className="line-clamp-3 text-sm text-muted-foreground md:text-lg">
+            {item.overview}
+          </p>
+
+          <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
+            <Link
+              href={`${pages.tv.root.link}/${item.id}`}
+              className={buttonVariants({
+                size: "lg",
+                variant: "default",
+              })}
+            >
+              Details <ArrowRight className="ml-2 size-4" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}

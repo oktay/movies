@@ -7,12 +7,12 @@ import HolyLoader from "holy-loader"
 
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
-import { GridBg } from "@/components/grid-bg"
-import { ScrollTop } from "@/components/scroll-top"
-import { SiteFooter } from "@/components/site-footer"
-import { SiteHeader } from "@/components/site-header"
-import { TailwindIndicator } from "@/components/tailwind-indicator"
-import { ThemeProvider } from "@/components/theme-provider"
+import { SiteFooter } from "@/components/layout/site-footer"
+import { SiteHeader } from "@/components/layout/site-header"
+import { GridBg } from "@/components/shared/grid-bg"
+import { ScrollTop } from "@/components/shared/scroll-top"
+import { TailwindIndicator } from "@/components/shared/tailwind-indicator"
+import { ThemeProvider } from "@/components/shared/theme-provider"
 
 export const metadata: Metadata = {
   title: {

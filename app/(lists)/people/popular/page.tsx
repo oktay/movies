@@ -1,6 +1,6 @@
 import { pages } from "@/config"
 
-import { PersonList } from "@/components/person-list"
+import { PersonList } from "@/components/person/person-list"
 
 interface ListPageProps {
   searchParams?: Record<string, string>

@@ -1,6 +1,6 @@
 import { pages } from "@/config"
 
-import { MovieList } from "@/components/movie-list"
+import { MovieList } from "@/components/movie/movie-list"
 
 interface ListPageProps {
   searchParams?: Record<string, string>

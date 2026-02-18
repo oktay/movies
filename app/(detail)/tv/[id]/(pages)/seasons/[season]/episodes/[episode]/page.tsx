@@ -5,12 +5,12 @@ import { format } from "@/tmdb/utils"
 
 import { pad } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
-import { MediaBackdrop } from "@/components/media-backdrop"
-import { MediaDetailView } from "@/components/media-detail-view"
-import { MediaRating } from "@/components/media-rating"
-import { TvEpisodeDetails } from "@/components/tv-episode-details"
-import { TvEpisodeNavigation } from "@/components/tv-episode-navigation"
-import { TvSeasonBreadcrumb } from "@/components/tv-season-breadcrumb"
+import { MediaBackdrop } from "@/components/media/media-backdrop"
+import { MediaDetailView } from "@/components/media/media-detail-view"
+import { MediaRating } from "@/components/media/media-rating"
+import { TvEpisodeDetails } from "@/components/tv/tv-episode-details"
+import { TvEpisodeNavigation } from "@/components/tv/tv-episode-navigation"
+import { TvSeasonBreadcrumb } from "@/components/tv/tv-season-breadcrumb"
 
 interface DetailEpisodeProps {
   params: {

@@ -1,7 +1,7 @@
 import { tmdb } from "@/tmdb/api"
 
-import { ListPagination } from "@/components/list-pagination"
-import { UserReviewCard } from "@/components/user-review-card"
+import { ListPagination } from "@/components/shared/list-pagination"
+import { UserReviewCard } from "@/components/user/user-review-card"
 
 interface DetailReviewsProps {
   params: {

@@ -5,9 +5,9 @@ import { tmdb } from "@/tmdb/api"
 import { ClapperboardIcon, HeartIcon, TvIcon } from "lucide-react"
 
 import { getCountryName } from "@/lib/utils"
-import { MovieHero } from "@/components/movie-hero"
-import { TrendCarousel } from "@/components/trend-carousel"
-import { TvHero } from "@/components/tv-hero"
+import { MovieHero } from "@/components/movie/movie-hero"
+import { TrendCarousel } from "@/components/trend/trend-carousel"
+import { TvHero } from "@/components/tv/tv-hero"
 
 export const metadata: Metadata = {
   title: "Home",

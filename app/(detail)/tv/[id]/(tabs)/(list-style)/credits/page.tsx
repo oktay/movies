@@ -1,6 +1,6 @@
 import { tmdb } from "@/tmdb/api"
 
-import { MediaCreditsList } from "@/components/media-credits-list"
+import { MediaCreditsList } from "@/components/media/media-credits-list"
 
 interface DetailCreditsProps {
   params: {

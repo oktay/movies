@@ -1,6 +1,6 @@
 import { tmdb } from "@/tmdb/api"
 
-import { MediaVideos } from "@/components/media-videos"
+import { MediaVideos } from "@/components/media/media-videos"
 
 interface VideosProps {
   params: {

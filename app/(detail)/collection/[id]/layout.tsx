@@ -3,10 +3,10 @@ import { siteConfig } from "@/config"
 import { tmdb } from "@/tmdb/api"
 import { format } from "@/tmdb/utils"
 
-import { MediaBackdrop } from "@/components/media-backdrop"
-import { MediaDetailView } from "@/components/media-detail-view"
-import { MediaPoster } from "@/components/media-poster"
-import { ScrollFixer } from "@/components/scroll-fixer"
+import { MediaBackdrop } from "@/components/media/media-backdrop"
+import { MediaDetailView } from "@/components/media/media-detail-view"
+import { MediaPoster } from "@/components/media/media-poster"
+import { ScrollFixer } from "@/components/shared/scroll-fixer"
 
 interface DetailLayoutProps {
   params: {
