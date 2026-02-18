@@ -1,35 +1,53 @@
 # movies
 
-> 🍿 A TMDB client build with Next.js 14
+> 🍿 A TMDB client built with Next.js 14
 
 Welcome to the "movies" web app! This app allows you to search for movies, TV shows, or people by title and view their details, including overview, release date, and average rating. You can also watch movie trailers and browse popular movies, top-rated movies, upcoming movies, and now playing movies.
 
-The app is built using Next.js, a React framework for building server-side rendered and static websites. It also utilizes Tailwind CSS, a utility-first CSS framework for rapidly building custom designs. The Movie Database API is used to access a vast collection of movie and TV show data.
-
-To get started with the app, follow the steps outlined in the "Getting Started" section of this README. Contributions are welcome, so if you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
-
-Happy movie browsing!
-
 <img src="https://api.microlink.io/?url=https://movies.oktaycolakoglu.com&screenshot=true&meta=false&embed=screenshot.url&type=jpeg&overlay.browser=dark&overlay.background=linear-gradient%28225deg%2C+%23FF057C+0%25%2C+%238D0B93+50%25%2C+%23321575+100%25%29" />
+
+## Features
+
+- Search for movies, TV shows, or people by title
+- View movie details, including overview, release date, and average rating
+- Watch movie trailers
+- Browse popular movies, top-rated movies, upcoming movies, and now playing movies
+- Discover movies and TV shows with filters (genre, year, rating, etc.)
+- View cast and crew information
+- Responsive design optimized for mobile, tablet, and desktop devices
+- Dark/Light theme support
+
+## Tech Stack
+
+- **Framework:** [Next.js 14](https://nextjs.org/) (App Router, Server Components)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **UI Components:** [shadcn/ui](https://ui.shadcn.com/) (Radix + Tailwind)
+- **API:** [The Movie Database (TMDB)](https://developers.themoviedb.org/3)
 
 ## Getting Started
 
-To get started with the Movies web app, follow these steps:
+### Prerequisites
+
+- Node.js 18+
+- TMDB API Key ([Get one here](https://developers.themoviedb.org/3))
+
+### Installation
 
 1. Clone the repository:
 
 ```bash
 git clone https://github.com/oktay/movies.git
+cd movies
 ```
 
-2. Install the dependencies:
+2. Install dependencies:
 
 ```bash
-cd movies
 npm install
 ```
 
-3. Obtain an API key from [The Movie Database API](https://developers.themoviedb.org/3) and add it to the `.env.local` file:
+3. Create `.env.local` and add your TMDB API key:
 
 ```bash
 TMDB_KEY=your-api-key
@@ -41,33 +59,49 @@ TMDB_KEY=your-api-key
 npm run dev
 ```
 
-5. Open your browser and navigate to `http://localhost:3000` to view the Movies web app.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Features
+## Documentation
 
-- Search for movies, TV shows, or people by title.
-- View movie details, including overview, release date, and average rating.
-- Watch movie trailers.
-- Browse popular movies, top-rated movies, upcoming movies, and now playing movies.
-- Responsive design optimized for mobile, tablet, and desktop devices.
+- [ARCHITECTURE.md](ARCHITECTURE.md) - Project structure, app router patterns, data flow
+- [CONVENTIONS.md](CONVENTIONS.md) - Code style, component patterns, naming conventions
 
-## Technologies Used
+## Project Structure
 
-- [Next.js](https://nextjs.org/) - A React framework for building server-side rendered and static websites.
-- [shadcn/ui](https://ui.shadcn.com/) - UI library for fundamental ui elements.
-- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework for rapidly building custom designs.
-- [The Movie Database API](https://developers.themoviedb.org/3) - An API that provides access to a vast collection of movie and TV show data.
+```
+├── app/                    # Next.js App Router
+│   ├── (home)/            # Home page
+│   ├── (lists)/           # List pages (popular, trending, discover)
+│   └── (detail)/          # Detail pages (movie, tv, people)
+├── components/            # React components
+│   ├── ui/                # shadcn/ui primitives
+│   ├── media/             # Shared media components
+│   ├── movie/             # Movie-specific components
+│   └── tv/                # TV-specific components
+├── tmdb/                  # TMDB API integration
+│   ├── api/               # API functions
+│   └── models/            # TypeScript types
+├── hooks/                 # Custom React hooks
+├── lib/                   # Utility functions
+└── config/                # Site configuration
+```
 
 ## TMDB
 
 This product uses the TMDB API but is not endorsed or certified by TMDB.
-Data provided by TMDB.
+
+<img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg" alt="TMDB Logo" width="120" />
 
 ## Contributing
 
-Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
+Contributions are welcome! Please read the [CONVENTIONS.md](CONVENTIONS.md) before submitting a PR.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
-
