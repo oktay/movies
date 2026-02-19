@@ -1,11 +1,7 @@
-import Link from "next/link"
-import { pages } from "@/config"
 import { tmdb } from "@/tmdb/api"
 
 import { sortByReleaseDate } from "@/lib/utils"
-import { MediaBackdrop } from "@/components/media/media-backdrop"
-import { MediaMiniDetail } from "@/components/media/media-mini-detail"
-import { MediaPoster } from "@/components/media/media-poster"
+import { MediaPreview } from "@/components/media/media-preview"
 
 interface DetailProps {
   params: {
@@ -20,35 +16,9 @@ export default async function Detail({ params }: DetailProps) {
 
   return (
     <section className="space-y-4">
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {sortByReleaseDate(parts).map((part) => (
-          <Link href={`${pages.movie.root.link}/${part.id}`} key={part.id}>
-            <MediaMiniDetail.Root>
-              <MediaMiniDetail.Backdrop>
-                <MediaBackdrop
-                  image={part.backdrop_path}
-                  alt={part.title}
-                  className="rounded-b-none"
-                  size="w780"
-                />
-              </MediaMiniDetail.Backdrop>
-
-              <MediaMiniDetail.Hero>
-                <MediaMiniDetail.Poster>
-                  <MediaPoster image={part.poster_path} alt={part.title} />
-                </MediaMiniDetail.Poster>
-
-                <div className="space-y-1">
-                  <MediaMiniDetail.Title className="line-clamp-1">
-                    {part.title}
-                  </MediaMiniDetail.Title>
-                  <MediaMiniDetail.Overview>
-                    {part.overview}
-                  </MediaMiniDetail.Overview>
-                </div>
-              </MediaMiniDetail.Hero>
-            </MediaMiniDetail.Root>
-          </Link>
+          <MediaPreview {...part} />
         ))}
       </div>
     </section>
