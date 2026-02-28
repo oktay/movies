@@ -1,7 +1,7 @@
 import { tmdb } from "@/tmdb/api"
 
 import { sortByReleaseDate } from "@/lib/utils"
-import { MediaPreview } from "@/components/media/media-preview"
+import { MovieCollectionPart } from "@/components/movie/movie-collection-part"
 
 interface DetailProps {
   params: {
@@ -16,9 +16,9 @@ export default async function Detail({ params }: DetailProps) {
 
   return (
     <section className="space-y-4">
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 lg:grid-cols-2">
         {sortByReleaseDate(parts).map((part) => (
-          <MediaPreview {...part} />
+          <MovieCollectionPart {...part} />
         ))}
       </div>
     </section>

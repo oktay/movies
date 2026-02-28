@@ -93,6 +93,9 @@
   .overlay {
     @apply absolute inset-0 border rounded-md flex items-end bg-gradient-to-tr from-background/95;
   }
+  .overlay-darker {
+    @apply absolute inset-0 border rounded-md flex items-end bg-gradient-to-tr from-background/95 to-background/50;
+  }
   .empty-box {
     @apply flex h-32 items-center justify-center rounded-lg border border-dashed text-muted-foreground;
   }
