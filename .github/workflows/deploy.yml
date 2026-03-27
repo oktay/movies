@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: SSH into VPS and deploy
-        uses: appleboy/ssh-action@v0.1.5
+        uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
@@ -24,5 +24,7 @@ jobs:
             cd movies
             git pull origin main
             npm install
+            pm2 stop movies || true
+            rm -rf .next
             npm run build
-            pm2 restart movies
+            pm2 start movies
