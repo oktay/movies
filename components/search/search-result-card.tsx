@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { pages } from "@/config"
 import {
   MovieWithMediaType,
   PersonWithMediaType,
@@ -24,7 +25,7 @@ export const SearchResultCard: React.FC<SearchResultCardProps> = ({
   const isMovie = media_type === "movie"
 
   return (
-    <Link href={`/${media_type}/${id}`} prefetch={false}>
+    <Link href={`${pages.people.root.link}/${id}`} prefetch={false}>
       <MediaCard.Root>
         <MediaPoster
           image={isPerson ? media.profile_path : media.poster_path}
