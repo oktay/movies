@@ -23,9 +23,14 @@ export const SearchResultCard: React.FC<SearchResultCardProps> = ({
 
   const isPerson = media_type === "person"
   const isMovie = media_type === "movie"
+  const path = isPerson
+    ? pages.people.root.link
+    : isMovie
+    ? pages.movie.root.link
+    : pages.tv.root.link
 
   return (
-    <Link href={`${pages.people.root.link}/${id}`} prefetch={false}>
+    <Link href={`${path}/${id}`} prefetch={false}>
       <MediaCard.Root>
         <MediaPoster
           image={isPerson ? media.profile_path : media.poster_path}
